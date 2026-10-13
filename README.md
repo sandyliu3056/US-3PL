@@ -1,6 +1,6 @@
-# Sandy Liu · 美國海外倉
+# Sandy Liu · 美國海外倉服務
 
-一頁式介紹網站：跨境賣家的美國倉（City of Industry, California）、一件代發、UPS / FedEx 派送。
+一頁式介紹網站：幫跨境賣家安排美國倉與一件代發，合作倉庫在 City of Industry, California，UPS / FedEx 派送。倉庫是合作夥伴的，網站主體是 Sandy Liu 的顧問服務。
 
 - `index.html` 一支＋地圖底圖 `earth.png`＋兩面國旗 `flags/`，沒有 build、沒有相依套件、沒有後端。
 - 字型從 Google Fonts 連結（芫荽 Iansui、Comic Neue、LXGW WenKai TC、Noto Sans TC），其餘全部內嵌。
