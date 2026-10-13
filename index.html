@@ -14,14 +14,16 @@
 <style>
   /* 版式與 After-Sales Parts Planner（RMA）同一套：標題列與表頭用 --navy、重點字 --gold、分頁列 --tabbar、主要按鈕 --primary。
      預設深藍主題；棕金、墨綠照 RMA 的值。字型預設手寫風（芫荽）。 */
-  :root, html[data-theme="navy"] { --navy:#1F3F6E; --gold:#F5C95C; --tabbar:#2E6FBA; --tab:#6A9BD8; --bg:#EDF1F7; --card:#F8FAFD; --panel:#FFFFFF; --line:#C9D4E4; --ink:#1E2430; --mute:#5B6472; --primary:#F2B134; --hover:#FFD27A; --stripe:#F0F4F9; --sel:#2A4F82; --selline:#8FB0DB; --warn:#B5544C; --accent:#1F3F6E; --orange:#D9822B; --sea:#D6E4F3; --subfg:#D9C7A8; --ok:#6CC070; }
+  :root, html[data-theme="navy"] { --navy:#1F3F6E; --gold:#F5C95C; --tabbar:#2E6FBA; --tab:#6A9BD8; --bg:#EDF1F7; --card:#F8FAFD; --panel:#FFFFFF; --line:#C9D4E4; --ink:#1E2430; --mute:#5B6472; --primary:#F2B134; --hover:#FFD27A; --stripe:#F0F4F9; --sel:#2A4F82; --selline:#8FB0DB; --warn:#B5544C; --accent:#1F3F6E; --orange:#D9822B; --sea:#D6E4F3; --subfg:#D9C7A8; --ok:#6CC070; --okdark:#2E7D32; }
   html[data-theme="brown"] { --navy:#3B2A1A; --gold:#F2B134; --tabbar:#F5A623; --tab:#F8BE4A; --bg:#F3ECE0; --card:#FBF6EC; --panel:#FFFDF7; --line:#D9CBB6; --ink:#3B2A1A; --mute:#7A6652; --primary:#F2A93B; --hover:#FFD27A; --stripe:#F6EFE3; --sel:#4A3524; --selline:#A98B5A; --warn:#B5544C; --accent:#3B2A1A; --orange:#E8862B; --sea:#DCE9F2; }
   html[data-theme="green"] { --navy:#1F3D2B; --gold:#E9C46A; --tabbar:#2E9E6B; --tab:#63B98E; --bg:#EEF4EF; --card:#F7FBF8; --panel:#FFFFFF; --line:#C6D8CC; --ink:#1E2A22; --mute:#5B6B60; --primary:#E9C46A; --hover:#F6DE9A; --stripe:#EFF6F1; --sel:#2B5239; --selline:#8FC2A4; --warn:#B5544C; --accent:#1F3D2B; --orange:#D9822B; --sea:#D8E8EE; }
   :root, html[data-font="hand"] { --font:"芫荽","Iansui","LXGW WenKai TC","霞鶩文楷 TC","Segoe Print","Ink Free","Comic Neue","Comic Sans MS","Microsoft JhengHei",sans-serif; }
   html[data-font="sans"] { --font:"Microsoft JhengHei","Segoe UI","Noto Sans TC",sans-serif; }
   * { box-sizing:border-box; }
+  [hidden] { display:none !important; }
   body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--font); font-size:14px; line-height:1.55; }
-  :focus-visible { outline:2px solid var(--gold); outline-offset:1px; }
+  :focus-visible { outline:2px solid var(--navy); outline-offset:2px; }
+  .hdr :focus-visible, .tabs :focus-visible { outline-color:var(--gold); }
   @media (prefers-reduced-motion:reduce) { * { animation:none !important; transition:none !important; } }
   /* 標題列（全寬、深色） */
   .hdr { background:var(--navy); color:var(--gold); padding:10px 22px; display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; }
@@ -51,7 +53,7 @@
   /* 元件 */
   .row { display:flex; flex-wrap:wrap; gap:10px; align-items:end; margin:8px 0 10px; }
   .row.panel { border:2px solid var(--navy); border-radius:9px; padding:10px 14px; background:var(--panel); align-items:center; }
-  .row label { display:flex; flex-direction:column; gap:3px; font-size:.86rem; color:var(--ink); font-weight:700; max-width:100%; min-width:0; }
+  .row label, .row .field { display:flex; flex-direction:column; gap:3px; font-size:.86rem; color:var(--ink); font-weight:700; max-width:100%; min-width:0; }
   input, select, textarea { font-family:inherit; font-size:.95rem; padding:6px 9px; border:1.5px solid #E0B86A; border-radius:6px; background:#fff; color:var(--ink); max-width:100%; }
   .btn { font-family:inherit; font-size:.92rem; font-weight:700; padding:7px 14px; border-radius:8px; border:2px solid var(--navy); background:var(--panel); color:var(--ink); cursor:pointer; text-decoration:none; display:inline-block; }
   .btn:hover { background:var(--hover); }
@@ -80,7 +82,7 @@
   .svc .t { font-weight:700; font-size:1rem; margin-bottom:4px; display:flex; align-items:center; gap:7px; }
   .svc ul { list-style:none; margin:0; padding:0; display:grid; gap:2px; }
   .svc li { display:flex; align-items:flex-start; gap:7px; font-size:.9rem; }
-  .svc li::before { content:"✓"; color:#fff; background:var(--ok); border-radius:50%; width:16px; height:16px; font-size:.7rem; display:inline-flex; align-items:center; justify-content:center; flex:none; margin-top:3px; }
+  .svc li::before { content:"✓" / ""; color:#fff; background:var(--okdark); border-radius:50%; width:16px; height:16px; font-size:.7rem; display:inline-flex; align-items:center; justify-content:center; flex:none; margin-top:3px; }
   /* 步驟進度（與 RMA 的啟動面板同一個樣子） */
   .steps-panel { background:var(--panel); border:2px solid var(--navy); border-radius:9px; padding:12px 16px; margin:10px 0; }
   .steps-head { display:flex; justify-content:space-between; align-items:baseline; font-weight:700; gap:10px; flex-wrap:wrap; }
@@ -89,11 +91,14 @@
   .pbar-fill { height:100%; width:100%; border-radius:5px; background:var(--primary); }
   .steps { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px 22px; }
   .steps li { display:flex; align-items:center; gap:8px; color:var(--ink); font-size:.92rem; }
-  .steps li .ico { width:20px; height:20px; border-radius:50%; border:2px solid var(--ok); background:var(--ok); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:.75rem; flex:none; }
+  .steps li .ico { width:20px; height:20px; border-radius:50%; border:2px solid var(--okdark); background:var(--okdark); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:.75rem; flex:none; }
   .steps li .sub { color:var(--mute); font-weight:400; font-size:.82rem; }
   .steps-msg { color:var(--mute); font-size:.85rem; margin-top:8px; }
   .log { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px 12px; font-size:.9rem; white-space:pre-wrap; margin-top:6px; min-height:120px; }
   .notice { background:var(--panel); border:2px solid var(--navy); border-radius:8px; padding:9px 14px; font-size:.9rem; margin:8px 0; }
+  .notice p { margin:8px 0 0; }
+  #qform { align-items:flex-end; }
+  @media (pointer:coarse) { input, select, textarea, .hdr select { font-size:16px; } .btn.sm, .hbtn { min-height:36px; } }
   .small { font-size:.82rem; color:var(--mute); }
   /* 世界地圖：RMA 的 earth.png 底圖（等距圓柱投影）＋ 國旗釘 */
   .flag { width:1.25em; height:.94em; vertical-align:-.1em; margin-right:.35em; border-radius:2px; box-shadow:0 0 0 1px rgba(0,0,0,.18); }
@@ -107,8 +112,8 @@
   .map svg { width:100%; height:auto; display:block; border-radius:6px; border:1px solid var(--line); max-width:100%; }
   .map .sea { fill:var(--sea); }
   .map .route { fill:none; stroke:var(--navy); opacity:.8; }
-  .map .pin rect { fill:#fff; stroke:var(--navy); stroke-width:1; }
-  .map .pin text { font-family:inherit; font-weight:700; fill:var(--ink); paint-order:stroke; stroke:#fff; stroke-width:3; stroke-linejoin:round; }
+  .map .pin rect { fill:#fff; stroke:var(--navy); }
+  .map .pin text { font-family:inherit; font-weight:700; fill:var(--ink); paint-order:stroke; stroke:#fff; stroke-linejoin:round; }
   .map .pin.wh rect { stroke:var(--navy); stroke-width:2; fill:var(--gold); }
   .map .pin.from rect { stroke:var(--orange); }
   .map .pin.to rect { stroke:var(--navy); }
@@ -135,8 +140,8 @@
   .chips.area { margin:4px 0 12px; gap:6px 12px; }
   .chips.area .grp { flex:1 1 100%; margin-top:6px; }
   .chips.area .grp:first-child { margin-top:0; }
-  .toast { position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom,0px)); background:var(--navy); color:#fff; padding:10px 16px; border-radius:8px; max-width:min(420px, calc(100vw - 32px)); font-size:.9rem; display:none; z-index:9; white-space:pre-wrap; }
-  .toast.on { display:block; }
+  .toast { position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom,0px)); background:var(--navy); color:#fff; padding:10px 16px; border-radius:8px; max-width:min(420px, calc(100vw - 32px)); font-size:.9rem; opacity:0; pointer-events:none; transition:opacity .2s; z-index:9; white-space:pre-wrap; }
+  .toast.on { opacity:1; }
   .copyrow { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
   .copyrow code { font-family:inherit; font-size:1rem; font-weight:700; user-select:all; }
   @media (max-width:600px) {
@@ -156,10 +161,10 @@
     <div class="sub" data-i18n="brand.sub">幫跨境賣家安排美國倉與一件代發 · 合作倉庫在 City of Industry, California</div>
   </div>
   <div class="ctl">
-    <select id="lang-sel" title="Language"><option value="zh">中文</option><option value="en">English</option></select>
-    <select id="font-sel" title="Font"><option value="hand" data-i18n="opt.hand">手寫風</option><option value="sans" data-i18n="opt.sans">正黑體</option></select>
-    <select id="theme-sel" title="Theme"><option value="navy" data-i18n="opt.navy">深藍</option><option value="brown" data-i18n="opt.brown">棕金</option><option value="green" data-i18n="opt.green">墨綠</option></select>
-    <select id="tz-sel" title="Time zone"><option value="America/Los_Angeles" data-i18n="opt.la">美國倉（加州）</option><option value="Asia/Taipei" data-i18n="opt.tpe">台北</option></select>
+    <select id="lang-sel" title="Language" aria-label="Language" data-i18n-aria="aria.lang"><option value="zh">中文</option><option value="en">English</option></select>
+    <select id="font-sel" title="Font" aria-label="Font" data-i18n-aria="aria.font"><option value="hand" data-i18n="opt.hand">手寫風</option><option value="sans" data-i18n="opt.sans">正黑體</option></select>
+    <select id="theme-sel" title="Theme" aria-label="Theme" data-i18n-aria="aria.theme"><option value="navy" data-i18n="opt.navy">深藍</option><option value="brown" data-i18n="opt.brown">棕金</option><option value="green" data-i18n="opt.green">墨綠</option></select>
+    <select id="tz-sel" title="Time zone" aria-label="Time zone" data-i18n-aria="aria.tz"><option value="America/Los_Angeles" data-i18n="opt.la">美國倉（加州）</option><option value="Asia/Taipei" data-i18n="opt.tpe">台北</option></select>
     <div class="clock"><div class="t" id="clock">--:--</div><div class="d"><span id="date"></span> <span id="tzname">加州</span></div></div>
     <div class="pill"><span class="dot"></span><span data-i18n="hdr.open">接單中</span></div>
     <button class="hbtn" id="quote-btn" type="button" data-i18n="hdr.quote">聯絡報價</button>
@@ -167,11 +172,11 @@
   </div>
 </header>
 
-<nav class="tabs" id="tabs" aria-label="Sections">
-  <button data-tab="home" class="active" type="button"><span class="ico">📂</span><span data-i18n="nav.home">首頁</span></button>
-  <button data-tab="services" type="button"><span class="ico">🏬</span><span data-i18n="nav.services">服務內容</span></button>
-  <button data-tab="flow" type="button"><span class="ico">🔁</span><span data-i18n="nav.flow">合作流程</span></button>
-  <button data-tab="rates" type="button"><span class="ico">🚚</span><span data-i18n="nav.rates">運費與聯絡</span></button>
+<nav class="tabs" id="tabs" aria-label="Sections" data-i18n-aria="aria.nav">
+  <button data-tab="home" class="active" type="button"><span class="ico" aria-hidden="true">📂</span><span data-i18n="nav.home">首頁</span></button>
+  <button data-tab="services" type="button"><span class="ico" aria-hidden="true">🏬</span><span data-i18n="nav.services">服務內容</span></button>
+  <button data-tab="flow" type="button"><span class="ico" aria-hidden="true">🔁</span><span data-i18n="nav.flow">合作流程</span></button>
+  <button data-tab="rates" type="button"><span class="ico" aria-hidden="true">🚚</span><span data-i18n="nav.rates">運費與聯絡</span></button>
 </nav>
 
 <main class="card">
@@ -187,7 +192,7 @@
       <button class="btn primary" id="q-go" type="submit" data-i18n="q.go">產生詢價信</button>
     </form>
     <div class="caption" data-i18n="q.hint1">填好按「產生詢價信」，下面會出現一封寫好的信，複製後寄到 sandyliu3056@gmail.com 即可；這一頁不會上傳任何東西。</div>
-    <div class="caption" data-i18n="q.hint2">沒有確切數字也沒關係，先寫大概的，報價時再一起確認。一個工作天內回覆。</div>
+    <div class="caption" data-i18n="q.hint2">沒有確切數字也沒關係，先寫大概的，報價時再一起確認。我們會盡快回覆。</div>
     <div class="log" id="q-out" hidden></div>
     <div class="row" id="q-act" hidden><button class="btn sm" id="q-copy" type="button" data-i18n="q.copy">複製這封信</button><span class="small" data-i18n="q.to">收件人：sandyliu3056@gmail.com</span></div>
 
@@ -195,23 +200,23 @@
       <div class="kpi"><div class="k" data-i18n="k1">美國境內小包</div><div class="v" data-i18n="k1v">$3 起</div><div class="s" data-i18n="k1s">UPS / FedEx 優惠費率</div></div>
       <div class="kpi"><div class="k" data-i18n="k2">合作倉庫</div><div class="v">City of Industry</div><div class="s" data-i18n="k2s">California · 合作的美國倉儲出貨中心</div></div>
       <div class="kpi"><div class="k" data-i18n="k3">串接平台</div><div class="v" data-i18n="k3v">6 個</div><div class="s">Shopify · Amazon · eBay · Walmart · TikTok Shop · Temu</div></div>
-      <div class="kpi"><div class="k" data-i18n="k4">聯絡</div><div class="v" data-i18n="k4v">台灣・美國</div><div class="s" data-i18n="k4s">兩地都能聯絡，中英文服務</div></div>
+      <div class="kpi"><div class="k" data-i18n="k4">聯絡</div><div class="v" data-i18n="k4v">台灣·美國</div><div class="s" data-i18n="k4s">兩地都能聯絡，中英文服務</div></div>
     </div>
 
     <div class="steps-panel">
       <div class="steps-head"><span data-i18n="st.title">合作流程</span><span class="steps-pct" data-i18n="st.pct">五步，從第一批貨到日常出貨</span></div>
       <div class="pbar"><div class="pbar-fill"></div></div>
       <ol class="steps">
-        <li><span class="ico">✓</span><span data-i18n="st.1">貨送到美國倉</span></li>
-        <li><span class="ico">✓</span><span data-i18n="st.2">驗收上架</span></li>
-        <li><span class="ico">✓</span><span data-i18n="st.3">平台訂單同步</span></li>
-        <li><span class="ico">✓</span><span data-i18n="st.4">揀貨包裝出貨</span></li>
-        <li><span class="ico">✓</span><span data-i18n="st.5">追蹤與退貨</span></li>
+        <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.1">貨送到美國倉</span></li>
+        <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.2">驗收上架</span></li>
+        <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.3">平台訂單同步</span></li>
+        <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.4">揀貨包裝出貨</span></li>
+        <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.5">追蹤與退貨</span></li>
       </ol>
-      <div class="steps-msg" data-i18n="st.msg">貨先放在美國，訂單進來當天出。收貨上架、揀貨包裝、UPS / FedEx 派送、退貨處理，全部在合作倉庫完成，我負責對接。</div>
+      <div class="steps-msg" data-i18n="st.msg">貨先放在美國，訂單進來直接從美國出貨。收貨上架、揀貨包裝、UPS / FedEx 配送、退貨處理，全部在合作倉庫完成，我負責對接。</div>
     </div>
 
-    <div class="section" data-i18n="map.title">服務範圍</div>
+    <h2 class="section" data-i18n="map.title">服務範圍</h2>
     <div class="map">
       <div class="map-bar"><span class="caption" data-i18n="map.cap">貨從台灣、中國、東南亞進合作美國倉，從加州出到全美，UPS / FedEx 國際可送到各主要市場。</span>
         <span class="seg" id="map-view"><button class="btn" type="button" data-view="fit" data-i18n="map.region">區域</button><button class="btn active" type="button" data-view="world" data-i18n="map.world">全球</button></span></div>
@@ -219,7 +224,7 @@
       <div class="chips">
         <span><i class="lg wh"></i><b data-i18n="lg.wh">合作美國倉 City of Industry, CA</b></span>
         <span><i class="lg from"></i><span data-i18n="lg.from">常見出貨來源</span></span>
-        <span><i class="lg to"></i><span data-i18n="lg.to">UPS / FedEx 國際可派送（主要市場）</span></span>
+        <span><i class="lg to"></i><span data-i18n="lg.to">UPS / FedEx 國際可配送（主要市場）</span></span>
         <span><i class="lg city"></i><span data-i18n="lg.city">區域視角：美國境內 Ground 1–5 個工作天</span></span>
         <span><i class="lg rt"></i><span data-i18n="lg.rt">台灣 → 美國倉：空運、海運</span></span>
       </div>
@@ -228,21 +233,21 @@
 
   <!-- 服務內容 -->
   <section class="tab" id="tab-services">
-    <div class="section" data-i18n="svc.h">服務內容</div>
+    <h2 class="section" data-i18n="svc.h">服務內容</h2>
     <div class="caption" data-i18n="svc.s">從貨到美國倉，到買家簽收，都由合作倉庫完成，我負責對接。</div>
     <div class="svcs">
       <div class="svc"><div class="t"><span>🏬</span><span data-i18n="svc.1">美國倉儲服務</span></div><ul>
-        <li data-i18n="svc.1a">收貨驗收、上架入庫</li><li data-i18n="svc.1b">庫存管理與盤點</li><li data-i18n="svc.1c">貼標、換標</li><li data-i18n="svc.1d">退貨收回與處置</li></ul></div>
+        <li data-i18n="svc.1a">收貨驗收、上架入庫</li><li data-i18n="svc.1b">倉儲管理與庫存控管</li><li data-i18n="svc.1c">貼標、換標</li><li data-i18n="svc.1d">退貨收回與處置</li></ul></div>
       <div class="svc"><div class="t"><span>📦</span><span data-i18n="svc.2">訂單處理與出貨</span></div><ul>
         <li data-i18n="svc.2a">揀貨、包裝</li><li data-i18n="svc.2b">DTC / B2C / B2B 皆可</li><li data-i18n="svc.2c">多平台訂單整合</li><li data-i18n="svc.2d">FBA 預處理（貼標、裝箱）</li><li data-i18n="svc.2e">客製包材</li></ul></div>
       <div class="svc"><div class="t"><span>✈️</span><span data-i18n="svc.3">美國境內與國際運輸</span></div><ul>
-        <li data-i18n="svc.3a">UPS / FedEx 優惠費率</li><li data-i18n="svc.3b">美國境內派送、國際出口</li><li data-i18n="svc.3c">小包 $3 起</li><li data-i18n="svc.3d">Ground / Express 多種時效</li></ul></div>
+        <li data-i18n="svc.3a">UPS / FedEx 優惠費率</li><li data-i18n="svc.3b">美國境內配送、國際出口</li><li data-i18n="svc.3c">小包 $3 起</li><li data-i18n="svc.3d">Ground / Express 多種時效</li></ul></div>
       <div class="svc"><div class="t"><span>💻</span><span data-i18n="svc.4">電商營運支援</span></div><ul>
         <li data-i18n="svc.4a">商品上架協助</li><li data-i18n="svc.4b">庫存同步</li><li data-i18n="svc.4c">訂單流程優化</li><li data-i18n="svc.4d">退貨處理</li><li data-i18n="svc.4e">客服支援</li></ul></div>
       <div class="svc"><div class="t"><span>🤝</span><span data-i18n="svc.5">彈性合作</span></div><ul>
-        <li data-i18n="svc.5a">電商與新品牌都歡迎</li><li data-i18n="svc.5b">小量也能開始</li><li data-i18n="svc.5c">一站式服務</li><li data-i18n="svc.5d">依需求客製方案</li><li data-i18n="svc.5e">協助拓展美國市場</li></ul></div>
+        <li data-i18n="svc.5a">電商與新品牌都歡迎</li><li data-i18n="svc.5b">小型賣家也適用</li><li data-i18n="svc.5c">一站式服務</li><li data-i18n="svc.5d">依需求客製方案</li><li data-i18n="svc.5e">協助拓展美國市場</li></ul></div>
     </div>
-    <div class="section" data-i18n="plat.h">串接的銷售平台</div>
+    <h2 class="section" data-i18n="plat.h">串接的銷售平台</h2>
     <div class="tbl"><table>
       <thead><tr><th data-i18n="plat.c1">平台</th><th data-i18n="plat.c2">怎麼接</th><th data-i18n="plat.c3">出貨後</th></tr></thead>
       <tbody>
@@ -261,11 +266,11 @@
       <div class="steps-head"><span data-i18n="st.title">合作流程</span><span class="steps-pct" data-i18n="st.pct">五步，從第一批貨到日常出貨</span></div>
       <div class="pbar"><div class="pbar-fill"></div></div>
       <ol class="steps">
-        <li><span class="ico">✓</span><span data-i18n="st.1">貨送到美國倉</span></li>
-        <li><span class="ico">✓</span><span data-i18n="st.2">驗收上架</span></li>
-        <li><span class="ico">✓</span><span data-i18n="st.3">平台訂單同步</span></li>
-        <li><span class="ico">✓</span><span data-i18n="st.4">揀貨包裝出貨</span></li>
-        <li><span class="ico">✓</span><span data-i18n="st.5">追蹤與退貨</span></li>
+        <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.1">貨送到美國倉</span></li>
+        <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.2">驗收上架</span></li>
+        <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.3">平台訂單同步</span></li>
+        <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.4">揀貨包裝出貨</span></li>
+        <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.5">追蹤與退貨</span></li>
       </ol>
       <div class="steps-msg" data-i18n="st.msg2">每一步都有人對接，進度隨時可問。</div>
     </div>
@@ -276,7 +281,7 @@
         <tr><td class="k" data-i18n="st.2">驗收上架</td><td data-i18n="fl.2a">清點數量、檢查外觀、貼標、入庫定位。</td><td data-i18n="fl.2b">商品清單（SKU、條碼）</td></tr>
         <tr><td class="k" data-i18n="st.3">平台訂單同步</td><td data-i18n="fl.3a">店鋪訂單自動進倉，庫存回寫到店鋪。</td><td data-i18n="fl.3b">店鋪串接授權</td></tr>
         <tr><td class="k" data-i18n="st.4">揀貨包裝出貨</td><td data-i18n="fl.4a">UPS / FedEx 取件，追蹤號回寫訂單。</td><td data-i18n="fl.4b">包材或包裝要求（有的話）</td></tr>
-        <tr><td class="k" data-i18n="st.5">追蹤與退貨</td><td data-i18n="fl.5a">派送狀態可查；退貨收回後再上架或處置。</td><td data-i18n="fl.5b">退貨處理方式（重新上架／銷毀）</td></tr>
+        <tr><td class="k" data-i18n="st.5">追蹤與退貨</td><td data-i18n="fl.5a">配送狀態可查；退貨收回後再上架或處置。</td><td data-i18n="fl.5b">退貨處理方式（重新上架／銷毀）</td></tr>
       </tbody></table></div>
   </section>
 
@@ -284,29 +289,29 @@
   <section class="tab" id="tab-rates">
     <div class="kpis">
       <div class="kpi"><div class="k" data-i18n="r1">美國境內小包</div><div class="v" data-i18n="k1v">$3 起</div><div class="s" data-i18n="r1s">UPS / FedEx 協議費率</div></div>
-      <div class="kpi"><div class="k">Ground</div><div class="v" data-i18n="r2v">1 – 5 個工作天</div><div class="s" data-i18n="r2s">美國境內最經濟</div></div>
+      <div class="kpi"><div class="k">Ground</div><div class="v" data-i18n="r2v">1 – 5 個工作天</div><div class="s" data-i18n="r2s">美國境內最經濟，時效為承運商預估</div></div>
       <div class="kpi"><div class="k">Express</div><div class="v" data-i18n="r3v">隔日 / 兩日</div><div class="s" data-i18n="r3s">急件與高單價商品</div></div>
-      <div class="kpi"><div class="k" data-i18n="r4">國際出口</div><div class="v" data-i18n="r4v">從美國倉出</div><div class="s" data-i18n="r4s">文件與申報一併處理</div></div>
+      <div class="kpi"><div class="k" data-i18n="r4">國際出口</div><div class="v" data-i18n="r4v">從美國倉出</div><div class="s" data-i18n="r4s">依目的地與服務方式報價</div></div>
     </div>
-    <div class="notice" data-i18n="r.notice">實際費率依包裹的尺寸、重量、目的地 Zone 與附加費而定。用合作倉庫的承運商帳號出貨，拿的是倉庫的價格；把商品的尺寸重量寄給我們，回您一份估價。</div>
+    <div class="notice" data-i18n="r.notice">實際費率依包裹的尺寸、重量、目的地 Zone 與附加費而定。UPS / FedEx 優惠費率依實際包裹計價；把商品的尺寸重量寄給我們，回您一份估價。</div>
     <div class="tbl"><table>
       <thead><tr><th data-i18n="r.c1">服務</th><th data-i18n="r.c2">時效</th><th data-i18n="r.c3">適合</th><th data-i18n="r.c4">說明</th></tr></thead>
       <tbody>
         <tr><td class="k">UPS / FedEx Ground</td><td data-i18n="r2v">1 – 5 個工作天</td><td data-i18n="r.g1">日常訂單</td><td data-i18n="r.g2">美國境內最經濟的選擇，小包 $3 起。</td></tr>
-        <tr><td class="k">UPS / FedEx Express</td><td data-i18n="r3v">隔日 / 兩日</td><td data-i18n="r.e1">急件、高單價</td><td data-i18n="r.e2">隔日或兩日送達。</td></tr>
-        <tr><td class="k" data-i18n="r4">國際出口</td><td data-i18n="r.i0">依目的地</td><td data-i18n="r.i1">海外買家、海外退倉</td><td data-i18n="r.i2">從美國倉出到其他國家，文件與申報一併處理。</td></tr>
+        <tr><td class="k">UPS / FedEx Express</td><td data-i18n="r3v">隔日 / 兩日</td><td data-i18n="r.e1">急件、高單價</td><td data-i18n="r.e2">承運商的隔日、兩日服務。</td></tr>
+        <tr><td class="k" data-i18n="r4">國際出口</td><td data-i18n="r.i0">依目的地</td><td data-i18n="r.i1">海外買家、海外退倉</td><td data-i18n="r.i2">從美國倉出到其他國家，依目的地與服務方式報價。</td></tr>
         <tr><td class="k" data-i18n="r.b0">帳單</td><td>—</td><td data-i18n="r.b1">每月對帳</td><td data-i18n="r.b2">每一筆運費都對得回承運商帳單，附加費逐項列出。</td></tr>
       </tbody></table></div>
 
     <!-- 聯絡（和運費同一頁） -->
-    <div class="section" id="contact-anchor" data-i18n="ct.h">聯絡</div>
+    <h2 class="section" id="contact-anchor" data-i18n="ct.h">聯絡</h2>
     <div class="row panel">
-      <label><span data-i18n="ct.email">電子郵件</span><span class="copyrow"><code id="email">sandyliu3056@gmail.com</code><button class="btn sm" id="copy-email" type="button" data-i18n="ct.copy">複製</button></span></label>
-      <label><span data-i18n="ct.addr">合作倉庫所在地</span><span class="copyrow"><img class="flag" src="flags/us.svg" alt="">City of Industry, California, USA</span></label>
+      <div class="field"><span data-i18n="ct.email">電子郵件</span><span class="copyrow"><code id="email">sandyliu3056@gmail.com</code><button class="btn sm" id="copy-email" type="button" data-i18n="ct.copy">複製</button></span></div>
+      <div class="field"><span data-i18n="ct.addr">合作倉庫所在地</span><span class="copyrow"><img class="flag" src="flags/us.svg" alt="">City of Industry, California, USA</span></div>
     </div>
-    <div class="section" data-i18n="ct.area">服務地區</div>
+    <h2 class="section" data-i18n="ct.area">服務地區</h2>
     <div class="chips area" id="area-list"></div>
-    <div class="caption" data-i18n="ct.s">來信說明商品與月出貨量，一個工作天內回覆。想省事就回「首頁」用「產生詢價信」，貼上寄出。</div>
+    <div class="caption" data-i18n="ct.s">來信說明商品與每月出貨量，我們會盡快回覆。想省事就回「首頁」用「產生詢價信」，貼上寄出。</div>
     <div class="two">
       <div class="notice">
         <div style="font-weight:700;font-size:1.1rem">Sandy Liu</div>
@@ -316,10 +321,10 @@
       <div class="tbl"><table>
         <thead><tr><th data-i18n="ct.c1">項目</th><th data-i18n="ct.c2">內容</th></tr></thead>
         <tbody>
-          <tr><td class="k" data-i18n="ct.t1">回覆時間</td><td data-i18n="ct.t1v">一個工作天內</td></tr>
+          <tr><td class="k" data-i18n="ct.t1">回覆時間</td><td data-i18n="ct.t1v">盡快，通常一個工作天內</td></tr>
           <tr><td class="k" data-i18n="ct.t2">語言</td><td data-i18n="ct.t2v">中文、英文</td></tr>
           <tr><td class="k" data-i18n="ct.t3">報價需要</td><td data-i18n="ct.t3v">商品、每月出貨量、尺寸重量、貨從哪裡來</td></tr>
-          <tr><td class="k" data-i18n="ct.t4">合作方式</td><td data-i18n="ct.t4v">小量也能開始，依需求客製方案</td></tr>
+          <tr><td class="k" data-i18n="ct.t4">合作方式</td><td data-i18n="ct.t4v">小型賣家也適用，依需求客製方案</td></tr>
         </tbody></table></div>
     </div>
   </section>
@@ -334,6 +339,7 @@ const I18N={
   "brand.sub":["幫跨境賣家安排美國倉與一件代發 · 合作倉庫在 City of Industry, California","U.S. warehousing and fulfillment arranged for overseas sellers · partner warehouse in City of Industry, California"],
   "opt.hand":["手寫風","Handwriting"],"opt.sans":["正黑體","Sans"],"opt.navy":["深藍","Navy Blue"],"opt.brown":["棕金","Brown & Gold"],"opt.green":["墨綠","Green"],
   "opt.la":["美國倉（加州）","Warehouse (California)"],"opt.tpe":["台北","Taipei"],
+  "aria.lang":["語言","Language"],"aria.font":["字型","Font"],"aria.theme":["主題","Theme"],"aria.tz":["時區","Time zone"],"aria.nav":["分頁","Sections"],
   "hdr.open":["接單中","Taking orders"],"hdr.quote":["聯絡報價","Get a quote"],
   "nav.home":["首頁","Home"],"nav.services":["服務內容","Services"],"nav.flow":["合作流程","How it works"],"nav.rates":["運費與聯絡","Rates & Contact"],"nav.contact":["聯絡","Contact"],
   "q.item":["商品","Product"],"q.itemph":["例如：保溫杯、寵物用品","e.g. tumblers, pet supplies"],"q.vol":["每月出貨量","Orders per month"],
@@ -342,29 +348,29 @@ const I18N={
   "q.f1":["台灣","Taiwan"],"q.f2":["中國","China"],"q.f3":["其他","Elsewhere"],"q.go":["產生詢價信","Write my inquiry"],
   "q.hint1":["填好按「產生詢價信」，下面會出現一封寫好的信，複製後寄到 sandyliu3056@gmail.com 即可；這一頁不會上傳任何東西。",
              "Fill in the row and press \"Write my inquiry\": a ready-to-send email appears below. Copy it and send it to sandyliu3056@gmail.com; nothing on this page is uploaded."],
-  "q.hint2":["沒有確切數字也沒關係，先寫大概的，報價時再一起確認。一個工作天內回覆。","Rough numbers are fine; we confirm the details with the quote. Replies within one business day."],
+  "q.hint2":["沒有確切數字也沒關係，先寫大概的，報價時再一起確認。我們會盡快回覆。","Rough numbers are fine; we confirm the details with the quote. We reply as soon as we can."],
   "q.copy":["複製這封信","Copy the email"],"q.to":["收件人：sandyliu3056@gmail.com","To: sandyliu3056@gmail.com"],
   "k1":["美國境內小包","U.S. small parcel"],"k1v":["$3 起","from $3"],"k1s":["UPS / FedEx 優惠費率","Discounted UPS / FedEx rates"],
   "k2":["合作倉庫","Partner warehouse"],"k2s":["California · 合作的美國倉儲出貨中心","California · partner fulfillment hub"],
   "k3":["串接平台","Connected platforms"],"k3v":["6 個","6"],
-  "k4":["聯絡","Contact"],"k4v":["台灣・美國","Taiwan · USA"],"k4s":["兩地都能聯絡，中英文服務","Reach us in either place, in Chinese or English"],
+  "k4":["聯絡","Contact"],"k4v":["台灣·美國","Taiwan · USA"],"k4s":["兩地都能聯絡，中英文服務","Reach us in either place, in Chinese or English"],
   "st.title":["合作流程","How it works"],"st.pct":["五步，從第一批貨到日常出貨","Five steps, from the first shipment to daily orders"],
   "st.1":["貨送到美國倉","Ship stock to the warehouse"],"st.2":["驗收上架","Receive and put away"],"st.3":["平台訂單同步","Connect your store"],"st.4":["揀貨包裝出貨","Pick, pack and ship"],"st.5":["追蹤與退貨","Track and handle returns"],
-  "st.msg":["貨先放在美國，訂單進來當天出。收貨上架、揀貨包裝、UPS / FedEx 派送、退貨處理，全部在合作倉庫完成，我負責對接。","Stock sits in the U.S. and ships the day the order comes in. Receiving, pick and pack, UPS / FedEx delivery and returns all happen at the partner warehouse; I handle the hand-off."],
+  "st.msg":["貨先放在美國，訂單進來直接從美國出貨。收貨上架、揀貨包裝、UPS / FedEx 配送、退貨處理，全部在合作倉庫完成，我負責對接。","Stock sits in the U.S. and ships straight from the U.S. when the order comes in. Receiving, pick and pack, UPS / FedEx delivery and returns all happen at the partner warehouse; I handle the hand-off."],
   "st.msg2":["每一步都有人對接，進度隨時可問。","Someone owns every step; ask for status any time."],
   "map.title":["服務範圍","Where we ship"],"map.cap":["貨從台灣、中國、東南亞進合作美國倉，從加州出到全美，UPS / FedEx 國際可送到各主要市場。","Stock comes in from Taiwan, China and Southeast Asia to the partner warehouse; orders ship from California across the U.S., and UPS / FedEx international reaches the main markets."],
   "map.region":["區域","Region"],"map.world":["全球","World"],
-  "lg.wh":["合作美國倉 City of Industry, CA","Partner warehouse, City of Industry, CA"],"lg.from":["常見出貨來源","Common origins"],"lg.to":["UPS / FedEx 國際可派送（主要市場）","UPS / FedEx international (main markets)"],"lg.city":["區域視角：美國境內 Ground 1–5 個工作天","Region view: U.S. Ground, 1–5 business days"],
+  "lg.wh":["合作美國倉 City of Industry, CA","Partner warehouse, City of Industry, CA"],"lg.from":["常見出貨來源","Common origins"],"lg.to":["UPS / FedEx 國際可配送（主要市場）","UPS / FedEx international (main markets)"],"lg.city":["區域視角：美國境內 Ground 1–5 個工作天","Region view: U.S. Ground, 1–5 business days"],
   "rt.air":["空運","Air freight"],"rt.sea":["海運","Sea freight"],"lg.rt":["台灣 → 美國倉：空運、海運","Taiwan → warehouse: air and sea freight"],
   "c.us":["合作倉","Partner warehouse"],"c.tw":["台灣","Taiwan"],"c.cn":["中國","China"],"c.hk":["香港","Hong Kong"],"c.vn":["越南","Vietnam"],"c.th":["泰國","Thailand"],"c.my":["馬來西亞","Malaysia"],
   "c.jp":["日本","Japan"],"c.kr":["韓國","Korea"],"c.sg":["新加坡","Singapore"],"c.ph":["菲律賓","Philippines"],"c.id":["印尼","Indonesia"],"c.in":["印度","India"],"c.ae":["阿聯","UAE"],"c.sa":["沙烏地","Saudi Arabia"],
   "c.ca":["加拿大","Canada"],"c.gb":["英國","UK"],"c.de":["德國","Germany"],"c.fr":["法國","France"],"c.es":["西班牙","Spain"],"c.it":["義大利","Italy"],"c.nl":["荷蘭","Netherlands"],"c.au":["澳洲","Australia"],"c.nz":["紐西蘭","New Zealand"],
   "svc.h":["服務內容","Services"],"svc.s":["從貨到美國倉，到買家簽收，都由合作倉庫完成，我負責對接。","From arrival at the warehouse to the buyer's door, done by the partner warehouse with me as your contact."],
-  "svc.1":["美國倉儲服務","U.S. Warehouse Service"],"svc.1a":["收貨驗收、上架入庫","Receiving & put-away"],"svc.1b":["庫存管理與盤點","Storage & inventory control"],"svc.1c":["貼標、換標","Labeling / relabeling"],"svc.1d":["退貨收回與處置","Returns / disposal"],
+  "svc.1":["美國倉儲服務","U.S. Warehouse Service"],"svc.1a":["收貨驗收、上架入庫","Receiving & put-away"],"svc.1b":["倉儲管理與庫存控管","Storage management & inventory control"],"svc.1c":["貼標、換標","Labeling / relabeling"],"svc.1d":["退貨收回與處置","Returns / disposal"],
   "svc.2":["訂單處理與出貨","Order Processing & Fulfillment"],"svc.2a":["揀貨、包裝","Pick & pack"],"svc.2b":["DTC / B2C / B2B 皆可","DTC / B2C / B2B support"],"svc.2c":["多平台訂單整合","Multi-channel order integration"],"svc.2d":["FBA 預處理（貼標、裝箱）","FBA prep (labeling, cartons)"],"svc.2e":["客製包材","Customized packaging"],
-  "svc.3":["美國境內與國際運輸","Domestic & International Shipping"],"svc.3a":["UPS / FedEx 優惠費率","Competitive UPS / FedEx rates"],"svc.3b":["美國境內派送、國際出口","U.S. domestic & international delivery"],"svc.3c":["小包 $3 起","Small parcel from $3+"],"svc.3d":["Ground / Express 多種時效","Ground / Express, multiple delivery options"],
+  "svc.3":["美國境內與國際運輸","Domestic & International Shipping"],"svc.3a":["UPS / FedEx 優惠費率","Competitive UPS / FedEx rates"],"svc.3b":["美國境內配送、國際出口","U.S. domestic & international delivery"],"svc.3c":["小包 $3 起","Small parcels from $3"],"svc.3d":["Ground / Express 多種時效","Ground / Express, multiple delivery options"],
   "svc.4":["電商營運支援","E-commerce Operations Support"],"svc.4a":["商品上架協助","Product listing assistance"],"svc.4b":["庫存同步","Inventory sync"],"svc.4c":["訂單流程優化","Order process optimization"],"svc.4d":["退貨處理","Returns handling"],"svc.4e":["客服支援","Customer support"],
-  "svc.5":["彈性合作","Flexible Collaboration"],"svc.5a":["電商與新品牌都歡迎","For e-commerce & new brands"],"svc.5b":["小量也能開始","Small business friendly"],"svc.5c":["一站式服務","One-stop service"],"svc.5d":["依需求客製方案","Customized solutions"],"svc.5e":["協助拓展美國市場","Support for U.S. market expansion"],
+  "svc.5":["彈性合作","Flexible Collaboration"],"svc.5a":["電商與新品牌都歡迎","For e-commerce & new brands"],"svc.5b":["小型賣家也適用","Small business friendly"],"svc.5c":["一站式服務","One-stop service"],"svc.5d":["依需求客製方案","Customized solutions"],"svc.5e":["協助拓展美國市場","Support for U.S. market expansion"],
   "plat.h":["串接的銷售平台","Connected sales platforms"],"plat.c1":["平台","Platform"],"plat.c2":["怎麼接","How it connects"],"plat.c3":["出貨後","After shipping"],
   "plat.r1":["店鋪訂單自動進倉","Store orders flow into the warehouse"],"plat.r2":["FBM 訂單進倉；FBA 貨件在倉內預處理後送 FBA","FBM orders flow in; FBA shipments are prepped here and forwarded to FBA"],
   "plat.rx":["追蹤號回寫訂單，庫存同步到店鋪","Tracking numbers go back to the order; stock syncs to the store"],
@@ -373,25 +379,25 @@ const I18N={
   "fl.2a":["清點數量、檢查外觀、貼標、入庫定位。","Count, inspect, label and assign a location."],"fl.2b":["商品清單（SKU、條碼）","Product list (SKUs, barcodes)"],
   "fl.3a":["店鋪訂單自動進倉，庫存回寫到店鋪。","Store orders flow in automatically; stock levels write back."],"fl.3b":["店鋪串接授權","Store connection access"],
   "fl.4a":["UPS / FedEx 取件，追蹤號回寫訂單。","UPS / FedEx pick up; tracking numbers go back to the order."],"fl.4b":["包材或包裝要求（有的話）","Packaging requirements, if any"],
-  "fl.5a":["派送狀態可查；退貨收回後再上架或處置。","Delivery is trackable; returns are restocked or disposed of."],"fl.5b":["退貨處理方式（重新上架／銷毀）","Returns policy (restock or dispose)"],
+  "fl.5a":["配送狀態可查；退貨收回後再上架或處置。","Delivery is trackable; returns are restocked or disposed of."],"fl.5b":["退貨處理方式（重新上架／銷毀）","Returns policy (restock or dispose)"],
   "r1":["美國境內小包","U.S. small parcel"],"r1s":["UPS / FedEx 協議費率","UPS / FedEx contract rates"],
-  "r2v":["1 – 5 個工作天","1 – 5 business days"],"r2s":["美國境內最經濟","Most economical within the U.S."],
+  "r2v":["1 – 5 個工作天","1 – 5 business days"],"r2s":["美國境內最經濟，時效為承運商預估","Most economical within the U.S.; transit is the carrier's estimate"],
   "r3v":["隔日 / 兩日","Next day / 2-day"],"r3s":["急件與高單價商品","Urgent or high-value orders"],
-  "r4":["國際出口","International export"],"r4v":["從美國倉出","From the U.S. warehouse"],"r4s":["文件與申報一併處理","Paperwork and declarations included"],
-  "r.notice":["實際費率依包裹的尺寸、重量、目的地 Zone 與附加費而定。用合作倉庫的承運商帳號出貨，拿的是倉庫的價格；把商品的尺寸重量寄給我們，回您一份估價。",
-              "The actual rate depends on the parcel's size, weight, destination zone and surcharges. Orders ship on the partner warehouse's carrier accounts at its rates; send us your product dimensions and weights for an estimate."],
+  "r4":["國際出口","International export"],"r4v":["從美國倉出","From the U.S. warehouse"],"r4s":["依目的地與服務方式報價","Quoted by destination and service"],
+  "r.notice":["實際費率依包裹的尺寸、重量、目的地 Zone 與附加費而定。UPS / FedEx 優惠費率依實際包裹計價；把商品的尺寸重量寄給我們，回您一份估價。",
+              "The actual rate depends on the parcel's size, weight, destination zone and surcharges. Discounted UPS / FedEx rates are priced per parcel; send us your product dimensions and weights for an estimate."],
   "r.c1":["服務","Service"],"r.c2":["時效","Transit"],"r.c3":["適合","Best for"],"r.c4":["說明","Notes"],
   "r.g1":["日常訂單","Everyday orders"],"r.g2":["美國境內最經濟的選擇，小包 $3 起。","The economical choice within the U.S.; small parcels from $3."],
-  "r.e1":["急件、高單價","Urgent, high-value"],"r.e2":["隔日或兩日送達。","Next-day or two-day delivery."],
-  "r.i0":["依目的地","By destination"],"r.i1":["海外買家、海外退倉","Overseas buyers, returns abroad"],"r.i2":["從美國倉出到其他國家，文件與申報一併處理。","From the U.S. warehouse to other countries, paperwork and declarations included."],
+  "r.e1":["急件、高單價","Urgent, high-value"],"r.e2":["承運商的隔日、兩日服務。","The carriers' next-day and two-day services."],
+  "r.i0":["依目的地","By destination"],"r.i1":["海外買家、海外退倉","Overseas buyers, returns abroad"],"r.i2":["從美國倉出到其他國家，依目的地與服務方式報價。","From the U.S. warehouse to other countries, quoted by destination and service."],
   "r.b0":["帳單","Billing"],"r.b1":["每月對帳","Monthly statement"],"r.b2":["每一筆運費都對得回承運商帳單，附加費逐項列出。","Every charge traces back to the carrier invoice, surcharges itemised."],
-  "ct.email":["電子郵件","Email"],"ct.copy":["複製","Copy"],"ct.addr":["合作倉庫所在地","Partner warehouse"],"ct.area":["服務地區","Service area"],"ar.us":["美國全境（Ground 1–5 個工作天）","All of the U.S. (Ground, 1–5 business days)"],"ar.from":["收貨來源","Inbound from"],"ar.to":["國際派送（UPS / FedEx）","International delivery (UPS / FedEx)"],"ar.wh":["合作美國倉 City of Industry, CA","Partner warehouse, City of Industry, CA"],
-  "ct.s":["來信說明商品與月出貨量，一個工作天內回覆。想省事就回「首頁」用「產生詢價信」，貼上寄出。","Tell us your products and monthly volume; we reply within one business day. Or use \"Write my inquiry\" on the Home tab and paste it into an email."],
+  "ct.email":["電子郵件","Email"],"ct.copy":["複製","Copy"],"ct.addr":["合作倉庫所在地","Partner warehouse"],"ct.area":["服務地區","Service area"],"ar.us":["美國全境（Ground 1–5 個工作天）","All of the U.S. (Ground, 1–5 business days)"],"ar.from":["收貨來源","Inbound from"],"ar.to":["國際配送（UPS / FedEx）","International delivery (UPS / FedEx)"],"ar.wh":["合作美國倉 City of Industry, CA","Partner warehouse, City of Industry, CA"],
+  "ct.s":["來信說明商品與每月出貨量，我們會盡快回覆。想省事就回「首頁」用「產生詢價信」，貼上寄出。","Tell us about your products and monthly volume and we will get back to you promptly. Or use \"Write my inquiry\" on the Home tab and paste it into an email."],
   "ct.role":["電商與物流服務顧問 · E-commerce & Logistics Service Consultant","E-commerce & Logistics Service Consultant"],
   "ct.p":["我幫跨境賣家安排美國倉與一件代發：對接合作倉庫的收貨、出貨與承運商帳務，台灣與美國兩地都能聯絡。不論是剛起步的品牌，還是要把出貨從自家搬到美國的賣家，都歡迎談。",
           "I arrange U.S. warehousing and fulfillment for overseas sellers through a partner warehouse in City of Industry, handling receiving, shipping and carrier billing on your behalf, and can be reached in Taiwan or the U.S. New brands and sellers moving their fulfillment to the U.S. are both welcome."],
-  "ct.c1":["項目","Item"],"ct.c2":["內容","Detail"],"ct.t1":["回覆時間","Reply time"],"ct.t1v":["一個工作天內","Within one business day"],"ct.t2":["語言","Languages"],"ct.t2v":["中文、英文","Chinese, English"],
-  "ct.t3":["報價需要","For a quote"],"ct.t3v":["商品、每月出貨量、尺寸重量、貨從哪裡來","Product, monthly volume, size and weight, origin"],"ct.t4":["合作方式","Terms"],"ct.t4v":["小量也能開始，依需求客製方案","Small volumes welcome; plans tailored to your needs"]
+  "ct.c1":["項目","Item"],"ct.c2":["內容","Detail"],"ct.t1":["回覆時間","Reply time"],"ct.t1v":["盡快，通常一個工作天內","Promptly, usually within one business day"],"ct.t2":["語言","Languages"],"ct.t2v":["中文、英文","Chinese, English"],
+  "ct.t3":["報價需要","For a quote"],"ct.t3v":["商品、每月出貨量、尺寸重量、貨從哪裡來","Product, monthly volume, size and weight, origin"],"ct.t4":["合作方式","Terms"],"ct.t4v":["小型賣家也適用，依需求客製方案","Small business friendly; plans tailored to your needs"]
 };
 const $=id=>document.getElementById(id);
 const pref=(k,v)=>{ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){} return null; };
@@ -400,6 +406,7 @@ function applyLang(code){
   LANG=code==="en"?"en":"zh"; const i=LANG==="en"?1:0;
   document.querySelectorAll("[data-i18n]").forEach(el=>{ const t=I18N[el.dataset.i18n]; if(t) el.textContent=t[i]; });
   document.querySelectorAll("[data-i18n-ph]").forEach(el=>{ const t=I18N[el.dataset.i18nPh]; if(t) el.placeholder=t[i]; });
+  document.querySelectorAll("[data-i18n-aria]").forEach(el=>{ const t=I18N[el.dataset.i18nAria]; if(t){ el.setAttribute("aria-label",t[i]); if(el.tagName==="SELECT") el.title=t[i]; } });
   document.documentElement.lang=i?"en":"zh-Hant-TW";
   document.title=i?"Sandy Liu Logistics Services":"Sandy Liu 電商物流服務";
   $("lang-sel").value=LANG; pref("lang",LANG); tick(); drawMap(); renderArea();
@@ -427,7 +434,8 @@ function tick(){
     const f=new Intl.DateTimeFormat("en-US",{timeZone:TZ,hour12:false,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",weekday:"short"});
     const o={}; for(const p of f.formatToParts(d)) o[p.type]=p.value; if(o.hour==="24") o.hour="00";
     $("clock").textContent=o.hour+":"+o.minute;
-    $("date").textContent=o.year+"/"+o.month+"/"+o.day+" "+o.weekday;
+    const wd=new Intl.DateTimeFormat(LANG==="en"?"en-US":"zh-TW",{timeZone:TZ,weekday:"short"}).format(d);
+    $("date").textContent=o.year+"/"+o.month+"/"+o.day+" "+wd;
     const la=TZ==="America/Los_Angeles";
     $("tzname").textContent=LANG==="en"?(la?"California":"Taipei"):(la?"加州":"台北");
   }catch(e){}
@@ -440,8 +448,9 @@ const TABS=["home","services","flow","rates"];
 function showTab(name){
   if(name==="contact") name="rates";   /* 舊連結 #contact 開到同一頁 */
   const n=TABS.includes(name)?name:"home";
-  document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("active",b.dataset.tab===n));
+  document.querySelectorAll("#tabs button").forEach(b=>{ const on=b.dataset.tab===n; b.classList.toggle("active",on); if(on) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current"); });
   TABS.forEach(t=>{ const s=$("tab-"+t); if(s) s.classList.toggle("active",t===n); });
+  if(n==="home") drawMap();   /* 分頁藏著的時候量不到寬度，回首頁再畫一次 */
   /* 首頁不掛 #home 在網址上；其他分頁才寫 #services 這種，方便分享連結。 */
   try{ if(n==="home"){ if(location.hash) history.replaceState(null,"",location.pathname+location.search); } else if(location.hash!=="#"+n) history.replaceState(null,"","#"+n); }catch(e){}
   window.scrollTo({top:0});
@@ -453,10 +462,11 @@ window.addEventListener("hashchange",()=>showTab(location.hash.replace("#","")))
 
 /* 詢價信：把表單的四格寫成一封信，複製就能寄。 */
 const toast=$("toast"); let tt=null;
-function say(msg){ toast.textContent=msg; toast.classList.add("on"); clearTimeout(tt); tt=setTimeout(()=>toast.classList.remove("on"),2000); }
+function say(msg,ms){ toast.classList.add("on"); requestAnimationFrame(()=>{ toast.textContent=msg; }); clearTimeout(tt); tt=setTimeout(()=>{ toast.classList.remove("on"); toast.textContent=""; },ms||2000); }
+const COPYKEY=/Mac|iPhone|iPad/.test(navigator.platform||"")?"⌘C":"Ctrl+C";
 function copyText(text,src){
   const done=()=>say(LANG==="en"?"Copied":"已複製");
-  const pick=()=>{ if(src){ const r=document.createRange(); r.selectNodeContents(src); const s=getSelection(); s.removeAllRanges(); s.addRange(r); } say(LANG==="en"?"Selected. Press Ctrl+C to copy":"已選取，按 Ctrl+C 複製"); };
+  const pick=()=>{ if(src){ const r=document.createRange(); r.selectNodeContents(src); const s=getSelection(); s.removeAllRanges(); s.addRange(r); } say(LANG==="en"?"Selected. Press "+COPYKEY+" to copy":"已選取，按 "+COPYKEY+" 複製",4000); };
   if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done,pick); else pick();
 }
 $("qform").addEventListener("submit",e=>{
@@ -473,8 +483,8 @@ $("q-copy").addEventListener("click",()=>copyText($("q-out").textContent,$("q-ou
 $("copy-email").addEventListener("click",()=>copyText($("email").textContent,$("email")));
 
 /* 世界地圖：RMA 的 earth.png（等距圓柱投影，1000×500）。釘子三種：美國倉、常見的出貨來源、
-   UPS / FedEx 國際可派送的主要市場；每一面旗下面一個深色定位點，擠在一起的互相推開（RMA 同一套）；
-   區域視角看北美＋美國境內派送點。
+   UPS / FedEx 國際可配送的主要市場；每一面旗下面一個深色定位點，擠在一起的互相推開（RMA 同一套）；
+   區域視角看北美＋美國境內配送點。
    地圖以太平洋為中心：底圖畫兩次（x=0 與 x=1000），美洲的點全部 +1000，台灣到美國倉就是一條連續的弧線，
    小飛機（空運）和貨輪（海運）沿著弧線一直開過去。 */
 const ASPECT=2.6, WORLD_VB={x:400,y:35,w:1000,h:1000/ASPECT};
@@ -490,7 +500,7 @@ const PINS=[
   {iso:"fr",ll:[46.5,2.3],k:"c.fr",kind:"to"},{iso:"es",ll:[40.2,-3.7],k:"c.es",kind:"to"},{iso:"it",ll:[42.5,12.5],k:"c.it",kind:"to"},
   {iso:"nl",ll:[52.2,5.3],k:"c.nl",kind:"to"},{iso:"au",ll:[-25.0,134.0],k:"c.au",kind:"to"},{iso:"nz",ll:[-41.0,174.0],k:"c.nz",kind:"to"}
 ];
-/* 美國境內派送點（區域視角才畫）：Ground 1–5 個工作天 */
+/* 美國境內配送點（區域視角才畫）：Ground 1–5 個工作天 */
 const CITIES=[["New York",40.7,-74.0],["Chicago",41.9,-87.6],["Dallas",32.8,-96.8],["Atlanta",33.7,-84.4],["Miami",25.8,-80.2],
   ["Seattle",47.6,-122.3],["Denver",39.7,-105.0],["Phoenix",33.4,-112.1],["Houston",29.8,-95.4],["Boston",42.4,-71.1]];
 /* 小飛機與貨輪（朝 +x 方向，原點在中心；animateMotion 會沿著路徑轉向） */
@@ -505,13 +515,14 @@ const SHIP='<path class="hull" d="M-12 0.5 L12 0.5 L9.5 5 L-10 5 Z"/>'
 const REDUCE=(()=>{ try{ return matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){ return false; } })();
 let mapView="world";
 function drawMap(){
-  const el=$("map-svg"); if(!el) return;
+  const el=$("map-svg"); if(!el||!el.clientWidth) return;
+  mapW=el.clientWidth;
   const fit=mapView==="fit";
   const vb=fit?{x:1120,y:95,w:240,h:240/ASPECT}:Object.assign({},WORLD_VB);
   const u=vb.w/(el.clientWidth||900);
   const i=LANG==="en"?1:0;
   const [tx,ty]=project(PINS[1].ll), [ux,uy]=project(PINS[0].ll);
-  let h=`<svg viewBox="${vb.x} ${vb.y} ${vb.w} ${vb.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="map"><rect x="0" y="0" width="2000" height="500" class="sea"/>`
+  let h=`<svg viewBox="${vb.x} ${vb.y} ${vb.w} ${vb.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${I18N["map.cap"][i]}"><rect x="0" y="0" width="2000" height="500" class="sea"/>`
        +`<image href="earth.png" x="0" y="0" width="1000" height="500" preserveAspectRatio="none"/><image href="earth.png" x="1000" y="0" width="1000" height="500" preserveAspectRatio="none"/>`;
   if(!fit){
     /* 空運偏北、海運偏南，兩條弧線都從台灣到美國倉 */
@@ -536,7 +547,7 @@ function drawMap(){
       if(ox<=0||oy<=0) continue; moved=true;
       if(ox<oy){ const sh=(ox/2+u)*(dx<0?-1:1); A.x-=sh; B.x+=sh; } else { const sh=(oy/2+u)*(dy<0?-1:1); A.y-=sh; B.y+=sh; }
     } if(!moved) break; }
-  if(fit){ /* 美國境內派送點 */
+  if(fit){ /* 美國境內配送點 */
     const [wx,wy]=project(PINS[0].ll);
     for(const [n,lat,lon] of CITIES){ const [x,y]=project([lat,lon]);
       h+=`<path class="route" d="M${wx.toFixed(1)} ${wy.toFixed(1)} L${x.toFixed(1)} ${y.toFixed(1)}" stroke-width="${1*u}" stroke-dasharray="${5*u} ${4*u}"/>`
@@ -560,7 +571,8 @@ document.querySelectorAll("#map-view button").forEach(b=>b.addEventListener("cli
   document.querySelectorAll("#map-view button").forEach(x=>x.classList.toggle("active",x===b));
   drawMap();
 }));
-window.addEventListener("resize",drawMap);
+let mapW=0, mapRaf=0;
+window.addEventListener("resize",()=>{ cancelAnimationFrame(mapRaf); mapRaf=requestAnimationFrame(()=>{ const el=$("map-svg"); if(el&&el.clientWidth&&el.clientWidth!==mapW) drawMap(); }); });
 
 /* 開頁：套回上次的偏好，網址有 # 就開那一頁。 */
 applyFont(pref("font")||"hand");
