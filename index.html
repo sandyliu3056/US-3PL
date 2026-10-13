@@ -113,6 +113,18 @@
   .map .pin.from rect { stroke:var(--orange); }
   .map .pin.to rect { stroke:var(--navy); }
   .map .spot { fill:#1E2430; stroke:#fff; }
+  .map .route.air { stroke:var(--navy); }
+  .map .route.sea { stroke:#1E6FA8; opacity:.9; }
+  .map .mv .body { fill:#fff; stroke:#1E2430; stroke-width:1; stroke-linejoin:round; }
+  .map .mv .wing { fill:#1E2430; stroke:#fff; stroke-width:.6; stroke-linejoin:round; paint-order:stroke; }
+  .map .mv .win { fill:#1E6FA8; }
+  .map .mv .hull { fill:#1E2430; stroke:#fff; stroke-width:.8; stroke-linejoin:round; }
+  .map .mv .box { stroke:#fff; stroke-width:.4; }
+  .map .mv .c1 { fill:#E8862B; } .map .mv .c2 { fill:#F2B134; } .map .mv .c3 { fill:#2E6FBA; }
+  .map .mv .cab { fill:#fff; stroke:#1E2430; stroke-width:.8; }
+  .map .mv .fun { fill:#B5544C; }
+  .map .rl { font-family:inherit; font-weight:700; fill:var(--ink); paint-order:stroke; stroke:#fff; stroke-linejoin:round; }
+  .chips .lg.rt { border:0; background:none; width:14px; height:0; border-top:2px dashed var(--navy); vertical-align:2px; }
   .map line.lead { stroke:#1E2430; opacity:.75; }
   .map .city circle { fill:#1E2430; stroke:#fff; stroke-width:1; }
   .map .city text { font-family:inherit; font-weight:700; fill:var(--ink); paint-order:stroke; stroke:#fff; stroke-linejoin:round; }
@@ -120,6 +132,9 @@
   .chips .lg.wh { background:var(--gold); } .chips .lg.from { border-color:var(--orange); } .chips .lg.city { border:0; border-radius:50%; background:#1E2430; width:10px; }
   .chips { display:flex; flex-wrap:wrap; gap:4px 14px; margin-top:8px; font-size:.85rem; }
   .chips b { color:var(--ink); }
+  .chips.area { margin:4px 0 12px; gap:6px 12px; }
+  .chips.area .grp { flex:1 1 100%; margin-top:6px; }
+  .chips.area .grp:first-child { margin-top:0; }
   .toast { position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom,0px)); background:var(--navy); color:#fff; padding:10px 16px; border-radius:8px; max-width:min(420px, calc(100vw - 32px)); font-size:.9rem; display:none; z-index:9; white-space:pre-wrap; }
   .toast.on { display:block; }
   .copyrow { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
@@ -156,8 +171,7 @@
   <button data-tab="home" class="active" type="button"><span class="ico">📂</span><span data-i18n="nav.home">首頁</span></button>
   <button data-tab="services" type="button"><span class="ico">🏬</span><span data-i18n="nav.services">服務內容</span></button>
   <button data-tab="flow" type="button"><span class="ico">🔁</span><span data-i18n="nav.flow">合作流程</span></button>
-  <button data-tab="rates" type="button"><span class="ico">🚚</span><span data-i18n="nav.rates">運費</span></button>
-  <button data-tab="contact" type="button"><span class="ico">✉️</span><span data-i18n="nav.contact">聯絡</span></button>
+  <button data-tab="rates" type="button"><span class="ico">🚚</span><span data-i18n="nav.rates">運費與聯絡</span></button>
 </nav>
 
 <main class="card">
@@ -207,6 +221,7 @@
         <span><i class="lg from"></i><span data-i18n="lg.from">常見出貨來源</span></span>
         <span><i class="lg to"></i><span data-i18n="lg.to">UPS / FedEx 國際可派送（主要市場）</span></span>
         <span><i class="lg city"></i><span data-i18n="lg.city">區域視角：美國境內 Ground 1–5 個工作天</span></span>
+        <span><i class="lg rt"></i><span data-i18n="lg.rt">台灣 → 美國倉：空運、海運</span></span>
       </div>
     </div>
   </section>
@@ -282,15 +297,15 @@
         <tr><td class="k" data-i18n="r4">國際出口</td><td data-i18n="r.i0">依目的地</td><td data-i18n="r.i1">海外買家、海外退倉</td><td data-i18n="r.i2">從美國倉出到其他國家，文件與申報一併處理。</td></tr>
         <tr><td class="k" data-i18n="r.b0">帳單</td><td>—</td><td data-i18n="r.b1">每月對帳</td><td data-i18n="r.b2">每一筆運費都對得回承運商帳單，附加費逐項列出。</td></tr>
       </tbody></table></div>
-  </section>
 
-  <!-- 聯絡 -->
-  <section class="tab" id="tab-contact">
+    <!-- 聯絡（和運費同一頁） -->
+    <div class="section" id="contact-anchor" data-i18n="ct.h">聯絡</div>
     <div class="row panel">
       <label><span data-i18n="ct.email">電子郵件</span><span class="copyrow"><code id="email">sandyliu3056@gmail.com</code><button class="btn sm" id="copy-email" type="button" data-i18n="ct.copy">複製</button></span></label>
       <label><span data-i18n="ct.addr">倉庫所在地</span><span class="copyrow"><img class="flag" src="flags/us.svg" alt="">City of Industry, California, USA</span></label>
-      <label><span data-i18n="ct.area">服務地區</span><span class="copyrow"><img class="flag" src="flags/tw.svg" alt=""><img class="flag" src="flags/us.svg" alt=""><span data-i18n="ct.areav">台灣 / 美國</span></span></label>
     </div>
+    <div class="section" data-i18n="ct.area">服務地區</div>
+    <div class="chips area" id="area-list"></div>
     <div class="caption" data-i18n="ct.s">來信說明商品與月出貨量，一個工作天內回覆。想省事就回「首頁」用「產生詢價信」，貼上寄出。</div>
     <div class="two">
       <div class="notice">
@@ -320,7 +335,7 @@ const I18N={
   "opt.hand":["手寫風","Handwriting"],"opt.sans":["正黑體","Sans"],"opt.navy":["深藍","Navy Blue"],"opt.brown":["棕金","Brown & Gold"],"opt.green":["墨綠","Green"],
   "opt.la":["美國倉（加州）","Warehouse (California)"],"opt.tpe":["台北","Taipei"],
   "hdr.open":["接單中","Taking orders"],"hdr.quote":["聯絡報價","Get a quote"],
-  "nav.home":["首頁","Home"],"nav.services":["服務內容","Services"],"nav.flow":["合作流程","How it works"],"nav.rates":["運費","Rates"],"nav.contact":["聯絡","Contact"],
+  "nav.home":["首頁","Home"],"nav.services":["服務內容","Services"],"nav.flow":["合作流程","How it works"],"nav.rates":["運費與聯絡","Rates & Contact"],"nav.contact":["聯絡","Contact"],
   "q.item":["商品","Product"],"q.itemph":["例如：保溫杯、寵物用品","e.g. tumblers, pet supplies"],"q.vol":["每月出貨量","Orders per month"],
   "q.v1":["100 件以下","Under 100"],"q.v2":["100 – 500 件","100 – 500"],"q.v3":["500 – 2,000 件","500 – 2,000"],"q.v4":["2,000 件以上","Over 2,000"],
   "q.dims":["尺寸 / 重量","Size / weight"],"q.dimsph":["例如：30×20×10 cm，1.2 kg","e.g. 30×20×10 cm, 1.2 kg"],"q.from":["貨從哪裡來","Ships from"],
@@ -340,6 +355,7 @@ const I18N={
   "map.title":["服務範圍","Where we ship"],"map.cap":["貨從台灣、中國、東南亞進美國倉，從加州出到全美，UPS / FedEx 國際可送到各主要市場。","Stock comes in from Taiwan, China and Southeast Asia; orders ship from California across the U.S., and UPS / FedEx international reaches the main markets."],
   "map.region":["區域","Region"],"map.world":["全球","World"],
   "lg.wh":["美國倉 City of Industry, CA","Warehouse, City of Industry, CA"],"lg.from":["常見出貨來源","Common origins"],"lg.to":["UPS / FedEx 國際可派送（主要市場）","UPS / FedEx international (main markets)"],"lg.city":["區域視角：美國境內 Ground 1–5 個工作天","Region view: U.S. Ground, 1–5 business days"],
+  "rt.air":["空運","Air freight"],"rt.sea":["海運","Sea freight"],"lg.rt":["台灣 → 美國倉：空運、海運","Taiwan → warehouse: air and sea freight"],
   "c.us":["美國倉","Warehouse"],"c.tw":["台灣","Taiwan"],"c.cn":["中國","China"],"c.hk":["香港","Hong Kong"],"c.vn":["越南","Vietnam"],"c.th":["泰國","Thailand"],"c.my":["馬來西亞","Malaysia"],
   "c.jp":["日本","Japan"],"c.kr":["韓國","Korea"],"c.sg":["新加坡","Singapore"],"c.ph":["菲律賓","Philippines"],"c.id":["印尼","Indonesia"],"c.in":["印度","India"],"c.ae":["阿聯","UAE"],"c.sa":["沙烏地","Saudi Arabia"],
   "c.ca":["加拿大","Canada"],"c.gb":["英國","UK"],"c.de":["德國","Germany"],"c.fr":["法國","France"],"c.es":["西班牙","Spain"],"c.it":["義大利","Italy"],"c.nl":["荷蘭","Netherlands"],"c.au":["澳洲","Australia"],"c.nz":["紐西蘭","New Zealand"],
@@ -369,7 +385,7 @@ const I18N={
   "r.e1":["急件、高單價","Urgent, high-value"],"r.e2":["隔日或兩日送達。","Next-day or two-day delivery."],
   "r.i0":["依目的地","By destination"],"r.i1":["海外買家、海外退倉","Overseas buyers, returns abroad"],"r.i2":["從美國倉出到其他國家，文件與申報一併處理。","From the U.S. warehouse to other countries, paperwork and declarations included."],
   "r.b0":["帳單","Billing"],"r.b1":["每月對帳","Monthly statement"],"r.b2":["每一筆運費都對得回承運商帳單，附加費逐項列出。","Every charge traces back to the carrier invoice, surcharges itemised."],
-  "ct.email":["電子郵件","Email"],"ct.copy":["複製","Copy"],"ct.addr":["倉庫所在地","Warehouse"],"ct.area":["服務地區","Service area"],"ct.areav":["台灣 / 美國","Taiwan / USA"],
+  "ct.email":["電子郵件","Email"],"ct.copy":["複製","Copy"],"ct.addr":["倉庫所在地","Warehouse"],"ct.area":["服務地區","Service area"],"ar.us":["美國全境（Ground 1–5 個工作天）","All of the U.S. (Ground, 1–5 business days)"],"ar.from":["收貨來源","Inbound from"],"ar.to":["國際派送（UPS / FedEx）","International delivery (UPS / FedEx)"],"ar.wh":["美國倉 City of Industry, CA","Warehouse, City of Industry, CA"],
   "ct.s":["來信說明商品與月出貨量，一個工作天內回覆。想省事就回「首頁」用「產生詢價信」，貼上寄出。","Tell us your products and monthly volume; we reply within one business day. Or use \"Write my inquiry\" on the Home tab and paste it into an email."],
   "ct.role":["電商與物流服務顧問 · E-commerce & Logistics Service Consultant","E-commerce & Logistics Service Consultant"],
   "ct.p":["在美國倉庫端處理跨境賣家的收貨、出貨與承運商帳務，台灣與美國兩地都能聯絡。不論是剛起步的品牌，還是要把出貨從自家搬到美國的賣家，都歡迎談。",
@@ -386,7 +402,16 @@ function applyLang(code){
   document.querySelectorAll("[data-i18n-ph]").forEach(el=>{ const t=I18N[el.dataset.i18nPh]; if(t) el.placeholder=t[i]; });
   document.documentElement.lang=i?"en":"zh-Hant-TW";
   document.title=i?"Sandy Liu U.S. Warehouse":"Sandy Liu 美國海外倉";
-  $("lang-sel").value=LANG; pref("lang",LANG); tick(); drawMap();
+  $("lang-sel").value=LANG; pref("lang",LANG); tick(); drawMap(); renderArea();
+}
+/* 聯絡頁的服務地區：和地圖同一份地點，一面旗一個名字 */
+function renderArea(){
+  const el=$("area-list"); if(!el||typeof PINS==="undefined") return;
+  const i=LANG==="en"?1:0, t=k=>I18N[k][i];
+  const chip=p=>`<span><img class="flag" src="flags/${p.iso}.svg" alt="">${t(p.k)}</span>`;
+  el.innerHTML=`<span><img class="flag" src="flags/us.svg" alt=""><b>${t("ar.wh")}</b></span><span><img class="flag" src="flags/us.svg" alt="">${t("ar.us")}</span>`
+    +`<b class="grp">${t("ar.from")}</b>`+PINS.filter(p=>p.kind==="from").map(chip).join("")
+    +`<b class="grp">${t("ar.to")}</b>`+PINS.filter(p=>p.kind==="to").map(chip).join("");
 }
 function applyFont(v){ document.documentElement.dataset.font=v==="sans"?"sans":"hand"; $("font-sel").value=v; pref("font",v); }
 function applyTheme(v){ const t=["navy","brown","green"].includes(v)?v:"navy"; document.documentElement.dataset.theme=t; $("theme-sel").value=t; pref("theme",t); }
@@ -411,8 +436,9 @@ $("tz-sel").addEventListener("change",e=>{ TZ=e.target.value; pref("tz",TZ); tic
 setInterval(tick,15000);
 
 /* 分頁：和 RMA 一樣的分頁按鈕；網址 #services 之類直接開那一頁。 */
-const TABS=["home","services","flow","rates","contact"];
+const TABS=["home","services","flow","rates"];
 function showTab(name){
+  if(name==="contact") name="rates";   /* 舊連結 #contact 開到同一頁 */
   const n=TABS.includes(name)?name:"home";
   document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("active",b.dataset.tab===n));
   TABS.forEach(t=>{ const s=$("tab-"+t); if(s) s.classList.toggle("active",t===n); });
@@ -422,7 +448,7 @@ function showTab(name){
 }
 document.querySelectorAll("#tabs button").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
 $("quote-btn").addEventListener("click",()=>{ showTab("home"); $("q-item").focus(); });
-$("mail-link").addEventListener("click",e=>{ e.preventDefault(); showTab("contact"); });
+$("mail-link").addEventListener("click",e=>{ e.preventDefault(); showTab("rates"); const t=$("contact-anchor"); if(t) t.scrollIntoView({block:"start"}); });
 window.addEventListener("hashchange",()=>showTab(location.hash.replace("#","")));
 
 /* 詢價信：把表單的四格寫成一封信，複製就能寄。 */
@@ -448,9 +474,11 @@ $("copy-email").addEventListener("click",()=>copyText($("email").textContent,$("
 
 /* 世界地圖：RMA 的 earth.png（等距圓柱投影，1000×500）。釘子三種：美國倉、常見的出貨來源、
    UPS / FedEx 國際可派送的主要市場；每一面旗下面一個深色定位點，擠在一起的互相推開（RMA 同一套）；
-   區域視角看北美＋美國境內派送點。 */
-const ASPECT=2.6, WORLD_VB={x:0,y:35,w:1000,h:1000/ASPECT};
-const project=([lat,lon])=>[(lon+180)/360*1000,(90-lat)/180*500];
+   區域視角看北美＋美國境內派送點。
+   地圖以太平洋為中心：底圖畫兩次（x=0 與 x=1000），美洲的點全部 +1000，台灣到美國倉就是一條連續的弧線，
+   小飛機（空運）和貨輪（海運）沿著弧線一直開過去。 */
+const ASPECT=2.6, WORLD_VB={x:400,y:35,w:1000,h:1000/ASPECT};
+const project=([lat,lon])=>{ let x=(lon+180)/360*1000; if(x<400) x+=1000; return [x,(90-lat)/180*500]; };
 const PINS=[
   {iso:"us",ll:[34.02,-117.96],k:"c.us",kind:"wh"},
   {iso:"tw",ll:[23.7,121.0],k:"c.tw",kind:"from"},{iso:"cn",ll:[33.5,110.0],k:"c.cn",kind:"from"},{iso:"hk",ll:[22.3,114.2],k:"c.hk",kind:"from"},
@@ -465,19 +493,38 @@ const PINS=[
 /* 美國境內派送點（區域視角才畫）：Ground 1–5 個工作天 */
 const CITIES=[["New York",40.7,-74.0],["Chicago",41.9,-87.6],["Dallas",32.8,-96.8],["Atlanta",33.7,-84.4],["Miami",25.8,-80.2],
   ["Seattle",47.6,-122.3],["Denver",39.7,-105.0],["Phoenix",33.4,-112.1],["Houston",29.8,-95.4],["Boston",42.4,-71.1]];
+/* 小飛機與貨輪（朝 +x 方向，原點在中心；animateMotion 會沿著路徑轉向） */
+const PLANE='<path class="wing" d="M-1 -2.6 L-6.5 -9 L-3 -9 L3 -2.6 Z"/><path class="wing" d="M-1 2.6 L-6.5 9 L-3 9 L3 2.6 Z"/>'
+  +'<path class="wing" d="M-8 -1.4 L-11 -5.6 L-8.6 -5.6 L-5.6 -1.4 Z"/>'
+  +'<path class="body" d="M-9 0 Q-9 -2.8 -4.5 -2.9 L5 -2.9 Q9.5 -2.5 11.5 0 Q9.5 2.5 5 2.9 L-4.5 2.9 Q-9 2.8 -9 0 Z"/>'
+  +'<circle class="win" cx="-3.5" cy="-.7" r=".7"/><circle class="win" cx="-1" cy="-.7" r=".7"/><circle class="win" cx="1.5" cy="-.7" r=".7"/><circle class="win" cx="4" cy="-.7" r=".7"/>';
+const SHIP='<path class="hull" d="M-12 0.5 L12 0.5 L9.5 5 L-10 5 Z"/>'
+  +'<rect class="box c1" x="-10" y="-2.2" width="3.4" height="2.7"/><rect class="box c2" x="-6.4" y="-2.2" width="3.4" height="2.7"/><rect class="box c3" x="-2.8" y="-2.2" width="3.4" height="2.7"/><rect class="box c1" x=".8" y="-2.2" width="3.4" height="2.7"/>'
+  +'<rect class="box c2" x="-8.2" y="-4.9" width="3.4" height="2.7"/><rect class="box c3" x="-4.6" y="-4.9" width="3.4" height="2.7"/><rect class="box c1" x="-1" y="-4.9" width="3.4" height="2.7"/>'
+  +'<rect class="cab" x="5.5" y="-4.2" width="4.2" height="4.7"/><rect class="fun" x="6.6" y="-6.2" width="1.6" height="2"/>';
+const REDUCE=(()=>{ try{ return matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){ return false; } })();
 let mapView="world";
 function drawMap(){
   const el=$("map-svg"); if(!el) return;
   const fit=mapView==="fit";
-  const vb=fit?{x:120,y:95,w:240,h:240/ASPECT}:Object.assign({},WORLD_VB);
+  const vb=fit?{x:1120,y:95,w:240,h:240/ASPECT}:Object.assign({},WORLD_VB);
   const u=vb.w/(el.clientWidth||900);
   const i=LANG==="en"?1:0;
   const [tx,ty]=project(PINS[1].ll), [ux,uy]=project(PINS[0].ll);
-  let h=`<svg viewBox="${vb.x} ${vb.y} ${vb.w} ${vb.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="map"><rect x="0" y="0" width="1000" height="500" class="sea"/>`
-       +`<image href="earth.png" x="0" y="0" width="1000" height="500" preserveAspectRatio="none"/>`;
+  let h=`<svg viewBox="${vb.x} ${vb.y} ${vb.w} ${vb.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="map"><rect x="0" y="0" width="2000" height="500" class="sea"/>`
+       +`<image href="earth.png" x="0" y="0" width="1000" height="500" preserveAspectRatio="none"/><image href="earth.png" x="1000" y="0" width="1000" height="500" preserveAspectRatio="none"/>`;
   if(!fit){
-    h+=`<path class="route" d="M${tx.toFixed(1)} ${ty.toFixed(1)} Q 930 120 1000 128" stroke-width="${1.6*u}" stroke-dasharray="${6*u} ${4*u}"/>`
-      +`<path class="route" d="M0 128 Q 90 118 ${ux.toFixed(1)} ${uy.toFixed(1)}" stroke-width="${1.6*u}" stroke-dasharray="${6*u} ${4*u}"/>`;
+    /* 空運偏北、海運偏南，兩條弧線都從台灣到美國倉 */
+    const air=`M${tx.toFixed(1)} ${ty.toFixed(1)} Q ${((tx+ux)/2).toFixed(1)} ${(Math.min(ty,uy)-95).toFixed(1)} ${ux.toFixed(1)} ${uy.toFixed(1)}`;
+    const sea=`M${tx.toFixed(1)} ${ty.toFixed(1)} Q ${((tx+ux)/2).toFixed(1)} ${(Math.max(ty,uy)+70).toFixed(1)} ${ux.toFixed(1)} ${uy.toFixed(1)}`;
+    h+=`<path id="air" class="route air" d="${air}" stroke-width="${1.4*u}" stroke-dasharray="${5*u} ${4*u}"/>`
+      +`<path id="sea" class="route sea" d="${sea}" stroke-width="${1.4*u}" stroke-dasharray="${2*u} ${4*u}"/>`;
+    const lbl=(x,y,t)=>`<text class="rl" x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="${9*u}" text-anchor="middle" stroke-width="${3*u}">${t}</text>`;
+    h+=lbl((tx+ux)/2,Math.min(ty,uy)-48+(-4*u),I18N["rt.air"][i])+lbl((tx+ux)/2,Math.max(ty,uy)+36+(9*u),I18N["rt.sea"][i]);
+    const mv=(path,dur,d,cls,fallback)=>REDUCE
+      ? `<g class="mv ${cls}" transform="translate(${fallback[0].toFixed(1)},${fallback[1].toFixed(1)}) scale(${(1.9*u).toFixed(3)})">${d}</g>`
+      : `<g class="mv ${cls}"><animateMotion dur="${dur}s" repeatCount="indefinite" rotate="auto"><mpath href="#${path}"/></animateMotion><g transform="scale(${(1.9*u).toFixed(3)})">${d}</g></g>`;
+    h+=mv("air",9,PLANE,"plane",[(tx+ux)/2,Math.min(ty,uy)-48])+mv("sea",22,SHIP,"ship",[(tx+ux)/2,Math.max(ty,uy)+36]);
   }
   const fw=(fit?22:20)*u, fh=fw*0.75, pad=1.5*u;
   const bw=fw+2*pad+4*u, bh=fh+2*pad+12*u;
@@ -495,7 +542,6 @@ function drawMap(){
       h+=`<path class="route" d="M${wx.toFixed(1)} ${wy.toFixed(1)} L${x.toFixed(1)} ${y.toFixed(1)}" stroke-width="${1*u}" stroke-dasharray="${5*u} ${4*u}"/>`
         +`<g class="city" transform="translate(${x.toFixed(1)},${y.toFixed(1)})"><circle r="${2.4*u}"/><text x="${3.5*u}" y="${1.5*u}" font-size="${7.5*u}" stroke-width="${2.5*u}">${n}</text></g>`; }
   }
-  /* 每個地點一個深色定位點，被推開的旗子用細線指回去 */
   for(const q of pins){
     h+=`<circle class="spot" cx="${q.x0.toFixed(1)}" cy="${q.y0.toFixed(1)}" r="${2.6*u}" stroke-width="${u}"/>`;
     if(Math.hypot(q.x-q.x0,q.y-(q.y0-9*u))>4*u) h+=`<line class="lead" x1="${q.x0.toFixed(1)}" y1="${q.y0.toFixed(1)}" x2="${q.x.toFixed(1)}" y2="${q.y.toFixed(1)}" stroke-width="${1.2*u}" stroke-dasharray="${3*u} ${2*u}"/>`;
