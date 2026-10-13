@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sandy Liu 美國海外倉</title>
+<meta name="description" content="跨境賣家的美國倉：City of Industry, California 倉儲、一件代發、UPS / FedEx 優惠費率、小包 $3 起。Sandy Liu，台灣／美國兩地服務。">
+<meta property="og:title" content="Sandy Liu 美國海外倉">
+<meta property="og:description" content="E-Commerce & U.S. Warehouse Fulfillment Solutions · City of Industry, California">
+<meta name="color-scheme" content="light dark">
+<style>img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* 版式:照 After-Sales Parts Planner 那一套 —— 海軍藍標題列、金色手寫體大標、
+   藍色分頁條上一排米色分頁、米色紙面、深藍框線的面板、金色按鈕。一頁到底，分頁條是錨點。 */
+:root{
+  --bg:#F3EFE4; --panel:#FBF8F0; --field:#FFFFFF;
+  --text:#1F2A3A; --muted:#5B6778;
+  --accent:#223B63; --line:#2A4668; --line2:rgba(42,70,104,.22);
+  --head:#1F3A60; --headfg:#FFFFFF; --title:#F5B942;
+  --tabbar:#3F6FA8; --tab:#F3EFE4; --tabon:#FFFDF7;
+  --gold:#E9A825; --goldfg:#1F2A3A; --ok:#3BA55D;
+  --dot:rgba(42,70,104,.07); --shadow:0 1px 2px rgba(31,42,58,.08);
+  --hand:"Patrick Hand","Noto Sans TC","Microsoft JhengHei UI","Microsoft JhengHei","PingFang TC","Hiragino Sans CNS",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121C2B; --panel:#1B2A40; --field:#22344F;
+    --text:#EAEFF7; --muted:#A9B6C8;
+    --accent:#F5C65A; --line:#7E96B8; --line2:rgba(126,150,184,.3);
+    --head:#0E1726; --headfg:#EAEFF7; --title:#F5B942;
+    --tabbar:#27425F; --tab:#1B2A40; --tabon:#2C4260;
+    --gold:#E9A825; --goldfg:#1F2A3A; --ok:#5CC57C;
+    --dot:rgba(234,239,247,.05); --shadow:0 1px 2px rgba(0,0,0,.4);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121C2B; --panel:#1B2A40; --field:#22344F;
+  --text:#EAEFF7; --muted:#A9B6C8;
+  --accent:#F5C65A; --line:#7E96B8; --line2:rgba(126,150,184,.3);
+  --head:#0E1726; --headfg:#EAEFF7; --title:#F5B942;
+  --tabbar:#27425F; --tab:#1B2A40; --tabon:#2C4260;
+  --gold:#E9A825; --goldfg:#1F2A3A; --ok:#5CC57C;
+  --dot:rgba(234,239,247,.05); --shadow:0 1px 2px rgba(0,0,0,.4);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg) radial-gradient(var(--dot) 1px,transparent 1.2px);background-size:18px 18px;
+  color:var(--text);font:15.5px/1.6 var(--hand);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+select,button{font:inherit}
+
+/* ── 標題列 ── */
+#topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+header{background:var(--head);color:var(--headfg);padding:8px 18px 6px;display:flex;gap:10px 22px;align-items:center;flex-wrap:wrap}
+.brand{min-width:0;flex:1 1 280px}
+.brand h1{font-family:var(--hand);font-weight:400;font-size:clamp(20px,2.6vw,28px);letter-spacing:.12em;text-transform:uppercase;color:var(--title);line-height:1.15;text-wrap:balance}
+.brand .sub{font-size:13px;opacity:.85;margin-top:1px}
+.hdr{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sel{background:var(--field);color:var(--text);border:1.5px solid var(--line);border-radius:8px;padding:3px 8px;font-size:13.5px}
+.clock{text-align:right;line-height:1.1;min-width:0}
+.clock b{display:block;font-size:22px;color:var(--title);font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.clock span{font-size:11.5px;opacity:.85}
+.pillok{display:inline-flex;align-items:center;gap:6px;border:1.5px solid rgba(255,255,255,.7);border-radius:999px;padding:2px 11px;font-size:13px}
+.pillok::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.gbtn{border:1.5px solid var(--gold);color:var(--title);background:transparent;border-radius:8px;padding:3px 12px;font-weight:700;text-decoration:none;font-size:13.5px}
+.gbtn:hover{background:var(--gold);color:var(--goldfg)}
+
+/* ── 分頁條 ── */
+#tabrow{background:var(--tabbar);padding:6px 10px 0;display:flex;gap:6px;align-items:flex-end;overflow-x:auto;scrollbar-width:none}
+#tabrow a{display:inline-flex;align-items:center;gap:7px;background:var(--tab);color:var(--text);border:1.5px solid var(--line);border-bottom:0;
+  border-radius:9px 9px 0 0;padding:6px 16px 7px;text-decoration:none;font-size:15px;white-space:nowrap;flex:0 0 auto}
+#tabrow a .ic{font-size:14px}
+#tabrow a.on{background:var(--tabon);font-weight:700;box-shadow:0 -2px 0 var(--gold) inset}
+#tabrow a:hover{background:var(--tabon)}
+
+/* ── 內容:標籤在面板外，面板是深藍框線 ── */
+main{max-width:1500px;margin:0 auto;padding-block:14px 40px;padding-inline:16px;display:flex;flex-direction:column;gap:6px}
+.lbl{font-weight:700;font-size:16px;color:var(--text);margin-top:12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;scroll-margin-top:110px}
+.lbl small{font-weight:400;color:var(--muted);font-size:13.5px}
+.panel{background:var(--panel);border:1.5px solid var(--line);border-radius:9px;padding:14px 16px;min-width:0}
+.lead{color:var(--muted);font-size:14px;max-width:74ch}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--goldfg);border:1.5px solid var(--line);border-radius:7px;
+  padding:6px 16px;font-weight:700;text-decoration:none;cursor:pointer;font-size:15px}
+.btn:hover{filter:brightness(1.06)}
+.btn.plain{background:var(--field);color:var(--text)}
+
+/* 首屏 */
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px 28px;align-items:center;scroll-margin-top:110px}
+.hero h2{font-size:clamp(24px,3vw,34px);line-height:1.2;color:var(--accent);text-wrap:balance}
+.hero .en{display:block;font-size:clamp(14px,1.5vw,17px);color:var(--muted);margin-top:2px;letter-spacing:.02em}
+.hero .tag{margin-top:10px;max-width:54ch;font-size:16px}
+.loc{display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:var(--field);border:1.5px solid var(--line2);border-radius:999px;padding:4px 12px 4px 8px;font-size:13.5px;color:var(--muted)}
+.loc b{color:var(--text)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.fact{background:var(--field);border:1.5px solid var(--line2);border-radius:8px;padding:9px 12px;min-width:0}
+.fact b{display:block;font-size:20px;color:var(--accent);line-height:1.2;font-variant-numeric:tabular-nums}
+.fact span{font-size:13px;color:var(--muted)}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.route{width:100%;max-width:520px;height:auto;display:block;margin:0 auto}
+.route text{font-family:var(--hand)}
+@media (max-width:760px){.hero{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.facts{grid-template-columns:1fr}}
+
+/* 平台籤 */
+.plats{display:flex;flex-wrap:wrap;gap:8px}
+.plats span{background:var(--field);border:1.5px solid var(--line);border-radius:7px;padding:4px 14px;font-weight:700;font-size:14.5px}
+
+/* 服務:一格一格的小卡 */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 12px}
+.tile{background:var(--field);border:1.5px solid var(--line2);border-radius:8px;padding:11px 13px;min-width:0}
+.tile h3{font-size:16px;color:var(--accent);display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.tile .ic{font-size:16px;line-height:1;flex:0 0 auto}
+.tile ul{display:grid;gap:2px;font-size:14.5px}
+.tile li{padding-left:18px;position:relative}
+.tile li::before{content:"✓";position:absolute;left:0;top:0;color:var(--ok);font-weight:700}
+
+/* 流程:照「Startup」那塊 —— 金色進度條，下面一排綠色圓圈步驟。 */
+.bar{height:7px;border-radius:999px;background:var(--gold);margin:4px 0 12px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px 14px;counter-reset:step}
+.step{display:grid;grid-template-columns:auto 1fr;gap:9px;align-items:start;min-width:0}
+.step::before{counter-increment:step;content:counter(step);width:24px;height:24px;border-radius:50%;background:var(--ok);color:#fff;font-weight:700;display:grid;place-items:center;font-size:13.5px;margin-top:1px}
+.step b{display:block;color:var(--text)}
+.step span{font-size:13.5px;color:var(--muted)}
+.steps-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.steps-top b{font-size:16px}
+.steps-top span{color:var(--muted);font-size:13.5px}
+
+/* 運費 */
+.rates{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:12px 14px;align-items:start}
+.ratehero{background:var(--field);border:1.5px solid var(--line2);border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.ratehero .big{font-size:clamp(22px,2.8vw,30px);color:var(--accent);line-height:1.15;text-wrap:balance;font-weight:700}
+.ratehero .big em{font-style:normal;background:var(--gold);color:var(--goldfg);border-radius:7px;padding:0 9px;border:1.5px solid var(--line)}
+.carriers{display:flex;gap:8px;flex-wrap:wrap}
+.carriers span{border:1.5px solid var(--line);color:var(--accent);border-radius:999px;padding:2px 12px;font-weight:700;font-size:13.5px}
+.warn{background:var(--panel);border:1.5px solid var(--line2);border-left:5px solid var(--gold);padding:8px 10px;font-size:14px;border-radius:6px}
+.ratelist{display:grid;gap:8px}
+.ratelist div{background:var(--field);border:1.5px solid var(--line2);border-radius:8px;padding:9px 12px;display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;min-width:0}
+.ratelist .ic{font-size:18px;line-height:1.2}
+.ratelist b{display:block;color:var(--accent)}
+.ratelist span{font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.rates{grid-template-columns:1fr}}
+
+/* 聯絡 */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px 28px;align-items:start}
+.who h3{font-size:22px;color:var(--accent)}
+.who .role{color:var(--muted);font-size:14px;margin-bottom:10px}
+.who p{max-width:54ch}
+.badges{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px;color:var(--muted);font-size:14px}
+.vcard{display:grid;gap:8px}
+.vcard div{background:var(--field);border:1.5px solid var(--line2);border-radius:8px;padding:9px 12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;min-width:0}
+.vcard .lab{font-size:12.5px;color:var(--muted);flex:1 1 100%;margin-bottom:-4px}
+.vcard code{font:inherit;font-weight:700;user-select:all;word-break:break-all}
+.copy{margin-left:auto;background:var(--gold);color:var(--goldfg);border:1.5px solid var(--line);border-radius:7px;padding:2px 12px;font-weight:700;cursor:pointer;font-size:13.5px}
+@media (max-width:760px){.contact{grid-template-columns:1fr}}
+
+footer{max-width:1500px;margin:0 auto;padding:0 16px 24px;color:var(--muted);font-size:13px;display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);
+  background:var(--head);color:var(--headfg);border:1.5px solid var(--gold);padding:7px 16px;border-radius:999px;font-weight:700;opacity:0;transition:.25s;pointer-events:none;z-index:40}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+
+<div id="topbar">
+  <header>
+    <div class="brand">
+      <h1 data-i18n="brand.h1">Sandy Liu · 美國海外倉</h1>
+      <div class="sub" data-i18n="brand.sub">跨境賣家的美國倉 · City of Industry, California</div>
+    </div>
+    <div class="hdr">
+      <label for="lang" style="position:absolute;left:-9999px">Language</label>
+      <select id="lang" class="sel"><option value="zh">繁體中文</option><option value="en">English</option></select>
+      <span class="pillok" data-i18n="hdr.open">接單中</span>
+      <a class="gbtn" href="#contact" data-i18n="hdr.quote">聯絡報價</a>
+      <div class="clock"><b id="clk">--:--</b><span id="clkd">美國倉當地時間</span></div>
+    </div>
+  </header>
+  <nav id="tabrow" aria-label="Sections">
+    <a href="#top" class="on"><span class="ic">📁</span><span data-i18n="nav.home">首頁</span></a>
+    <a href="#services"><span class="ic">🏬</span><span data-i18n="nav.services">服務內容</span></a>
+    <a href="#flow"><span class="ic">🔁</span><span data-i18n="nav.flow">合作流程</span></a>
+    <a href="#rates"><span class="ic">🚚</span><span data-i18n="nav.rates">運費</span></a>
+    <a href="#contact"><span class="ic">✉️</span><span data-i18n="nav.contact">聯絡</span></a>
+  </nav>
+</div>
+
+<main>
+  <section class="panel hero" id="top">
+    <div>
+      <h2><span data-i18n="hero.h1">跨境賣家的美國倉</span><span class="en" data-i18n="hero.en">E-Commerce &amp; U.S. Warehouse Fulfillment Solutions</span></h2>
+      <p class="tag" data-i18n="hero.tag">貨先放在美國，訂單進來當天出。收貨上架、揀貨包裝、UPS / FedEx 派送、退貨處理，一家倉庫做到底，讓您專心賣。</p>
+      <div class="loc"><span>📍</span><span><b>City of Industry, California</b> · <span data-i18n="hero.loc">美國倉儲出貨中心</span></span></div>
+      <div class="facts">
+        <div class="fact"><b data-i18n="fact.1">小包 $3 起</b><span data-i18n="fact.1s">UPS / FedEx 優惠費率</span></div>
+        <div class="fact"><b data-i18n="fact.2">6 個平台</b><span data-i18n="fact.2s">訂單自動同步進倉</span></div>
+        <div class="fact"><b data-i18n="fact.3">台灣・美國</b><span data-i18n="fact.3s">兩地聯絡，中英文服務</span></div>
+      </div>
+      <div class="cta">
+        <a class="btn" href="#contact" data-i18n="cta.1">聯絡報價</a>
+        <a class="btn plain" href="#services" data-i18n="cta.2">看服務內容</a>
+      </div>
+    </div>
+    <svg class="route" viewBox="0 0 520 300" role="img" aria-labelledby="routeTitle">
+      <title id="routeTitle">Shipping route: overseas seller to U.S. warehouse to U.S. buyer</title>
+      <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5 0 10z" fill="var(--line)"/></marker></defs>
+      <path d="M92 150 C150 150 160 90 260 90" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+      <path d="M296 150 C340 150 380 150 432 150" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+      <g transform="translate(20,110)">
+        <rect x="0" y="0" width="72" height="80" rx="9" fill="var(--field)" stroke="var(--line)" stroke-width="1.5"/>
+        <rect x="16" y="22" width="40" height="30" rx="4" fill="var(--gold)" stroke="var(--line)" stroke-width="1.5"/>
+        <path d="M16 36h40M36 22v30" stroke="var(--line)" stroke-width="1.5" opacity=".7"/>
+        <text x="36" y="70" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)" data-i18n="svg.1">海外賣家</text>
+      </g>
+      <text x="56" y="210" text-anchor="middle" font-size="12" fill="var(--muted)" data-i18n="svg.1s">海運 / 空運到美國</text>
+      <g transform="translate(196,40)">
+        <rect x="0" y="0" width="104" height="120" rx="9" fill="var(--field)" stroke="var(--line)" stroke-width="1.5"/>
+        <path d="M14 48 L52 24 L90 48 Z" fill="var(--head)"/>
+        <rect x="18" y="48" width="68" height="44" fill="var(--panel)" stroke="var(--line)" stroke-width="1.5"/>
+        <rect x="42" y="62" width="20" height="30" fill="var(--gold)"/>
+        <rect x="24" y="56" width="12" height="10" fill="var(--gold)" opacity=".75"/>
+        <rect x="68" y="56" width="12" height="10" fill="var(--gold)" opacity=".75"/>
+        <text x="52" y="110" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)" data-i18n="svg.2">美國倉</text>
+      </g>
+      <text x="248" y="185" text-anchor="middle" font-size="12" fill="var(--muted)">City of Industry, CA</text>
+      <text x="248" y="202" text-anchor="middle" font-size="12" fill="var(--muted)" data-i18n="svg.2s">上架・揀貨・包裝</text>
+      <g transform="translate(436,110)">
+        <rect x="0" y="0" width="72" height="80" rx="9" fill="var(--field)" stroke="var(--line)" stroke-width="1.5"/>
+        <path d="M18 44 L36 28 L54 44 V60 H18 Z" fill="var(--head)"/>
+        <rect x="31" y="46" width="10" height="14" fill="var(--gold)"/>
+        <text x="36" y="70" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)" data-i18n="svg.3">美國買家</text>
+      </g>
+      <text x="472" y="210" text-anchor="middle" font-size="12" fill="var(--muted)">UPS / FedEx</text>
+      <g transform="translate(150,240)">
+        <rect x="0" y="0" width="220" height="34" rx="8" fill="var(--gold)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="110" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="var(--goldfg)" data-i18n="svg.4">訂單進來，當天從美國出貨</text>
+      </g>
+    </svg>
+  </section>
+
+  <div class="lbl" id="platforms"><span data-i18n="plat.h">支援的銷售平台</span><small data-i18n="plat.s">訂單直接串進倉庫系統</small></div>
+  <section class="panel">
+    <div class="plats"><span>Shopify</span><span>Amazon</span><span>eBay</span><span>Walmart</span><span>TikTok Shop</span><span>Temu</span></div>
+  </section>
+
+  <div class="lbl" id="services"><span data-i18n="svc.h">服務內容</span><small data-i18n="svc.s">從貨到美國倉，到買家簽收</small></div>
+  <section class="panel">
+    <div class="tiles">
+      <div class="tile"><h3><span class="ic">🏬</span><span data-i18n="svc.1">美國倉儲服務</span></h3>
+        <ul><li data-i18n="svc.1a">收貨驗收、上架入庫</li><li data-i18n="svc.1b">庫存管理與盤點</li><li data-i18n="svc.1c">貼標、換標</li><li data-i18n="svc.1d">退貨收回與處置</li></ul></div>
+      <div class="tile"><h3><span class="ic">📦</span><span data-i18n="svc.2">訂單處理與出貨</span></h3>
+        <ul><li data-i18n="svc.2a">揀貨、包裝</li><li data-i18n="svc.2b">DTC / B2C / B2B 皆可</li><li data-i18n="svc.2c">多平台訂單整合</li><li data-i18n="svc.2d">FBA 預處理（貼標、裝箱）</li><li data-i18n="svc.2e">客製包材</li></ul></div>
+      <div class="tile"><h3><span class="ic">✈️</span><span data-i18n="svc.3">美國境內與國際運輸</span></h3>
+        <ul><li data-i18n="svc.3a">UPS / FedEx 優惠費率</li><li data-i18n="svc.3b">美國境內派送、國際出口</li><li data-i18n="svc.3c">小包 $3 起</li><li data-i18n="svc.3d">Ground / Express 多種時效</li></ul></div>
+      <div class="tile"><h3><span class="ic">💻</span><span data-i18n="svc.4">電商營運支援</span></h3>
+        <ul><li data-i18n="svc.4a">商品上架協助</li><li data-i18n="svc.4b">庫存同步</li><li data-i18n="svc.4c">訂單流程優化</li><li data-i18n="svc.4d">退貨處理</li><li data-i18n="svc.4e">客服支援</li></ul></div>
+      <div class="tile"><h3><span class="ic">🤝</span><span data-i18n="svc.5">彈性合作</span></h3>
+        <ul><li data-i18n="svc.5a">電商與新品牌都歡迎</li><li data-i18n="svc.5b">小量也能開始</li><li data-i18n="svc.5c">一站式服務</li><li data-i18n="svc.5d">依需求客製方案</li><li data-i18n="svc.5e">協助拓展美國市場</li></ul></div>
+    </div>
+  </section>
+
+  <div class="lbl" id="flow"><span data-i18n="flow.h">合作流程</span><small data-i18n="flow.s">五步，從第一批貨到日常出貨</small></div>
+  <section class="panel">
+    <div class="steps-top"><b data-i18n="flow.top">從收到第一批貨開始</b><span data-i18n="flow.tops">每一步都有人對接，進度隨時可問</span></div>
+    <div class="bar"></div>
+    <div class="steps">
+      <div class="step"><div><b data-i18n="flow.1">貨送到美國倉</b><span data-i18n="flow.1s">海運或空運到 City of Industry，我們收貨。</span></div></div>
+      <div class="step"><div><b data-i18n="flow.2">驗收上架</b><span data-i18n="flow.2s">清點數量、檢查外觀、貼標、入庫定位。</span></div></div>
+      <div class="step"><div><b data-i18n="flow.3">訂單同步</b><span data-i18n="flow.3s">平台訂單自動進倉，庫存回寫到店鋪。</span></div></div>
+      <div class="step"><div><b data-i18n="flow.4">揀貨包裝出貨</b><span data-i18n="flow.4s">UPS / FedEx 取件，追蹤號回寫訂單。</span></div></div>
+      <div class="step"><div><b data-i18n="flow.5">追蹤與退貨</b><span data-i18n="flow.5s">派送狀態可查，退貨收回後再上架或處置。</span></div></div>
+    </div>
+  </section>
+
+  <div class="lbl" id="rates"><span data-i18n="rate.h">運費</span><small data-i18n="rate.s">用倉庫的帳號出貨，拿倉庫的價格</small></div>
+  <section class="panel">
+    <div class="rates">
+      <div class="ratehero">
+        <div class="carriers"><span>UPS</span><span>FedEx</span></div>
+        <div class="big"><span data-i18n="rate.big1">美國境內小包</span> <em>$3</em> <span data-i18n="rate.big2">起</span></div>
+        <p class="lead" data-i18n="rate.lead">UPS 與 FedEx 的協議費率，依尺寸、重量與目的地計價。Ground 與 Express 都有，美國境內和國際出口都走得到。</p>
+        <div class="warn" data-i18n="rate.warn">實際費率依包裹的尺寸、重量、目的地 Zone 與附加費而定。把商品的尺寸重量寄給我們，回您一份估價。</div>
+      </div>
+      <div class="ratelist">
+        <div><span class="ic">🚚</span><div><b data-i18n="rate.l1">Ground 陸運</b><span data-i18n="rate.l1s">美國境內最經濟的選擇，大多數地區 1 到 5 個工作天。</span></div></div>
+        <div><span class="ic">⚡</span><div><b data-i18n="rate.l2">Express 快遞</b><span data-i18n="rate.l2s">隔日或兩日到，急件與高單價商品用。</span></div></div>
+        <div><span class="ic">🌏</span><div><b data-i18n="rate.l3">國際出口</b><span data-i18n="rate.l3s">從美國倉出到其他國家，文件與申報一併處理。</span></div></div>
+        <div><span class="ic">🧾</span><div><b data-i18n="rate.l4">帳單透明</b><span data-i18n="rate.l4s">每一筆運費都對得回承運商帳單，附加費逐項列出。</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="lbl" id="contact"><span data-i18n="ct.h">聯絡</span><small data-i18n="ct.s">來信說明商品與月出貨量，一個工作天內回覆</small></div>
+  <section class="panel">
+    <div class="contact">
+      <div class="who">
+        <h3>Sandy Liu</h3>
+        <div class="role" data-i18n="ct.role">電商與物流服務顧問 · E-commerce &amp; Logistics Service Consultant</div>
+        <p data-i18n="ct.p">在美國倉庫端處理跨境賣家的收貨、出貨與承運商帳務，台灣與美國兩地都能聯絡。不論是剛起步的品牌，還是要把出貨從自家搬到美國的賣家，都歡迎談。</p>
+        <div class="badges">
+          <span>🌐 <span data-i18n="bd.1">全球出貨</span></span>
+          <span>⏱ <span data-i18n="bd.2">快速週轉</span></span>
+          <span>🛡 <span data-i18n="bd.3">安全可靠</span></span>
+          <span>🤝 <span data-i18n="bd.4">歡迎合作</span></span>
+        </div>
+      </div>
+      <div class="vcard">
+        <div><span class="lab" data-i18n="ct.email">電子郵件</span><span>✉️</span><code id="email">sandyliu3056@gmail.com</code><button class="copy" id="copyEmail" type="button" data-i18n="ct.copy">複製</button></div>
+        <div><span class="lab" data-i18n="ct.addr">倉庫所在地</span><span>📍</span><span>City of Industry, California, USA</span></div>
+        <div><span class="lab" data-i18n="ct.area">服務地區</span><span>🌏</span><span data-i18n="ct.areav">台灣 / 美國</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <span>© 2026 Sandy Liu</span>
+  <span data-i18n="ft">City of Industry, California · 美國海外倉・一件代發</span>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+/* 兩種語言，一份字典。預設繁中；選過的記在這一台瀏覽器。 */
+const I18N={
+  "brand.h1":["Sandy Liu · 美國海外倉","Sandy Liu · U.S. Warehouse"],
+  "brand.sub":["跨境賣家的美國倉 · City of Industry, California","A U.S. warehouse for overseas sellers · City of Industry, California"],
+  "hdr.open":["接單中","Taking orders"],"hdr.quote":["聯絡報價","Get a quote"],
+  "nav.home":["首頁","Home"],"nav.services":["服務內容","Services"],"nav.flow":["合作流程","How it works"],"nav.rates":["運費","Rates"],"nav.contact":["聯絡","Contact"],
+  "hero.h1":["跨境賣家的美國倉","A U.S. warehouse for overseas sellers"],
+  "hero.en":["E-Commerce & U.S. Warehouse Fulfillment Solutions","美國海外倉・一件代發"],
+  "hero.tag":["貨先放在美國，訂單進來當天出。收貨上架、揀貨包裝、UPS / FedEx 派送、退貨處理，一家倉庫做到底，讓您專心賣。",
+              "Stock sits in the U.S. and ships the day the order comes in. Receiving, pick and pack, UPS / FedEx delivery and returns, all under one roof, so you can focus on selling."],
+  "hero.loc":["美國倉儲出貨中心","U.S. Warehouse Fulfillment Hub"],
+  "fact.1":["小包 $3 起","Parcels from $3"],"fact.1s":["UPS / FedEx 優惠費率","Discounted UPS / FedEx rates"],
+  "fact.2":["6 個平台","6 platforms"],"fact.2s":["訂單自動同步進倉","Orders sync straight to the warehouse"],
+  "fact.3":["台灣・美國","Taiwan · USA"],"fact.3s":["兩地聯絡，中英文服務","Reach us in either place, in Chinese or English"],
+  "cta.1":["聯絡報價","Get a quote"],"cta.2":["看服務內容","See the services"],
+  "svg.1":["海外賣家","Overseas seller"],"svg.1s":["海運 / 空運到美國","Sea or air freight to the U.S."],
+  "svg.2":["美國倉","U.S. warehouse"],"svg.2s":["上架・揀貨・包裝","Put-away · pick · pack"],
+  "svg.3":["美國買家","U.S. buyer"],"svg.4":["訂單進來，當天從美國出貨","Orders ship from the U.S. the same day"],
+  "plat.h":["支援的銷售平台","Sales platforms"],"plat.s":["訂單直接串進倉庫系統","Orders flow straight into the warehouse system"],
+  "svc.h":["服務內容","Services"],"svc.s":["從貨到美國倉，到買家簽收","From arrival at the warehouse to the buyer's door"],
+  "svc.1":["美國倉儲服務","U.S. Warehouse Service"],"svc.1a":["收貨驗收、上架入庫","Receiving & put-away"],"svc.1b":["庫存管理與盤點","Storage & inventory control"],"svc.1c":["貼標、換標","Labeling / relabeling"],"svc.1d":["退貨收回與處置","Returns / disposal"],
+  "svc.2":["訂單處理與出貨","Order Processing & Fulfillment"],"svc.2a":["揀貨、包裝","Pick & pack"],"svc.2b":["DTC / B2C / B2B 皆可","DTC / B2C / B2B support"],"svc.2c":["多平台訂單整合","Multi-channel order integration"],"svc.2d":["FBA 預處理（貼標、裝箱）","FBA prep (labeling, cartons)"],"svc.2e":["客製包材","Customized packaging"],
+  "svc.3":["美國境內與國際運輸","Domestic & International Shipping"],"svc.3a":["UPS / FedEx 優惠費率","Competitive UPS / FedEx rates"],"svc.3b":["美國境內派送、國際出口","U.S. domestic & international delivery"],"svc.3c":["小包 $3 起","Small parcel from $3+"],"svc.3d":["Ground / Express 多種時效","Ground / Express, multiple delivery options"],
+  "svc.4":["電商營運支援","E-commerce Operations Support"],"svc.4a":["商品上架協助","Product listing assistance"],"svc.4b":["庫存同步","Inventory sync"],"svc.4c":["訂單流程優化","Order process optimization"],"svc.4d":["退貨處理","Returns handling"],"svc.4e":["客服支援","Customer support"],
+  "svc.5":["彈性合作","Flexible Collaboration"],"svc.5a":["電商與新品牌都歡迎","For e-commerce & new brands"],"svc.5b":["小量也能開始","Small business friendly"],"svc.5c":["一站式服務","One-stop service"],"svc.5d":["依需求客製方案","Customized solutions"],"svc.5e":["協助拓展美國市場","Support for U.S. market expansion"],
+  "flow.h":["合作流程","How it works"],"flow.s":["五步，從第一批貨到日常出貨","Five steps, from the first shipment to daily orders"],
+  "flow.top":["從收到第一批貨開始","Starting from the first inbound shipment"],"flow.tops":["每一步都有人對接，進度隨時可問","Someone owns every step; ask for status any time"],
+  "flow.1":["貨送到美國倉","Ship stock to the warehouse"],"flow.1s":["海運或空運到 City of Industry，我們收貨。","Sea or air freight to City of Industry; we receive it."],
+  "flow.2":["驗收上架","Receive and put away"],"flow.2s":["清點數量、檢查外觀、貼標、入庫定位。","Count, inspect, label and assign a location."],
+  "flow.3":["訂單同步","Connect your store"],"flow.3s":["平台訂單自動進倉，庫存回寫到店鋪。","Orders flow in automatically; stock levels write back."],
+  "flow.4":["揀貨包裝出貨","Pick, pack and ship"],"flow.4s":["UPS / FedEx 取件，追蹤號回寫訂單。","UPS / FedEx pick up; tracking numbers go back to the order."],
+  "flow.5":["追蹤與退貨","Track and handle returns"],"flow.5s":["派送狀態可查，退貨收回後再上架或處置。","Delivery is trackable; returns are restocked or disposed of."],
+  "rate.h":["運費","Shipping rates"],"rate.s":["用倉庫的帳號出貨，拿倉庫的價格","Ship on the warehouse account, at the warehouse rate"],
+  "rate.big1":["美國境內小包","U.S. small parcels from"],"rate.big2":["起",""],
+  "rate.lead":["UPS 與 FedEx 的協議費率，依尺寸、重量與目的地計價。Ground 與 Express 都有，美國境內和國際出口都走得到。","Contract rates with UPS and FedEx, priced by size, weight and destination. Ground and Express, U.S. domestic and international export."],
+  "rate.warn":["實際費率依包裹的尺寸、重量、目的地 Zone 與附加費而定。把商品的尺寸重量寄給我們，回您一份估價。","The actual rate depends on the parcel's size, weight, destination zone and surcharges. Send us your product dimensions and weights for an estimate."],
+  "rate.l1":["Ground 陸運","Ground"],"rate.l1s":["美國境內最經濟的選擇，大多數地區 1 到 5 個工作天。","The economical choice within the U.S.; 1 to 5 business days to most areas."],
+  "rate.l2":["Express 快遞","Express"],"rate.l2s":["隔日或兩日到，急件與高單價商品用。","Next-day or two-day, for urgent or high-value orders."],
+  "rate.l3":["國際出口","International export"],"rate.l3s":["從美國倉出到其他國家，文件與申報一併處理。","From the U.S. warehouse to other countries, paperwork and declarations included."],
+  "rate.l4":["帳單透明","Transparent billing"],"rate.l4s":["每一筆運費都對得回承運商帳單，附加費逐項列出。","Every charge traces back to the carrier invoice, surcharges itemised."],
+  "ct.h":["聯絡","Contact"],"ct.s":["來信說明商品與月出貨量，一個工作天內回覆","Tell us your products and monthly volume; we reply within one business day"],
+  "ct.role":["電商與物流服務顧問 · E-commerce & Logistics Service Consultant","E-commerce & Logistics Service Consultant"],
+  "ct.p":["在美國倉庫端處理跨境賣家的收貨、出貨與承運商帳務，台灣與美國兩地都能聯絡。不論是剛起步的品牌，還是要把出貨從自家搬到美國的賣家，都歡迎談。",
+          "I run receiving, fulfillment and carrier billing for overseas sellers at the U.S. warehouse, and can be reached in Taiwan or the U.S. New brands and sellers moving their fulfillment to the U.S. are both welcome."],
+  "bd.1":["全球出貨","Global shipping"],"bd.2":["快速週轉","Fast turnaround"],"bd.3":["安全可靠","Safe & reliable"],"bd.4":["歡迎合作","Open to collaboration"],
+  "ct.email":["電子郵件","Email"],"ct.copy":["複製","Copy"],"ct.addr":["倉庫所在地","Warehouse"],"ct.area":["服務地區","Service area"],"ct.areav":["台灣 / 美國","Taiwan / USA"],
+  "ft":["City of Industry, California · 美國海外倉・一件代發","City of Industry, California · U.S. Warehouse & Fulfillment"]
+};
+const sel=document.getElementById("lang");
+let LANG="zh";
+function applyLang(code){
+  LANG=code; const i=code==="en"?1:0;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{ const t=I18N[el.dataset.i18n]; if(t) el.textContent=t[i]; });
+  document.documentElement.lang=i?"en":"zh-Hant-TW";
+  document.title=i?"Sandy Liu U.S. Warehouse":"Sandy Liu 美國海外倉";
+  sel.value=code;
+  try{ localStorage.setItem("lang",code); }catch(e){}
+  tick();
+}
+
+/* 美國倉當地時間（加州）。海外賣家最常問的就是「你們那邊現在幾點、差幾小時」，
+   所以把和台灣的時差也算出來寫在旁邊。 */
+const ZONE="America/Los_Angeles";
+function partsIn(zone,d){
+  const f=new Intl.DateTimeFormat("en-US",{timeZone:zone,hour12:false,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",weekday:"short"});
+  const o={}; for(const p of f.formatToParts(d)) o[p.type]=p.value; if(o.hour==="24") o.hour="00"; return o;
+}
+function offsetHours(zone,d){ /* 該時區相對 UTC 的小時數 */
+  const p=partsIn(zone,d); const asUtc=Date.UTC(+p.year,+p.month-1,+p.day,+p.hour,+p.minute);
+  return Math.round((asUtc-Math.floor(d.getTime()/60000)*60000)/3600000); }
+function tick(){
+  try{
+    const d=new Date(), p=partsIn(ZONE,d);
+    const diff=offsetHours("Asia/Taipei",d)-offsetHours(ZONE,d);
+    document.getElementById("clk").textContent=p.hour+":"+p.minute;
+    document.getElementById("clkd").textContent=(LANG==="en"
+      ? p.year+"/"+p.month+"/"+p.day+" "+p.weekday+" · Warehouse (CA) · Taiwan +"+diff+"h"
+      : p.year+"/"+p.month+"/"+p.day+" "+p.weekday+" · 美國倉（加州）· 台灣快 "+diff+" 小時");
+  }catch(e){ document.getElementById("clkd").textContent=LANG==="en"?"Warehouse local time (CA)":"美國倉當地時間（加州）"; }
+}
+let start="zh";
+try{ const v=localStorage.getItem("lang"); if(v==="en"||v==="zh") start=v; }catch(e){}
+applyLang(start);
+sel.addEventListener("change",()=>applyLang(sel.value));
+setInterval(tick,30000);
+
+/* 信箱複製：剪貼簿不給用就把文字選起來，讓人自己按 Ctrl+C。 */
+const toast=document.getElementById("toast"); let tt=null;
+function say(msg){ toast.textContent=msg; toast.classList.add("on"); clearTimeout(tt); tt=setTimeout(()=>toast.classList.remove("on"),1800); }
+document.getElementById("copyEmail").addEventListener("click",()=>{
+  const code=document.getElementById("email"), text=code.textContent, en=LANG==="en";
+  const pick=()=>{ const r=document.createRange(); r.selectNodeContents(code); const s=getSelection(); s.removeAllRanges(); s.addRange(r); say(en?"Selected. Press Ctrl+C to copy":"已選取，按 Ctrl+C 複製"); };
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(()=>say(en?"Copied":"已複製"),pick);
+  else pick();
+});
+
+/* 分頁條跟著捲動的位置亮。 */
+const links=[...document.querySelectorAll("#tabrow a")];
+const secs=links.map(a=>document.querySelector(a.getAttribute("href"))).filter(Boolean);
+if("IntersectionObserver" in window){
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting) links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id)); });
+  },{rootMargin:"-30% 0px -60% 0px"});
+  secs.forEach(s=>io.observe(s));
+}
+</script>
+
+</body>
+</html>
