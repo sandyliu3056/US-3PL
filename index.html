@@ -416,7 +416,8 @@ function showTab(name){
   const n=TABS.includes(name)?name:"home";
   document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("active",b.dataset.tab===n));
   TABS.forEach(t=>{ const s=$("tab-"+t); if(s) s.classList.toggle("active",t===n); });
-  if(location.hash!=="#"+n){ try{ history.replaceState(null,"","#"+n); }catch(e){} }
+  /* 首頁不掛 #home 在網址上；其他分頁才寫 #services 這種，方便分享連結。 */
+  try{ if(n==="home"){ if(location.hash) history.replaceState(null,"",location.pathname+location.search); } else if(location.hash!=="#"+n) history.replaceState(null,"","#"+n); }catch(e){}
   window.scrollTo({top:0});
 }
 document.querySelectorAll("#tabs button").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
