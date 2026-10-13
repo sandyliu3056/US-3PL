@@ -2,10 +2,11 @@
 
 一頁式介紹網站：跨境賣家的美國倉（City of Industry, California）、一件代發、UPS / FedEx 派送。
 
-- 單一 `index.html`，沒有 build、沒有相依套件、沒有後端。
-- 字型從 Google Fonts 連結（Patrick Hand、Noto Sans TC），其餘全部內嵌。
-- 右上可切 繁體中文 / English；深色模式跟著系統。
-- 版式照 After-Sales Parts Planner：海軍藍標題列、金色手寫體大標、分頁條、深藍框線面板。
+- `index.html` 一支＋地圖底圖 `earth.png`＋兩面國旗 `flags/`，沒有 build、沒有相依套件、沒有後端。
+- 字型從 Google Fonts 連結（芫荽 Iansui、Comic Neue、LXGW WenKai TC、Noto Sans TC），其餘全部內嵌。
+- 右上可切 中文 / English、手寫風 / 正黑體、深藍 / 棕金 / 墨綠、美國倉時間 / 台北時間。
+- 版式、CSS、字型、地圖底圖都和 RMA（After-Sales Parts Planner）同一套：五個分頁、深藍框線面板、金色按鈕。
+- 首頁的「產生詢價信」把表單寫成一封信，複製後寄到信箱；這一頁不上傳任何東西。
 
 ## 部署
 
