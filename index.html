@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Sandy Liu 電商物流服務</title>
-<meta name="description" content="幫跨境賣家安排美國倉與一件代發：合作倉庫在 City of Industry, California，UPS / FedEx 優惠費率、小包 $3 起。Sandy Liu，台灣／美國兩地服務。">
-<meta property="og:title" content="Sandy Liu 電商物流服務">
+<title>美國海外倉 一件代發</title>
+<meta name="description" content="幫跨境賣家安排美國倉與一件代發：合作倉庫在 City of Industry, California，UPS / FedEx 優惠費率、小包 $3 起。台灣／美國兩地服務。">
+<meta property="og:title" content="美國海外倉 一件代發">
 <meta property="og:description" content="E-Commerce & U.S. Warehouse Fulfillment Solutions · partner warehouse in City of Industry, California">
 <style>img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -157,7 +157,7 @@
 
 <header class="hdr">
   <div class="brand">
-    <h1 data-i18n="brand.h1">Sandy Liu</h1>
+    <h1 data-i18n="brand.h1">美國海外倉 · 一件代發</h1>
     <div class="sub" data-i18n="brand.sub">幫跨境賣家安排美國倉與一件代發 · 合作倉庫在 City of Industry, California</div>
   </div>
   <div class="ctl">
@@ -335,7 +335,7 @@
 "use strict";
 /* 兩種語言，一份字典。預設中文；語言、字型、主題、時區記在這一台瀏覽器。 */
 const I18N={
-  "brand.h1":["Sandy Liu","Sandy Liu"],
+  "brand.h1":["美國海外倉 · 一件代發","U.S. Warehouse & Fulfillment"],
   "brand.sub":["幫跨境賣家安排美國倉與一件代發 · 合作倉庫在 City of Industry, California","U.S. warehousing and fulfillment arranged for overseas sellers · partner warehouse in City of Industry, California"],
   "opt.hand":["手寫風","Handwriting"],"opt.sans":["正黑體","Sans"],"opt.navy":["深藍","Navy Blue"],"opt.brown":["棕金","Brown & Gold"],"opt.green":["墨綠","Green"],
   "opt.la":["美國倉（加州）","Warehouse (California)"],"opt.tpe":["台北","Taipei"],
@@ -408,7 +408,7 @@ function applyLang(code){
   document.querySelectorAll("[data-i18n-ph]").forEach(el=>{ const t=I18N[el.dataset.i18nPh]; if(t) el.placeholder=t[i]; });
   document.querySelectorAll("[data-i18n-aria]").forEach(el=>{ const t=I18N[el.dataset.i18nAria]; if(t){ el.setAttribute("aria-label",t[i]); if(el.tagName==="SELECT") el.title=t[i]; } });
   document.documentElement.lang=i?"en":"zh-Hant-TW";
-  document.title=i?"Sandy Liu Logistics Services":"Sandy Liu 電商物流服務";
+  document.title=i?"U.S. Warehouse & Fulfillment":"美國海外倉 一件代發";
   $("lang-sel").value=LANG; pref("lang",LANG); tick(); drawMap(); renderArea();
 }
 /* 聯絡頁的服務地區：和地圖同一份地點，一面旗一個名字 */
