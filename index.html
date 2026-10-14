@@ -40,6 +40,7 @@
   .pill .dot { width:8px; height:8px; border-radius:50%; background:var(--ok); }
   .hbtn { background:transparent; color:var(--gold); border:1px solid var(--selline); border-radius:6px; padding:4px 10px; font-family:inherit; font-size:.85rem; font-weight:700; cursor:pointer; }
   .hbtn:hover { background:var(--sel); }
+  a.hbtn { text-decoration:none; display:inline-block; }
   /* 分頁列（長條＋圓角分頁，選中的分頁與下方卡片相連） */
   .tabs { display:flex; flex-wrap:wrap; gap:4px; background:var(--tabbar); padding:7px 8px 0; }
   .tabs button { display:flex; align-items:center; gap:6px; background:var(--tab); color:var(--ink); border:2px solid var(--navy); border-radius:9px 9px 0 0; padding:6px 14px 7px; margin-bottom:0; font-weight:700; font-family:inherit; font-size:.95rem; cursor:pointer; position:relative; }
@@ -167,7 +168,7 @@
     <select id="tz-sel" title="Time zone" aria-label="Time zone" data-i18n-aria="aria.tz"><option value="America/Los_Angeles" data-i18n="opt.la">美國倉（加州）</option><option value="Asia/Taipei" data-i18n="opt.tpe">台北</option></select>
     <div class="clock"><div class="t" id="clock">--:--</div><div class="d"><span id="date"></span> <span id="tzname">加州</span></div></div>
     <div class="pill"><span class="dot"></span><span data-i18n="hdr.open">接單中</span></div>
-    <button class="hbtn" id="quote-btn" type="button" data-i18n="hdr.quote">聯絡報價</button>
+    <a class="hbtn" id="quote-btn" href="mailto:sandyliu3056@gmail.com" data-i18n="hdr.quote">聯絡報價</a>
     <a href="#contact" id="mail-link">sandyliu3056@gmail.com</a>
   </div>
 </header>
@@ -194,7 +195,7 @@
     <div class="caption" data-i18n="q.hint1">填好按「產生詢價信」，下面會出現一封寫好的信，複製後寄到 sandyliu3056@gmail.com 即可；這一頁不會上傳任何東西。</div>
     <div class="caption" data-i18n="q.hint2">沒有確切數字也沒關係，先寫大概的，報價時再一起確認。我們會盡快回覆。</div>
     <div class="log" id="q-out" hidden></div>
-    <div class="row" id="q-act" hidden><button class="btn sm" id="q-copy" type="button" data-i18n="q.copy">複製這封信</button><span class="small" data-i18n="q.to">收件人：sandyliu3056@gmail.com</span></div>
+    <div class="row" id="q-act" hidden><a class="btn sm primary" id="q-mail" href="mailto:sandyliu3056@gmail.com" data-i18n="q.mail">開啟信箱寄出</a><button class="btn sm" id="q-copy" type="button" data-i18n="q.copy">複製這封信</button><span class="small" data-i18n="q.to">收件人：sandyliu3056@gmail.com</span></div>
 
     <div class="kpis">
       <div class="kpi"><div class="k" data-i18n="k1">美國境內小包</div><div class="v" data-i18n="k1v">$3 起</div><div class="s" data-i18n="k1s">UPS / FedEx 優惠費率</div></div>
@@ -344,7 +345,7 @@ const I18N={
   "q.hint1":["填好按「產生詢價信」，下面會出現一封寫好的信，複製後寄到 sandyliu3056@gmail.com 即可；這一頁不會上傳任何東西。",
              "Fill in the row and press \"Write my inquiry\": a ready-to-send email appears below. Copy it and send it to sandyliu3056@gmail.com; nothing on this page is uploaded."],
   "q.hint2":["沒有確切數字也沒關係，先寫大概的，報價時再一起確認。我們會盡快回覆。","Rough numbers are fine; we confirm the details with the quote. We reply as soon as we can."],
-  "q.copy":["複製這封信","Copy the email"],"q.to":["收件人：sandyliu3056@gmail.com","To: sandyliu3056@gmail.com"],
+  "q.mail":["開啟信箱寄出","Open in my email app"],"q.subj":["美國海外倉詢價","U.S. warehouse inquiry"],"q.copy":["複製這封信","Copy the email"],"q.to":["收件人：sandyliu3056@gmail.com","To: sandyliu3056@gmail.com"],
   "k1":["美國境內小包","U.S. small parcel"],"k1v":["$3 起","from $3"],"k1s":["UPS / FedEx 優惠費率","Discounted UPS / FedEx rates"],
   "k2":["合作倉庫","Partner warehouse"],"k2s":["California · 合作的美國倉儲出貨中心","California · partner fulfillment hub"],
   "k3":["串接平台","Connected platforms"],"k3v":["6 個","6"],
@@ -402,6 +403,7 @@ function applyLang(code){
   document.documentElement.lang=i?"en":"zh-Hant-TW";
   document.title=i?"U.S. Warehouse & Fulfillment":"美國海外倉 一件代發";
   $("lang-sel").value=LANG; pref("lang",LANG); tick(); drawMap(); renderArea();
+  if(typeof mailHref==="function"){ $("quote-btn").href=mailHref(I18N["q.subj"][i]); if($("q-out").textContent) $("q-mail").href=mailHref(I18N["q.subj"][i],$("q-out").textContent); }
 }
 /* 聯絡頁的服務地區：和地圖同一份地點，一面旗一個名字 */
 function renderArea(){
@@ -448,7 +450,8 @@ function showTab(name){
   window.scrollTo({top:0});
 }
 document.querySelectorAll("#tabs button").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
-$("quote-btn").addEventListener("click",()=>{ showTab("home"); $("q-item").focus(); });
+/* 標題列的「聯絡報價」直接開信箱，主旨照目前語言 */
+function mailHref(subject,body){ return "mailto:sandyliu3056@gmail.com?subject="+encodeURIComponent(subject)+(body?"&body="+encodeURIComponent(body):""); }
 $("mail-link").addEventListener("click",e=>{ e.preventDefault(); showTab("rates"); const t=$("contact-anchor"); if(t) t.scrollIntoView({block:"start"}); });
 window.addEventListener("hashchange",()=>showTab(location.hash.replace("#","")));
 
@@ -469,6 +472,7 @@ $("qform").addEventListener("submit",e=>{
   const zh="您好，\n\n我想了解美國海外倉的服務。\n\n商品："+item+"\n每月出貨量："+vol+"\n尺寸／重量："+dims+"\n貨從哪裡來："+from+"\n\n請提供倉儲與出貨的報價，謝謝。\n";
   const en="Hello,\n\nI'd like to learn about your U.S. warehouse service.\n\nProduct: "+item+"\nOrders per month: "+vol+"\nSize / weight: "+dims+"\nShips from: "+from+"\n\nCould you send me a quote for storage and fulfillment? Thank you.\n";
   $("q-out").textContent=i?en:zh; $("q-out").hidden=false; $("q-act").hidden=false;
+  $("q-mail").href=mailHref(I18N["q.subj"][i], i?en:zh);
   $("q-out").scrollIntoView({block:"nearest"});
 });
 $("q-copy").addEventListener("click",()=>copyText($("q-out").textContent,$("q-out")));
