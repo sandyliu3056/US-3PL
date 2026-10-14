@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- 網站圖示：深藍圓角底＋金色紙箱（首頁小車上的標誌）；favicon.ico 與 apple-touch-icon.png 由這張轉出 -->
+  <rect width="64" height="64" rx="14" fill="#1F3F6E"/>
+  <g transform="translate(32 29) scale(1.9)" stroke="#1F3F6E" stroke-width="1.1" stroke-linejoin="round">
+    <path d="M-12-6L0 0V20L-12 14Z" fill="#E8862B"/>
+    <path d="M0 0L12-6V14L0 20Z" fill="#F2B134"/>
+    <path d="M-12-6L0-12L12-6L0 0Z" fill="#F5C95C"/>
+    <path d="M-6-9L6-3" stroke="#fff" stroke-width="2.2" opacity=".85"/>
+    <path d="M0 0V20" stroke="#fff" stroke-width="1.2" opacity=".55"/>
+  </g>
+</svg>
