@@ -65,6 +65,7 @@
   .kpi .k { color:var(--mute); font-size:.8rem; font-weight:700; }
   .kpi .v { color:var(--ink); font-size:1.45rem; font-weight:700; line-height:1.3; }
   .kpi .s { color:var(--mute); font-size:.82rem; }
+  .kpi .s.ct-v { color:var(--ink); font-size:.95rem; font-weight:700; margin-top:4px; }
   .section { font-weight:700; font-size:1.02rem; margin:16px 0 6px; }
   .caption { color:var(--mute); font-size:.85rem; }
   .hint { color:var(--mute); font-size:.82rem; margin:-2px 0 6px 2px; }
@@ -92,12 +93,91 @@
   .svc li:nth-child(1) { --j:0; } .svc li:nth-child(2) { --j:1; } .svc li:nth-child(3) { --j:2; } .svc li:nth-child(4) { --j:3; } .svc li:nth-child(5) { --j:4; }
   .svc li::before { transition:transform .2s ease; }
   .svc li:hover::before { transform:scale(1.3) rotate(12deg); }
-  /* 路線圖：虛線上五個站點，包裹來回走；站點輪流亮一下 */
-  .route { position:relative; display:flex; justify-content:space-between; align-items:center; margin:16px 10px 4px; height:44px; }
-  .route::before { content:""; position:absolute; left:18px; right:18px; top:50%; border-top:2px dashed var(--selline); }
-  .rt-node { position:relative; z-index:1; width:38px; height:38px; border-radius:50%; background:var(--panel); border:2px solid var(--navy); display:inline-flex; align-items:center; justify-content:center; font-size:1.15rem; animation:pulse 7.5s ease-in-out infinite; }
-  .rt-node:nth-child(2) { animation-delay:0s; } .rt-node:nth-child(3) { animation-delay:1.5s; } .rt-node:nth-child(4) { animation-delay:3s; } .rt-node:nth-child(5) { animation-delay:4.5s; } .rt-node:nth-child(6) { animation-delay:6s; }
-  .rt-mover { position:absolute; z-index:2; top:50%; left:0; font-style:normal; font-size:1.05rem; transform:translate(-50%, -50%); animation:travel 7.5s linear infinite; filter:drop-shadow(0 2px 2px rgba(0,0,0,.25)); }
+  /* 出貨場景：天空在上、地面在下；船走海線、卡車走公路、飛機走天空，倉庫在中間 */
+  .scene { position:relative; height:150px; margin:14px 0 8px; border:2px solid var(--navy); border-radius:9px; overflow:hidden;
+           background:linear-gradient(180deg, var(--sea) 0%, var(--sea) 64%, var(--stripe) 64%, var(--stripe) 100%); }
+  .scene i, .scene em { font-style:normal; line-height:1; }
+  .scene .lane { position:absolute; height:0; }
+  .scene .sea { left:12%; width:38%; top:58%; border-top:3px dotted var(--selline); }
+  .scene .road { left:50%; width:38%; top:80%; border-top:3px dashed var(--selline); }
+  .scene .stop { position:absolute; bottom:8px; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; z-index:2; }
+  .scene .stop em { font-size:2rem; display:block; }
+  .scene .stop b { font-size:.72rem; color:var(--ink); margin-top:3px; white-space:nowrap; background:var(--panel); border:1px solid var(--line); border-radius:999px; padding:1px 8px; }
+  .scene .origin { left:12%; } .scene .wh { left:50%; } .scene .dest { left:88%; }
+  .scene .wh em { font-size:2.6rem; animation:whpulse 10s ease-in-out infinite; transform-origin:50% 100%; }
+  .scene .ship, .scene .truck, .scene .plane, .scene .pkg { position:absolute; z-index:3; font-size:1.6rem; transform:translate(-50%, -50%); }
+  .scene .ship { top:58%; left:12%; animation:sail 10s linear infinite; }
+  .scene .ship span { display:inline-block; animation:bob 1.6s ease-in-out infinite; }
+  .scene .truck { top:80%; left:50%; animation:drive 10s linear infinite; }
+  .scene .truck span { display:inline-block; transform:scaleX(-1); animation:bump .35s linear infinite; }   /* 🚚 預設朝左，翻過來往右開 */
+  .scene .plane { top:34%; left:50%; animation:fly 10s ease-in-out infinite; }
+  .scene .plane span { display:inline-block; animation:bob 2.4s ease-in-out infinite; }
+  .scene .pkg { font-size:1rem; top:50%; left:50%; animation:pkg 10s ease-in-out infinite; }
+  .scene .cloud { position:absolute; top:8%; font-size:1.4rem; opacity:.75; animation:drift 30s linear infinite; }
+  .scene .c1 { left:-8%; } .scene .c2 { left:30%; top:18%; animation-duration:38s; font-size:1.1rem; } .scene .c3 { left:70%; animation-duration:46s; }
+  @keyframes sail  { 0% { left:12%; opacity:1; } 34% { left:49%; opacity:1; } 38% { left:50%; opacity:0; } 100% { left:50%; opacity:0; } }
+  @keyframes drive { 0%, 44% { left:50%; opacity:0; } 47% { left:52%; opacity:1; } 84% { left:86%; opacity:1; } 88%, 100% { left:88%; opacity:0; } }
+  @keyframes fly   { 0%, 44% { left:50%; top:46%; opacity:0; } 48% { left:54%; top:40%; opacity:1; } 66% { top:12%; } 84% { left:86%; top:30%; opacity:1; } 88%, 100% { left:88%; top:34%; opacity:0; } }
+  @keyframes pkg   { 0%, 36% { opacity:0; top:58%; left:49%; } 40% { opacity:1; top:44%; left:50%; } 45% { opacity:1; top:44%; } 47% { opacity:0; top:52%; } 100% { opacity:0; } }
+  @keyframes whpulse { 0%, 34%, 50%, 100% { transform:scale(1); filter:none; } 40% { transform:scale(1.22); filter:drop-shadow(0 0 10px rgba(242,177,52,.9)); } }
+  @keyframes bob   { 0%, 100% { transform:translateY(0); } 50% { transform:translateY(-3px); } }
+  @keyframes bump  { 0%, 100% { transform:scaleX(-1) translateY(0); } 50% { transform:scaleX(-1) translateY(-1px); } }
+  @keyframes drift { from { transform:translateX(0); } to { transform:translateX(110vw); } }
+  @media (max-width:600px) { .scene { height:130px; } .scene .stop b { font-size:.62rem; } .scene .stop em { font-size:1.6rem; } .scene .wh em { font-size:2.1rem; } }
+  /* 首頁服務圖片卡：插畫當背景＋深色遮罩，白字置中；滑過背景放大、出現「了解更多」 */
+  .tiles { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; margin:10px 0 8px; }
+  @media (max-width:900px) { .tiles { grid-template-columns:repeat(2, 1fr); } }
+  @media (max-width:560px) { .tiles { grid-template-columns:1fr; } .tile { min-height:190px; } }
+  .tile { position:relative; isolation:isolate; overflow:hidden; display:flex; align-items:center; justify-content:center; text-align:center; min-height:220px; border-radius:16px; color:#fff; text-decoration:none; box-shadow:0 8px 18px rgba(0,0,0,.18); }
+  .tile::before { content:""; position:absolute; inset:0; z-index:-2; background:var(--img) center / cover no-repeat; transition:transform .9s cubic-bezier(.2,.8,.2,1); }
+  .tile::after { content:""; position:absolute; inset:0; z-index:-1; background:radial-gradient(ellipse at center, rgba(8,16,30,.72) 0%, rgba(8,16,30,.5) 70%), linear-gradient(180deg, rgba(8,16,30,.15), rgba(8,16,30,.55)); }
+  .tile:hover::before, .tile:focus-visible::before { transform:scale(1.12) rotate(.6deg); }
+  .tile-in { padding:18px 22px; transition:transform .4s ease; }
+  .tile:hover .tile-in, .tile:focus-visible .tile-in { transform:translateY(-6px); }
+  .tile h3 { margin:0 0 8px; font-size:1.3rem; text-shadow:0 2px 8px rgba(0,0,0,.45); }
+  .tile p { margin:0; font-size:.92rem; line-height:1.65; text-shadow:0 1px 4px rgba(0,0,0,.45); }
+  .tile .more { display:inline-block; margin-top:10px; font-size:.82rem; font-weight:700; color:var(--gold); opacity:0; transform:translateY(8px); transition:opacity .35s, transform .35s; }
+  .tile:hover .more, .tile:focus-visible .more { opacity:1; transform:none; }
+  /* 為什麼選擇我們：白底圓角卡，圓形圖示定時泛起一圈光 */
+  .values { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:14px; margin:10px 0 12px; }
+  .value { display:flex; align-items:center; gap:16px; background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:0 10px 26px rgba(20,40,70,.12); transition:transform .3s ease, box-shadow .3s ease; }
+  .value:hover { transform:translateY(-5px); box-shadow:0 16px 32px rgba(20,40,70,.2); }
+  .value .ic { flex:none; width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg, var(--tabbar), var(--navy)); display:inline-flex; align-items:center; justify-content:center; font-size:1.8rem; animation:ring 3s ease-out infinite; transition:transform .35s ease; }
+  .value:nth-child(2) .ic { animation-delay:1s; } .value:nth-child(3) .ic { animation-delay:2s; }
+  .value:hover .ic { transform:rotate(-12deg) scale(1.1); }
+  .value h3 { margin:0 0 4px; font-size:1.08rem; color:var(--tabbar); }
+  .value p { margin:0; color:var(--mute); font-size:.9rem; }
+  @keyframes ring { 0% { box-shadow:0 0 0 0 rgba(242,177,52,.6); } 70% { box-shadow:0 0 0 14px rgba(242,177,52,0); } 100% { box-shadow:0 0 0 0 rgba(242,177,52,0); } }
+  /* 捲到才浮上來：有 IntersectionObserver 時才先藏起來（沒有就直接顯示）；減少動態效果時動畫被關掉，加上 .in 就直接出現 */
+  .js-reveal .reveal { opacity:0; }
+  .js-reveal .reveal.in { opacity:1; animation:rise .7s cubic-bezier(.2,.8,.2,1) backwards; animation-delay:var(--d, 0s); }
+  /* ERP／API 宣傳：左文右圖，右邊是兩個節點之間來回流動的資料點 */
+  .promo { display:grid; grid-template-columns:1.4fr 1fr; gap:16px; align-items:center; margin:18px 0 8px; padding:16px 20px; border:2px solid var(--navy); border-radius:12px;
+           background:linear-gradient(135deg, var(--panel) 0%, var(--stripe) 60%, var(--hover) 160%); position:relative; overflow:hidden; }
+  .promo::after { content:""; position:absolute; inset:0; background:linear-gradient(110deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%); transform:translateX(-100%); animation:sheen 6s ease-in-out infinite; pointer-events:none; }
+  .promo-text { position:relative; z-index:1; min-width:0; }
+  .promo h3 { margin:6px 0 4px; font-size:1.25rem; display:inline-block; }
+  .promo p { margin:0 0 8px; color:var(--ink); font-size:.92rem; }
+  .promo ul { margin:0 0 12px; padding-left:1.2em; font-size:.9rem; display:grid; gap:3px; }
+  .promo .badge { display:inline-block; background:var(--warn); color:#fff; font-weight:700; font-size:.72rem; letter-spacing:.08em; padding:2px 9px; border-radius:999px; animation:badge 2.2s ease-in-out infinite; vertical-align:middle; margin-right:8px; }
+  .promo-art { position:relative; z-index:1; display:flex; align-items:center; justify-content:center; gap:0; min-height:120px; }
+  .promo-art .node { display:flex; flex-direction:column; align-items:center; gap:4px; background:var(--panel); border:2px solid var(--navy); border-radius:12px; padding:10px 14px; min-width:96px; }
+  .promo-art .node em { font-style:normal; font-size:2rem; line-height:1; }
+  .promo-art .node b { font-size:.74rem; white-space:nowrap; }
+  .promo-art .wh em { animation:bob 2.4s ease-in-out infinite; }
+  .promo-art .link { position:relative; flex:1 1 90px; max-width:150px; height:46px; margin:0 6px; }
+  .promo-art .link::before, .promo-art .link::after { content:""; position:absolute; left:0; right:0; border-top:2px dashed var(--selline); }
+  .promo-art .link::before { top:12px; } .promo-art .link::after { bottom:12px; }
+  .promo-art .api { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:var(--navy); color:var(--gold); font-weight:700; font-size:.7rem; letter-spacing:.1em; padding:2px 8px; border-radius:999px; }
+  .promo-art .dot { position:absolute; width:9px; height:9px; border-radius:50%; background:var(--orange); top:8px; left:0; animation:flow 2.4s linear infinite; }
+  .promo-art .d2 { animation-delay:.8s; } .promo-art .d3 { animation-delay:1.6s; }
+  .promo-art .dot.up { top:auto; bottom:8px; background:var(--okdark); animation-name:flowback; animation-duration:3s; }
+  .promo-art .u2 { animation-delay:1.5s; }
+  @keyframes flow { from { left:0; opacity:0; } 15% { opacity:1; } 85% { opacity:1; } to { left:calc(100% - 9px); opacity:0; } }
+  @keyframes flowback { from { left:calc(100% - 9px); opacity:0; } 15% { opacity:1; } 85% { opacity:1; } to { left:0; opacity:0; } }
+  @keyframes sheen { 0%, 55% { transform:translateX(-100%); } 100% { transform:translateX(100%); } }
+  @keyframes badge { 0%, 100% { transform:scale(1); } 50% { transform:scale(1.12); } }
+  @media (max-width:800px) { .promo { grid-template-columns:1fr; } }
   /* 支援平台：圓角標籤，進場一顆顆彈出，滑過去會跳一下 */
   .chips.plats span { border:1.5px solid var(--navy); border-radius:999px; padding:3px 13px; background:var(--panel); font-weight:700; transition:transform .2s ease, background .2s ease; }
   .chips.plats span:hover { transform:translateY(-3px) scale(1.06); background:var(--hover); }
@@ -159,7 +239,7 @@
   .map .rl { font-family:inherit; font-weight:700; fill:var(--ink); paint-order:stroke; stroke:#fff; stroke-linejoin:round; }
   .chips .lg.rt { border:0; background:none; width:14px; height:0; border-top:2px dashed var(--navy); vertical-align:2px; }
   .map line.lead { stroke:#1E2430; opacity:.75; }
-  .map .city circle { fill:#1E2430; stroke:#fff; stroke-width:1; }
+  .map .city circle { fill:var(--navy); stroke:#fff; }
   .map .city text { font-family:inherit; font-weight:700; fill:var(--ink); paint-order:stroke; stroke:#fff; stroke-linejoin:round; }
   .chips .lg { display:inline-block; width:12px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px; border:1.5px solid var(--navy); background:#fff; }
   .chips .lg.wh { background:var(--gold); } .chips .lg.from { border-color:var(--orange); } .chips .lg.city { border:0; border-radius:50%; background:#1E2430; width:10px; }
@@ -178,6 +258,589 @@
     table { font-size:.82rem; }
     .kpi .v { font-size:1.2rem; }
   }
+  /* ── 首頁小車街景（.street／st-*）：全部只動 transform 與 opacity ── */
+  .street{position:relative;margin:0 0 12px;border:2px solid var(--navy);border-radius:12px;overflow:hidden;background:var(--sea);line-height:0}
+  .street svg{display:block;width:100%;height:auto;aspect-ratio:1200/190;min-height:140px;max-height:200px}
+  .street .st-fn{fill:var(--navy)}.street .st-ft{fill:var(--tabbar)}.street .st-fg{fill:var(--gold)}.street .st-fp{fill:var(--panel)}.street .st-fo{fill:var(--orange)}.street .st-fs{fill:var(--sea)}
+  .street .st-sn{stroke:var(--navy)}
+  .street .st-ol{stroke:var(--navy);stroke-width:2.5;stroke-linejoin:round}
+  .street .st-hill{opacity:.16}
+  .street .st-wall{fill:#DDE3EA;stroke:var(--navy);stroke-width:2}
+  .street .st-corr{stroke:#C9D1DC;stroke-dasharray:1.5 6.5}
+  .street .st-mt{stroke:#fff;stroke-opacity:.22;stroke-dasharray:1 7}
+  .street .st-sm{stroke:#fff;stroke-opacity:.22;stroke-width:.9;stroke-dasharray:7 9}
+  .street .st-sl{stroke:#000;stroke-opacity:.2;stroke-width:2.4}
+  .street .st-stud{stroke-width:3.4;stroke-dasharray:8 6}
+  .street .st-shl{stroke:#fff;stroke-opacity:.4;stroke-width:1.1;stroke-dasharray:2.6 11.4}
+  .street .st-dr{fill:#3B3547;stroke:#fff;stroke-width:2.6}
+  .street .st-kn{stroke:#E8C15A;stroke-width:3.2;stroke-linecap:round}
+  .street .st-awn{stroke:#E05A47;stroke-width:8;stroke-dasharray:5.5 5.5}
+  .street .st-palm{fill:none;stroke-width:5;stroke-linecap:round}
+  .street .st-speed{stroke:var(--tabbar);stroke-width:3;stroke-linecap:round}
+  .street .st-sign{font-family:inherit;font-size:12.5px;font-weight:700;fill:var(--gold);letter-spacing:.6px}
+  .street .st-rays{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round}
+  .street .st-cloud,.street .st-tree,.street .st-door,.street .st-px,.street .st-py,.street .st-body,.street .st-wheel,.street .st-puff,.street .st-rays,.street .st-flag,.street .st-check{transform-box:fill-box;transform-origin:center}
+  .street .st-cloud{animation:st-drift 6s ease-in-out infinite alternate}
+  .street .st-c2{animation-delay:-2s;animation-direction:alternate-reverse}
+  .street .st-c3{animation-delay:-4s}
+  .street .st-tree{transform-origin:50% 100%;animation:st-sway 3s ease-in-out infinite alternate}
+  .street .st-t2{animation-delay:-1.5s}
+  .street .st-rays{animation:st-spin 12s linear infinite}
+  .street .st-flag{transform-origin:0 50%;animation:st-flag 1s ease-in-out infinite alternate}
+  .street .st-door{transform-origin:50% 0;transform:scaleY(.16);animation:st-door 12s infinite}
+  .street .st-lamp{animation:st-blink 12s infinite}
+  .street .st-glow{opacity:0;animation:st-glow 12s infinite}
+  .street .st-px{animation:st-px 12s linear infinite}
+  .street .st-py{animation:st-py 12s infinite}
+  .street .st-check{opacity:0;transform-origin:50% 100%;animation:st-check 12s infinite}
+  .street .st-van{animation:st-d 12s cubic-bezier(.3,.5,.45,1) infinite}
+  .street .st-wheel{animation:st-r 12s cubic-bezier(.3,.5,.45,1) infinite}
+  .street .st-body{animation:st-bounce 12s linear infinite}
+  .street .st-puff{fill:#E4E7EB;opacity:0;animation:st-puff 1.2s ease-out infinite}
+  .street .st-pb{animation-delay:-.6s}
+  @keyframes st-drift{to{transform:translateX(26px)}}
+  @keyframes st-sway{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg)}}
+  @keyframes st-spin{to{transform:rotate(45deg)}}
+  @keyframes st-flag{to{transform:scaleX(.82) skewY(5deg)}}
+  @keyframes st-puff{0%{opacity:.75;transform:none}100%{opacity:0;transform:translate(-18px,-7px) scale(2.3)}}
+  @keyframes st-door{0%,54%{transform:scaleY(.16)}58.5%,77%{transform:scaleY(1)}81.5%,100%{transform:scaleY(.16)}}
+  @keyframes st-px{0%,42.5%{transform:none;opacity:1}46%,47.2%{transform:translateX(34px)}52.5%{transform:translateX(90px);opacity:1}53%{transform:translateX(90px);opacity:0}70%{transform:none;opacity:0}78%{opacity:0}81.5%,100%{transform:none;opacity:1}}
+  @keyframes st-py{0%,41%{transform:none}41.8%{transform:translateY(2.2px) scale(1.2,.8)}42.5%{transform:none;animation-timing-function:cubic-bezier(.25,.6,.45,1)}44.25%{transform:translateY(-30px) rotate(-12deg);animation-timing-function:cubic-bezier(.55,0,.75,.4)}46%{transform:none}46.5%{transform:translateY(2.2px) scale(1.15,.85)}47.2%{transform:none;animation-timing-function:cubic-bezier(.25,.6,.45,1)}49.8%{transform:translateY(-44px) rotate(90deg);animation-timing-function:cubic-bezier(.55,0,.75,.4)}52.5%,53%{transform:translateY(6px) rotate(180deg)}70%,100%{transform:none}}
+  @keyframes st-check{0%,52.4%{opacity:0;transform:translateY(8px) scale(.2)}54.4%{opacity:1;transform:translateY(-3px) scale(1.15)}55.8%,60%{opacity:1;transform:none}63%,100%{opacity:0;transform:translateY(-10px) scale(.7)}}
+  @keyframes st-d{0%{transform:translateX(-770px)}38%{transform:none}62%{transform:none;animation-timing-function:cubic-bezier(.55,0,.8,.6)}95%,100%{transform:translateX(690px)}}
+  @keyframes st-r{0%{transform:rotate(-3529.42deg)}38%{transform:none}62%{transform:none;animation-timing-function:cubic-bezier(.55,0,.8,.6)}95%,100%{transform:rotate(3162.73deg)}}
+  @keyframes st-dm{0%{transform:translateX(-470px)}38%{transform:none}62%{transform:none;animation-timing-function:cubic-bezier(.55,0,.8,.6)}95%,100%{transform:translateX(380px)}}
+  @keyframes st-rm{0%{transform:rotate(-2154.32deg)}38%{transform:none}62%{transform:none;animation-timing-function:cubic-bezier(.55,0,.8,.6)}95%,100%{transform:rotate(1741.79deg)}}
+  @keyframes st-dl{0%{transform:translateX(-960px)}38%{transform:none}62%{transform:none;animation-timing-function:cubic-bezier(.55,0,.8,.6)}95%,100%{transform:translateX(880px)}}
+  @keyframes st-rl{0%{transform:rotate(-4400.32deg)}38%{transform:none}62%{transform:none;animation-timing-function:cubic-bezier(.55,0,.8,.6)}95%,100%{transform:rotate(4033.62deg)}}
+  @keyframes st-dx{0%{transform:translateX(-1150px)}38%{transform:none}62%{transform:none;animation-timing-function:cubic-bezier(.55,0,.8,.6)}95%,100%{transform:translateX(1090px)}}
+  @keyframes st-rx{0%{transform:rotate(-5271.21deg)}38%{transform:none}62%{transform:none;animation-timing-function:cubic-bezier(.55,0,.8,.6)}95%,100%{transform:rotate(4996.19deg)}}
+  @keyframes st-bounce{0%,3%,6%,9%,12%,15%,18%,21%,24%,27%,30%,33%,35.5%,41%,51.8%,55.4%,62%,65%,68%,71%,74%,77%,80%,83%,86%,89%,92%,95%,100%{transform:none}1.5%,90.5%{transform:translateY(-1.5px)}4.5%,87.5%{transform:translateY(-1.4px)}7.5%,84.5%{transform:translateY(-1.3px)}10.5%,81.5%{transform:translateY(-1.2px)}13.5%,78.5%{transform:translateY(-1.1px)}16.5%,75.5%{transform:translateY(-1.0px)}19.5%{transform:translateY(-0.9px)}22.5%,72.5%{transform:translateY(-0.8px)}25.5%,69.5%{transform:translateY(-0.7px)}28.5%,66.5%{transform:translateY(-0.6px)}31.5%{transform:translateY(-0.5px)}38%{transform:translateY(1px) rotate(1.3deg)}39.6%{transform:rotate(-.4deg)}52.8%{transform:translateY(2px)}54.2%{transform:translateY(-.6px)}63.2%{transform:rotate(-1.1deg)}93.5%{transform:translateY(-1.7px)}}
+  @keyframes st-blink{0%,36%,39.5%,42.5%,45.5%,48.5%,51.5%,54.5%,57.5%,60.5%,100%{opacity:.25}38%,41%,44%,47%,50%,53%,56%,59%{opacity:1}}
+  @keyframes st-glow{0%,36%,39.5%,42.5%,45.5%,48.5%,51.5%,54.5%,57.5%,60.5%,100%{opacity:0}38%,41%,44%,47%,50%,53%,56%,59%{opacity:.35}}
+  @media (max-width:520px){.street .st-van{animation-name:st-dm}.street .st-wheel{animation-name:st-rm}}
+  @media (min-width:1300px){.street .st-van{animation-name:st-dl}.street .st-wheel{animation-name:st-rl}}
+  @media (min-width:1750px){.street .st-van{animation-name:st-dx}.street .st-wheel{animation-name:st-rx}}
+  @media (min-width:2160px){.street svg{aspect-ratio:2000/190;max-height:220px}}
+  @media (prefers-reduced-motion:reduce){.street *{animation:none!important}}
+  /* ── 合作流程的倉庫作業動畫（.awf／awf-*） ── */
+  /* awf-: "how your order moves through our warehouse" scene for the 合作流程 / How it works tab.
+     One parcel loops through Receiving -> Putaway -> Pick & Pack -> Shipping in 14s.
+     Everything is inline SVG; only transform and opacity animate.
+     The resting (non-animated) state of every moving part is the END of the story: the parcel at
+     Shipping with its label and check mark, the Shipping sign lit and the Shipping caption showing,
+     so the reduced-motion frame is complete on its own.
+     Characters are copies of the awm- mascots (dog, cat, worker) renamed to awf-. */
+  
+  .awf {
+    position:relative; margin:4px 0 14px;
+    /* dark interior, fallback values (navy-ish slate) */
+    --awf-wall:#24303F; --awf-wall2:#2B3846; --awf-col:#1C2631; --awf-truss:#29343F;
+    --awf-web:#33424F; --awf-chord:#3A4B58; --awf-floor:#27313A; --awf-steel:#55697A;
+  }
+  /* tint the dark interior with the theme colour so it sits well in navy, brown and green */
+  @supports (color:color-mix(in srgb, red 50%, blue)) {
+    .awf {
+      --awf-wall:color-mix(in srgb, var(--navy, #1F3F6E) 30%, #262A2C);
+      --awf-wall2:color-mix(in srgb, var(--navy, #1F3F6E) 30%, #30363A);
+      --awf-col:color-mix(in srgb, var(--navy, #1F3F6E) 30%, #1C2023);
+      --awf-truss:color-mix(in srgb, var(--navy, #1F3F6E) 30%, #2D3236);
+      --awf-web:color-mix(in srgb, var(--navy, #1F3F6E) 32%, #3A4248);
+      --awf-chord:color-mix(in srgb, var(--navy, #1F3F6E) 32%, #434D54);
+      --awf-floor:color-mix(in srgb, var(--navy, #1F3F6E) 24%, #2C3033);
+      --awf-steel:color-mix(in srgb, var(--navy, #1F3F6E) 24%, #5F6E77);
+      /* rack uprights: theme colour, a little darker, so they stay apart from the orange beam (brown theme) */
+      --awf-upright:color-mix(in srgb, var(--tabbar, #2E6FBA) 74%, #1B2328);
+    }
+  }
+  
+  .awf .awf-stage {
+    display:block; width:100%; height:auto; aspect-ratio:1100/290;
+    border:2px solid var(--navy, #1F3F6E); border-radius:12px; background:var(--awf-wall);
+  }
+  .awf text { font-family:inherit; }
+  
+  /* ---------------- mascot parts (copied from awm-, renamed) ---------------- */
+  .awf .awf-c-skin   { fill:var(--awf-skin, #E8B98F); }
+  .awf .awf-c-vest   { fill:var(--awf-vest, #EC8A2C); }
+  .awf .awf-c-stripe { fill:var(--awf-stripe, #F3F0E6); }
+  .awf .awf-c-hair   { fill:var(--awf-hair, #3A2C20); }
+  .awf .awf-c-shirt  { fill:var(--navy, #1F3F6E); }
+  .awf .awf-c-badge  { fill:var(--tabbar, #2E6FBA); }
+  .awf .awf-c-collar { stroke:var(--tabbar, #2E6FBA); }
+  .awf .awf-c-tag    { fill:var(--gold, #F5C95C); }
+  .awf .awf-shadow   { opacity:var(--awf-shadow, .22); }
+  
+  .awf .awf-leg-a,
+  .awf .awf-leg-b,
+  .awf .awf-tail-part,
+  .awf .awf-eye,
+  .awf .awf-arm { transform-box:fill-box; }
+  .awf .awf-leg-a,
+  .awf .awf-leg-b {
+    transform-origin:50% 0;
+    animation:var(--awf-legs, none) var(--awf-step-dur, .6s) linear var(--awf-delay, 0s) infinite;
+  }
+  .awf .awf-leg-b { animation-direction:reverse; }
+  .awf .awf-tail-dog {
+    transform-origin:60% 90%;
+    animation:var(--awf-wag, none) .46s ease-in-out var(--awf-delay, 0s) infinite alternate;
+  }
+  .awf .awf-tail-cat {
+    transform-origin:90% 95%;
+    animation:var(--awf-sway, none) 2.4s ease-in-out var(--awf-delay, 0s) infinite alternate;
+  }
+  .awf .awf-eye {
+    transform-origin:50% 55%;
+    animation:var(--awf-blinking, none) 4.2s linear var(--awf-delay, 0s) infinite;
+  }
+  /* front arm: each station worker gets its own 14s gesture track (synced with the parcel) */
+  .awf .awf-arm {
+    transform-origin:32% 4%;
+    transform:rotate(var(--awf-arm-up, 0deg));
+    animation:var(--awf-armk, none) 14s ease-in-out infinite;
+  }
+  
+  /* wrappers */
+  .awf .awf-walk {
+    --awf-legs:awf-step;
+    animation:awf-bob calc(var(--awf-step-dur, .6s) / 2) ease-in-out var(--awf-delay, 0s) infinite alternate;
+  }
+  .awf .awf-tail  { --awf-wag:awf-wag; --awf-sway:awf-sway; }
+  .awf .awf-blink { --awf-blinking:awf-blink; }
+  .awf .awf-w1 { --awf-armk:awf-arm1; animation:awf-nod1 14s ease-in-out infinite; }
+  .awf .awf-w2 { --awf-armk:awf-arm2; animation:awf-nod2 14s ease-in-out infinite; }
+  .awf .awf-w3 { --awf-armk:awf-arm3; animation:awf-nod3 14s ease-in-out infinite; }
+  .awf .awf-w4 { --awf-armk:awf-arm4; --awf-arm-up:-142deg; animation:awf-nod4 14s ease-in-out infinite; }
+  
+  @keyframes awf-bob   { from { transform:translateY(0); } to { transform:translateY(-1.6px); } }
+  @keyframes awf-step  { 0%,100% { transform:rotate(0); } 25% { transform:rotate(17deg); } 75% { transform:rotate(-17deg); } }
+  @keyframes awf-wag   { from { transform:rotate(-11deg); } to { transform:rotate(13deg); } }
+  @keyframes awf-sway  { from { transform:rotate(-8deg); } to { transform:rotate(11deg); } }
+  @keyframes awf-blink { 0%,91%,100% { transform:scaleY(1); } 94.5% { transform:scaleY(.12); } }
+  
+  /* ---------------- building ---------------- */
+  .awf .awf-wall  { fill:var(--awf-wall); }
+  .awf .awf-wall2 { fill:var(--awf-wall2); }
+  .awf .awf-seam  { fill:none; stroke:#fff; stroke-opacity:.035; stroke-width:2; }
+  .awf .awf-col   { fill:var(--awf-col); }
+  .awf .awf-col2  { fill:#fff; fill-opacity:.06; }
+  .awf .awf-ceil  { fill:var(--navy, #1F3F6E); }
+  .awf .awf-truss { fill:var(--awf-truss); stroke:var(--awf-chord); stroke-width:1; }
+  .awf .awf-truss-web { fill:none; stroke:var(--awf-web); stroke-width:1.5; }
+  .awf .awf-chord { fill:var(--awf-chord); }
+  
+  .awf .awf-sky     { fill:var(--sea, #D6E4F3); }
+  .awf .awf-sky2    { fill:var(--panel, #FFFFFF); fill-opacity:.5; }
+  .awf .awf-yard    { fill:#8E989E; }
+  .awf .awf-shutter { fill:#5C6A72; stroke:#141C21; stroke-width:1; }
+  .awf .awf-rib     { fill:none; stroke:#3F4B52; stroke-width:1; }
+  .awf .awf-jamb    { fill:#161E23; }
+  .awf .awf-trailer { fill:#12191D; }
+  .awf .awf-trailer-rib { fill:none; stroke:#fff; stroke-opacity:.05; stroke-width:2; }
+  .awf .awf-arrow   { fill:var(--gold, #F5C95C); stroke:#10171B; stroke-width:2.2; stroke-linejoin:round; animation:awf-nudge 14s ease-in-out infinite; }
+  
+  /* light falls off towards the floor: 4 nested cones of decreasing length (plain fills, no gradient references) */
+  .awf .awf-cone      { fill:var(--gold, #F5C95C); fill-opacity:.042; }
+  .awf .awf-halo      { animation:awf-glow 3.6s ease-in-out infinite alternate; }
+  .awf .awf-halo ellipse { fill:var(--gold, #F5C95C); fill-opacity:.07; }
+  .awf .awf-cord      { fill:none; stroke:var(--awf-chord); stroke-width:1.6; }
+  .awf .awf-shade     { fill:#2C3A42; stroke:#10171B; stroke-width:1; }
+  .awf .awf-bulb      { fill:var(--gold, #F5C95C); }
+  .awf .awf-bulb-core { fill:#FFF6DD; }
+  @keyframes awf-glow { from { opacity:.65; } to { opacity:1; } }
+  
+  /* hanging station signs */
+  .awf .awf-wire   { fill:none; stroke:var(--awf-chord); stroke-width:1.3; }
+  .awf .awf-plate  { fill:#000; fill-opacity:.3; stroke:#fff; stroke-opacity:.2; stroke-width:1.5; }
+  .awf .awf-num    { fill:#fff; fill-opacity:.14; }
+  .awf .awf-numt   { fill:#E3EAEE; font-size:11px; font-weight:700; text-anchor:middle; }
+  .awf .awf-signt  { fill:var(--awf-st-fill, #E3EAEE); fill-opacity:var(--awf-st-op, .82); font-size:14px; font-weight:700; text-anchor:middle; }
+  .awf .awf-plate-glow { fill:var(--gold, #F5C95C); fill-opacity:.24; }
+  .awf .awf-plate-on   { fill:var(--gold, #F5C95C); stroke:var(--navy, #1F3F6E); stroke-width:1.5; }
+  .awf .awf-num-on     { fill:var(--navy, #1F3F6E); }
+  .awf .awf-numt-on    { fill:var(--gold, #F5C95C); font-size:11px; font-weight:700; text-anchor:middle; }
+  /* the lit label is a <use> of the one data-i18n <text>; these inherit into its clone */
+  .awf .awf-st-lit     { --awf-st-fill:var(--navy, #1F3F6E); --awf-st-op:1; }
+  
+  /* floor */
+  .awf .awf-floor { fill:var(--awf-floor); }
+  .awf .awf-base  { fill:none; stroke:#000; stroke-opacity:.35; stroke-width:2; }
+  .awf .awf-tile  { fill:none; stroke:#fff; stroke-opacity:.07; stroke-width:4; }
+  .awf .awf-lane  { fill:none; stroke:var(--gold, #F5C95C); stroke-opacity:.55; stroke-width:2.6; stroke-dasharray:20 16; stroke-linecap:round; }
+  .awf .awf-spot    { fill:#fff; fill-opacity:.05; }
+  .awf .awf-spot-on { fill:var(--gold, #F5C95C); fill-opacity:.6; }
+  
+  /* racks, cartons */
+  .awf .awf-post { fill:var(--awf-upright, var(--tabbar, #2E6FBA)); stroke:#10171B; stroke-width:1; }
+  .awf .awf-beam { fill:var(--orange, #D9822B); stroke:#1A1410; stroke-width:1; }
+  .awf .awf-box rect { fill:#C99A62; stroke:#4A3424; stroke-width:1.3; }
+  .awf .awf-box path { fill:none; stroke:#9C7445; stroke-width:1.4; }
+  .awf .awf-box .awf-box-tag { fill:#F5EFE4; stroke:none; }
+  .awf .awf-tagplate    { fill:var(--panel, #FFFFFF); stroke:#10171B; stroke-width:.8; }
+  .awf .awf-tagplate-on { fill:var(--gold, #F5C95C); stroke:#10171B; stroke-width:.8; }
+  .awf .awf-loc { fill:var(--navy, #1F3F6E); font-size:10.5px; font-weight:700; text-anchor:middle; }
+  
+  /* monitors (WMS at receiving, TMS at shipping) */
+  .awf .awf-bezel { fill:var(--navy, #1F3F6E); stroke:#0B1216; stroke-width:1.5; }
+  .awf .awf-scr   { fill:#1D323C; }
+  .awf .awf-scrt  { fill:#7FA3B3; font-size:9px; font-weight:700; text-anchor:middle; }
+  .awf .awf-scrl  { fill:none; stroke:#2F5566; stroke-width:2.4; stroke-linecap:round; }
+  .awf .awf-scr-on-wms { fill:var(--tab, #6A9BD8); }
+  .awf .awf-scr-on-tms { fill:var(--gold, #F5C95C); }
+  .awf .awf-scrt-on { fill:var(--navy, #1F3F6E); font-size:9px; font-weight:700; text-anchor:middle; }
+  .awf .awf-scrl-on { fill:none; stroke:var(--navy, #1F3F6E); stroke-opacity:.5; stroke-width:2.4; stroke-linecap:round; }
+  .awf .awf-truck { fill:var(--navy, #1F3F6E); }
+  .awf .awf-wheel { fill:#10171B; stroke:var(--gold, #F5C95C); stroke-width:.8; }
+  .awf .awf-scr-ok    { fill:var(--ok, #6CC070); }
+  .awf .awf-scr-check { fill:none; stroke:#fff; stroke-width:4; stroke-linecap:round; stroke-linejoin:round; }
+  .awf .awf-stand { fill:#141C21; }
+  
+  /* scanner, printer, labels */
+  .awf .awf-pole   { fill:#3C4D57; stroke:#10171B; stroke-width:.6; }
+  .awf .awf-head   { fill:#2A353C; stroke:#0B1216; stroke-width:1; }
+  .awf .awf-window { fill:#FF6A5A; }
+  .awf .awf-beamfan  { fill:#FF4B3E; fill-opacity:.3; }
+  .awf .awf-scanline { fill:none; stroke:#FF3B30; stroke-width:1.8; stroke-linecap:round; }
+  .awf .awf-printer-body { fill:#DCE2E6; stroke:#141C21; stroke-width:1; }
+  .awf .awf-printer-slot { fill:#141C21; }
+  .awf .awf-printer-led  { fill:var(--ok, #6CC070); }
+  .awf .awf-label-paper { fill:#fff; stroke:#8E979C; stroke-width:.7; }
+  .awf .awf-label-ink   { fill:none; stroke:#3A3F44; stroke-width:1.1; }
+  .awf .awf-label-code  { fill:none; stroke:#111; stroke-width:2.2; stroke-dasharray:1 .8; }
+  
+  /* benches, conveyors, cart */
+  .awf .awf-leg    { fill:#5E3F27; }
+  .awf .awf-top    { fill:#8A5F3C; stroke:#2E2016; stroke-width:1.1; }
+  .awf .awf-top-hi { fill:#B98A5C; fill-opacity:.65; }
+  .awf .awf-cframe { fill:var(--awf-steel); stroke:#10171B; stroke-width:.8; }
+  .awf .awf-roller circle { fill:#A9BCC6; stroke:#3D4E57; stroke-width:.6; }
+  .awf .awf-cleg   { fill:#2F3D45; }
+  .awf .awf-chev   { fill:var(--tabbar, #2E6FBA); }
+  .awf .awf-cart-bar   { fill:#3E4C55; }
+  .awf .awf-cart-handle { fill:none; stroke:#3E4C55; stroke-width:3.4; stroke-linecap:round; }
+  .awf .awf-cart-grip  { fill:none; stroke:var(--tabbar, #2E6FBA); stroke-width:5; stroke-linecap:round; }
+  .awf .awf-cart-deck  { fill:#8C9BA4; stroke:#141C21; stroke-width:1; }
+  .awf .awf-cart-deck2 { fill:#6F7F89; }
+  .awf .awf-cart-wheel { fill:#141C21; }
+  .awf .awf-cart-hub   { fill:#A9BCC6; }
+  
+  /* the parcel */
+  .awf .awf-pshadow { fill:#000; fill-opacity:.28; }
+  .awf .awf-pbody { fill:#C99A62; stroke:#4A3424; stroke-width:1.4; }
+  .awf .awf-plid  { fill:#DDB683; }
+  .awf .awf-pedge { fill:none; stroke:#9C7445; stroke-width:1; }
+  .awf .awf-pbar rect { fill:#F5EFE4; }
+  .awf .awf-pbar path { fill:none; stroke:#222; stroke-width:.9; }
+  .awf .awf-ptape rect { fill:var(--tabbar, #2E6FBA); }
+  .awf .awf-pcheck circle { fill:var(--okdark, #2E7D32); stroke:#fff; stroke-width:1.6; }
+  .awf .awf-pcheck path { fill:none; stroke:#fff; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  
+  /* caption line */
+  .awf .awf-cap { fill:#FFF8EC; font-size:17px; font-weight:700; text-anchor:middle; letter-spacing:.02em; }
+  
+  /* ---------------- the story (14s loop). Base values = final Shipping frame. ---------------- */
+  .awf .awf-parcel { transform:translate(920px,200px); animation:awf-parcel 14s linear infinite; }
+  .awf .awf-on1, .awf .awf-on2, .awf .awf-on3,
+  .awf .awf-cap1, .awf .awf-cap2, .awf .awf-cap3, .awf .awf-wms-on, .awf .awf-pback,
+  .awf .awf-scan, .awf .awf-ok1, .awf .awf-loc2, .awf .awf-loc3, .awf .awf-flylabel { opacity:0; }
+  /* caption, sign and floor strip of a step share one window (awf-stepN) */
+  .awf .awf-on1, .awf .awf-cap1 { animation:awf-step1 14s linear infinite; }
+  .awf .awf-on2, .awf .awf-cap2 { animation:awf-step2 14s linear infinite; }
+  .awf .awf-on3, .awf .awf-cap3 { animation:awf-step3 14s linear infinite; }
+  .awf .awf-on4, .awf .awf-cap4 { animation:awf-step4 14s linear infinite; }
+  .awf .awf-wms-on { animation:awf-wmson 14s linear infinite; }
+  .awf .awf-tms-on { animation:awf-tmson 14s linear infinite; }
+  .awf .awf-pfront { animation:awf-pfront 14s linear infinite; }
+  .awf .awf-pback  { animation:awf-pback 14s linear infinite; }
+  .awf .awf-scan { animation:awf-scan 14s linear infinite; }
+  .awf .awf-ok1  { animation:awf-ok1 14s linear infinite; }
+  .awf .awf-loc2 { animation:awf-loc2 14s linear infinite; }
+  .awf .awf-loc3 { animation:awf-loc3 14s linear infinite; }
+  .awf .awf-ptape  { animation:awf-ptape 14s linear infinite; }
+  .awf .awf-plabel { animation:awf-plabel 14s linear infinite; }
+  .awf .awf-pcheck { transform-box:fill-box; transform-origin:50% 50%; animation:awf-pcheck 14s ease-out infinite; }
+  .awf .awf-flylabel { transform-box:fill-box; transform-origin:50% 100%; animation:awf-fly 14s ease-in-out infinite; }
+  .awf .awf-dogrun { transform:translateX(772px); animation:awf-dogrun 14s linear infinite; }
+  
+  /* small screens: the scene is scaled down, so the small labels get a little bigger */
+  @media (max-width:960px) {
+    .awf .awf-signt { font-size:16px; }
+    .awf .awf-loc   { font-size:12px; }
+    .awf .awf-cap   { font-size:19px; }
+    .awf .awf-scrt, .awf .awf-scrt-on { font-size:10px; }
+  }
+  
+  /* phones: show about one station at a time and let the camera follow the parcel */
+  @media (max-width:680px) {
+    .awf .awf-stage { aspect-ratio:440/290; max-height:320px; }
+    /* the caption has only the 440-unit camera window here; this size fits about 45 latin characters */
+    .awf .awf-cap { font-size:16.5px; }
+    .awf .awf-cam { transform:translateX(-330px); animation:awf-cam 14s linear infinite; }
+  }
+  
+  @keyframes awf-parcel {
+    0% { transform:translate(-100px,200px); animation-timing-function:cubic-bezier(.2,.7,.3,1); }
+    8.57% { transform:translate(150px,200px); }
+    19.29% { transform:translate(150px,200px); animation-timing-function:ease-in-out; }
+    25% { transform:translate(410px,200px); }
+    31.43% { transform:translate(410px,200px); animation-timing-function:cubic-bezier(.4,0,.75,.6); }
+    34.29% { transform:translate(437px,168px); animation-timing-function:cubic-bezier(.25,.45,.45,1); }
+    37.14% { transform:translate(465px,146px); }
+    44.29% { transform:translate(465px,146px); animation-timing-function:ease-in-out; }
+    50% { transform:translate(670px,146px); }
+    55.71% { transform:translate(670px,146px); animation-timing-function:ease-in-out; }
+    57.5% { transform:translate(676px,140px); animation-timing-function:ease-in-out; }
+    61.43% { transform:translate(711px,214px); }
+    67.14% { transform:translate(711px,214px); animation-timing-function:cubic-bezier(.4,0,.75,.6); }
+    69.29% { transform:translate(765px,200px); animation-timing-function:cubic-bezier(.25,.45,.45,1); }
+    73.57% { transform:translate(920px,200px); }
+    88.57% { transform:translate(920px,200px); animation-timing-function:cubic-bezier(.5,0,.9,.6); }
+    96.43% { transform:translate(1210px,200px); }
+    100% { transform:translate(1210px,200px); }
+  }
+  @keyframes awf-step1 {
+    0% { opacity:0; }
+    2.5% { opacity:1; }
+    17.86% { opacity:1; }
+    19.29% { opacity:0; }
+    100% { opacity:0; }
+  }
+  @keyframes awf-step2 {
+    0% { opacity:0; }
+    19.64% { opacity:0; }
+    21.43% { opacity:1; }
+    43.21% { opacity:1; }
+    44.64% { opacity:0; }
+    100% { opacity:0; }
+  }
+  @keyframes awf-step3 {
+    0% { opacity:0; }
+    45% { opacity:0; }
+    46.79% { opacity:1; }
+    66.07% { opacity:1; }
+    67.5% { opacity:0; }
+    100% { opacity:0; }
+  }
+  @keyframes awf-step4 {
+    0% { opacity:0; }
+    67.86% { opacity:0; }
+    69.64% { opacity:1; }
+    97.5% { opacity:1; }
+    98.93% { opacity:0; }
+    100% { opacity:0; }
+  }
+  @keyframes awf-arm1 {
+    0% { transform:rotate(0deg); }
+    7.5% { transform:rotate(0deg); }
+    9.86% { transform:rotate(-74deg); }
+    11.57% { transform:rotate(-82deg); }
+    13.29% { transform:rotate(-70deg); }
+    15% { transform:rotate(-80deg); }
+    16.79% { transform:rotate(-74deg); }
+    18.93% { transform:rotate(0deg); }
+    100% { transform:rotate(0deg); }
+  }
+  @keyframes awf-arm2 {
+    0% { transform:rotate(0deg); }
+    28.21% { transform:rotate(0deg); }
+    31.07% { transform:rotate(-62deg); }
+    32.14% { transform:rotate(-60deg); }
+    37.14% { transform:rotate(-150deg); }
+    39.64% { transform:rotate(-150deg); }
+    42.5% { transform:rotate(0deg); }
+    100% { transform:rotate(0deg); }
+  }
+  @keyframes awf-arm3 {
+    0% { transform:rotate(0deg); }
+    50.36% { transform:rotate(0deg); }
+    53.57% { transform:rotate(-150deg); }
+    55.71% { transform:rotate(-150deg); }
+    61.43% { transform:rotate(-58deg); }
+    67.5% { transform:rotate(-58deg); }
+    70% { transform:rotate(0deg); }
+    100% { transform:rotate(0deg); }
+  }
+  @keyframes awf-arm4 {
+    0% { transform:rotate(0deg); }
+    75% { transform:rotate(0deg); }
+    77.5% { transform:rotate(-72deg); }
+    81.43% { transform:rotate(-72deg); }
+    83.57% { transform:rotate(0deg); }
+    87.5% { transform:rotate(0deg); }
+    90% { transform:rotate(-142deg); }
+    91.79% { transform:rotate(-128deg); }
+    93.57% { transform:rotate(-156deg); }
+    95.36% { transform:rotate(-128deg); }
+    97.14% { transform:rotate(-150deg); }
+    99.29% { transform:rotate(0deg); }
+    100% { transform:rotate(0deg); }
+  }
+  @keyframes awf-nod1 {
+    0% { transform:translateY(0px); }
+    14.29% { transform:translateY(0px); }
+    15.14% { transform:translateY(-3px); }
+    16.14% { transform:translateY(0px); }
+    17% { transform:translateY(-2px); }
+    17.86% { transform:translateY(0px); }
+    100% { transform:translateY(0px); }
+  }
+  @keyframes awf-nod2 {
+    0% { transform:translateY(0px); }
+    37.5% { transform:translateY(0px); }
+    38.36% { transform:translateY(-3px); }
+    39.36% { transform:translateY(0px); }
+    40.21% { transform:translateY(-2px); }
+    41.07% { transform:translateY(0px); }
+    100% { transform:translateY(0px); }
+  }
+  @keyframes awf-nod3 {
+    0% { transform:translateY(0px); }
+    61.79% { transform:translateY(0px); }
+    62.64% { transform:translateY(-3px); }
+    63.64% { transform:translateY(0px); }
+    64.5% { transform:translateY(-2px); }
+    65.36% { transform:translateY(0px); }
+    100% { transform:translateY(0px); }
+  }
+  @keyframes awf-nod4 {
+    0% { transform:translateY(0px); }
+    83.93% { transform:translateY(0px); }
+    84.79% { transform:translateY(-3px); }
+    85.79% { transform:translateY(0px); }
+    86.64% { transform:translateY(-2px); }
+    87.5% { transform:translateY(0px); }
+    100% { transform:translateY(0px); }
+  }
+  @keyframes awf-scan {
+    0% { opacity:0; }
+    9.86% { opacity:0; }
+    10.57% { opacity:1; }
+    11.43% { opacity:.45; }
+    12.14% { opacity:1; }
+    13% { opacity:.5; }
+    13.71% { opacity:1; }
+    14.43% { opacity:0; }
+    100% { opacity:0; }
+  }
+  @keyframes awf-ok1 {
+    0% { opacity:0; }
+    14.14% { opacity:0; }
+    15% { opacity:1; }
+    18.43% { opacity:1; }
+    19.29% { opacity:0; }
+    100% { opacity:0; }
+  }
+  @keyframes awf-loc2 {
+    0% { opacity:0; }
+    36.43% { opacity:0; }
+    37.5% { opacity:1; }
+    41.79% { opacity:1; }
+    42.86% { opacity:0; }
+    100% { opacity:0; }
+  }
+  @keyframes awf-loc3 {
+    0% { opacity:0; }
+    49.64% { opacity:0; }
+    50.71% { opacity:1; }
+    55.36% { opacity:1; }
+    56.43% { opacity:0; }
+    100% { opacity:0; }
+  }
+  @keyframes awf-ptape {
+    0% { opacity:0; }
+    62.14% { opacity:0; }
+    63.93% { opacity:1; }
+    100% { opacity:1; }
+  }
+  @keyframes awf-plabel {
+    0% { opacity:0; }
+    80.36% { opacity:0; }
+    81.79% { opacity:1; }
+    100% { opacity:1; }
+  }
+  @keyframes awf-pcheck {
+    0% { opacity:0;transform:scale(.2); }
+    82.86% { opacity:0;transform:scale(.2); }
+    84.29% { opacity:1;transform:scale(1.3); }
+    85.36% { opacity:1;transform:scale(1); }
+    100% { opacity:1;transform:scale(1); }
+  }
+  @keyframes awf-fly {
+    0% { opacity:0;transform:translate(0px,0px) scaleY(0); }
+    75.36% { opacity:0;transform:translate(0px,0px) scaleY(0); }
+    75.71% { opacity:1;transform:translate(0px,0px) scaleY(0); }
+    78.21% { opacity:1;transform:translate(0px,0px) scaleY(1); }
+    80.36% { opacity:1;transform:translate(-45px,46px) scaleY(1); }
+    81.57% { opacity:0;transform:translate(-45px,46px) scaleY(1); }
+    100% { opacity:0;transform:translate(0px,0px) scaleY(0); }
+  }
+  @keyframes awf-nudge {
+    0% { transform:translateX(0); }
+    87.86% { transform:translateX(0); }
+    90% { transform:translateX(5px); }
+    92.14% { transform:translateX(0); }
+    94.29% { transform:translateX(5px); }
+    96.43% { transform:translateX(0); }
+    100% { transform:translateX(0); }
+  }
+  @keyframes awf-dogrun {
+    0% { transform:translateX(-170px); }
+    7.14% { transform:translateX(-170px); }
+    92.86% { transform:translateX(1210px); }
+    100% { transform:translateX(1210px); }
+  }
+  @keyframes awf-cam {
+    0% { transform:translateX(330px);opacity:0; }
+    2.14% { opacity:1; }
+    19.29% { transform:translateX(330px); animation-timing-function:ease-in-out; }
+    25% { transform:translateX(140px); }
+    44.29% { transform:translateX(140px); animation-timing-function:ease-in-out; }
+    50% { transform:translateX(-120px); }
+    67.14% { transform:translateX(-120px); animation-timing-function:ease-in-out; }
+    73.57% { transform:translateX(-330px); }
+    96.07% { transform:translateX(-330px);opacity:1; }
+    98.21% { transform:translateX(-330px);opacity:0; }
+    98.29% { transform:translateX(330px);opacity:0; }
+    100% { transform:translateX(330px);opacity:0; }
+  }
+  @keyframes awf-wmson {
+    0% { opacity:0; }
+    7.14% { opacity:0; }
+    9.29% { opacity:1; }
+    18.21% { opacity:1; }
+    20.36% { opacity:0; }
+    100% { opacity:0; }
+  }
+  @keyframes awf-tmson {
+    0% { opacity:0; }
+    72.86% { opacity:0; }
+    75% { opacity:1; }
+    95.71% { opacity:1; }
+    97.86% { opacity:0; }
+    100% { opacity:0; }
+  }
+  @keyframes awf-pfront {
+    0% { opacity:1; }
+    43.21% { opacity:1; }
+    43.29% { opacity:0; }
+    50.07% { opacity:0; }
+    50.14% { opacity:1; }
+    100% { opacity:1; }
+  }
+  @keyframes awf-pback {
+    0% { opacity:0; }
+    43.21% { opacity:0; }
+    43.29% { opacity:1; }
+    50.07% { opacity:1; }
+    50.14% { opacity:0; }
+    100% { opacity:0; }
+  }
+  
+  /* the site already switches all animation off for reduced motion; repeated here so the scene is self-contained */
+  @media (prefers-reduced-motion:reduce) {
+    .awf *, .awf *::before, .awf *::after { animation:none !important; }
+  }
 </style>
 
 <header class="hdr">
@@ -193,7 +856,7 @@
     <div class="clock"><div class="t" id="clock">--:--</div><div class="d"><span id="date"></span> <span id="tzname">加州</span></div></div>
     <div class="pill"><span class="dot"></span><span data-i18n="hdr.open">接單中</span></div>
     <a class="hbtn" id="quote-btn" href="mailto:sandyliu3056@gmail.com" data-i18n="hdr.quote">聯絡報價</a>
-    <a href="mailto:sandyliu3056@gmail.com" id="mail-link">sandyliu3056@gmail.com</a>
+    <a href="#contact" id="mail-link">sandyliu3056@gmail.com</a>
   </div>
 </header>
 
@@ -201,22 +864,57 @@
   <button data-tab="home" class="active" type="button"><span class="ico" aria-hidden="true">📂</span><span data-i18n="nav.home">首頁</span></button>
   <button data-tab="services" type="button"><span class="ico" aria-hidden="true">🏬</span><span data-i18n="nav.services">服務內容</span></button>
   <button data-tab="flow" type="button"><span class="ico" aria-hidden="true">🔁</span><span data-i18n="nav.flow">合作流程</span></button>
+  <button data-tab="contact" type="button"><span class="ico" aria-hidden="true">✉️</span><span data-i18n="nav.contact">聯絡我們</span></button>
 </nav>
 
 <main class="card">
   <!-- 首頁 -->
   <section class="tab active" id="tab-home">
-    <div class="row panel">
-      <div class="field"><span data-i18n="ct.email">電子郵件</span><span class="copyrow"><code id="email">sandyliu3056@gmail.com</code><button class="btn sm" id="copy-email" type="button" data-i18n="ct.copy">複製</button></span></div>
-      <a class="btn primary" id="home-mail" href="mailto:sandyliu3056@gmail.com" data-i18n="home.mail">寄信詢價</a>
-      <span class="caption" data-i18n="home.hint">說明商品、每月出貨量、尺寸重量、貨從哪裡來，我們會盡快回覆。</span>
-    </div>
-
+    <!-- 首頁最上方的小車街景：積木風街道，送貨小車開到我們的 CA WAREHOUSE 裝貨再開走（12 秒一輪，純 CSS，減少動態效果時停在倉庫前） -->
+    <div class="street" aria-hidden="true"><svg viewBox="0 0 2000 190" preserveAspectRatio="xMidYMax slice" focusable="false"><g transform="translate(400 0)">
+<rect class="st-fs" x="-400" width="2000" height="190"/>
+<path class="st-rays" d="M1152 1.5v5M1152 43.5v5M1128.5 25h5M1170.5 25h5M1135.38 8.38l3.54 3.54M1165.08 38.08l3.54 3.54M1135.38 41.62l3.54-3.54M1165.08 11.92l3.54-3.54"/><circle class="st-fg" cx="1152" cy="25" r="14"/>
+<path class="st-ft st-hill" d="M-400 96Q-330 70 -260 92T-120 100Q-60 80 0 110Q70 80 140 98T290 90Q360 68 440 94T610 86Q690 64 770 92T940 82Q1020 62 1100 90T1260 92Q1340 66 1420 92T1600 88V140H-400Z"/>
+<g fill="#fff"><g transform="translate(-330 30) scale(0.8)"><g class="st-cloud st-c3"><path d="M0 0H62A12 12 0 0 0 58-21A16 16 0 0 0 31-31A13 13 0 0 0 9-22A11 11 0 0 0 0 0Z"/></g></g><g transform="translate(60 36) scale(0.9)"><g class="st-cloud"><path d="M0 0H62A12 12 0 0 0 58-21A16 16 0 0 0 31-31A13 13 0 0 0 9-22A11 11 0 0 0 0 0Z"/></g></g><g transform="translate(318 24) scale(0.75)"><g class="st-cloud st-c2"><path d="M0 0H62A12 12 0 0 0 58-21A16 16 0 0 0 31-31A13 13 0 0 0 9-22A11 11 0 0 0 0 0Z"/></g></g><g transform="translate(600 30) scale(0.85)"><g class="st-cloud st-c3"><path d="M0 0H62A12 12 0 0 0 58-21A16 16 0 0 0 31-31A13 13 0 0 0 9-22A11 11 0 0 0 0 0Z"/></g></g><g transform="translate(870 22) scale(0.7)"><g class="st-cloud st-c2"><path d="M0 0H62A12 12 0 0 0 58-21A16 16 0 0 0 31-31A13 13 0 0 0 9-22A11 11 0 0 0 0 0Z"/></g></g><g transform="translate(1330 32) scale(0.8)"><g class="st-cloud"><path d="M0 0H62A12 12 0 0 0 58-21A16 16 0 0 0 31-31A13 13 0 0 0 9-22A11 11 0 0 0 0 0Z"/></g></g></g>
+<path fill="#D9834B" d="M-404 44h104V136h-104zM956 24h118V136h-118z"/><path fill="#E7C28C" d="M-300 58h110V136h-110zM864 60h92V136h-92z"/><path fill="#C4513E" d="M-160 30h150V136h-150zM760 34h104V136h-104z"/><path fill="#CF5B45" d="M-6 50h114V136h-114z"/><path fill="#E2B06C" d="M136 28h104V136h-104zM1452 52h152V136h-152z"/><path fill="#DC8A50" d="M240 62h98V136h-98zM1214 62h96V136h-96z"/><path fill="#C77B6C" d="M338 40h94V136h-94zM1310 36h112V136h-112z"/><path fill="#CF6A4F" d="M1104 48h106V136h-106z"/><path class="st-mt" stroke-width="104" d="M-352 51V136M188 35V136M812 41V136"/><path class="st-mt" stroke-width="110" d="M-245 65V136"/><path class="st-mt" stroke-width="150" d="M-85 37V136"/><path class="st-mt" stroke-width="114" d="M51 57V136"/><path class="st-mt" stroke-width="98" d="M289 69V136"/><path class="st-mt" stroke-width="94" d="M385 47V136"/><path class="st-mt" stroke-width="92" d="M910 67V136"/><path class="st-mt" stroke-width="118" d="M1015 31V136"/><path class="st-mt" stroke-width="106" d="M1157 55V136"/><path class="st-mt" stroke-width="96" d="M1262 69V136"/><path class="st-mt" stroke-width="112" d="M1366 43V136"/><path class="st-mt" stroke-width="152" d="M1528 59V136"/><path class="st-sm" d="M-400 52V136m8-76V136m8-84V136m8-76V136m8-84V136m8-76V136m8-84V136m8-76V136m8-84V136m8-76V136m8-84V136m8-76V136m8-84V136M-296 66V136m8-62V136m8-70V136m8-62V136m8-70V136m8-62V136m8-70V136m8-62V136m8-70V136m8-62V136m8-70V136m8-62V136m8-70V136m8-62V136M-156 38V136m8-90V136m8-98V136m8-90V136m8-98V136m8-90V136m8-98V136m8-90V136m8-98V136m8-90V136m8-98V136m8-90V136m8-98V136m8-90V136m8-98V136m8-90V136m8-98V136m8-90V136m8-98V136M-2 58V136m8-70V136m8-78V136m8-70V136m8-78V136m8-70V136m8-78V136m8-70V136m8-78V136m8-70V136m8-78V136m8-70V136m8-78V136m8-70V136M140 36V136m8-92V136m8-100V136m8-92V136m8-100V136m8-92V136m8-100V136m8-92V136m8-100V136m8-92V136m8-100V136m8-92V136m8-100V136M244 70V136m8-58V136m8-66V136m8-58V136m8-66V136m8-58V136m8-66V136m8-58V136m8-66V136m8-58V136m8-66V136m8-58V136M342 48V136m8-80V136m8-88V136m8-80V136m8-88V136m8-80V136m8-88V136m8-80V136m8-88V136m8-80V136m8-88V136m8-80V136M764 42V136m8-86V136m8-94V136m8-86V136m8-94V136m8-86V136m8-94V136m8-86V136m8-94V136m8-86V136m8-94V136m8-86V136m8-94V136M868 68V136m8-60V136m8-68V136m8-60V136m8-68V136m8-60V136m8-68V136m8-60V136m8-68V136m8-60V136m8-68V136M960 32V136m8-96V136m8-104V136m8-96V136m8-104V136m8-96V136m8-104V136m8-96V136m8-104V136m8-96V136m8-104V136m8-96V136m8-104V136m8-96V136m8-104V136M1108 56V136m8-72V136m8-80V136m8-72V136m8-80V136m8-72V136m8-80V136m8-72V136m8-80V136m8-72V136m8-80V136m8-72V136m8-80V136M1218 70V136m8-58V136m8-66V136m8-58V136m8-66V136m8-58V136m8-66V136m8-58V136m8-66V136m8-58V136m8-66V136m8-58V136M1314 44V136m8-84V136m8-92V136m8-84V136m8-92V136m8-84V136m8-92V136m8-84V136m8-92V136m8-84V136m8-92V136m8-84V136m8-92V136m8-84V136M1456 60V136m8-68V136m8-76V136m8-68V136m8-76V136m8-68V136m8-76V136m8-68V136m8-76V136m8-68V136m8-76V136m8-68V136m8-76V136m8-68V136m8-76V136m8-68V136m8-76V136m8-68V136m8-76V136"/><path stroke="#B2622E" stroke-width="7" d="M-406 47.5h108M954 27.5h122"/><path class="st-stud" stroke="#B2622E" d="M-398 42.4h92M962 22.4h106"/><path stroke="#C69E66" stroke-width="7" d="M-300 61.5h112M864 63.5h92"/><path class="st-stud" stroke="#C69E66" d="M-291 56.4h92M871 58.4h78"/><path stroke="#9C3A2A" stroke-width="7" d="M-162 33.5h154M758 37.5h108"/><path class="st-stud" stroke="#9C3A2A" d="M-152 28.4h134M766 32.4h92"/><path stroke="#A7412E" stroke-width="7" d="M-8 53.5h118"/><path class="st-stud" stroke="#A7412E" d="M-2 48.4h106"/><path stroke="#BE8C4A" stroke-width="7" d="M134 31.5h108M1450 55.5h156"/><path class="st-stud" stroke="#BE8C4A" d="M142 26.4h92M1461 50.4h134"/><path stroke="#B5672F" stroke-width="7" d="M240 65.5h98M1212 65.5h98"/><path class="st-stud" stroke="#B5672F" d="M250 60.4h78M1223 60.4h78"/><path stroke="#A2594D" stroke-width="7" d="M336 43.5h98M1308 39.5h116"/><path class="st-stud" stroke="#A2594D" d="M346 38.4h78M1320 34.4h92"/><path stroke="#A84E37" stroke-width="7" d="M1102 51.5h110"/><path class="st-stud" stroke="#A84E37" d="M1111 46.4h92"/><path stroke="#fff" stroke-width="20" stroke-dasharray="18 22" d="M-381 68h58M-274 82h58M159 52h58M159 80h58M260 86h58M356 64h58M783 58h58M783 86h58M881 84h58M1128 72h58M1233 86h58M1337 60h58M1337 88h58"/><path stroke="#A9DBF1" stroke-width="6.7" stroke-dasharray="5.7 1.6 5.7 27" d="M-378.5 63.85h53m-53 8.3h53M-271.5 77.85h53m-53 8.3h53M161.5 47.85h53m-53 8.3h53M161.5 75.85h53m-53 8.3h53M262.5 81.85h53m-53 8.3h53M358.5 59.85h53m-53 8.3h53M785.5 53.85h53m-53 8.3h53M785.5 81.85h53m-53 8.3h53M883.5 79.85h53m-53 8.3h53M1130.5 67.85h53m-53 8.3h53M1235.5 81.85h53m-53 8.3h53M1339.5 55.85h53m-53 8.3h53M1339.5 83.85h53m-53 8.3h53"/><path class="st-sl" stroke-dasharray="22 18" d="M-383 79.2h62M-276 93.2h62M157 63.2h62M157 91.2h62M258 97.2h62M354 75.2h62M781 69.2h62M781 97.2h62M879 95.2h62M1126 83.2h62M1231 97.2h62M1335 71.2h62M1335 99.2h62"/><path stroke="#fff" stroke-width="20" stroke-dasharray="18 16" d="M-145 54h120M-145 82h120M8 74h86M972 48h86M972 76h86M1468 76h120"/><path stroke="#A9DBF1" stroke-width="6.7" stroke-dasharray="5.7 1.6 5.7 21" d="M-142.5 49.85h115m-115 8.3h115M-142.5 77.85h115m-115 8.3h115M10.5 69.85h81m-81 8.3h81M974.5 43.85h81m-81 8.3h81M974.5 71.85h81m-81 8.3h81M1470.5 71.85h115m-115 8.3h115"/><path class="st-sl" stroke-dasharray="22 12" d="M-147 65.2h124M-147 93.2h124M6 85.2h90M970 59.2h90M970 87.2h90M1466 87.2h124"/><path stroke="#fff" stroke-width="20" d="M-394 121h36M-290 121h36M8 121h36M252 121h36M818 121h36M872 121h36M1158 121h36M1224 121h36M1552 121h36"/><path stroke="#A9DBF1" stroke-width="6.7" stroke-dasharray="14.7 1.6 14.7 99" d="M-391.5 116.85h31m-31 8.3h31M-287.5 116.85h31m-31 8.3h31M10.5 116.85h31m-31 8.3h31M254.5 116.85h31m-31 8.3h31M820.5 116.85h31m-31 8.3h31M874.5 116.85h31m-31 8.3h31M1160.5 116.85h31m-31 8.3h31M1226.5 116.85h31m-31 8.3h31M1554.5 116.85h31m-31 8.3h31"/><path class="st-sl" d="M-396 132.2h40M-292 132.2h40M6 132.2h40M250 132.2h40M816 132.2h40M870 132.2h40M1156 132.2h40M1222 132.2h40M1550 132.2h40"/><path stroke="#fff" stroke-width="8" d="M-294 104h44M248 104h44M868 104h44M1220 104h44"/><path class="st-awn" d="M-294 104h44M248 104h44M868 104h44M1220 104h44"/><path class="st-dr" d="M-342 108h18v30h-18zM-230 108h18v30h-18zM-94 108h18v30h-18zM68 108h18v30h-18zM179 108h18v30h-18zM306 108h18v30h-18zM376 108h18v30h-18zM790 108h18v30h-18zM924 108h18v30h-18zM1006 108h18v30h-18zM1124 108h18v30h-18zM1278 108h18v30h-18zM1357 108h18v30h-18zM1472 108h18v30h-18z"/><path class="st-kn" d="M-328 123h.1M-216 123h.1M-80 123h.1M82 123h.1M193 123h.1M320 123h.1M390 123h.1M804 123h.1M938 123h.1M1020 123h.1M1138 123h.1M1292 123h.1M1371 123h.1M1486 123h.1"/>
+<rect class="st-wall" x="440" y="54" width="280" height="82"/><path class="st-corr" d="M440 95h280" stroke-width="82"/><path d="M712 47V23" stroke="#6B7280" stroke-width="2"/><path class="st-flag st-fo" d="M713 23h15l-4 4.5 4 4.5h-15z"/><rect class="st-fn" x="436" y="46" width="288" height="9" rx="2"/><path class="st-stud st-sn" d="M450 44.4h260"/><rect class="st-fn" x="572" y="60" width="142" height="21" rx="4"/><path class="st-fg" d="M578 66h9v9h-9zM699 66h9v9h-9z"/><text class="st-sign" x="643" y="75.4" text-anchor="middle" textLength="104" lengthAdjust="spacingAndGlyphs">CA WAREHOUSE</text><path stroke="#fff" stroke-width="11" stroke-dasharray="26 8" d="M580 90h128"/><path stroke="#A9DBF1" stroke-width="7" stroke-dasharray="22 12" d="M582 90h124"/><rect class="st-fn" x="447" y="76" width="84" height="6" rx="1.5"/><rect class="st-fn" x="452" y="82" width="74" height="36"/><rect x="457" y="86" width="64" height="32" fill="#2B3038"/><path fill="#8A6640" d="M459 105h10v13h-10zM506 88h11v10h-11z"/><path fill="#7A5836" d="M504 98h15v20h-15z"/><g class="st-door"><rect x="457" y="86" width="64" height="32" fill="#D3D9E0"/><path d="M489 86v32" stroke="#A3ACB7" stroke-width="64" stroke-dasharray="1.4 4.6"/><rect x="483" y="113" width="12" height="3" rx="1" fill="#7F8893"/></g><path fill="#AEB6C1" d="M440 118h280v18h-280z"/><path class="st-fg" d="M440 118h280v3h-280z"/><path stroke="#2F333B" stroke-width="6" d="M446 123v10M532 123v10M620 123v10M700 123v10"/><circle class="st-fo st-glow" cx="489" cy="71" r="7"/><circle class="st-fo st-lamp" cx="489" cy="71" r="3.4"/>
+<path class="st-shl" d="M-396.6 41.4h90M-289.6 55.4h90M-150.6 27.4h132M-0.6 47.4h104M143.4 25.4h90M251.4 59.4h76M347.4 37.4h76M767.4 31.4h90M872.4 57.4h76M963.4 21.4h104M1112.4 45.4h90M1224.4 59.4h76M1321.4 33.4h90M1462.4 49.4h132M451.4 43.4h258"/>
+<rect x="-400" y="136" width="2000" height="16" fill="#C6CBD2"/><rect x="-400" y="136" width="2000" height="3" fill="#DADEE3"/><path d="M-400 145H1600" stroke="#B2B8C0" stroke-width="10" stroke-dasharray="1.5 42.5"/><rect x="-400" y="150" width="2000" height="4" fill="#9CA3AC"/>
+<rect x="-400" y="154" width="2000" height="36" fill="#3E434B"/><path d="M-410 170H1610" stroke="#EEF0F2" stroke-width="3" stroke-dasharray="30 24"/>
+<g class="st-tree st-t2"><rect x="-179" y="122" width="6" height="22" fill="#8B5A33"/><path d="M-197 127H-155L-176 97ZM-193 108H-159L-176 80ZM-189 90H-163L-176 64Z" fill="#4E9F57" stroke="#4E9F57" stroke-width="3" stroke-linejoin="round"/><path d="M-176 99L-155 127H-176ZM-176 82L-159 108H-176ZM-176 66L-163 90H-176Z" fill="#3F8A4A"/></g>
+<g class="st-tree"><rect x="119" y="122" width="6" height="22" fill="#8B5A33"/><path d="M101 127H143L122 97ZM105 108H139L122 80ZM109 90H135L122 64Z" fill="#4E9F57" stroke="#4E9F57" stroke-width="3" stroke-linejoin="round"/><path d="M122 99L143 127H122ZM122 82L139 108H122ZM122 66L135 90H122Z" fill="#3F8A4A"/></g>
+<g class="st-tree"><rect x="1433" y="122" width="6" height="22" fill="#8B5A33"/><path d="M1415 127H1457L1436 97ZM1419 108H1453L1436 80ZM1423 90H1449L1436 64Z" fill="#4E9F57" stroke="#4E9F57" stroke-width="3" stroke-linejoin="round"/><path d="M1436 99L1457 127H1436ZM1436 82L1453 108H1436ZM1436 66L1449 90H1436Z" fill="#3F8A4A"/></g>
+<g class="st-tree st-t2"><path class="st-palm" stroke="#9B6B43" d="M1088 146Q1090 100 1095 55"/><path class="st-palm" stroke="#7E5434" stroke-dasharray="1.5 6" d="M1088 146Q1090 100 1095 55"/><path class="st-palm" stroke="#3F9A59" d="M1095 55q-12-10 -26 2M1095 55q12-10 26 2M1095 55q-6-14 -18-12M1095 55q8-14 20-10M1095 55q-14-2 -22 14M1095 55q14-2 22 14"/><path fill="#7E5434" d="M1092 59h.1M1098 59.5h.1" stroke="#7E5434" stroke-width="5" stroke-linecap="round"/></g>
+<path class="st-fn" d="M234 152V54h4v98zM248 48a8 6 0 0 1 16 0zM231 152h10l-2-6h-6z"/><path class="st-sn" fill="none" stroke-width="3" d="M236 56q0-8 10-8h8"/><path fill="#FFE7A0" d="M251 48h10v4h-10z"/>
+<g transform="translate(30 0)"><path d="M735 130a7 6.5 0 0 1 14 0z" fill="#D83B2F"/><rect x="740" y="120.5" width="4" height="4" rx="1" fill="#B8302A"/><rect x="736" y="129" width="12" height="15" rx="2" fill="#D83B2F"/><rect x="731.5" y="132.5" width="21" height="5" rx="2" fill="#B8302A"/><rect x="733" y="143" width="18" height="3.5" rx="1" fill="#B8302A"/><path d="M739 131v10" stroke="#fff" stroke-opacity=".45" stroke-width="1.6" stroke-linecap="round"/></g>
+<g class="st-px"><g class="st-py"><rect x="470" y="96" width="28" height="22" rx="1.5" fill="#D9A35F" stroke="#A06A33" stroke-width="1.2"/><path fill="#F3E2B8" d="M481 96.6h6v20.8h-6z"/><path fill="#fff" d="M473 108h6v5h-6z"/></g></g>
+<g transform="translate(545 184)"><g class="st-van"><circle class="st-puff" cx="-7" cy="-21" r="4"/><circle class="st-puff st-pb" cx="-7" cy="-21" r="4"/><ellipse cx="94" cy="0" rx="98" ry="3.6" fill="#000" opacity=".28"/><g class="st-body"><rect x="6" y="-26" width="172" height="10" fill="#2B2F36"/><path class="st-fp st-ol" d="M128-64H153Q159-64 162-59L174-42H182Q187-42 187-37V-22Q187-18 183-18H128Z"/><rect class="st-fp st-ol" x="0" y="-82" width="134" height="64" rx="6"/><path class="st-ol" fill="#BFE6F7" stroke-width="2" d="M139-58H159.5L170-44H139Z"/><path class="st-ft" d="M143.5-45v-1.5q0-3 3-3h6.5q3 0 3 3v1.5z"/><circle cx="149.5" cy="-51.3" r="4.2" fill="#F2C9A0"/><path class="st-fn" d="M144.7-53a4.8 4.8 0 0 1 9.6 0h2.4v1.6h-12z"/><path d="M161.4-54.5l-2 4.2M164.6-50.6l-2.6 5.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".85"/><rect class="st-ft" x="1.3" y="-40" width="180" height="6"/><rect class="st-fn" x="1.3" y="-34" width="180" height="2"/><path class="st-speed" d="M41-69h17M46-62h12M51-55h7"/><g transform="translate(77 -61) scale(1.15)" class="st-sn" stroke-width="1.6" stroke-linejoin="round"><path class="st-fo" d="M-12-6L0 0V14L-12 8Z"/><path class="st-fg" d="M0 0L12-6V8L0 14Z"/><path class="st-fg" d="M-12-6L0-12L12-6L0 0Z"/><path d="M-6-9L6-3" stroke="#fff" stroke-width="2" opacity=".75"/></g><path class="st-ol" stroke-width="1.5" opacity=".35" d="M13-79V-21"/><rect class="st-fn" x="16" y="-55" width="2.6" height="9" rx="1"/><rect class="st-fn" x="141" y="-30" width="8" height="2.6" rx="1"/><rect class="st-fn" x="171" y="-50" width="4.5" height="8" rx="1.2"/><rect x="-1.5" y="-52" width="5" height="11" rx="1.5" fill="#E2483D"/><rect class="st-ol" stroke-width="1.2" x="180.5" y="-40.5" width="6.5" height="7" rx="2" fill="#FFE38A"/><rect x="-4" y="-24" width="15" height="6" rx="2" fill="#4A5059"/><rect x="175" y="-24" width="15" height="6" rx="2" fill="#4A5059"/><path fill="#2B2F36" d="M20.98-18A16 16 0 0 1 51.02-18ZM136.98-18A16 16 0 0 1 167.02-18Z"/></g><g transform="translate(36 -12.5)"><g class="st-wheel"><circle r="12.5" fill="#23262B"/><circle r="7" fill="#D5DAE0"/><path d="M0-6.5V6.5M-5.6-3.25L5.6 3.25M-5.6 3.25L5.6-3.25" stroke="#6F7782" stroke-width="2"/><circle r="2.2" fill="#6F7782"/></g></g><g transform="translate(152 -12.5)"><g class="st-wheel"><circle r="12.5" fill="#23262B"/><circle r="7" fill="#D5DAE0"/><path d="M0-6.5V6.5M-5.6-3.25L5.6 3.25M-5.6 3.25L5.6-3.25" stroke="#6F7782" stroke-width="2"/><circle r="2.2" fill="#6F7782"/></g></g></g></g>
+<g class="st-check"><path class="st-ft" d="M545.5 93l4.5 6 4.5-6z"/><circle class="st-ft" cx="550" cy="84" r="11" stroke="#fff" stroke-width="2.5"/><path d="M544.5 84.5l4 4 7.5-8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g></svg></div>
     <div class="kpis">
       <div class="kpi"><div class="k" data-i18n="k1">小包</div><div class="v" data-i18n="k1v">$3 起</div><div class="s" data-i18n="k1s">Small Parcel from $3+</div></div>
       <div class="kpi"><div class="k" data-i18n="k2">UPS / FedEx</div><div class="v" data-i18n="k2v">優惠費率</div><div class="s" data-i18n="k2s">Discounted UPS / FedEx Rates</div></div>
       <div class="kpi"><div class="k" data-i18n="k3">配送選項</div><div class="v" data-i18n="k3v">Ground / Express</div><div class="s" data-i18n="k3s">多種配送時效可選</div></div>
       <div class="kpi"><div class="k" data-i18n="k4">服務</div><div class="v" data-i18n="k4v">台灣 / 美國</div><div class="s" data-i18n="k4s">Global Shipping · 中英文服務</div></div>
+    </div>
+
+    <!-- 服務介紹：圖片卡（插畫在 img/，深色遮罩上白字；滑過放大背景），點了開「服務內容」 -->
+    <h2 class="section" data-i18n="tl.h">我們的服務</h2>
+    <div class="caption" data-i18n="tl.s">從進貨、存放到出貨，美國倉一站搞定。</div>
+    <div class="tiles">
+      <a class="tile reveal" href="#services" style="--img:url(img/svc-warehouse.svg);--d:0.00s"><div class="tile-in"><h3 data-i18n="tl.1">海外倉儲</h3><p data-i18n="tl.1s">加州倉就近美國市場，貨物安全存放、隨時可出貨。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
+      <a class="tile reveal" href="#services" style="--img:url(img/svc-fulfillment.svg);--d:0.12s"><div class="tile-in"><h3 data-i18n="tl.2">在地倉儲與履約</h3><p data-i18n="tl.2s">收到訂單就揀貨、包裝、出貨，一條龍完成。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
+      <a class="tile reveal" href="#services" style="--img:url(img/svc-shipping.svg);--d:0.24s"><div class="tile-in"><h3 data-i18n="tl.3">收貨與出貨</h3><p data-i18n="tl.3s">進貨驗收、出貨交寄，每一步都有紀錄可追蹤。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
+      <a class="tile reveal" href="#services" style="--img:url(img/svc-label.svg);--d:0.00s"><div class="tile-in"><h3 data-i18n="tl.4">貼標服務</h3><p data-i18n="tl.4s">條碼、FBA 標籤、換標與合規標示，出貨前一次貼好。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
+      <a class="tile reveal" href="#services" style="--img:url(img/svc-inventory.svg);--d:0.12s"><div class="tile-in"><h3 data-i18n="tl.5">庫存管理</h3><p data-i18n="tl.5s">庫存數量隨時查得到，補貨時機一目了然。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
+      <a class="tile reveal" href="#services" style="--img:url(img/svc-ecommerce.svg);--d:0.24s"><div class="tile-in"><h3 data-i18n="tl.6">電商解決方案</h3><p data-i18n="tl.6s">串接 Shopify、Amazon 等平台，為線上賣家量身規劃物流。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
+    </div>
+    <!-- 為什麼選擇我們：三張價值卡 -->
+    <h2 class="section" data-i18n="vl.h">為什麼選擇我們</h2>
+    <div class="values">
+      <div class="value reveal" style="--d:0.00s"><span class="ic" aria-hidden="true">⛑️</span><div><h3 data-i18n="vl.1">安全第一</h3><p data-i18n="vl.1s">每一件貨都小心搬運、妥善存放。</p></div></div>
+      <div class="value reveal" style="--d:0.15s"><span class="ic" aria-hidden="true">🚀</span><div><h3 data-i18n="vl.2">快速高效</h3><p data-i18n="vl.2s">流程持續優化，訂單出得又快又準。</p></div></div>
+      <div class="value reveal" style="--d:0.30s"><span class="ic" aria-hidden="true">💰</span><div><h3 data-i18n="vl.3">成本實惠</h3><p data-i18n="vl.3s">UPS / FedEx 優惠費率，小包 $3 起，幫您守住利潤。</p></div></div>
     </div>
 
     <div class="steps-panel">
@@ -251,10 +949,17 @@
   <section class="tab" id="tab-services">
     <h2 class="section" data-i18n="svc.h">服務內容</h2>
     <div class="caption" data-i18n="svc.s">幫線上賣家更聰明出貨、放眼全球。</div>
-    <!-- 裝飾用的路線圖：五個站點對應下面五張卡，包裹沿著虛線一直走 -->
-    <div class="route" aria-hidden="true">
-      <i class="rt-mover">📦</i>
-      <span class="rt-node">🏬</span><span class="rt-node">📦</span><span class="rt-node">✈️</span><span class="rt-node">💻</span><span class="rt-node">🤝</span>
+    <!-- 出貨場景（純 CSS 動畫，10 秒一輪）：貨從亞洲坐船到加州倉 → 倉庫亮一下 → 卡車與飛機從倉庫出發送到全美與全球 -->
+    <div class="scene" aria-hidden="true">
+      <i class="cloud c1">☁️</i><i class="cloud c2">☁️</i><i class="cloud c3">☁️</i>
+      <span class="lane sea"></span><span class="lane road"></span>
+      <span class="stop origin"><em>🏭</em><b data-i18n="sc.origin">台灣 / 中國 / 東南亞</b></span>
+      <span class="stop wh"><em>🏬</em><b data-i18n="sc.wh">美國倉（加州）</b></span>
+      <span class="stop dest"><em>🏠</em><b data-i18n="sc.dest">全美與全球</b></span>
+      <i class="ship"><span>🚢</span></i>
+      <i class="truck"><span>🚚</span></i>
+      <i class="plane"><span>✈️</span></i>
+      <i class="pkg">📦</i>
     </div>
     <div class="svcs">
       <div class="svc"><div class="t"><span>🏬</span><span data-i18n="svc.1">美國倉儲服務</span></div><ul>
@@ -268,6 +973,25 @@
       <div class="svc"><div class="t"><span>🤝</span><span data-i18n="svc.5">彈性合作</span></div><ul>
         <li data-i18n="svc.5a">電商與新品牌</li><li data-i18n="svc.5b">小型賣家友善</li><li data-i18n="svc.5c">一站式服務</li><li data-i18n="svc.5d">客製方案</li><li data-i18n="svc.5e">協助拓展美國市場</li></ul></div>
     </div>
+    <!-- 宣傳：ERP 對接與開放 API（右側是會動的「資料流」示意） -->
+    <div class="promo">
+      <div class="promo-text">
+        <span class="badge" data-i18n="api.badge">NEW</span>
+        <h3 data-i18n="api.h">ERP 對接 · 開放 API</h3>
+        <p data-i18n="api.s">把您的 ERP、WMS 或電商後台直接接上我們的倉庫：訂單自動進倉、庫存與出貨狀態即時回寫，不用再手動匯入匯出。</p>
+        <ul>
+          <li data-i18n="api.1">開放 REST API 與 Webhook：建單、查庫存、追蹤出貨</li>
+          <li data-i18n="api.2">支援 SAP、Oracle、鼎新、用友等 ERP，以及 Shopify、Amazon 等平台 API</li>
+          <li data-i18n="api.3">提供 API 文件與測試環境，工程師協助串接</li>
+        </ul>
+        <a class="btn primary" id="api-mail" href="mailto:sandyliu3056@gmail.com" data-i18n="api.cta">洽談 API 串接</a>
+      </div>
+      <div class="promo-art" aria-hidden="true">
+        <div class="node erp"><em>🖥️</em><b>ERP / WMS</b></div>
+        <div class="link"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><i class="dot up u1"></i><i class="dot up u2"></i><span class="api">API</span></div>
+        <div class="node wh"><em>🏬</em><b data-i18n="api.wh">我們的倉庫</b></div>
+      </div>
+    </div>
     <h2 class="section" data-i18n="plat.h">支援平台</h2>
     <div class="caption" data-i18n="plat.s">多平台訂單整合。</div>
     <div class="chips plats"><span>Shopify</span><span>Amazon</span><span>eBay</span><span>Walmart</span><span>TikTok Shop</span><span>Temu</span></div>
@@ -275,6 +999,277 @@
 
   <!-- 合作流程 -->
   <section class="tab" id="tab-flow">
+    <h2 class="section" data-i18n="awf.h">貨到倉庫後怎麼走</h2>
+    <div class="caption" data-i18n="awf.hs">一個包裹從收貨到出貨的路線（14 秒一輪）。角色來自 Animated Warehouse。</div>
+    <!-- 倉庫作業流程動畫：收貨 → 上架 → 揀貨包裝 → 出貨；純 CSS，只動 transform 與 opacity；角色是 Animated Warehouse 的柴犬、貓與倉庫人員重畫成 SVG -->
+    <div class="awf" aria-hidden="true">
+  <svg width="0" height="0" style="position:absolute" focusable="false">
+    <defs>
+
+    <!-- Dog: orange shiba, facing right. 80 x 56, paws on the bottom edge. -->
+    <symbol id="awf-dog" viewBox="0 0 80 56" overflow="visible">
+    <ellipse class="awf-shadow" cx="36" cy="56" rx="25" ry="2.6" fill="#1E1A16" opacity=".18"/>
+    <g stroke="#3D2C22" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+    <g class="awf-tail-part awf-tail-dog">
+    <path d="M19 29C10 26 7 15 14 10.5C20 7 26.5 12 23.5 17.5C21.5 21 17.5 20 17.8 16.6" fill="none" stroke-width="8.6"/>
+    <path d="M19 29C10 26 7 15 14 10.5C20 7 26.5 12 23.5 17.5C21.5 21 17.5 20 17.8 16.6" fill="none" stroke="#D27B2E" stroke-width="5.4"/>
+    <path d="M11.4 14.6C13.4 10.8 18.6 9.6 21.6 12.6" fill="none" stroke="#E9A062" stroke-width="1.8"/>
+    <path d="M21.2 19C19 19.4 18.4 18 18.6 16.9" fill="none" stroke="#F6EBDA" stroke-width="1.8"/>
+    </g>
+    <g class="awf-leg-b">
+    <rect x="16.8" y="35" width="6.4" height="18.5" rx="3.2" fill="#A65A1E"/>
+    <rect x="17.6" y="46" width="4.8" height="7" fill="#E6D8C3" stroke="none"/>
+    <ellipse cx="20" cy="53.6" rx="4.1" ry="2.4" fill="#E6D8C3"/>
+    </g>
+    <g class="awf-leg-a">
+    <rect x="42.8" y="35" width="6.4" height="18.5" rx="3.2" fill="#A65A1E"/>
+    <rect x="43.6" y="46" width="4.8" height="7" fill="#E6D8C3" stroke="none"/>
+    <ellipse cx="46" cy="53.6" rx="4.1" ry="2.4" fill="#E6D8C3"/>
+    </g>
+    <g class="awf-leg-a">
+    <rect x="23.8" y="35" width="6.4" height="18.5" rx="3.2" fill="#D27B2E"/>
+    <rect x="24.6" y="46" width="4.8" height="7" fill="#FBF4E8" stroke="none"/>
+    <ellipse cx="27" cy="53.6" rx="4.1" ry="2.4" fill="#FBF4E8"/>
+    <path d="M27 52.4V55" stroke-width="1" stroke="#CDBFA9"/>
+    </g>
+    <g class="awf-leg-b">
+    <rect x="48.8" y="35" width="6.4" height="18.5" rx="3.2" fill="#D27B2E"/>
+    <rect x="49.6" y="46" width="4.8" height="7" fill="#FBF4E8" stroke="none"/>
+    <ellipse cx="52" cy="53.6" rx="4.1" ry="2.4" fill="#FBF4E8"/>
+    <path d="M52 52.4V55" stroke-width="1" stroke="#CDBFA9"/>
+    </g>
+    <rect x="13" y="24" width="43" height="19" rx="9.5" fill="#D27B2E"/>
+    <ellipse cx="33" cy="28.2" rx="16" ry="2.8" fill="#E59B5A" stroke="none"/>
+    <ellipse cx="37" cy="39.6" rx="12.5" ry="2.8" fill="#FBF4E8" stroke="none"/>
+    <ellipse cx="32" cy="41.4" rx="16" ry="1.4" fill="#3A2A1E" opacity=".14" stroke="none"/>
+    <ellipse cx="53.5" cy="33.5" rx="6.4" ry="8.4" fill="#FBF4E8"/>
+    <path d="M51 15L48.5 1.5L58.5 9.5Z" fill="#D27B2E"/>
+    <path d="M52.2 12.6L50.6 4.8L56 9.7Z" fill="#EBA5A2" stroke="none"/>
+    <path d="M69 15L72.5 1.5L62.5 9.5Z" fill="#D27B2E"/>
+    <path d="M67.8 12.6L70.4 4.8L65 9.7Z" fill="#EBA5A2" stroke="none"/>
+    <circle cx="60" cy="21" r="12.5" fill="#D27B2E"/>
+    <ellipse cx="57.5" cy="14" rx="7" ry="3" fill="#E59B5A" stroke="none"/>
+    <ellipse cx="61.5" cy="27.6" rx="8.4" ry="5" fill="#FBF4E8" stroke="none"/>
+    <path d="M47.4 27.6Q51 34.2 59 35.6" fill="none" stroke-width="5.2"/>
+    <path class="awf-c-collar" d="M47.4 27.6Q51 34.2 59 35.6" fill="none" stroke="#2E6FBA" stroke-width="2.6"/>
+    <circle class="awf-c-tag" cx="57.6" cy="38.4" r="2.1" fill="#F5C95C" stroke-width="1"/>
+    <ellipse cx="69.5" cy="25.4" rx="7.5" ry="5.4" fill="#FBF4E8"/>
+    <ellipse cx="76" cy="22.8" rx="2.6" ry="2" fill="#2B2019" stroke="none"/>
+    <path d="M71.4 27.4Q73.6 29.8 76 27.8" fill="none" stroke-width="1.1"/>
+    <ellipse cx="59.2" cy="24.8" rx="2.3" ry="1.3" fill="#EBA5A2" opacity=".7" stroke="none"/>
+    <ellipse cx="57.6" cy="13.8" rx="1.6" ry="1" fill="#FBF4E8" stroke="none"/>
+    <ellipse cx="64.8" cy="13.4" rx="1.7" ry="1" fill="#FBF4E8" stroke="none"/>
+    <g class="awf-eye" stroke="none">
+    <ellipse cx="57.8" cy="18.4" rx="1.8" ry="2.2" fill="#2B2019"/>
+    <ellipse cx="65" cy="18" rx="2.1" ry="2.5" fill="#2B2019"/>
+    <circle cx="58.3" cy="17.6" r=".7" fill="#fff"/>
+    <circle cx="65.6" cy="17.1" r=".8" fill="#fff"/>
+    </g>
+    </g>
+    </symbol>
+    <!-- Cat: cream siamese, facing right. 64 x 46, paws on the bottom edge. -->
+    <symbol id="awf-cat" viewBox="0 0 64 46" overflow="visible">
+    <ellipse class="awf-shadow" cx="29" cy="46" rx="20" ry="2.2" fill="#1E1A16" opacity=".18"/>
+    <g stroke="#3D2C22" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+    <g class="awf-tail-part awf-tail-cat">
+    <path d="M14 31C7 29.5 4 24 4.2 17.5C4.4 12 6 8 10 6.4" fill="none" stroke-width="7"/>
+    <path d="M14 31C7 29.5 4 24 4.2 17.5C4.4 12 6 8 10 6.4" fill="none" stroke="#EFE3D2" stroke-width="4.2"/><path d="M4.47 21.26C4.25 20.06 4.16 18.8 4.2 17.5" fill="none" stroke="#B6A493" stroke-width="4.2" stroke-linecap="butt"/><path d="M4.2 17.5C4.4 12 6 8 10 6.4" fill="none" stroke="#7E6654" stroke-width="4.2"/>
+    </g>
+    <g class="awf-leg-b">
+    <rect x="14.5" y="30" width="5" height="14.4" rx="2.5" fill="#DCCDB8"/>
+    <ellipse cx="17" cy="44.2" rx="3.3" ry="1.9" fill="#EADFCF"/>
+    </g>
+    <g class="awf-leg-a">
+    <rect x="30.5" y="30" width="5" height="14.4" rx="2.5" fill="#DCCDB8"/>
+    <ellipse cx="33" cy="44.2" rx="3.3" ry="1.9" fill="#EADFCF"/>
+    </g>
+    <g class="awf-leg-a">
+    <rect x="19.5" y="30" width="5" height="14.4" rx="2.5" fill="#EFE3D2"/>
+    <ellipse cx="22" cy="44.2" rx="3.3" ry="1.9" fill="#FBF6EE"/>
+    </g>
+    <g class="awf-leg-b">
+    <rect x="35.5" y="30" width="5" height="14.4" rx="2.5" fill="#EFE3D2"/>
+    <ellipse cx="38" cy="44.2" rx="3.3" ry="1.9" fill="#FBF6EE"/>
+    </g>
+    <ellipse cx="26.5" cy="27.4" rx="16" ry="7.4" fill="#EFE3D2"/>
+    <ellipse cx="24.5" cy="22.8" rx="11" ry="2.2" fill="#F9F3EA" stroke="none"/>
+    <ellipse cx="25.5" cy="33" rx="13" ry="1.4" fill="#3A2A1E" opacity=".13" stroke="none"/>
+    <ellipse cx="38.6" cy="30.4" rx="5.4" ry="3.4" fill="#FBF6EE" stroke="none"/>
+    <path d="M33.8 13L36.4 1.6L42.6 7.8Z" fill="#7E6654"/>
+    <path d="M35.8 10.8L37.2 4.6L40.6 8.2Z" fill="#E9A6A4" stroke="none"/>
+    <path d="M47.4 7.8L53.6 1.6L56.2 13Z" fill="#7E6654"/>
+    <path d="M49.4 8.2L52.8 4.6L54.2 10.8Z" fill="#E9A6A4" stroke="none"/>
+    <circle cx="45" cy="17" r="10.6" fill="#EFE3D2"/>
+    <ellipse cx="43" cy="10.8" rx="6" ry="2.3" fill="#F9F3EA" stroke="none"/>
+    <ellipse cx="46.2" cy="21.2" rx="5.6" ry="4.2" fill="#C9B29C" opacity=".55" stroke="none"/>
+    <ellipse cx="38.4" cy="21.4" rx="2.3" ry="1.2" fill="#EFA9A8" opacity=".75" stroke="none"/>
+    <ellipse cx="54" cy="21.4" rx="2.3" ry="1.2" fill="#EFA9A8" opacity=".75" stroke="none"/>
+    <g class="awf-eye">
+    <ellipse cx="41.8" cy="16.4" rx="2.3" ry="2.6" fill="#5FA8D8" stroke-width=".9"/>
+    <ellipse cx="50.6" cy="16.4" rx="2.3" ry="2.6" fill="#5FA8D8" stroke-width=".9"/>
+    <ellipse cx="42.1" cy="16.6" rx=".8" ry="1.7" fill="#1E2A33" stroke="none"/>
+    <ellipse cx="50.9" cy="16.6" rx=".8" ry="1.7" fill="#1E2A33" stroke="none"/>
+    <circle cx="41.3" cy="15.3" r=".7" fill="#fff" stroke="none"/>
+    <circle cx="50.1" cy="15.3" r=".7" fill="#fff" stroke="none"/>
+    </g>
+    <path d="M44.4 20H48L46.2 22.2Z" fill="#C4796F" stroke-width=".6"/>
+    <path d="M43.6 23.2Q44.9 24.8 46.2 23.2Q47.5 24.8 48.8 23.2" fill="none" stroke-width=".9"/>
+    <g stroke="#3C2E26" stroke-opacity=".45" stroke-width=".7">
+    <path d="M51 21.6L59.4 20.2M51 22.8L59.6 22.8M51 24L59 25.4"/>
+    <path d="M41.4 21.6L34.6 20.6M41.4 22.8L34.4 23.2"/>
+    </g>
+    </g>
+    </symbol>
+    <!-- Worker: hard hat, hi-vis vest, facing right. 64 x 112, boots on the bottom edge. -->
+    <symbol id="awf-worker" viewBox="0 0 64 112" overflow="visible">
+    <ellipse class="awf-shadow" cx="32" cy="112" rx="21" ry="2.8" fill="#1E1A16" opacity=".18"/>
+    <g stroke="#3D2C22" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
+    <g>
+    <rect x="15" y="86" width="15" height="21" rx="2" fill="#2F3A42"/>
+    <path d="M13.6 104H28Q33 104 33 108.5V112H13.6Z" fill="#4A3424"/>
+    <path d="M14.5 110H32.1V111.1H14.5Z" fill="#241A12" stroke="none"/>
+    </g>
+    <g>
+    <rect x="34" y="86" width="15" height="21" rx="2" fill="#2F3A42"/>
+    <path d="M32.6 104H48Q53 104 53 108.5V112H32.6Z" fill="#4A3424"/>
+    <path d="M33.5 110H52.1V111.1H33.5Z" fill="#241A12" stroke="none"/>
+    </g>
+    <rect x="12.5" y="84" width="39" height="8" rx="2" fill="#2F3A42"/>
+    <rect class="awf-c-skin" x="27" y="46" width="10" height="7" fill="#E8B98F"/>
+    <path class="awf-c-shirt" d="M17 51H47L52 70V88H12V70Z" fill="#1F3F6E"/>
+    <path class="awf-c-vest" d="M17 51H27.4L32 60L36.6 51H47L52 70V88H12V70Z" fill="#EC8A2C"/>
+    <g stroke="none">
+    <path d="M18 52H26.6L28.2 55.2H17.2Z" fill="#fff" opacity=".22"/>
+    <rect x="12.9" y="84" width="38.2" height="3.1" fill="#000" opacity=".14"/>
+    <rect x="20.4" y="51.9" width="3.6" height="19.2" fill="#F3F0E6" class="awf-c-stripe"/>
+    <rect x="40" y="51.9" width="3.6" height="19.2" fill="#F3F0E6" class="awf-c-stripe"/>
+    <rect x="12.9" y="71" width="38.2" height="4.2" fill="#F3F0E6" class="awf-c-stripe"/>
+    <rect x="12.9" y="78.6" width="38.2" height="4.2" fill="#F3F0E6" class="awf-c-stripe"/>
+    <rect x="12.9" y="72.6" width="38.2" height="1" fill="#C8CDD3"/>
+    <rect x="12.9" y="80.2" width="38.2" height="1" fill="#C8CDD3"/>
+    <rect x="21.7" y="51.9" width="1" height="19.2" fill="#C8CDD3"/>
+    <rect x="41.3" y="51.9" width="1" height="19.2" fill="#C8CDD3"/>
+    </g>
+    <rect class="awf-c-skin" x="10.6" y="27" width="5.6" height="9.4" rx="2.6" fill="#E8B98F"/>
+    <rect class="awf-c-skin" x="14" y="12" width="36" height="38" rx="8" fill="#E8B98F"/>
+    <path class="awf-c-hair" d="M14.9 20.5H49.1V24.6Q36 23.6 21.4 25.6L19.6 31.6H14.9Z" fill="#3A2C20" stroke="none"/>
+    <g class="awf-eye" stroke="none">
+    <ellipse cx="28.6" cy="32" rx="2.1" ry="2.8" fill="#20282E"/>
+    <ellipse cx="40" cy="32" rx="2.4" ry="3.1" fill="#20282E"/>
+    <circle cx="29.1" cy="31" r=".75" fill="#fff"/>
+    <circle cx="40.6" cy="30.9" r=".85" fill="#fff"/>
+    </g>
+    <ellipse cx="24.6" cy="38.6" rx="2.6" ry="1.4" fill="#E58A84" opacity=".45" stroke="none"/>
+    <ellipse cx="45.4" cy="38.6" rx="2.6" ry="1.4" fill="#E58A84" opacity=".45" stroke="none"/>
+    <path d="M31.4 39.6Q35.8 43.2 40.2 39.6" fill="none" stroke="#8A5748" stroke-width="1.6"/>
+    <path d="M13.5 20C13.5 7.5 21.5 2 32 2C42.5 2 50.5 7.5 50.5 20Z" fill="#F2C230"/>
+    <rect x="29.3" y="2.4" width="5.4" height="17" rx="2.2" fill="#F8D766" stroke-width="1.2"/>
+    <ellipse cx="21.5" cy="9.6" rx="2.6" ry="1.8" fill="#fff" opacity=".45" stroke="none" transform="rotate(-30 21.5 9.6)"/>
+    <rect class="awf-c-badge" x="39.6" y="10" width="5.6" height="4.4" rx="1.2" fill="#2E6FBA" stroke-width="1"/>
+    <rect x="8.5" y="18" width="49" height="5" rx="2.5" fill="#E2AE22"/>
+    <g>
+    <circle class="awf-c-skin" cx="10.9" cy="89.4" r="4.6" fill="#E8B98F"/>
+    <path class="awf-c-shirt" d="M18.6 52L15.8 85H6.2L10.2 55.5Q13 52.2 18.6 52Z" fill="#1F3F6E"/>
+    <path d="M6.6 81.6H16.1L15.8 84.2H6.4Z" fill="#000" opacity=".25" stroke="none"/>
+    </g>
+    <g class="awf-arm">
+    <g>
+    <circle class="awf-c-skin" cx="53.1" cy="89.4" r="4.6" fill="#E8B98F"/>
+    <path class="awf-c-shirt" d="M45.4 52L48.2 85H57.8L53.8 55.5Q51 52.2 45.4 52Z" fill="#1F3F6E"/>
+    <path d="M57.4 81.6H47.9L48.2 84.2H57.6Z" fill="#000" opacity=".25" stroke="none"/>
+    </g>
+    </g>
+    </g>
+    </symbol>
+
+    </defs>
+  </svg>
+  <svg class="awf-stage" viewBox="0 0 1100 290" preserveAspectRatio="xMidYMid slice" focusable="false">
+    <g class="awf-cam">
+      <rect class="awf-wall" x="-200" y="38" width="1500" height="184"/>
+      <rect class="awf-wall2" x="-200" y="190" width="1500" height="32"/>
+      <path class="awf-seam" d="M-160 56V190M-30 56V190M100 56V190M230 56V190M360 56V190M490 56V190M620 56V190M750 56V190M880 56V190M1010 56V190M1140 56V190M1270 56V190"/>
+      <rect class="awf-col" x="274" y="54" width="12" height="168"/>
+      <rect class="awf-col2" x="274" y="54" width="3" height="168"/>
+      <rect class="awf-col" x="534" y="54" width="12" height="168"/>
+      <rect class="awf-col2" x="534" y="54" width="3" height="168"/>
+      <rect class="awf-col" x="789" y="54" width="12" height="168"/>
+      <rect class="awf-col2" x="789" y="54" width="3" height="168"/>
+      <g class="awf-door"><rect class="awf-sky" x="6" y="112" width="52" height="110"/><rect class="awf-sky2" x="6" y="140" width="52" height="64"/><rect class="awf-sky2" x="6" y="170" width="52" height="34"/><rect class="awf-yard" x="6" y="204" width="52" height="18"/><rect class="awf-shutter" x="3" y="104" width="58" height="12" rx="1.5"/><path class="awf-rib" d="M5 108H59M5 112H59"/><rect class="awf-jamb" x="0" y="104" width="6" height="118"/><rect class="awf-jamb" x="58" y="104" width="6" height="118"/></g>
+      <g class="awf-door"><rect class="awf-trailer" x="1042" y="112" width="52" height="110"/><path class="awf-trailer-rib" d="M1050 120V214M1062 120V214M1074 120V214M1086 120V214"/><rect class="awf-shutter" x="1039" y="104" width="58" height="12" rx="1.5"/><path class="awf-rib" d="M1041 108H1095M1041 112H1095"/><rect class="awf-jamb" x="1036" y="104" width="6" height="118"/><rect class="awf-jamb" x="1094" y="104" width="6" height="118"/></g>
+      <path class="awf-arrow" d="M1047 141H1067V129L1092 151L1067 173V161H1047Z"/>
+      <path class="awf-cone" d="M9 68H31L96 222H-56ZM269 68H291L356 222H204ZM529 68H551L616 222H464ZM784 68H806L871 222H719ZM1049 68H1071L1136 222H984Z"/>
+      <path class="awf-cone" d="M9 68H31L77.8 178.88H-37.8ZM269 68H291L337.8 178.88H222.2ZM529 68H551L597.8 178.88H482.2ZM784 68H806L852.8 178.88H737.2ZM1049 68H1071L1117.8 178.88H1002.2Z"/>
+      <path class="awf-cone" d="M9 68H31L60.9 138.84H-20.9ZM269 68H291L320.9 138.84H239.1ZM529 68H551L580.9 138.84H499.1ZM784 68H806L835.9 138.84H754.1ZM1049 68H1071L1100.9 138.84H1019.1Z"/>
+      <path class="awf-cone" d="M9 68H31L46.6 104.96H-6.6ZM269 68H291L306.6 104.96H253.4ZM529 68H551L566.6 104.96H513.4ZM784 68H806L821.6 104.96H768.4ZM1049 68H1071L1086.6 104.96H1033.4Z"/>
+      <path class="awf-truss" d="M-220 40H-116L-138 54H-198ZM-116 40H-12L-34 54H-94ZM-12 40H92L70 54H10ZM92 40H196L174 54H114ZM196 40H300L278 54H218ZM300 40H404L382 54H322ZM404 40H508L486 54H426ZM508 40H612L590 54H530ZM612 40H716L694 54H634ZM716 40H820L798 54H738ZM820 40H924L902 54H842ZM924 40H1028L1006 54H946ZM1028 40H1132L1110 54H1050ZM1132 40H1236L1214 54H1154ZM1236 40H1340L1318 54H1258Z"/>
+      <path class="awf-truss-web" d="M-210 40L-168 54M-126 40L-168 54M-106 40L-64 54M-22 40L-64 54M-2 40L40 54M82 40L40 54M102 40L144 54M186 40L144 54M206 40L248 54M290 40L248 54M310 40L352 54M394 40L352 54M414 40L456 54M498 40L456 54M518 40L560 54M602 40L560 54M622 40L664 54M706 40L664 54M726 40L768 54M810 40L768 54M830 40L872 54M914 40L872 54M934 40L976 54M1018 40L976 54M1038 40L1080 54M1122 40L1080 54M1142 40L1184 54M1226 40L1184 54M1246 40L1288 54M1330 40L1288 54"/>
+      <rect class="awf-chord" x="-200" y="37" width="1500" height="4"/>
+      <rect class="awf-chord" x="-200" y="53" width="1500" height="2.5"/>
+      <g class="awf-lamp"><path class="awf-cord" d="M20 54V60"/><g class="awf-halo"><ellipse cx="20" cy="70" rx="42" ry="17"/><ellipse cx="20" cy="69.6" rx="33.6" ry="13.6"/><ellipse cx="20" cy="69.24" rx="26.04" ry="10.54"/><ellipse cx="20" cy="68.9" rx="18.9" ry="7.65"/><ellipse cx="20" cy="68.6" rx="12.6" ry="5.1"/></g><path class="awf-shade" d="M8 66L13 59H27L32 66Z"/><ellipse class="awf-bulb" cx="20" cy="67" rx="13" ry="4.6"/><ellipse class="awf-bulb-core" cx="20" cy="67" rx="6" ry="2.2"/></g>
+      <g class="awf-lamp"><path class="awf-cord" d="M280 54V60"/><g class="awf-halo"><ellipse cx="280" cy="70" rx="42" ry="17"/><ellipse cx="280" cy="69.6" rx="33.6" ry="13.6"/><ellipse cx="280" cy="69.24" rx="26.04" ry="10.54"/><ellipse cx="280" cy="68.9" rx="18.9" ry="7.65"/><ellipse cx="280" cy="68.6" rx="12.6" ry="5.1"/></g><path class="awf-shade" d="M268 66L273 59H287L292 66Z"/><ellipse class="awf-bulb" cx="280" cy="67" rx="13" ry="4.6"/><ellipse class="awf-bulb-core" cx="280" cy="67" rx="6" ry="2.2"/></g>
+      <g class="awf-lamp"><path class="awf-cord" d="M540 54V60"/><g class="awf-halo"><ellipse cx="540" cy="70" rx="42" ry="17"/><ellipse cx="540" cy="69.6" rx="33.6" ry="13.6"/><ellipse cx="540" cy="69.24" rx="26.04" ry="10.54"/><ellipse cx="540" cy="68.9" rx="18.9" ry="7.65"/><ellipse cx="540" cy="68.6" rx="12.6" ry="5.1"/></g><path class="awf-shade" d="M528 66L533 59H547L552 66Z"/><ellipse class="awf-bulb" cx="540" cy="67" rx="13" ry="4.6"/><ellipse class="awf-bulb-core" cx="540" cy="67" rx="6" ry="2.2"/></g>
+      <g class="awf-lamp"><path class="awf-cord" d="M795 54V60"/><g class="awf-halo"><ellipse cx="795" cy="70" rx="42" ry="17"/><ellipse cx="795" cy="69.6" rx="33.6" ry="13.6"/><ellipse cx="795" cy="69.24" rx="26.04" ry="10.54"/><ellipse cx="795" cy="68.9" rx="18.9" ry="7.65"/><ellipse cx="795" cy="68.6" rx="12.6" ry="5.1"/></g><path class="awf-shade" d="M783 66L788 59H802L807 66Z"/><ellipse class="awf-bulb" cx="795" cy="67" rx="13" ry="4.6"/><ellipse class="awf-bulb-core" cx="795" cy="67" rx="6" ry="2.2"/></g>
+      <g class="awf-lamp"><path class="awf-cord" d="M1060 54V60"/><g class="awf-halo"><ellipse cx="1060" cy="70" rx="42" ry="17"/><ellipse cx="1060" cy="69.6" rx="33.6" ry="13.6"/><ellipse cx="1060" cy="69.24" rx="26.04" ry="10.54"/><ellipse cx="1060" cy="68.9" rx="18.9" ry="7.65"/><ellipse cx="1060" cy="68.6" rx="12.6" ry="5.1"/></g><path class="awf-shade" d="M1048 66L1053 59H1067L1072 66Z"/><ellipse class="awf-bulb" cx="1060" cy="67" rx="13" ry="4.6"/><ellipse class="awf-bulb-core" cx="1060" cy="67" rx="6" ry="2.2"/></g>
+      <g class="awf-sign"><path class="awf-wire" d="M100 54V62M200 54V62"/><rect class="awf-plate" x="78" y="62" width="144" height="24" rx="5"/><circle class="awf-num" cx="94" cy="74" r="8.5"/><text class="awf-numt" x="94" y="78">1</text><text class="awf-signt" id="awf-st1" x="159" y="79.5" data-i18n="awf.s1">收貨</text><g class="awf-on1"><rect class="awf-plate-glow" x="71" y="56" width="158" height="36" rx="10"/><rect class="awf-plate-on" x="78" y="62" width="144" height="24" rx="5"/><circle class="awf-num-on" cx="94" cy="74" r="8.5"/><text class="awf-numt-on" x="94" y="78">1</text><use class="awf-st-lit" href="#awf-st1"/></g></g>
+      <g class="awf-sign"><path class="awf-wire" d="M360 54V62M460 54V62"/><rect class="awf-plate" x="338" y="62" width="144" height="24" rx="5"/><circle class="awf-num" cx="354" cy="74" r="8.5"/><text class="awf-numt" x="354" y="78">2</text><text class="awf-signt" id="awf-st2" x="419" y="79.5" data-i18n="awf.s2">上架</text><g class="awf-on2"><rect class="awf-plate-glow" x="331" y="56" width="158" height="36" rx="10"/><rect class="awf-plate-on" x="338" y="62" width="144" height="24" rx="5"/><circle class="awf-num-on" cx="354" cy="74" r="8.5"/><text class="awf-numt-on" x="354" y="78">2</text><use class="awf-st-lit" href="#awf-st2"/></g></g>
+      <g class="awf-sign"><path class="awf-wire" d="M620 54V62M720 54V62"/><rect class="awf-plate" x="598" y="62" width="144" height="24" rx="5"/><circle class="awf-num" cx="614" cy="74" r="8.5"/><text class="awf-numt" x="614" y="78">3</text><text class="awf-signt" id="awf-st3" x="679" y="79.5" data-i18n="awf.s3">揀貨包裝</text><g class="awf-on3"><rect class="awf-plate-glow" x="591" y="56" width="158" height="36" rx="10"/><rect class="awf-plate-on" x="598" y="62" width="144" height="24" rx="5"/><circle class="awf-num-on" cx="614" cy="74" r="8.5"/><text class="awf-numt-on" x="614" y="78">3</text><use class="awf-st-lit" href="#awf-st3"/></g></g>
+      <g class="awf-sign"><path class="awf-wire" d="M870 54V62M970 54V62"/><rect class="awf-plate" x="848" y="62" width="144" height="24" rx="5"/><circle class="awf-num" cx="864" cy="74" r="8.5"/><text class="awf-numt" x="864" y="78">4</text><text class="awf-signt" id="awf-st4" x="929" y="79.5" data-i18n="awf.s4">出貨</text><g class="awf-on4"><rect class="awf-plate-glow" x="841" y="56" width="158" height="36" rx="10"/><rect class="awf-plate-on" x="848" y="62" width="144" height="24" rx="5"/><circle class="awf-num-on" cx="864" cy="74" r="8.5"/><text class="awf-numt-on" x="864" y="78">4</text><use class="awf-st-lit" href="#awf-st4"/></g></g>
+      <rect class="awf-floor" x="-200" y="222" width="1500" height="80"/>
+      <path class="awf-base" d="M-200 223H1300"/>
+      <path class="awf-tile" d="M-196 225H-166M-142 225H-112M-88 225H-58M-34 225H-4M20 225H50M74 225H104M128 225H158M182 225H212M236 225H266M290 225H320M344 225H374M398 225H428M452 225H482M506 225H536M560 225H590M614 225H644M668 225H698M722 225H752M776 225H806M830 225H860M884 225H914M938 225H968M992 225H1022M1046 225H1076M1100 225H1130M1154 225H1184M1208 225H1238M1262 225H1292"/>
+      <path class="awf-lane" d="M-200 284H1300"/>
+      <rect class="awf-spot" x="50" y="239" width="216" height="5" rx="2.5"/>
+      <rect class="awf-spot-on awf-on1" x="50" y="239" width="216" height="5" rx="2.5"/>
+      <rect class="awf-spot" x="310" y="239" width="216" height="5" rx="2.5"/>
+      <rect class="awf-spot-on awf-on2" x="310" y="239" width="216" height="5" rx="2.5"/>
+      <rect class="awf-spot" x="570" y="239" width="216" height="5" rx="2.5"/>
+      <rect class="awf-spot-on awf-on3" x="570" y="239" width="216" height="5" rx="2.5"/>
+      <rect class="awf-spot" x="820" y="239" width="216" height="5" rx="2.5"/>
+      <rect class="awf-spot-on awf-on4" x="820" y="239" width="216" height="5" rx="2.5"/>
+      <g class="awf-parcel"><g class="awf-pback"><ellipse class="awf-pshadow" cx="0" cy="0.5" rx="18" ry="2"/><rect class="awf-pbody" x="-17" y="-26" width="34" height="26" rx="2"/><rect class="awf-plid" x="-16.3" y="-25.3" width="32.6" height="5" rx="1"/><path class="awf-pedge" d="M-17 -20.3H17"/><g class="awf-pbar"><rect x="3" y="-16" width="11" height="8" rx="1"/><path d="M5 -14.5V-9.5M6.8 -14.5V-9.5M9.3 -14.5V-9.5M10.6 -14.5V-9.5M12.2 -14.5V-9.5"/></g></g></g>
+      <rect class="awf-post" x="385" y="114" width="5" height="108"/>
+      <rect class="awf-post" x="573" y="114" width="5" height="108"/>
+      <rect class="awf-post" x="760" y="114" width="5" height="108"/>
+      <g class="awf-box"><rect x="394" y="120" width="38" height="26" rx="2"/><path d="M394 126H432M413 120V126"/><rect class="awf-box-tag" x="398" y="136" width="13.68" height="5"/></g>
+      <g class="awf-box"><rect x="704" y="122" width="36" height="24" rx="2"/><path d="M704 128H740M722 122V128"/><rect class="awf-box-tag" x="708" y="136" width="12.96" height="5"/></g>
+      <rect class="awf-beam" x="383" y="146" width="384" height="8" rx="1"/>
+      <rect class="awf-tagplate" x="444" y="156" width="42" height="15" rx="2"/><text class="awf-loc" x="465" y="167.4">A-03</text><g class="awf-locflash awf-loc2"><rect class="awf-tagplate-on" x="444" y="156" width="42" height="15" rx="2"/><text class="awf-loc" x="465" y="167.4">A-03</text></g>
+      <rect class="awf-tagplate" x="649" y="156" width="42" height="15" rx="2"/><text class="awf-loc" x="670" y="167.4">A-04</text><g class="awf-locflash awf-loc3"><rect class="awf-tagplate-on" x="649" y="156" width="42" height="15" rx="2"/><text class="awf-loc" x="670" y="167.4">A-04</text></g>
+      <g transform="translate(700 88.88)"><g class="awf-tail awf-blink" style="--awf-delay:-2.6s"><use href="#awf-cat" width="46.08" height="33.12"/></g></g>
+      <g transform="translate(71.76 132.16)"><g class="awf-w1 awf-blink" style="--awf-vest:#EC8A2C;--awf-stripe:#F3F0E6;--awf-skin:#E8B98F;--awf-hair:#2E2622;--awf-delay:-0.4s"><use href="#awf-worker" width="52.48" height="91.84"/></g></g>
+      <g transform="translate(331.76 132.16)"><g class="awf-w2 awf-blink" style="--awf-vest:#4A6FA5;--awf-stripe:#E9E46A;--awf-skin:#8A5A3C;--awf-hair:#3A2E22;--awf-delay:-1.9s"><use href="#awf-worker" width="52.48" height="91.84"/></g></g>
+      <g transform="translate(591.76 132.16)"><g class="awf-w3 awf-blink" style="--awf-vest:#4E8A5E;--awf-stripe:#F3F0E6;--awf-skin:#F0CFA8;--awf-hair:#6B4A2E;--awf-delay:-3.1s"><use href="#awf-worker" width="52.48" height="91.84"/></g></g>
+      <g transform="translate(841.76 132.16)"><g class="awf-w4 awf-blink" style="--awf-vest:#8A5AA8;--awf-stripe:#F5D67A;--awf-skin:#C98D5F;--awf-hair:#241C18;--awf-delay:-2.4s"><use href="#awf-worker" width="52.48" height="91.84"/></g></g>
+      <g class="awf-scanner"><rect class="awf-pole" x="148" y="149" width="78" height="3.4"/><rect class="awf-head" x="140" y="146" width="20" height="9" rx="2"/><rect class="awf-window" x="144" y="153.5" width="12" height="2"/></g>
+      <g class="awf-mon"><rect class="awf-stand" x="224" y="156" width="4" height="66"/><rect class="awf-stand" x="213" y="218" width="26" height="4" rx="1.5"/><rect class="awf-stand" x="219" y="156" width="14" height="6" rx="1"/><rect class="awf-bezel" x="197" y="116" width="58" height="42" rx="3"/><rect class="awf-scr" x="201" y="120" width="50" height="32" rx="1.5"/><text class="awf-scrt" x="226" y="131">WMS</text><path class="awf-scrl" d="M209 137H239M209 143H231"/><g class="awf-wms-on"><rect class="awf-scr-on-wms" x="201" y="120" width="50" height="32" rx="1.5"/><text class="awf-scrt-on" x="226" y="131">WMS</text><path class="awf-scrl-on" d="M209 137H241M209 143H233"/></g><g class="awf-ok1"><rect class="awf-scr-ok" x="201" y="120" width="50" height="32" rx="1.5"/><path class="awf-scr-check" d="M217 136L224 143L237 128"/></g></g>
+      <g class="awf-mon"><rect class="awf-stand" x="998" y="156" width="4" height="66"/><rect class="awf-stand" x="987" y="218" width="26" height="4" rx="1.5"/><rect class="awf-stand" x="993" y="156" width="14" height="6" rx="1"/><rect class="awf-bezel" x="971" y="116" width="58" height="42" rx="3"/><rect class="awf-scr" x="975" y="120" width="50" height="32" rx="1.5"/><text class="awf-scrt" x="1000" y="131">TMS</text><path class="awf-scrl" d="M983 137H1013M983 143H1005"/><g class="awf-tms-on"><rect class="awf-scr-on-tms" x="975" y="120" width="50" height="32" rx="1.5"/><text class="awf-scrt-on" x="1000" y="131">TMS</text><path class="awf-truck" d="M983 135H1001V146H983ZM1002 138H1009L1013 142V146H1002Z"/><circle class="awf-wheel" cx="988" cy="147" r="2.4"/><circle class="awf-wheel" cx="1007" cy="147" r="2.4"/><path class="awf-scrl-on" d="M1015 136H1021M1015 141H1021"/></g></g>
+      <path class="awf-scan awf-beamfan" d="M145 156H155L167 181H133Z"/>
+      <g class="awf-printer"><rect class="awf-stand" x="940" y="160" width="60" height="3" rx="1"/><rect class="awf-printer-body" x="944" y="144" width="24" height="16" rx="2.5"/><rect class="awf-printer-slot" x="948" y="144" width="16" height="2.2"/><circle class="awf-printer-led" cx="963" cy="154" r="1.6"/></g>
+      <g class="awf-bench"><rect class="awf-leg" x="62" y="206" width="6" height="30"/><rect class="awf-leg" x="247" y="206" width="6" height="30"/><rect class="awf-leg" x="62" y="226" width="191" height="3"/><rect class="awf-top" x="55" y="200" width="205" height="7" rx="1.5"/><rect class="awf-top-hi" x="56" y="201" width="203" height="1.6"/></g>
+      <g class="awf-bench"><rect class="awf-leg" x="322" y="206" width="6" height="30"/><rect class="awf-leg" x="507" y="206" width="6" height="30"/><rect class="awf-leg" x="322" y="226" width="191" height="3"/><rect class="awf-top" x="315" y="200" width="205" height="7" rx="1.5"/><rect class="awf-top-hi" x="316" y="201" width="203" height="1.6"/></g>
+      <g class="awf-bench"><rect class="awf-leg" x="582" y="206" width="6" height="30"/><rect class="awf-leg" x="767" y="206" width="6" height="30"/><rect class="awf-leg" x="582" y="226" width="191" height="3"/><rect class="awf-top" x="575" y="200" width="205" height="7" rx="1.5"/><rect class="awf-top-hi" x="576" y="201" width="203" height="1.6"/></g>
+      <g class="awf-bench"><rect class="awf-leg" x="832" y="206" width="6" height="30"/><rect class="awf-leg" x="1017" y="206" width="6" height="30"/><rect class="awf-leg" x="832" y="226" width="191" height="3"/><rect class="awf-top" x="825" y="200" width="205" height="7" rx="1.5"/><rect class="awf-top-hi" x="826" y="201" width="203" height="1.6"/></g>
+      <g class="awf-conv"><rect class="awf-cleg" x="-36" y="207" width="4" height="29"/><rect class="awf-cleg" x="47" y="207" width="4" height="29"/><rect class="awf-cframe" x="-200" y="201" width="255" height="6"/><g class="awf-roller"><circle cx="-195" cy="202" r="2.4"/><circle cx="-185" cy="202" r="2.4"/><circle cx="-175" cy="202" r="2.4"/><circle cx="-165" cy="202" r="2.4"/><circle cx="-155" cy="202" r="2.4"/><circle cx="-145" cy="202" r="2.4"/><circle cx="-135" cy="202" r="2.4"/><circle cx="-125" cy="202" r="2.4"/><circle cx="-115" cy="202" r="2.4"/><circle cx="-105" cy="202" r="2.4"/><circle cx="-95" cy="202" r="2.4"/><circle cx="-85" cy="202" r="2.4"/><circle cx="-75" cy="202" r="2.4"/><circle cx="-65" cy="202" r="2.4"/><circle cx="-55" cy="202" r="2.4"/><circle cx="-45" cy="202" r="2.4"/><circle cx="-35" cy="202" r="2.4"/><circle cx="-25" cy="202" r="2.4"/><circle cx="-15" cy="202" r="2.4"/><circle cx="-5" cy="202" r="2.4"/><circle cx="5" cy="202" r="2.4"/><circle cx="15" cy="202" r="2.4"/><circle cx="25" cy="202" r="2.4"/><circle cx="35" cy="202" r="2.4"/><circle cx="45" cy="202" r="2.4"/></g><path class="awf-chev" d="M17.5 203.2L24.5 205L17.5 206.8Z"/><path class="awf-chev" d="M29.5 203.2L36.5 205L29.5 206.8Z"/></g>
+      <g class="awf-conv"><rect class="awf-cleg" x="264" y="207" width="4" height="29"/><rect class="awf-cleg" x="307" y="207" width="4" height="29"/><rect class="awf-cframe" x="260" y="201" width="55" height="6"/><g class="awf-roller"><circle cx="265" cy="202" r="2.4"/><circle cx="275" cy="202" r="2.4"/><circle cx="285" cy="202" r="2.4"/><circle cx="295" cy="202" r="2.4"/><circle cx="305" cy="202" r="2.4"/></g><path class="awf-chev" d="M277.5 203.2L284.5 205L277.5 206.8Z"/><path class="awf-chev" d="M289.5 203.2L296.5 205L289.5 206.8Z"/></g>
+      <g class="awf-conv"><rect class="awf-cleg" x="524" y="207" width="4" height="29"/><rect class="awf-cleg" x="567" y="207" width="4" height="29"/><rect class="awf-cframe" x="520" y="201" width="55" height="6"/><g class="awf-roller"><circle cx="525" cy="202" r="2.4"/><circle cx="535" cy="202" r="2.4"/><circle cx="545" cy="202" r="2.4"/><circle cx="555" cy="202" r="2.4"/><circle cx="565" cy="202" r="2.4"/></g><path class="awf-chev" d="M537.5 203.2L544.5 205L537.5 206.8Z"/><path class="awf-chev" d="M549.5 203.2L556.5 205L549.5 206.8Z"/></g>
+      <g class="awf-conv"><rect class="awf-cleg" x="784" y="207" width="4" height="29"/><rect class="awf-cleg" x="817" y="207" width="4" height="29"/><rect class="awf-cframe" x="780" y="201" width="45" height="6"/><g class="awf-roller"><circle cx="785" cy="202" r="2.4"/><circle cx="795" cy="202" r="2.4"/><circle cx="805" cy="202" r="2.4"/><circle cx="815" cy="202" r="2.4"/></g><path class="awf-chev" d="M792.5 203.2L799.5 205L792.5 206.8Z"/><path class="awf-chev" d="M804.5 203.2L811.5 205L804.5 206.8Z"/></g>
+      <g class="awf-conv"><rect class="awf-cleg" x="1034" y="207" width="4" height="29"/><rect class="awf-cleg" x="1132" y="207" width="4" height="29"/><rect class="awf-cframe" x="1030" y="201" width="270" height="6"/><g class="awf-roller"><circle cx="1035" cy="202" r="2.4"/><circle cx="1045" cy="202" r="2.4"/><circle cx="1055" cy="202" r="2.4"/><circle cx="1065" cy="202" r="2.4"/><circle cx="1075" cy="202" r="2.4"/><circle cx="1085" cy="202" r="2.4"/><circle cx="1095" cy="202" r="2.4"/><circle cx="1105" cy="202" r="2.4"/><circle cx="1115" cy="202" r="2.4"/><circle cx="1125" cy="202" r="2.4"/><circle cx="1135" cy="202" r="2.4"/><circle cx="1145" cy="202" r="2.4"/><circle cx="1155" cy="202" r="2.4"/><circle cx="1165" cy="202" r="2.4"/><circle cx="1175" cy="202" r="2.4"/><circle cx="1185" cy="202" r="2.4"/><circle cx="1195" cy="202" r="2.4"/><circle cx="1205" cy="202" r="2.4"/><circle cx="1215" cy="202" r="2.4"/><circle cx="1225" cy="202" r="2.4"/><circle cx="1235" cy="202" r="2.4"/><circle cx="1245" cy="202" r="2.4"/><circle cx="1255" cy="202" r="2.4"/><circle cx="1265" cy="202" r="2.4"/><circle cx="1275" cy="202" r="2.4"/><circle cx="1285" cy="202" r="2.4"/><circle cx="1295" cy="202" r="2.4"/></g><path class="awf-chev" d="M1055 203.2L1062 205L1055 206.8Z"/><path class="awf-chev" d="M1067 203.2L1074 205L1067 206.8Z"/></g>
+      <g class="awf-cart"><path class="awf-cart-handle" d="M687 216L682 186"/><path class="awf-cart-grip" d="M682.6 190L681.4 183"/><rect class="awf-cart-bar" x="691" y="218" width="3" height="16"/><rect class="awf-cart-bar" x="731" y="218" width="3" height="16"/><rect class="awf-cart-deck2" x="686" y="229" width="52" height="4" rx="1.5"/><rect class="awf-cart-deck" x="684" y="214" width="56" height="5" rx="1.5"/><circle class="awf-cart-wheel" cx="693" cy="238" r="4.6"/><circle class="awf-cart-wheel" cx="732" cy="238" r="4.6"/><circle class="awf-cart-hub" cx="693" cy="238" r="1.5"/><circle class="awf-cart-hub" cx="732" cy="238" r="1.5"/></g>
+      <g class="awf-parcel"><g class="awf-pfront"><ellipse class="awf-pshadow" cx="0" cy="0.5" rx="18" ry="2"/><rect class="awf-pbody" x="-17" y="-26" width="34" height="26" rx="2"/><rect class="awf-plid" x="-16.3" y="-25.3" width="32.6" height="5" rx="1"/><path class="awf-pedge" d="M-17 -20.3H17"/><g class="awf-pbar"><rect x="3" y="-16" width="11" height="8" rx="1"/><path d="M5 -14.5V-9.5M6.8 -14.5V-9.5M9.3 -14.5V-9.5M10.6 -14.5V-9.5M12.2 -14.5V-9.5"/></g><g class="awf-ptape"><rect x="-17" y="-26" width="34" height="5" rx="1"/><rect x="-2.6" y="-21" width="5.2" height="7"/></g><g class="awf-plabel"><rect class="awf-label-paper" x="-15" y="-19" width="13" height="11" rx="1"/><path class="awf-label-ink" d="M-13 -16.3H-5M-13 -13.6H-7"/><path class="awf-label-code" d="M-13 -11.2H-4"/></g><g class="awf-pcheck"><circle cx="15" cy="-26" r="7"/><path d="M11.6 -26L14.2 -23.4L18.6 -28.6"/></g></g></g>
+      <path class="awf-scan awf-scanline" d="M134 181H166"/>
+      <g class="awf-flylabel"><rect class="awf-label-paper" x="950" y="135" width="12" height="9" rx="1"/><path class="awf-label-ink" d="M952 138H960M952 141H958"/></g>
+      <g transform="translate(0 236.18)"><g class="awf-dogrun"><g class="awf-walk awf-tail awf-blink" style="--awf-step-dur:.42s;--awf-delay:-1.2s"><use href="#awf-dog" width="57.6" height="40.32"/></g></g></g>
+    </g>
+    <g class="awf-band">
+      <rect class="awf-ceil" x="-200" y="0" width="1500" height="37"/>
+      <text class="awf-cap awf-cap1" x="550" y="25" data-i18n="awf.c1">貨到倉庫，掃描入庫</text>
+      <text class="awf-cap awf-cap2" x="550" y="25" data-i18n="awf.c2">依儲位上架</text>
+      <text class="awf-cap awf-cap3" x="550" y="25" data-i18n="awf.c3">依訂單揀貨、包裝</text>
+      <text class="awf-cap awf-cap4" x="550" y="25" data-i18n="awf.c4">貼標交寄，出倉配送</text>
+    </g>
+  </svg>
+</div>
     <div class="steps-panel">
       <div class="steps-head"><span data-i18n="st.title">合作流程</span><span class="steps-pct" data-i18n="st.pct">五步，從第一批貨到日常出貨</span></div>
       <div class="pbar"><div class="pbar-fill"></div></div>
@@ -295,6 +1290,23 @@
     </div>
   </section>
 
+  <!-- 聯絡我們：信箱、寄信詢價，以及回覆時間等資訊 -->
+  <section class="tab" id="tab-contact">
+    <h2 class="section" data-i18n="ct.h">聯絡我們</h2>
+    <div class="caption" data-i18n="ct.s">來信說明商品與每月出貨量，我們會盡快回覆。</div>
+    <div class="row panel">
+      <div class="field"><span data-i18n="ct.email">電子郵件</span><span class="copyrow"><code id="email">sandyliu3056@gmail.com</code><button class="btn sm" id="copy-email" type="button" data-i18n="ct.copy">複製</button></span></div>
+      <a class="btn primary" id="home-mail" href="mailto:sandyliu3056@gmail.com" data-i18n="home.mail">寄信詢價</a>
+      <span class="caption" data-i18n="home.hint">說明商品、每月出貨量、尺寸重量、貨從哪裡來，我們會盡快回覆。</span>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="k"><span aria-hidden="true">⏱</span> <span data-i18n="ct.t1">回覆時間</span></div><div class="s ct-v" data-i18n="ct.t1v">盡快，通常一個工作天內</div></div>
+      <div class="kpi"><div class="k"><span aria-hidden="true">🗣</span> <span data-i18n="ct.t2">語言</span></div><div class="s ct-v" data-i18n="ct.t2v">中文、英文</div></div>
+      <div class="kpi"><div class="k"><span aria-hidden="true">📋</span> <span data-i18n="ct.t3">報價需要</span></div><div class="s ct-v" data-i18n="ct.t3v">商品、每月出貨量、尺寸重量、貨從哪裡來</div></div>
+      <div class="kpi"><div class="k"><span aria-hidden="true">📍</span> <span data-i18n="ct.t4">倉庫地點</span></div><div class="s ct-v" data-i18n="ct.t4v">City of Industry, California</div></div>
+    </div>
+  </section>
+
 </main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -309,6 +1321,16 @@ const I18N={
   "aria.lang":["語言","Language"],"aria.font":["字型","Font"],"aria.theme":["主題","Theme"],"aria.tz":["時區","Time zone"],"aria.nav":["分頁","Sections"],
   "home.mail":["寄信詢價","Email for a quote"],"home.hint":["說明商品、每月出貨量、尺寸重量、貨從哪裡來，我們會盡快回覆。","Tell us the product, monthly volume, size and weight and origin; we reply as soon as we can."],
   "bd.1":["全球出貨","Global Shipping"],"bd.2":["快速週轉","Fast Turnaround"],"bd.3":["安全可靠","Safe & Reliable"],"bd.4":["歡迎合作","Open to Collaboration"],
+  "tl.h":["我們的服務","Our services"],"tl.s":["從進貨、存放到出貨，美國倉一站搞定。","From receiving and storage to shipping, all in one U.S. warehouse."],"tl.more":["了解更多 →","Learn more →"],"tl.1":["海外倉儲","Overseas Warehousing"],"tl.1s":["加州倉就近美國市場，貨物安全存放、隨時可出貨。","A California warehouse close to U.S. customers, with stock stored safely and ready to ship."],"tl.2":["在地倉儲與履約","Local Storage & Fulfillment"],"tl.2s":["收到訂單就揀貨、包裝、出貨，一條龍完成。","Orders are picked, packed and shipped in one smooth flow."],"tl.3":["收貨與出貨","Shipping & Receiving"],"tl.3s":["進貨驗收、出貨交寄，每一步都有紀錄可追蹤。","Inbound receiving and outbound handoff, with every step tracked."],"tl.4":["貼標服務","Labeling Services"],"tl.4s":["條碼、FBA 標籤、換標與合規標示，出貨前一次貼好。","Barcodes, FBA labels, relabeling and compliance labels, applied before shipping."],"tl.5":["庫存管理","Inventory Management"],"tl.5s":["庫存數量隨時查得到，補貨時機一目了然。","Check stock levels anytime and see at a glance when to restock."],"tl.6":["電商解決方案","E-Commerce Solutions"],"tl.6s":["串接 Shopify、Amazon 等平台，為線上賣家量身規劃物流。","Connected to Shopify, Amazon and more, with logistics planned around online sellers."],"vl.h":["為什麼選擇我們","Why choose us"],"vl.1":["安全第一","Safety First"],"vl.1s":["每一件貨都小心搬運、妥善存放。","Every shipment is handled and stored with care."],"vl.2":["快速高效","Speed & Efficiency"],"vl.2s":["流程持續優化，訂單出得又快又準。","Continuously improved processes get orders out fast and accurately."],"vl.3":["成本實惠","Cost-Effective"],"vl.3s":["UPS / FedEx 優惠費率，小包 $3 起，幫您守住利潤。","Discounted UPS / FedEx rates and small parcels from $3 protect your margins."],
+  "nav.contact":["聯絡我們","Contact"],"ct.h":["聯絡我們","Contact us"],"ct.s":["來信說明商品與每月出貨量，我們會盡快回覆。","Tell us about your products and monthly volume and we will get back to you promptly."],"ct.t1":["回覆時間","Reply time"],"ct.t1v":["盡快，通常一個工作天內","Promptly, usually within one business day"],"ct.t2":["語言","Languages"],"ct.t2v":["中文、英文","Chinese, English"],"ct.t3":["報價需要","For a quote"],"ct.t3v":["商品、每月出貨量、尺寸重量、貨從哪裡來","Product, monthly volume, size and weight, origin"],"ct.t4":["倉庫地點","Warehouse"],"ct.t4v":["City of Industry, California","City of Industry, California"],
+  "awf.h":["貨到倉庫後怎麼走","How your parcel moves through our warehouse"],"awf.hs":["一個包裹從收貨到出貨的路線（14 秒一輪）。角色來自 Animated Warehouse。","One parcel's path from receiving to shipping (14-second loop). Characters from Animated Warehouse."],"awf.s1":["收貨","Receiving"],"awf.s2":["上架","Putaway"],"awf.s3":["揀貨包裝","Pick & Pack"],"awf.s4":["出貨","Shipping"],"awf.c1":["貨到倉庫，掃描入庫","Arrives and is scanned in"],"awf.c2":["依儲位上架","Put away to its shelf location"],"awf.c3":["依訂單揀貨、包裝","Picked and packed to the order"],"awf.c4":["貼標交寄，出倉配送","Labelled and handed to the carrier"],
+  "api.badge":["最新","NEW"],"api.h":["ERP 對接 · 開放 API","ERP Integration · Open API"],
+  "api.s":["把您的 ERP、WMS 或電商後台直接接上我們的倉庫：訂單自動進倉、庫存與出貨狀態即時回寫，不用再手動匯入匯出。","Connect your ERP, WMS or store back end straight to our warehouse: orders flow in automatically and stock and shipping status are written back in real time. No more manual imports and exports."],
+  "api.1":["開放 REST API 與 Webhook：建單、查庫存、追蹤出貨","Open REST API and webhooks: create orders, check stock, track shipments"],
+  "api.2":["支援 SAP、Oracle、鼎新、用友等 ERP，以及 Shopify、Amazon 等平台 API","Works with SAP, Oracle, Digiwin, Yonyou and other ERPs, plus Shopify, Amazon and other platform APIs"],
+  "api.3":["提供 API 文件與測試環境，工程師協助串接","API docs and a sandbox, with engineers to help you integrate"],
+  "api.cta":["洽談 API 串接","Talk to us about API integration"],"api.wh":["我們的倉庫","Our warehouse"],
+  "sc.origin":["台灣 / 中國 / 東南亞","Taiwan / China / SE Asia"],"sc.wh":["美國倉（加州）","U.S. warehouse (California)"],"sc.dest":["全美與全球","U.S. & worldwide"],
   "hdr.open":["接單中","Taking orders"],"hdr.quote":["聯絡報價","Get a quote"],
   "nav.home":["首頁","Home"],"nav.services":["服務內容","Services"],"nav.flow":["合作流程","How it works"],
   
@@ -359,7 +1381,7 @@ function applyLang(code){
   document.documentElement.lang=i?"en":"zh-Hant-TW";
   document.title=i?"E-Commerce & U.S. Warehouse Fulfillment Solutions":"美國倉儲履約方案";
   $("lang-sel").value=LANG; pref("lang",LANG); tick(); drawMap();
-  if(typeof mailHref==="function"){ const h=mailHref(I18N["q.subj"][i]); for(const id of ["quote-btn","home-mail","mail-link"]){ const el=$(id); if(el) el.href=h; } }
+  if(typeof mailHref==="function"){ const h=mailHref(I18N["q.subj"][i]); for(const id of ["quote-btn","home-mail","api-mail"]){ const el=$(id); if(el) el.href=h; } }
 }
 /* 聯絡頁的服務地區：和地圖同一份地點，一面旗一個名字 */
 function applyFont(v){ document.documentElement.dataset.font=v==="sans"?"sans":"hand"; $("font-sel").value=v; pref("font",v); }
@@ -386,9 +1408,9 @@ $("tz-sel").addEventListener("change",e=>{ TZ=e.target.value; pref("tz",TZ); tic
 setInterval(tick,15000);
 
 /* 分頁：和 RMA 一樣的分頁按鈕；網址 #services 之類直接開那一頁。 */
-const TABS=["home","services","flow"];
+const TABS=["home","services","flow","contact"];
 function showTab(name){
-  if(name==="contact"||name==="rates") name="home";   /* 舊連結 #contact、#rates：聯絡方式在首頁 */
+  if(name==="rates") name="contact";   /* 舊連結 #rates（以前的「運費與聯絡」）開「聯絡我們」 */
   const n=TABS.includes(name)?name:"home";
   document.querySelectorAll("#tabs button").forEach(b=>{ const on=b.dataset.tab===n; b.classList.toggle("active",on); if(on) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current"); });
   TABS.forEach(t=>{ const s=$("tab-"+t); if(s) s.classList.toggle("active",t===n); });
@@ -433,7 +1455,7 @@ const PINS=[
 ];
 /* 美國境內配送點（區域視角才畫）：Ground 1–5 個工作天 */
 const CITIES=[["New York",40.7,-74.0],["Chicago",41.9,-87.6],["Dallas",32.8,-96.8],["Atlanta",33.7,-84.4],["Miami",25.8,-80.2],
-  ["Seattle",47.6,-122.3],["Denver",39.7,-105.0],["Phoenix",33.4,-112.1],["Houston",29.8,-95.4],["Boston",42.4,-71.1]];
+  ["Seattle",47.6,-122.3],["Denver",39.7,-105.0],["Phoenix",33.4,-112.1],["Houston",29.8,-95.4],["Boston",42.4,-71.1,"n"]];   /* 第 4 欄 "n"：名字放在點的上方（避免和 New York 疊在一起） */
 /* 小飛機與貨輪（朝 +x 方向，原點在中心；animateMotion 會沿著路徑轉向） */
 const PLANE='<path class="wing" d="M-1 -2.6 L-6.5 -9 L-3 -9 L3 -2.6 Z"/><path class="wing" d="M-1 2.6 L-6.5 9 L-3 9 L3 2.6 Z"/>'
   +'<path class="wing" d="M-8 -1.4 L-11 -5.6 L-8.6 -5.6 L-5.6 -1.4 Z"/>'
@@ -454,7 +1476,9 @@ function drawMap(){
   const i=LANG==="en"?1:0;
   const [tx,ty]=project(PINS[1].ll), [ux,uy]=project(PINS[0].ll);
   let h=`<svg viewBox="${vb.x} ${vb.y} ${vb.w} ${vb.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${I18N["map.cap"][i]}"><rect x="0" y="0" width="2000" height="500" class="sea"/>`
-       +`<image href="earth.png" x="0" y="0" width="1000" height="500" preserveAspectRatio="none"/><image href="earth.png" x="1000" y="0" width="1000" height="500" preserveAspectRatio="none"/>`;
+       /* 區域視角放大很多，點陣的 earth.png 會糊：改用向量的北美底圖（tools/make_na_map.js 產生，座標同 project()） */
+       +(fit?`<image href="img/na-map.svg" x="1100" y="75" width="280" height="135" preserveAspectRatio="none"/>`
+            :`<image href="earth.png" x="0" y="0" width="1000" height="500" preserveAspectRatio="none"/><image href="earth.png" x="1000" y="0" width="1000" height="500" preserveAspectRatio="none"/>`);
   if(!fit){
     /* 空運偏北、海運偏南，兩條弧線都從台灣到美國倉 */
     const air=`M${tx.toFixed(1)} ${ty.toFixed(1)} Q ${((tx+ux)/2).toFixed(1)} ${(Math.min(ty,uy)-95).toFixed(1)} ${ux.toFixed(1)} ${uy.toFixed(1)}`;
@@ -468,10 +1492,11 @@ function drawMap(){
       : `<g class="mv ${cls}"><animateMotion dur="${dur}s" repeatCount="indefinite" rotate="auto"><mpath href="#${path}"/></animateMotion><g transform="scale(${(1.9*u).toFixed(3)})">${d}</g></g>`;
     h+=mv("air",9,PLANE,"plane",[(tx+ux)/2,Math.min(ty,uy)-48])+mv("sea",22,SHIP,"ship",[(tx+ux)/2,Math.max(ty,uy)+36]);
   }
-  const fw=(fit?22:20)*u, fh=fw*0.75, pad=1.5*u;
+  const kf=fit?Math.min(1,Math.max(.62,mapW/900)):1;
+  const fw=(fit?30*kf:20)*u, fh=fw*0.75, pad=1.5*u, lift=(fit?16*kf:9)*u;   /* 旗子框在地點上方 lift 處 */
   const bw=fw+2*pad+4*u, bh=fh+2*pad+12*u;
   const list=fit?PINS.filter(p=>p.kind==="wh"||p.iso==="ca"):PINS;
-  const pins=list.map(p=>{ const [x,y]=project(p.ll); return {p,x0:x,y0:y,x,y:y-9*u}; });
+  const pins=list.map(p=>{ const [x,y]=project(p.ll); return {p,x0:x,y0:y,x,y:y-lift}; });
   for(let it=0;it<80;it++){ let moved=false;
     for(let a2=0;a2<pins.length;a2++) for(let b2=a2+1;b2<pins.length;b2++){
       const A=pins[a2],B=pins[b2]; const dx=B.x-A.x, dy=B.y-A.y, ox=bw-Math.abs(dx), oy=bh-Math.abs(dy);
@@ -480,20 +1505,22 @@ function drawMap(){
     } if(!moved) break; }
   if(fit){ /* 美國境內配送點 */
     const [wx,wy]=project(PINS[0].ll);
-    for(const [n,lat,lon] of CITIES){ const [x,y]=project([lat,lon]);
-      h+=`<path class="route" d="M${wx.toFixed(1)} ${wy.toFixed(1)} L${x.toFixed(1)} ${y.toFixed(1)}" stroke-width="${1*u}" stroke-dasharray="${5*u} ${4*u}"/>`
-        +`<g class="city" transform="translate(${x.toFixed(1)},${y.toFixed(1)})"><circle r="${2.4*u}"/><text x="${3.5*u}" y="${1.5*u}" font-size="${7.5*u}" stroke-width="${2.5*u}">${n}</text></g>`; }
+    const k=Math.min(1,Math.max(.62,mapW/900));   /* 手機上地圖小，字與點跟著縮 */
+    for(const [n,lat,lon,pos] of CITIES){ const [x,y]=project([lat,lon]);
+      const tx=pos==="n"?-2*k*u:6*k*u, ty=pos==="n"?-6*k*u:4*k*u;
+      h+=`<path class="route" d="M${wx.toFixed(1)} ${wy.toFixed(1)} L${x.toFixed(1)} ${y.toFixed(1)}" stroke-width="${1.6*u}" stroke-dasharray="${6*u} ${4*u}"/>`
+        +`<g class="city" transform="translate(${x.toFixed(1)},${y.toFixed(1)})"><circle r="${3.6*k*u}" stroke-width="${1.4*k*u}"/><text x="${tx}" y="${ty}" font-size="${12*k*u}" stroke-width="${3.5*k*u}">${n}</text></g>`; }
   }
   for(const q of pins){
     h+=`<circle class="spot" cx="${q.x0.toFixed(1)}" cy="${q.y0.toFixed(1)}" r="${2.6*u}" stroke-width="${u}"/>`;
-    if(Math.hypot(q.x-q.x0,q.y-(q.y0-9*u))>4*u) h+=`<line class="lead" x1="${q.x0.toFixed(1)}" y1="${q.y0.toFixed(1)}" x2="${q.x.toFixed(1)}" y2="${q.y.toFixed(1)}" stroke-width="${1.2*u}" stroke-dasharray="${3*u} ${2*u}"/>`;
+    if(Math.hypot(q.x-q.x0,q.y-(q.y0-lift))>4*u) h+=`<line class="lead" x1="${q.x0.toFixed(1)}" y1="${q.y0.toFixed(1)}" x2="${q.x.toFixed(1)}" y2="${q.y.toFixed(1)}" stroke-width="${1.2*u}" stroke-dasharray="${3*u} ${2*u}"/>`;
   }
   for(const q of pins.slice().reverse()){
     const lab=(I18N[q.p.k]||["",""])[i];
     h+=`<g class="pin ${q.p.kind}" transform="translate(${q.x.toFixed(1)},${q.y.toFixed(1)})"><title>${lab}</title>`
       +`<rect x="${-fw/2-pad}" y="${-fh/2-pad}" width="${fw+2*pad}" height="${fh+2*pad}" rx="${2*u}" stroke-width="${(q.p.kind==="wh"?2:1)*u}"/>`
       +`<image href="flags/${q.p.iso}.svg" x="${-fw/2}" y="${-fh/2}" width="${fw}" height="${fh}"/>`
-      +`<text y="${fh/2+10*u}" font-size="${(fit?9:8.5)*u}" text-anchor="middle" stroke-width="${3*u}">${lab}</text></g>`;
+      +`<text y="${fh/2+(fit?14*kf:10)*u}" font-size="${(fit?13*kf:8.5)*u}" text-anchor="middle" stroke-width="${3*u}">${lab}</text></g>`;
   }
   el.innerHTML=h+`</svg>`;
 }
@@ -510,6 +1537,12 @@ applyFont(pref("font")||"hand");
 applyTheme(pref("theme")||"navy");
 TZ=(pref("tz")==="Asia/Taipei")?"Asia/Taipei":"America/Los_Angeles"; $("tz-sel").value=TZ;
 applyLang(pref("lang")||"zh");
+/* 首頁的服務卡、價值卡：捲進畫面才浮上來（分頁藏著時不算進畫面，切回來才播） */
+if("IntersectionObserver" in window){
+  document.documentElement.classList.add("js-reveal");
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }),{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+}
 showTab(location.hash.replace("#",""));
 </script>
 
