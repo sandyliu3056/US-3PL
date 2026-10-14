@@ -92,12 +92,64 @@
   .svc li:nth-child(1) { --j:0; } .svc li:nth-child(2) { --j:1; } .svc li:nth-child(3) { --j:2; } .svc li:nth-child(4) { --j:3; } .svc li:nth-child(5) { --j:4; }
   .svc li::before { transition:transform .2s ease; }
   .svc li:hover::before { transform:scale(1.3) rotate(12deg); }
-  /* 路線圖：虛線上五個站點，包裹來回走；站點輪流亮一下 */
-  .route { position:relative; display:flex; justify-content:space-between; align-items:center; margin:16px 10px 4px; height:44px; }
-  .route::before { content:""; position:absolute; left:18px; right:18px; top:50%; border-top:2px dashed var(--selline); }
-  .rt-node { position:relative; z-index:1; width:38px; height:38px; border-radius:50%; background:var(--panel); border:2px solid var(--navy); display:inline-flex; align-items:center; justify-content:center; font-size:1.15rem; animation:pulse 7.5s ease-in-out infinite; }
-  .rt-node:nth-child(2) { animation-delay:0s; } .rt-node:nth-child(3) { animation-delay:1.5s; } .rt-node:nth-child(4) { animation-delay:3s; } .rt-node:nth-child(5) { animation-delay:4.5s; } .rt-node:nth-child(6) { animation-delay:6s; }
-  .rt-mover { position:absolute; z-index:2; top:50%; left:0; font-style:normal; font-size:1.05rem; transform:translate(-50%, -50%); animation:travel 7.5s linear infinite; filter:drop-shadow(0 2px 2px rgba(0,0,0,.25)); }
+  /* 出貨場景：天空在上、地面在下；船走海線、卡車走公路、飛機走天空，倉庫在中間 */
+  .scene { position:relative; height:150px; margin:14px 0 8px; border:2px solid var(--navy); border-radius:9px; overflow:hidden;
+           background:linear-gradient(180deg, var(--sea) 0%, var(--sea) 64%, var(--stripe) 64%, var(--stripe) 100%); }
+  .scene i, .scene em { font-style:normal; line-height:1; }
+  .scene .lane { position:absolute; height:0; }
+  .scene .sea { left:12%; width:38%; top:58%; border-top:3px dotted var(--selline); }
+  .scene .road { left:50%; width:38%; top:80%; border-top:3px dashed var(--selline); }
+  .scene .stop { position:absolute; bottom:8px; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; z-index:2; }
+  .scene .stop em { font-size:2rem; display:block; }
+  .scene .stop b { font-size:.72rem; color:var(--ink); margin-top:3px; white-space:nowrap; background:var(--panel); border:1px solid var(--line); border-radius:999px; padding:1px 8px; }
+  .scene .origin { left:12%; } .scene .wh { left:50%; } .scene .dest { left:88%; }
+  .scene .wh em { font-size:2.6rem; animation:whpulse 10s ease-in-out infinite; transform-origin:50% 100%; }
+  .scene .ship, .scene .truck, .scene .plane, .scene .pkg { position:absolute; z-index:3; font-size:1.6rem; transform:translate(-50%, -50%); }
+  .scene .ship { top:58%; left:12%; animation:sail 10s linear infinite; }
+  .scene .ship span { display:inline-block; animation:bob 1.6s ease-in-out infinite; }
+  .scene .truck { top:80%; left:50%; animation:drive 10s linear infinite; }
+  .scene .truck span { display:inline-block; transform:scaleX(-1); animation:bump .35s linear infinite; }   /* 🚚 預設朝左，翻過來往右開 */
+  .scene .plane { top:34%; left:50%; animation:fly 10s ease-in-out infinite; }
+  .scene .plane span { display:inline-block; animation:bob 2.4s ease-in-out infinite; }
+  .scene .pkg { font-size:1rem; top:50%; left:50%; animation:pkg 10s ease-in-out infinite; }
+  .scene .cloud { position:absolute; top:8%; font-size:1.4rem; opacity:.75; animation:drift 30s linear infinite; }
+  .scene .c1 { left:-8%; } .scene .c2 { left:30%; top:18%; animation-duration:38s; font-size:1.1rem; } .scene .c3 { left:70%; animation-duration:46s; }
+  @keyframes sail  { 0% { left:12%; opacity:1; } 34% { left:49%; opacity:1; } 38% { left:50%; opacity:0; } 100% { left:50%; opacity:0; } }
+  @keyframes drive { 0%, 44% { left:50%; opacity:0; } 47% { left:52%; opacity:1; } 84% { left:86%; opacity:1; } 88%, 100% { left:88%; opacity:0; } }
+  @keyframes fly   { 0%, 44% { left:50%; top:46%; opacity:0; } 48% { left:54%; top:40%; opacity:1; } 66% { top:12%; } 84% { left:86%; top:30%; opacity:1; } 88%, 100% { left:88%; top:34%; opacity:0; } }
+  @keyframes pkg   { 0%, 36% { opacity:0; top:58%; left:49%; } 40% { opacity:1; top:44%; left:50%; } 45% { opacity:1; top:44%; } 47% { opacity:0; top:52%; } 100% { opacity:0; } }
+  @keyframes whpulse { 0%, 34%, 50%, 100% { transform:scale(1); filter:none; } 40% { transform:scale(1.22); filter:drop-shadow(0 0 10px rgba(242,177,52,.9)); } }
+  @keyframes bob   { 0%, 100% { transform:translateY(0); } 50% { transform:translateY(-3px); } }
+  @keyframes bump  { 0%, 100% { transform:scaleX(-1) translateY(0); } 50% { transform:scaleX(-1) translateY(-1px); } }
+  @keyframes drift { from { transform:translateX(0); } to { transform:translateX(110vw); } }
+  @media (max-width:600px) { .scene { height:130px; } .scene .stop b { font-size:.62rem; } .scene .stop em { font-size:1.6rem; } .scene .wh em { font-size:2.1rem; } }
+  /* ERP／API 宣傳：左文右圖，右邊是兩個節點之間來回流動的資料點 */
+  .promo { display:grid; grid-template-columns:1.4fr 1fr; gap:16px; align-items:center; margin:18px 0 8px; padding:16px 20px; border:2px solid var(--navy); border-radius:12px;
+           background:linear-gradient(135deg, var(--panel) 0%, var(--stripe) 60%, var(--hover) 160%); position:relative; overflow:hidden; }
+  .promo::after { content:""; position:absolute; inset:0; background:linear-gradient(110deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%); transform:translateX(-100%); animation:sheen 6s ease-in-out infinite; pointer-events:none; }
+  .promo-text { position:relative; z-index:1; min-width:0; }
+  .promo h3 { margin:6px 0 4px; font-size:1.25rem; display:inline-block; }
+  .promo p { margin:0 0 8px; color:var(--ink); font-size:.92rem; }
+  .promo ul { margin:0 0 12px; padding-left:1.2em; font-size:.9rem; display:grid; gap:3px; }
+  .promo .badge { display:inline-block; background:var(--warn); color:#fff; font-weight:700; font-size:.72rem; letter-spacing:.08em; padding:2px 9px; border-radius:999px; animation:badge 2.2s ease-in-out infinite; vertical-align:middle; margin-right:8px; }
+  .promo-art { position:relative; z-index:1; display:flex; align-items:center; justify-content:center; gap:0; min-height:120px; }
+  .promo-art .node { display:flex; flex-direction:column; align-items:center; gap:4px; background:var(--panel); border:2px solid var(--navy); border-radius:12px; padding:10px 14px; min-width:96px; }
+  .promo-art .node em { font-style:normal; font-size:2rem; line-height:1; }
+  .promo-art .node b { font-size:.74rem; white-space:nowrap; }
+  .promo-art .wh em { animation:bob 2.4s ease-in-out infinite; }
+  .promo-art .link { position:relative; flex:1 1 90px; max-width:150px; height:46px; margin:0 6px; }
+  .promo-art .link::before, .promo-art .link::after { content:""; position:absolute; left:0; right:0; border-top:2px dashed var(--selline); }
+  .promo-art .link::before { top:12px; } .promo-art .link::after { bottom:12px; }
+  .promo-art .api { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:var(--navy); color:var(--gold); font-weight:700; font-size:.7rem; letter-spacing:.1em; padding:2px 8px; border-radius:999px; }
+  .promo-art .dot { position:absolute; width:9px; height:9px; border-radius:50%; background:var(--orange); top:8px; left:0; animation:flow 2.4s linear infinite; }
+  .promo-art .d2 { animation-delay:.8s; } .promo-art .d3 { animation-delay:1.6s; }
+  .promo-art .dot.up { top:auto; bottom:8px; background:var(--okdark); animation-name:flowback; animation-duration:3s; }
+  .promo-art .u2 { animation-delay:1.5s; }
+  @keyframes flow { from { left:0; opacity:0; } 15% { opacity:1; } 85% { opacity:1; } to { left:calc(100% - 9px); opacity:0; } }
+  @keyframes flowback { from { left:calc(100% - 9px); opacity:0; } 15% { opacity:1; } 85% { opacity:1; } to { left:0; opacity:0; } }
+  @keyframes sheen { 0%, 55% { transform:translateX(-100%); } 100% { transform:translateX(100%); } }
+  @keyframes badge { 0%, 100% { transform:scale(1); } 50% { transform:scale(1.12); } }
+  @media (max-width:800px) { .promo { grid-template-columns:1fr; } }
   /* 支援平台：圓角標籤，進場一顆顆彈出，滑過去會跳一下 */
   .chips.plats span { border:1.5px solid var(--navy); border-radius:999px; padding:3px 13px; background:var(--panel); font-weight:700; transition:transform .2s ease, background .2s ease; }
   .chips.plats span:hover { transform:translateY(-3px) scale(1.06); background:var(--hover); }
@@ -251,10 +303,17 @@
   <section class="tab" id="tab-services">
     <h2 class="section" data-i18n="svc.h">服務內容</h2>
     <div class="caption" data-i18n="svc.s">幫線上賣家更聰明出貨、放眼全球。</div>
-    <!-- 裝飾用的路線圖：五個站點對應下面五張卡，包裹沿著虛線一直走 -->
-    <div class="route" aria-hidden="true">
-      <i class="rt-mover">📦</i>
-      <span class="rt-node">🏬</span><span class="rt-node">📦</span><span class="rt-node">✈️</span><span class="rt-node">💻</span><span class="rt-node">🤝</span>
+    <!-- 出貨場景（純 CSS 動畫，10 秒一輪）：貨從亞洲坐船到加州倉 → 倉庫亮一下 → 卡車與飛機從倉庫出發送到全美與全球 -->
+    <div class="scene" aria-hidden="true">
+      <i class="cloud c1">☁️</i><i class="cloud c2">☁️</i><i class="cloud c3">☁️</i>
+      <span class="lane sea"></span><span class="lane road"></span>
+      <span class="stop origin"><em>🏭</em><b data-i18n="sc.origin">台灣 / 中國 / 東南亞</b></span>
+      <span class="stop wh"><em>🏬</em><b data-i18n="sc.wh">美國倉（加州）</b></span>
+      <span class="stop dest"><em>🏠</em><b data-i18n="sc.dest">全美與全球</b></span>
+      <i class="ship"><span>🚢</span></i>
+      <i class="truck"><span>🚚</span></i>
+      <i class="plane"><span>✈️</span></i>
+      <i class="pkg">📦</i>
     </div>
     <div class="svcs">
       <div class="svc"><div class="t"><span>🏬</span><span data-i18n="svc.1">美國倉儲服務</span></div><ul>
@@ -267,6 +326,25 @@
         <li data-i18n="svc.4a">商品上架協助</li><li data-i18n="svc.4b">庫存同步</li><li data-i18n="svc.4c">訂單流程優化</li><li data-i18n="svc.4d">退貨處理</li><li data-i18n="svc.4e">客服支援</li></ul></div>
       <div class="svc"><div class="t"><span>🤝</span><span data-i18n="svc.5">彈性合作</span></div><ul>
         <li data-i18n="svc.5a">電商與新品牌</li><li data-i18n="svc.5b">小型賣家友善</li><li data-i18n="svc.5c">一站式服務</li><li data-i18n="svc.5d">客製方案</li><li data-i18n="svc.5e">協助拓展美國市場</li></ul></div>
+    </div>
+    <!-- 宣傳：ERP 對接與開放 API（右側是會動的「資料流」示意） -->
+    <div class="promo">
+      <div class="promo-text">
+        <span class="badge" data-i18n="api.badge">NEW</span>
+        <h3 data-i18n="api.h">ERP 對接 · 開放 API</h3>
+        <p data-i18n="api.s">把您的 ERP、WMS 或電商後台直接接上我們的倉庫：訂單自動進倉、庫存與出貨狀態即時回寫，不用再手動匯入匯出。</p>
+        <ul>
+          <li data-i18n="api.1">開放 REST API 與 Webhook：建單、查庫存、追蹤出貨</li>
+          <li data-i18n="api.2">支援 SAP、Oracle、鼎新、用友等 ERP，以及 Shopify、Amazon 等平台 API</li>
+          <li data-i18n="api.3">提供 API 文件與測試環境，工程師協助串接</li>
+        </ul>
+        <a class="btn primary" id="api-mail" href="mailto:sandyliu3056@gmail.com" data-i18n="api.cta">洽談 API 串接</a>
+      </div>
+      <div class="promo-art" aria-hidden="true">
+        <div class="node erp"><em>🖥️</em><b>ERP / WMS</b></div>
+        <div class="link"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><i class="dot up u1"></i><i class="dot up u2"></i><span class="api">API</span></div>
+        <div class="node wh"><em>🏬</em><b data-i18n="api.wh">我們的倉庫</b></div>
+      </div>
     </div>
     <h2 class="section" data-i18n="plat.h">支援平台</h2>
     <div class="caption" data-i18n="plat.s">多平台訂單整合。</div>
@@ -309,6 +387,13 @@ const I18N={
   "aria.lang":["語言","Language"],"aria.font":["字型","Font"],"aria.theme":["主題","Theme"],"aria.tz":["時區","Time zone"],"aria.nav":["分頁","Sections"],
   "home.mail":["寄信詢價","Email for a quote"],"home.hint":["說明商品、每月出貨量、尺寸重量、貨從哪裡來，我們會盡快回覆。","Tell us the product, monthly volume, size and weight and origin; we reply as soon as we can."],
   "bd.1":["全球出貨","Global Shipping"],"bd.2":["快速週轉","Fast Turnaround"],"bd.3":["安全可靠","Safe & Reliable"],"bd.4":["歡迎合作","Open to Collaboration"],
+  "api.badge":["最新","NEW"],"api.h":["ERP 對接 · 開放 API","ERP Integration · Open API"],
+  "api.s":["把您的 ERP、WMS 或電商後台直接接上我們的倉庫：訂單自動進倉、庫存與出貨狀態即時回寫，不用再手動匯入匯出。","Connect your ERP, WMS or store back end straight to our warehouse: orders flow in automatically and stock and shipping status are written back in real time. No more manual imports and exports."],
+  "api.1":["開放 REST API 與 Webhook：建單、查庫存、追蹤出貨","Open REST API and webhooks: create orders, check stock, track shipments"],
+  "api.2":["支援 SAP、Oracle、鼎新、用友等 ERP，以及 Shopify、Amazon 等平台 API","Works with SAP, Oracle, Digiwin, Yonyou and other ERPs, plus Shopify, Amazon and other platform APIs"],
+  "api.3":["提供 API 文件與測試環境，工程師協助串接","API docs and a sandbox, with engineers to help you integrate"],
+  "api.cta":["洽談 API 串接","Talk to us about API integration"],"api.wh":["我們的倉庫","Our warehouse"],
+  "sc.origin":["台灣 / 中國 / 東南亞","Taiwan / China / SE Asia"],"sc.wh":["美國倉（加州）","U.S. warehouse (California)"],"sc.dest":["全美與全球","U.S. & worldwide"],
   "hdr.open":["接單中","Taking orders"],"hdr.quote":["聯絡報價","Get a quote"],
   "nav.home":["首頁","Home"],"nav.services":["服務內容","Services"],"nav.flow":["合作流程","How it works"],
   
@@ -359,7 +444,7 @@ function applyLang(code){
   document.documentElement.lang=i?"en":"zh-Hant-TW";
   document.title=i?"E-Commerce & U.S. Warehouse Fulfillment Solutions":"美國倉儲履約方案";
   $("lang-sel").value=LANG; pref("lang",LANG); tick(); drawMap();
-  if(typeof mailHref==="function"){ const h=mailHref(I18N["q.subj"][i]); for(const id of ["quote-btn","home-mail","mail-link"]){ const el=$(id); if(el) el.href=h; } }
+  if(typeof mailHref==="function"){ const h=mailHref(I18N["q.subj"][i]); for(const id of ["quote-btn","home-mail","mail-link","api-mail"]){ const el=$(id); if(el) el.href=h; } }
 }
 /* 聯絡頁的服務地區：和地圖同一份地點，一面旗一個名字 */
 function applyFont(v){ document.documentElement.dataset.font=v==="sans"?"sans":"hand"; $("font-sel").value=v; pref("font",v); }
