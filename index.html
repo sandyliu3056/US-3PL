@@ -65,6 +65,7 @@
   .kpi .k { color:var(--mute); font-size:.8rem; font-weight:700; }
   .kpi .v { color:var(--ink); font-size:1.45rem; font-weight:700; line-height:1.3; }
   .kpi .s { color:var(--mute); font-size:.82rem; }
+  .kpi .s.ct-v { color:var(--ink); font-size:.95rem; font-weight:700; margin-top:4px; }
   .section { font-weight:700; font-size:1.02rem; margin:16px 0 6px; }
   .caption { color:var(--mute); font-size:.85rem; }
   .hint { color:var(--mute); font-size:.82rem; margin:-2px 0 6px 2px; }
@@ -238,7 +239,7 @@
   .map .rl { font-family:inherit; font-weight:700; fill:var(--ink); paint-order:stroke; stroke:#fff; stroke-linejoin:round; }
   .chips .lg.rt { border:0; background:none; width:14px; height:0; border-top:2px dashed var(--navy); vertical-align:2px; }
   .map line.lead { stroke:#1E2430; opacity:.75; }
-  .map .city circle { fill:#1E2430; stroke:#fff; stroke-width:1; }
+  .map .city circle { fill:var(--navy); stroke:#fff; }
   .map .city text { font-family:inherit; font-weight:700; fill:var(--ink); paint-order:stroke; stroke:#fff; stroke-linejoin:round; }
   .chips .lg { display:inline-block; width:12px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px; border:1.5px solid var(--navy); background:#fff; }
   .chips .lg.wh { background:var(--gold); } .chips .lg.from { border-color:var(--orange); } .chips .lg.city { border:0; border-radius:50%; background:#1E2430; width:10px; }
@@ -272,7 +273,7 @@
     <div class="clock"><div class="t" id="clock">--:--</div><div class="d"><span id="date"></span> <span id="tzname">加州</span></div></div>
     <div class="pill"><span class="dot"></span><span data-i18n="hdr.open">接單中</span></div>
     <a class="hbtn" id="quote-btn" href="mailto:sandyliu3056@gmail.com" data-i18n="hdr.quote">聯絡報價</a>
-    <a href="mailto:sandyliu3056@gmail.com" id="mail-link">sandyliu3056@gmail.com</a>
+    <a href="#contact" id="mail-link">sandyliu3056@gmail.com</a>
   </div>
 </header>
 
@@ -280,17 +281,12 @@
   <button data-tab="home" class="active" type="button"><span class="ico" aria-hidden="true">📂</span><span data-i18n="nav.home">首頁</span></button>
   <button data-tab="services" type="button"><span class="ico" aria-hidden="true">🏬</span><span data-i18n="nav.services">服務內容</span></button>
   <button data-tab="flow" type="button"><span class="ico" aria-hidden="true">🔁</span><span data-i18n="nav.flow">合作流程</span></button>
+  <button data-tab="contact" type="button"><span class="ico" aria-hidden="true">✉️</span><span data-i18n="nav.contact">聯絡我們</span></button>
 </nav>
 
 <main class="card">
   <!-- 首頁 -->
   <section class="tab active" id="tab-home">
-    <div class="row panel">
-      <div class="field"><span data-i18n="ct.email">電子郵件</span><span class="copyrow"><code id="email">sandyliu3056@gmail.com</code><button class="btn sm" id="copy-email" type="button" data-i18n="ct.copy">複製</button></span></div>
-      <a class="btn primary" id="home-mail" href="mailto:sandyliu3056@gmail.com" data-i18n="home.mail">寄信詢價</a>
-      <span class="caption" data-i18n="home.hint">說明商品、每月出貨量、尺寸重量、貨從哪裡來，我們會盡快回覆。</span>
-    </div>
-
     <div class="kpis">
       <div class="kpi"><div class="k" data-i18n="k1">小包</div><div class="v" data-i18n="k1v">$3 起</div><div class="s" data-i18n="k1s">Small Parcel from $3+</div></div>
       <div class="kpi"><div class="k" data-i18n="k2">UPS / FedEx</div><div class="v" data-i18n="k2v">優惠費率</div><div class="s" data-i18n="k2s">Discounted UPS / FedEx Rates</div></div>
@@ -419,6 +415,23 @@
     </div>
   </section>
 
+  <!-- 聯絡我們：信箱、寄信詢價，以及回覆時間等資訊 -->
+  <section class="tab" id="tab-contact">
+    <h2 class="section" data-i18n="ct.h">聯絡我們</h2>
+    <div class="caption" data-i18n="ct.s">來信說明商品與每月出貨量，我們會盡快回覆。</div>
+    <div class="row panel">
+      <div class="field"><span data-i18n="ct.email">電子郵件</span><span class="copyrow"><code id="email">sandyliu3056@gmail.com</code><button class="btn sm" id="copy-email" type="button" data-i18n="ct.copy">複製</button></span></div>
+      <a class="btn primary" id="home-mail" href="mailto:sandyliu3056@gmail.com" data-i18n="home.mail">寄信詢價</a>
+      <span class="caption" data-i18n="home.hint">說明商品、每月出貨量、尺寸重量、貨從哪裡來，我們會盡快回覆。</span>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="k"><span aria-hidden="true">⏱</span> <span data-i18n="ct.t1">回覆時間</span></div><div class="s ct-v" data-i18n="ct.t1v">盡快，通常一個工作天內</div></div>
+      <div class="kpi"><div class="k"><span aria-hidden="true">🗣</span> <span data-i18n="ct.t2">語言</span></div><div class="s ct-v" data-i18n="ct.t2v">中文、英文</div></div>
+      <div class="kpi"><div class="k"><span aria-hidden="true">📋</span> <span data-i18n="ct.t3">報價需要</span></div><div class="s ct-v" data-i18n="ct.t3v">商品、每月出貨量、尺寸重量、貨從哪裡來</div></div>
+      <div class="kpi"><div class="k"><span aria-hidden="true">📍</span> <span data-i18n="ct.t4">倉庫地點</span></div><div class="s ct-v" data-i18n="ct.t4v">City of Industry, California</div></div>
+    </div>
+  </section>
+
 </main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -434,6 +447,7 @@ const I18N={
   "home.mail":["寄信詢價","Email for a quote"],"home.hint":["說明商品、每月出貨量、尺寸重量、貨從哪裡來，我們會盡快回覆。","Tell us the product, monthly volume, size and weight and origin; we reply as soon as we can."],
   "bd.1":["全球出貨","Global Shipping"],"bd.2":["快速週轉","Fast Turnaround"],"bd.3":["安全可靠","Safe & Reliable"],"bd.4":["歡迎合作","Open to Collaboration"],
   "tl.h":["我們的服務","Our services"],"tl.s":["從進貨、存放到出貨，美國倉一站搞定。","From receiving and storage to shipping, all in one U.S. warehouse."],"tl.more":["了解更多 →","Learn more →"],"tl.1":["海外倉儲","Overseas Warehousing"],"tl.1s":["加州倉就近美國市場，貨物安全存放、隨時可出貨。","A California warehouse close to U.S. customers, with stock stored safely and ready to ship."],"tl.2":["在地倉儲與履約","Local Storage & Fulfillment"],"tl.2s":["收到訂單就揀貨、包裝、出貨，一條龍完成。","Orders are picked, packed and shipped in one smooth flow."],"tl.3":["收貨與出貨","Shipping & Receiving"],"tl.3s":["進貨驗收、出貨交寄，每一步都有紀錄可追蹤。","Inbound receiving and outbound handoff, with every step tracked."],"tl.4":["貼標服務","Labeling Services"],"tl.4s":["條碼、FBA 標籤、換標與合規標示，出貨前一次貼好。","Barcodes, FBA labels, relabeling and compliance labels, applied before shipping."],"tl.5":["庫存管理","Inventory Management"],"tl.5s":["庫存數量隨時查得到，補貨時機一目了然。","Check stock levels anytime and see at a glance when to restock."],"tl.6":["電商解決方案","E-Commerce Solutions"],"tl.6s":["串接 Shopify、Amazon 等平台，為線上賣家量身規劃物流。","Connected to Shopify, Amazon and more, with logistics planned around online sellers."],"vl.h":["為什麼選擇我們","Why choose us"],"vl.1":["安全第一","Safety First"],"vl.1s":["每一件貨都小心搬運、妥善存放。","Every shipment is handled and stored with care."],"vl.2":["快速高效","Speed & Efficiency"],"vl.2s":["流程持續優化，訂單出得又快又準。","Continuously improved processes get orders out fast and accurately."],"vl.3":["成本實惠","Cost-Effective"],"vl.3s":["UPS / FedEx 優惠費率，小包 $3 起，幫您守住利潤。","Discounted UPS / FedEx rates and small parcels from $3 protect your margins."],
+  "nav.contact":["聯絡我們","Contact"],"ct.h":["聯絡我們","Contact us"],"ct.s":["來信說明商品與每月出貨量，我們會盡快回覆。","Tell us about your products and monthly volume and we will get back to you promptly."],"ct.t1":["回覆時間","Reply time"],"ct.t1v":["盡快，通常一個工作天內","Promptly, usually within one business day"],"ct.t2":["語言","Languages"],"ct.t2v":["中文、英文","Chinese, English"],"ct.t3":["報價需要","For a quote"],"ct.t3v":["商品、每月出貨量、尺寸重量、貨從哪裡來","Product, monthly volume, size and weight, origin"],"ct.t4":["倉庫地點","Warehouse"],"ct.t4v":["City of Industry, California","City of Industry, California"],
   "api.badge":["最新","NEW"],"api.h":["ERP 對接 · 開放 API","ERP Integration · Open API"],
   "api.s":["把您的 ERP、WMS 或電商後台直接接上我們的倉庫：訂單自動進倉、庫存與出貨狀態即時回寫，不用再手動匯入匯出。","Connect your ERP, WMS or store back end straight to our warehouse: orders flow in automatically and stock and shipping status are written back in real time. No more manual imports and exports."],
   "api.1":["開放 REST API 與 Webhook：建單、查庫存、追蹤出貨","Open REST API and webhooks: create orders, check stock, track shipments"],
@@ -491,7 +505,7 @@ function applyLang(code){
   document.documentElement.lang=i?"en":"zh-Hant-TW";
   document.title=i?"E-Commerce & U.S. Warehouse Fulfillment Solutions":"美國倉儲履約方案";
   $("lang-sel").value=LANG; pref("lang",LANG); tick(); drawMap();
-  if(typeof mailHref==="function"){ const h=mailHref(I18N["q.subj"][i]); for(const id of ["quote-btn","home-mail","mail-link","api-mail"]){ const el=$(id); if(el) el.href=h; } }
+  if(typeof mailHref==="function"){ const h=mailHref(I18N["q.subj"][i]); for(const id of ["quote-btn","home-mail","api-mail"]){ const el=$(id); if(el) el.href=h; } }
 }
 /* 聯絡頁的服務地區：和地圖同一份地點，一面旗一個名字 */
 function applyFont(v){ document.documentElement.dataset.font=v==="sans"?"sans":"hand"; $("font-sel").value=v; pref("font",v); }
@@ -518,9 +532,9 @@ $("tz-sel").addEventListener("change",e=>{ TZ=e.target.value; pref("tz",TZ); tic
 setInterval(tick,15000);
 
 /* 分頁：和 RMA 一樣的分頁按鈕；網址 #services 之類直接開那一頁。 */
-const TABS=["home","services","flow"];
+const TABS=["home","services","flow","contact"];
 function showTab(name){
-  if(name==="contact"||name==="rates") name="home";   /* 舊連結 #contact、#rates：聯絡方式在首頁 */
+  if(name==="rates") name="contact";   /* 舊連結 #rates（以前的「運費與聯絡」）開「聯絡我們」 */
   const n=TABS.includes(name)?name:"home";
   document.querySelectorAll("#tabs button").forEach(b=>{ const on=b.dataset.tab===n; b.classList.toggle("active",on); if(on) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current"); });
   TABS.forEach(t=>{ const s=$("tab-"+t); if(s) s.classList.toggle("active",t===n); });
@@ -565,7 +579,7 @@ const PINS=[
 ];
 /* 美國境內配送點（區域視角才畫）：Ground 1–5 個工作天 */
 const CITIES=[["New York",40.7,-74.0],["Chicago",41.9,-87.6],["Dallas",32.8,-96.8],["Atlanta",33.7,-84.4],["Miami",25.8,-80.2],
-  ["Seattle",47.6,-122.3],["Denver",39.7,-105.0],["Phoenix",33.4,-112.1],["Houston",29.8,-95.4],["Boston",42.4,-71.1]];
+  ["Seattle",47.6,-122.3],["Denver",39.7,-105.0],["Phoenix",33.4,-112.1],["Houston",29.8,-95.4],["Boston",42.4,-71.1,"n"]];   /* 第 4 欄 "n"：名字放在點的上方（避免和 New York 疊在一起） */
 /* 小飛機與貨輪（朝 +x 方向，原點在中心；animateMotion 會沿著路徑轉向） */
 const PLANE='<path class="wing" d="M-1 -2.6 L-6.5 -9 L-3 -9 L3 -2.6 Z"/><path class="wing" d="M-1 2.6 L-6.5 9 L-3 9 L3 2.6 Z"/>'
   +'<path class="wing" d="M-8 -1.4 L-11 -5.6 L-8.6 -5.6 L-5.6 -1.4 Z"/>'
@@ -586,7 +600,9 @@ function drawMap(){
   const i=LANG==="en"?1:0;
   const [tx,ty]=project(PINS[1].ll), [ux,uy]=project(PINS[0].ll);
   let h=`<svg viewBox="${vb.x} ${vb.y} ${vb.w} ${vb.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${I18N["map.cap"][i]}"><rect x="0" y="0" width="2000" height="500" class="sea"/>`
-       +`<image href="earth.png" x="0" y="0" width="1000" height="500" preserveAspectRatio="none"/><image href="earth.png" x="1000" y="0" width="1000" height="500" preserveAspectRatio="none"/>`;
+       /* 區域視角放大很多，點陣的 earth.png 會糊：改用向量的北美底圖（tools/make_na_map.js 產生，座標同 project()） */
+       +(fit?`<image href="img/na-map.svg" x="1100" y="75" width="280" height="135" preserveAspectRatio="none"/>`
+            :`<image href="earth.png" x="0" y="0" width="1000" height="500" preserveAspectRatio="none"/><image href="earth.png" x="1000" y="0" width="1000" height="500" preserveAspectRatio="none"/>`);
   if(!fit){
     /* 空運偏北、海運偏南，兩條弧線都從台灣到美國倉 */
     const air=`M${tx.toFixed(1)} ${ty.toFixed(1)} Q ${((tx+ux)/2).toFixed(1)} ${(Math.min(ty,uy)-95).toFixed(1)} ${ux.toFixed(1)} ${uy.toFixed(1)}`;
@@ -600,10 +616,11 @@ function drawMap(){
       : `<g class="mv ${cls}"><animateMotion dur="${dur}s" repeatCount="indefinite" rotate="auto"><mpath href="#${path}"/></animateMotion><g transform="scale(${(1.9*u).toFixed(3)})">${d}</g></g>`;
     h+=mv("air",9,PLANE,"plane",[(tx+ux)/2,Math.min(ty,uy)-48])+mv("sea",22,SHIP,"ship",[(tx+ux)/2,Math.max(ty,uy)+36]);
   }
-  const fw=(fit?22:20)*u, fh=fw*0.75, pad=1.5*u;
+  const kf=fit?Math.min(1,Math.max(.62,mapW/900)):1;
+  const fw=(fit?30*kf:20)*u, fh=fw*0.75, pad=1.5*u, lift=(fit?16*kf:9)*u;   /* 旗子框在地點上方 lift 處 */
   const bw=fw+2*pad+4*u, bh=fh+2*pad+12*u;
   const list=fit?PINS.filter(p=>p.kind==="wh"||p.iso==="ca"):PINS;
-  const pins=list.map(p=>{ const [x,y]=project(p.ll); return {p,x0:x,y0:y,x,y:y-9*u}; });
+  const pins=list.map(p=>{ const [x,y]=project(p.ll); return {p,x0:x,y0:y,x,y:y-lift}; });
   for(let it=0;it<80;it++){ let moved=false;
     for(let a2=0;a2<pins.length;a2++) for(let b2=a2+1;b2<pins.length;b2++){
       const A=pins[a2],B=pins[b2]; const dx=B.x-A.x, dy=B.y-A.y, ox=bw-Math.abs(dx), oy=bh-Math.abs(dy);
@@ -612,20 +629,22 @@ function drawMap(){
     } if(!moved) break; }
   if(fit){ /* 美國境內配送點 */
     const [wx,wy]=project(PINS[0].ll);
-    for(const [n,lat,lon] of CITIES){ const [x,y]=project([lat,lon]);
-      h+=`<path class="route" d="M${wx.toFixed(1)} ${wy.toFixed(1)} L${x.toFixed(1)} ${y.toFixed(1)}" stroke-width="${1*u}" stroke-dasharray="${5*u} ${4*u}"/>`
-        +`<g class="city" transform="translate(${x.toFixed(1)},${y.toFixed(1)})"><circle r="${2.4*u}"/><text x="${3.5*u}" y="${1.5*u}" font-size="${7.5*u}" stroke-width="${2.5*u}">${n}</text></g>`; }
+    const k=Math.min(1,Math.max(.62,mapW/900));   /* 手機上地圖小，字與點跟著縮 */
+    for(const [n,lat,lon,pos] of CITIES){ const [x,y]=project([lat,lon]);
+      const tx=pos==="n"?-2*k*u:6*k*u, ty=pos==="n"?-6*k*u:4*k*u;
+      h+=`<path class="route" d="M${wx.toFixed(1)} ${wy.toFixed(1)} L${x.toFixed(1)} ${y.toFixed(1)}" stroke-width="${1.6*u}" stroke-dasharray="${6*u} ${4*u}"/>`
+        +`<g class="city" transform="translate(${x.toFixed(1)},${y.toFixed(1)})"><circle r="${3.6*k*u}" stroke-width="${1.4*k*u}"/><text x="${tx}" y="${ty}" font-size="${12*k*u}" stroke-width="${3.5*k*u}">${n}</text></g>`; }
   }
   for(const q of pins){
     h+=`<circle class="spot" cx="${q.x0.toFixed(1)}" cy="${q.y0.toFixed(1)}" r="${2.6*u}" stroke-width="${u}"/>`;
-    if(Math.hypot(q.x-q.x0,q.y-(q.y0-9*u))>4*u) h+=`<line class="lead" x1="${q.x0.toFixed(1)}" y1="${q.y0.toFixed(1)}" x2="${q.x.toFixed(1)}" y2="${q.y.toFixed(1)}" stroke-width="${1.2*u}" stroke-dasharray="${3*u} ${2*u}"/>`;
+    if(Math.hypot(q.x-q.x0,q.y-(q.y0-lift))>4*u) h+=`<line class="lead" x1="${q.x0.toFixed(1)}" y1="${q.y0.toFixed(1)}" x2="${q.x.toFixed(1)}" y2="${q.y.toFixed(1)}" stroke-width="${1.2*u}" stroke-dasharray="${3*u} ${2*u}"/>`;
   }
   for(const q of pins.slice().reverse()){
     const lab=(I18N[q.p.k]||["",""])[i];
     h+=`<g class="pin ${q.p.kind}" transform="translate(${q.x.toFixed(1)},${q.y.toFixed(1)})"><title>${lab}</title>`
       +`<rect x="${-fw/2-pad}" y="${-fh/2-pad}" width="${fw+2*pad}" height="${fh+2*pad}" rx="${2*u}" stroke-width="${(q.p.kind==="wh"?2:1)*u}"/>`
       +`<image href="flags/${q.p.iso}.svg" x="${-fw/2}" y="${-fh/2}" width="${fw}" height="${fh}"/>`
-      +`<text y="${fh/2+10*u}" font-size="${(fit?9:8.5)*u}" text-anchor="middle" stroke-width="${3*u}">${lab}</text></g>`;
+      +`<text y="${fh/2+(fit?14*kf:10)*u}" font-size="${(fit?13*kf:8.5)*u}" text-anchor="middle" stroke-width="${3*u}">${lab}</text></g>`;
   }
   el.innerHTML=h+`</svg>`;
 }
