@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>美國海外倉 一件代發</title>
-<meta name="description" content="幫跨境賣家安排美國倉與一件代發：合作倉庫在 City of Industry, California，UPS / FedEx 優惠費率、小包 $3 起。台灣／美國兩地服務。">
-<meta property="og:title" content="美國海外倉 一件代發">
-<meta property="og:description" content="E-Commerce & U.S. Warehouse Fulfillment Solutions · partner warehouse in City of Industry, California">
+<title>美國倉儲履約方案</title>
+<meta name="description" content="電商與美國倉儲履約方案：幫線上賣家更聰明出貨、放眼全球。City of Industry, California · U.S. Warehouse Fulfillment Hub，UPS / FedEx 優惠費率、小包 $3 起。台灣／美國。">
+<meta property="og:title" content="美國倉儲履約方案">
+<meta property="og:description" content="E-Commerce & U.S. Warehouse Fulfillment Solutions · Helping online sellers ship smarter and grow globally">
 <style>img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -98,7 +98,6 @@
   .log { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px 12px; font-size:.9rem; white-space:pre-wrap; margin-top:6px; min-height:120px; }
   .notice { background:var(--panel); border:2px solid var(--navy); border-radius:8px; padding:9px 14px; font-size:.9rem; margin:8px 0; }
   .notice p { margin:8px 0 0; }
-  #qform { align-items:flex-end; }
   @media (pointer:coarse) { input, select, textarea, .hdr select { font-size:16px; } .btn.sm, .hbtn { min-height:36px; } }
   .small { font-size:.82rem; color:var(--mute); }
   /* 世界地圖：RMA 的 earth.png 底圖（等距圓柱投影）＋ 國旗釘 */
@@ -158,8 +157,8 @@
 
 <header class="hdr">
   <div class="brand">
-    <h1 data-i18n="brand.h1">美國海外倉 · 一件代發</h1>
-    <div class="sub" data-i18n="brand.sub">幫跨境賣家安排美國倉與一件代發 · 合作倉庫在 City of Industry, California</div>
+    <h1 data-i18n="brand.h1">電商 · 美國倉儲履約方案</h1>
+    <div class="sub" data-i18n="brand.sub">幫線上賣家更聰明出貨、放眼全球 · City of Industry, California · U.S. Warehouse Fulfillment Hub</div>
   </div>
   <div class="ctl">
     <select id="lang-sel" title="Language" aria-label="Language" data-i18n-aria="aria.lang"><option value="zh">中文</option><option value="en">English</option></select>
@@ -183,25 +182,17 @@
 <main class="card">
   <!-- 首頁 -->
   <section class="tab active" id="tab-home">
-    <form class="row panel" id="qform">
-      <label><span data-i18n="q.item">商品</span><input type="text" id="q-item" size="18" data-i18n-ph="q.itemph" placeholder="例如：保溫杯、寵物用品"></label>
-      <label><span data-i18n="q.vol">每月出貨量</span><select id="q-vol">
-        <option value="1" data-i18n="q.v1">100 件以下</option><option value="2" data-i18n="q.v2">100 – 500 件</option><option value="3" data-i18n="q.v3">500 – 2,000 件</option><option value="4" data-i18n="q.v4">2,000 件以上</option></select></label>
-      <label><span data-i18n="q.dims">尺寸 / 重量</span><input type="text" id="q-dims" size="18" data-i18n-ph="q.dimsph" placeholder="例如：30×20×10 cm，1.2 kg"></label>
-      <label><span data-i18n="q.from">貨從哪裡來</span><select id="q-from">
-        <option value="tw" data-i18n="q.f1">台灣</option><option value="cn" data-i18n="q.f2">中國</option><option value="other" data-i18n="q.f3">其他</option></select></label>
-      <button class="btn primary" id="q-go" type="submit" data-i18n="q.go">產生詢價信</button>
-    </form>
-    <div class="caption" data-i18n="q.hint1">填好按「產生詢價信」，下面會出現一封寫好的信，複製後寄到 sandyliu3056@gmail.com 即可；這一頁不會上傳任何東西。</div>
-    <div class="caption" data-i18n="q.hint2">沒有確切數字也沒關係，先寫大概的，報價時再一起確認。我們會盡快回覆。</div>
-    <div class="log" id="q-out" hidden></div>
-    <div class="row" id="q-act" hidden><a class="btn sm primary" id="q-mail" href="mailto:sandyliu3056@gmail.com" data-i18n="q.mail">開啟信箱寄出</a><button class="btn sm" id="q-copy" type="button" data-i18n="q.copy">複製這封信</button><span class="small" data-i18n="q.to">收件人：sandyliu3056@gmail.com</span></div>
+    <div class="row panel">
+      <div class="field"><span data-i18n="ct.email">電子郵件</span><span class="copyrow"><code id="email">sandyliu3056@gmail.com</code><button class="btn sm" id="copy-email" type="button" data-i18n="ct.copy">複製</button></span></div>
+      <a class="btn primary" id="home-mail" href="mailto:sandyliu3056@gmail.com" data-i18n="home.mail">寄信詢價</a>
+      <span class="caption" data-i18n="home.hint">說明商品、每月出貨量、尺寸重量、貨從哪裡來，我們會盡快回覆。</span>
+    </div>
 
     <div class="kpis">
-      <div class="kpi"><div class="k" data-i18n="k1">美國境內小包</div><div class="v" data-i18n="k1v">$3 起</div><div class="s" data-i18n="k1s">UPS / FedEx 優惠費率</div></div>
-      <div class="kpi"><div class="k" data-i18n="k2">合作倉庫</div><div class="v">City of Industry</div><div class="s" data-i18n="k2s">California · 合作的美國倉儲出貨中心</div></div>
-      <div class="kpi"><div class="k" data-i18n="k3">串接平台</div><div class="v" data-i18n="k3v">6 個</div><div class="s">Shopify · Amazon · eBay · Walmart · TikTok Shop · Temu</div></div>
-      <div class="kpi"><div class="k" data-i18n="k4">聯絡</div><div class="v" data-i18n="k4v">台灣·美國</div><div class="s" data-i18n="k4s">兩地都能聯絡，中英文服務</div></div>
+      <div class="kpi"><div class="k" data-i18n="k1">小包</div><div class="v" data-i18n="k1v">$3 起</div><div class="s" data-i18n="k1s">Small Parcel from $3+</div></div>
+      <div class="kpi"><div class="k" data-i18n="k2">UPS / FedEx</div><div class="v" data-i18n="k2v">優惠費率</div><div class="s" data-i18n="k2s">Discounted UPS / FedEx Rates</div></div>
+      <div class="kpi"><div class="k" data-i18n="k3">配送選項</div><div class="v" data-i18n="k3v">Ground / Express</div><div class="s" data-i18n="k3s">多種配送時效可選</div></div>
+      <div class="kpi"><div class="k" data-i18n="k4">服務</div><div class="v" data-i18n="k4v">台灣 / 美國</div><div class="s" data-i18n="k4s">Global Shipping · 中英文服務</div></div>
     </div>
 
     <div class="steps-panel">
@@ -214,51 +205,43 @@
         <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.4">揀貨包裝出貨</span></li>
         <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.5">追蹤與退貨</span></li>
       </ol>
-      <div class="steps-msg" data-i18n="st.msg">貨先放在美國，訂單進來直接從美國出貨。收貨上架、揀貨包裝、UPS / FedEx 配送、退貨處理，全部在合作倉庫完成，我負責對接。</div>
+      <div class="steps-msg" data-i18n="st.msg">收貨上架、揀貨包裝、UPS / FedEx 配送、退貨處理，一站完成；快速週轉、安全可靠。</div>
     </div>
 
     <h2 class="section" data-i18n="map.title">服務範圍</h2>
     <div class="map">
-      <div class="map-bar"><span class="caption" data-i18n="map.cap">貨從台灣、中國、東南亞進合作美國倉，從加州出到全美，UPS / FedEx 國際可送到各主要市場。</span>
+      <div class="map-bar"><span class="caption" data-i18n="map.cap">貨從台灣、中國、東南亞進美國倉，從 City of Industry 出貨到全美與海外（Global Shipping）。</span>
         <span class="seg" id="map-view"><button class="btn" type="button" data-view="fit" data-i18n="map.region">區域</button><button class="btn active" type="button" data-view="world" data-i18n="map.world">全球</button></span></div>
       <div id="map-svg"></div>
       <div class="chips">
-        <span><i class="lg wh"></i><b data-i18n="lg.wh">合作美國倉 City of Industry, CA</b></span>
+        <span><i class="lg wh"></i><b data-i18n="lg.wh">美國倉 City of Industry, CA</b></span>
         <span><i class="lg from"></i><span data-i18n="lg.from">常見出貨來源</span></span>
         <span><i class="lg to"></i><span data-i18n="lg.to">UPS / FedEx 國際可配送（主要市場）</span></span>
-        <span><i class="lg city"></i><span data-i18n="lg.city">區域視角：美國境內 Ground 1–5 個工作天</span></span>
+        <span><i class="lg city"></i><span data-i18n="lg.city">區域視角：美國境內配送點</span></span>
         <span><i class="lg rt"></i><span data-i18n="lg.rt">台灣 → 美國倉：空運、海運</span></span>
       </div>
     </div>
   </section>
 
-  <!-- 服務內容 -->
+  <!-- 服務內容（傳單上的五組） -->
   <section class="tab" id="tab-services">
     <h2 class="section" data-i18n="svc.h">服務內容</h2>
-    <div class="caption" data-i18n="svc.s">從貨到美國倉，到買家簽收，都由合作倉庫完成，我負責對接。</div>
+    <div class="caption" data-i18n="svc.s">幫線上賣家更聰明出貨、放眼全球。</div>
     <div class="svcs">
       <div class="svc"><div class="t"><span>🏬</span><span data-i18n="svc.1">美國倉儲服務</span></div><ul>
-        <li data-i18n="svc.1a">收貨驗收、上架入庫</li><li data-i18n="svc.1b">倉儲管理與庫存控管</li><li data-i18n="svc.1c">貼標、換標</li><li data-i18n="svc.1d">退貨收回與處置</li></ul></div>
-      <div class="svc"><div class="t"><span>📦</span><span data-i18n="svc.2">訂單處理與出貨</span></div><ul>
-        <li data-i18n="svc.2a">揀貨、包裝</li><li data-i18n="svc.2b">DTC / B2C / B2B 皆可</li><li data-i18n="svc.2c">多平台訂單整合</li><li data-i18n="svc.2d">FBA 預處理（貼標、裝箱）</li><li data-i18n="svc.2e">客製包材</li></ul></div>
+        <li data-i18n="svc.1a">收貨與上架</li><li data-i18n="svc.1b">倉儲管理</li><li data-i18n="svc.1c">貼標、換標</li><li data-i18n="svc.1d">庫存控管</li><li data-i18n="svc.1e">退貨與處置</li></ul></div>
+      <div class="svc"><div class="t"><span>📦</span><span data-i18n="svc.2">訂單處理與履約</span></div><ul>
+        <li data-i18n="svc.2a">揀貨與包裝</li><li data-i18n="svc.2b">DTC / B2C / B2B</li><li data-i18n="svc.2c">多平台訂單整合</li><li data-i18n="svc.2d">FBA 預處理</li><li data-i18n="svc.2e">客製包裝</li></ul></div>
       <div class="svc"><div class="t"><span>✈️</span><span data-i18n="svc.3">美國境內與國際運輸</span></div><ul>
-        <li data-i18n="svc.3a">UPS / FedEx 優惠費率</li><li data-i18n="svc.3b">美國境內配送、國際出口</li><li data-i18n="svc.3c">小包 $3 起</li><li data-i18n="svc.3d">Ground / Express 多種時效</li></ul></div>
+        <li data-i18n="svc.3a">UPS / FedEx 優惠費率</li><li data-i18n="svc.3b">美國境內與國際配送</li><li data-i18n="svc.3c">小包 $3 起</li><li data-i18n="svc.3d">多種配送選項</li><li data-i18n="svc.3e">Ground / Express</li></ul></div>
       <div class="svc"><div class="t"><span>💻</span><span data-i18n="svc.4">電商營運支援</span></div><ul>
         <li data-i18n="svc.4a">商品上架協助</li><li data-i18n="svc.4b">庫存同步</li><li data-i18n="svc.4c">訂單流程優化</li><li data-i18n="svc.4d">退貨處理</li><li data-i18n="svc.4e">客服支援</li></ul></div>
       <div class="svc"><div class="t"><span>🤝</span><span data-i18n="svc.5">彈性合作</span></div><ul>
-        <li data-i18n="svc.5a">電商與新品牌都歡迎</li><li data-i18n="svc.5b">小型賣家也適用</li><li data-i18n="svc.5c">一站式服務</li><li data-i18n="svc.5d">依需求客製方案</li><li data-i18n="svc.5e">協助拓展美國市場</li></ul></div>
+        <li data-i18n="svc.5a">電商與新品牌</li><li data-i18n="svc.5b">小型賣家友善</li><li data-i18n="svc.5c">一站式服務</li><li data-i18n="svc.5d">客製方案</li><li data-i18n="svc.5e">協助拓展美國市場</li></ul></div>
     </div>
-    <h2 class="section" data-i18n="plat.h">串接的銷售平台</h2>
-    <div class="tbl"><table>
-      <thead><tr><th data-i18n="plat.c1">平台</th><th data-i18n="plat.c2">怎麼接</th><th data-i18n="plat.c3">出貨後</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Shopify</td><td data-i18n="plat.r1">店鋪訂單自動進倉</td><td data-i18n="plat.rx">追蹤號回寫訂單，庫存同步到店鋪</td></tr>
-        <tr><td class="k">Amazon</td><td data-i18n="plat.r2">FBM 訂單進倉；FBA 貨件在倉內預處理後送 FBA</td><td data-i18n="plat.rx">追蹤號回寫訂單，庫存同步到店鋪</td></tr>
-        <tr><td class="k">eBay</td><td data-i18n="plat.r1">店鋪訂單自動進倉</td><td data-i18n="plat.rx">追蹤號回寫訂單，庫存同步到店鋪</td></tr>
-        <tr><td class="k">Walmart</td><td data-i18n="plat.r1">店鋪訂單自動進倉</td><td data-i18n="plat.rx">追蹤號回寫訂單，庫存同步到店鋪</td></tr>
-        <tr><td class="k">TikTok Shop</td><td data-i18n="plat.r1">店鋪訂單自動進倉</td><td data-i18n="plat.rx">追蹤號回寫訂單，庫存同步到店鋪</td></tr>
-        <tr><td class="k">Temu</td><td data-i18n="plat.r1">店鋪訂單自動進倉</td><td data-i18n="plat.rx">追蹤號回寫訂單，庫存同步到店鋪</td></tr>
-      </tbody></table></div>
+    <h2 class="section" data-i18n="plat.h">支援平台</h2>
+    <div class="caption" data-i18n="plat.s">多平台訂單整合。</div>
+    <div class="chips plats"><span>Shopify</span><span>Amazon</span><span>eBay</span><span>Walmart</span><span>TikTok Shop</span><span>Temu</span></div>
   </section>
 
   <!-- 合作流程 -->
@@ -273,55 +256,43 @@
         <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.4">揀貨包裝出貨</span></li>
         <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.5">追蹤與退貨</span></li>
       </ol>
-      <div class="steps-msg" data-i18n="st.msg2">每一步都有人對接，進度隨時可問。</div>
+      <div class="steps-msg" data-i18n="st.msg2">一站式服務，依需求客製方案。</div>
     </div>
-    <div class="tbl"><table>
-      <thead><tr><th data-i18n="fl.c1">步驟</th><th data-i18n="fl.c2">我們做什麼</th><th data-i18n="fl.c3">您需要提供</th></tr></thead>
-      <tbody>
-        <tr><td class="k" data-i18n="st.1">貨送到美國倉</td><td data-i18n="fl.1a">海運或空運到 City of Industry，由合作倉庫收貨。</td><td data-i18n="fl.1b">裝箱清單、預計到倉日</td></tr>
-        <tr><td class="k" data-i18n="st.2">驗收上架</td><td data-i18n="fl.2a">清點數量、檢查外觀、貼標、入庫定位。</td><td data-i18n="fl.2b">商品清單（SKU、條碼）</td></tr>
-        <tr><td class="k" data-i18n="st.3">平台訂單同步</td><td data-i18n="fl.3a">店鋪訂單自動進倉，庫存回寫到店鋪。</td><td data-i18n="fl.3b">店鋪串接授權</td></tr>
-        <tr><td class="k" data-i18n="st.4">揀貨包裝出貨</td><td data-i18n="fl.4a">UPS / FedEx 取件，追蹤號回寫訂單。</td><td data-i18n="fl.4b">包材或包裝要求（有的話）</td></tr>
-        <tr><td class="k" data-i18n="st.5">追蹤與退貨</td><td data-i18n="fl.5a">配送狀態可查；退貨收回後再上架或處置。</td><td data-i18n="fl.5b">退貨處理方式（重新上架／銷毀）</td></tr>
-      </tbody></table></div>
+    <div class="kpis">
+      <div class="kpi"><div class="k">🌐</div><div class="v" data-i18n="bd.1">全球出貨</div><div class="s">Global Shipping</div></div>
+      <div class="kpi"><div class="k">⏱</div><div class="v" data-i18n="bd.2">快速週轉</div><div class="s">Fast Turnaround</div></div>
+      <div class="kpi"><div class="k">🛡</div><div class="v" data-i18n="bd.3">安全可靠</div><div class="s">Safe &amp; Reliable</div></div>
+      <div class="kpi"><div class="k">🤝</div><div class="v" data-i18n="bd.4">歡迎合作</div><div class="s">Open to Collaboration</div></div>
+    </div>
   </section>
 
-  <!-- 運費 -->
+  <!-- 運費與聯絡 -->
   <section class="tab" id="tab-rates">
     <div class="kpis">
-      <div class="kpi"><div class="k" data-i18n="r1">美國境內小包</div><div class="v" data-i18n="k1v">$3 起</div><div class="s" data-i18n="r1s">UPS / FedEx 協議費率</div></div>
-      <div class="kpi"><div class="k">Ground</div><div class="v" data-i18n="r2v">1 – 5 個工作天</div><div class="s" data-i18n="r2s">美國境內最經濟，時效為承運商預估</div></div>
-      <div class="kpi"><div class="k">Express</div><div class="v" data-i18n="r3v">隔日 / 兩日</div><div class="s" data-i18n="r3s">急件與高單價商品</div></div>
-      <div class="kpi"><div class="k" data-i18n="r4">國際出口</div><div class="v" data-i18n="r4v">從美國倉出</div><div class="s" data-i18n="r4s">依目的地與服務方式報價</div></div>
+      <div class="kpi"><div class="k" data-i18n="k1">小包</div><div class="v" data-i18n="k1v">$3 起</div><div class="s">Small Parcel from $3+</div></div>
+      <div class="kpi"><div class="k">UPS / FedEx</div><div class="v" data-i18n="k2v">優惠費率</div><div class="s">Discounted UPS / FedEx Rates</div></div>
+      <div class="kpi"><div class="k" data-i18n="k3">配送選項</div><div class="v">Ground / Express</div><div class="s" data-i18n="k3s">多種配送時效可選</div></div>
+      <div class="kpi"><div class="k" data-i18n="r4">配送範圍</div><div class="v" data-i18n="r4v">美國境內 · 國際</div><div class="s">U.S. Domestic &amp; International Delivery</div></div>
     </div>
-    <div class="notice" data-i18n="r.notice">實際費率依包裹的尺寸、重量、目的地 Zone 與附加費而定。UPS / FedEx 優惠費率依實際包裹計價；把商品的尺寸重量寄給我們，回您一份估價。</div>
+    <div class="notice" data-i18n="r.notice">實際費率依包裹的尺寸、重量與目的地而定。把商品的尺寸重量寄給我們，回您一份估價。</div>
     <div class="tbl"><table>
-      <thead><tr><th data-i18n="r.c1">服務</th><th data-i18n="r.c2">時效</th><th data-i18n="r.c3">適合</th><th data-i18n="r.c4">說明</th></tr></thead>
+      <thead><tr><th data-i18n="r.c1">項目</th><th data-i18n="r.c4">說明</th></tr></thead>
       <tbody>
-        <tr><td class="k">UPS / FedEx Ground</td><td data-i18n="r2v">1 – 5 個工作天</td><td data-i18n="r.g1">日常訂單</td><td data-i18n="r.g2">美國境內最經濟的選擇，小包 $3 起。</td></tr>
-        <tr><td class="k">UPS / FedEx Express</td><td data-i18n="r3v">隔日 / 兩日</td><td data-i18n="r.e1">急件、高單價</td><td data-i18n="r.e2">承運商的隔日、兩日服務。</td></tr>
-        <tr><td class="k" data-i18n="r4">國際出口</td><td data-i18n="r.i0">依目的地</td><td data-i18n="r.i1">海外買家、海外退倉</td><td data-i18n="r.i2">從美國倉出到其他國家，依目的地與服務方式報價。</td></tr>
-        <tr><td class="k" data-i18n="r.b0">帳單</td><td>—</td><td data-i18n="r.b1">每月對帳</td><td data-i18n="r.b2">每一筆運費都對得回承運商帳單，附加費逐項列出。</td></tr>
+        <tr><td class="k" data-i18n="r.a">美國境內配送</td><td data-i18n="r.a2">UPS / FedEx 優惠費率，小包 $3 起；Ground 與 Express 可選。</td></tr>
+        <tr><td class="k" data-i18n="r.b">國際配送</td><td data-i18n="r.b2">從美國出貨到其他國家，依目的地報價。</td></tr>
+        <tr><td class="k" data-i18n="r.d">多種配送選項</td><td data-i18n="r.d2">依時效與預算選擇，報價時一併說明。</td></tr>
       </tbody></table></div>
 
     <!-- 聯絡（和運費同一頁） -->
     <h2 class="section" id="contact-anchor" data-i18n="ct.h">聯絡</h2>
     <div class="row panel">
-      <div class="field"><span data-i18n="ct.email">電子郵件</span><span class="copyrow"><code id="email">sandyliu3056@gmail.com</code><button class="btn sm" id="copy-email" type="button" data-i18n="ct.copy">複製</button></span></div>
+      <div class="field"><span data-i18n="ct.email">電子郵件</span><span class="copyrow"><code id="email2">sandyliu3056@gmail.com</code><button class="btn sm" id="copy-email2" type="button" data-i18n="ct.copy">複製</button></span></div>
+      <a class="btn primary" id="ct-mail" href="mailto:sandyliu3056@gmail.com" data-i18n="home.mail">寄信詢價</a>
+      <div class="field"><span data-i18n="ct.area2">服務</span><span class="copyrow"><img class="flag" src="flags/tw.svg" alt=""><img class="flag" src="flags/us.svg" alt=""><span data-i18n="ct.area2v">台灣 / 美國 · 中文、英文</span></span></div>
     </div>
     <h2 class="section" data-i18n="ct.area">服務地區</h2>
     <div class="chips area" id="area-list"></div>
-    <div class="caption" data-i18n="ct.s">來信說明商品與每月出貨量，我們會盡快回覆。想省事就回「首頁」用「產生詢價信」，貼上寄出。</div>
-    <div class="two" style="grid-template-columns:1fr">
-      <div class="tbl"><table>
-        <thead><tr><th data-i18n="ct.c1">項目</th><th data-i18n="ct.c2">內容</th></tr></thead>
-        <tbody>
-          <tr><td class="k" data-i18n="ct.t1">回覆時間</td><td data-i18n="ct.t1v">盡快，通常一個工作天內</td></tr>
-          <tr><td class="k" data-i18n="ct.t2">語言</td><td data-i18n="ct.t2v">中文、英文</td></tr>
-          <tr><td class="k" data-i18n="ct.t3">報價需要</td><td data-i18n="ct.t3v">商品、每月出貨量、尺寸重量、貨從哪裡來</td></tr>
-          <tr><td class="k" data-i18n="ct.t4">合作方式</td><td data-i18n="ct.t4v">小型賣家也適用，依需求客製方案</td></tr>
-        </tbody></table></div>
-    </div>
+    <div class="caption" data-i18n="ct.s">來信說明商品與每月出貨量，我們會盡快回覆。</div>
   </section>
 </main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -330,11 +301,13 @@
 "use strict";
 /* 兩種語言，一份字典。預設中文；語言、字型、主題、時區記在這一台瀏覽器。 */
 const I18N={
-  "brand.h1":["美國海外倉 · 一件代發","U.S. Warehouse & Fulfillment"],
-  "brand.sub":["幫跨境賣家安排美國倉與一件代發 · 合作倉庫在 City of Industry, California","U.S. warehousing and fulfillment arranged for overseas sellers · partner warehouse in City of Industry, California"],
+  "brand.h1":["電商 · 美國倉儲履約方案","E-Commerce & U.S. Warehouse Fulfillment Solutions"],
+  "brand.sub":["幫線上賣家更聰明出貨、放眼全球 · City of Industry, California · U.S. Warehouse Fulfillment Hub","Helping online sellers ship smarter and grow globally · City of Industry, California · U.S. Warehouse Fulfillment Hub"],
   "opt.hand":["手寫風","Handwriting"],"opt.sans":["正黑體","Sans"],"opt.navy":["深藍","Navy Blue"],"opt.brown":["棕金","Brown & Gold"],"opt.green":["墨綠","Green"],
   "opt.la":["美國倉（加州）","Warehouse (California)"],"opt.tpe":["台北","Taipei"],
   "aria.lang":["語言","Language"],"aria.font":["字型","Font"],"aria.theme":["主題","Theme"],"aria.tz":["時區","Time zone"],"aria.nav":["分頁","Sections"],
+  "home.mail":["寄信詢價","Email for a quote"],"home.hint":["說明商品、每月出貨量、尺寸重量、貨從哪裡來，我們會盡快回覆。","Tell us the product, monthly volume, size and weight and origin; we reply as soon as we can."],
+  "ct.h":["聯絡","Contact"],"bd.1":["全球出貨","Global Shipping"],"bd.2":["快速週轉","Fast Turnaround"],"bd.3":["安全可靠","Safe & Reliable"],"bd.4":["歡迎合作","Open to Collaboration"],
   "hdr.open":["接單中","Taking orders"],"hdr.quote":["聯絡報價","Get a quote"],
   "nav.home":["首頁","Home"],"nav.services":["服務內容","Services"],"nav.flow":["合作流程","How it works"],"nav.rates":["運費與聯絡","Rates & Contact"],"nav.contact":["聯絡","Contact"],
   "q.item":["商品","Product"],"q.itemph":["例如：保溫杯、寵物用品","e.g. tumblers, pet supplies"],"q.vol":["每月出貨量","Orders per month"],
@@ -345,28 +318,30 @@ const I18N={
              "Fill in the row and press \"Write my inquiry\": a ready-to-send email appears below. Copy it and send it to sandyliu3056@gmail.com; nothing on this page is uploaded."],
   "q.hint2":["沒有確切數字也沒關係，先寫大概的，報價時再一起確認。我們會盡快回覆。","Rough numbers are fine; we confirm the details with the quote. We reply as soon as we can."],
   "q.mail":["開啟信箱寄出","Open in my email app"],"q.subj":["美國海外倉詢價","U.S. warehouse inquiry"],"q.copy":["複製這封信","Copy the email"],"q.to":["收件人：sandyliu3056@gmail.com","To: sandyliu3056@gmail.com"],
-  "k1":["美國境內小包","U.S. small parcel"],"k1v":["$3 起","from $3"],"k1s":["UPS / FedEx 優惠費率","Discounted UPS / FedEx rates"],
-  "k2":["合作倉庫","Partner warehouse"],"k2s":["California · 合作的美國倉儲出貨中心","California · partner fulfillment hub"],
-  "k3":["串接平台","Connected platforms"],"k3v":["6 個","6"],
-  "k4":["聯絡","Contact"],"k4v":["台灣·美國","Taiwan · USA"],"k4s":["兩地都能聯絡，中英文服務","Reach us in either place, in Chinese or English"],
+  "k1":["小包","Small parcel"],"k1v":["$3 起","from $3"],"k1s":["Small Parcel from $3+","from $3+ within the U.S."],
+  "k2":["UPS / FedEx","UPS / FedEx"],"k2v":["優惠費率","Discounted rates"],"k2s":["Discounted UPS / FedEx Rates","Competitive UPS / FedEx rates"],
+  "k3":["配送選項","Delivery options"],"k3v":["Ground / Express","Ground / Express"],"k3s":["多種配送時效可選","Multiple delivery options"],
+  "k4":["服務","Service"],"k4v":["台灣 / 美國","Taiwan / USA"],"k4s":["Global Shipping · 中英文服務","Global shipping · Chinese and English"],
   "st.title":["合作流程","How it works"],"st.pct":["五步，從第一批貨到日常出貨","Five steps, from the first shipment to daily orders"],
   "st.1":["貨送到美國倉","Ship stock to the warehouse"],"st.2":["驗收上架","Receive and put away"],"st.3":["平台訂單同步","Connect your store"],"st.4":["揀貨包裝出貨","Pick, pack and ship"],"st.5":["追蹤與退貨","Track and handle returns"],
-  "st.msg":["貨先放在美國，訂單進來直接從美國出貨。收貨上架、揀貨包裝、UPS / FedEx 配送、退貨處理，全部在合作倉庫完成，我負責對接。","Stock sits in the U.S. and ships straight from the U.S. when the order comes in. Receiving, pick and pack, UPS / FedEx delivery and returns all happen at the partner warehouse; I handle the hand-off."],
-  "st.msg2":["每一步都有人對接，進度隨時可問。","Someone owns every step; ask for status any time."],
-  "map.title":["服務範圍","Where we ship"],"map.cap":["貨從台灣、中國、東南亞進合作美國倉，從加州出到全美，UPS / FedEx 國際可送到各主要市場。","Stock comes in from Taiwan, China and Southeast Asia to the partner warehouse; orders ship from California across the U.S., and UPS / FedEx international reaches the main markets."],
+  "st.msg":["收貨上架、揀貨包裝、UPS / FedEx 配送、退貨處理，一站完成；快速週轉、安全可靠。","Receiving, pick and pack, UPS / FedEx delivery and returns in one place: fast turnaround, safe and reliable."],
+  "st.msg2":["一站式服務，依需求客製方案。","One-stop service, customized to your needs."],
+  "map.title":["服務範圍","Where we ship"],"map.cap":["貨從台灣、中國、東南亞進美國倉，從 City of Industry 出貨到全美與海外（Global Shipping）。","Stock comes in from Taiwan, China and Southeast Asia; orders ship from City of Industry across the U.S. and abroad (global shipping)."],
   "map.region":["區域","Region"],"map.world":["全球","World"],
-  "lg.wh":["合作美國倉 City of Industry, CA","Partner warehouse, City of Industry, CA"],"lg.from":["常見出貨來源","Common origins"],"lg.to":["UPS / FedEx 國際可配送（主要市場）","UPS / FedEx international (main markets)"],"lg.city":["區域視角：美國境內 Ground 1–5 個工作天","Region view: U.S. Ground, 1–5 business days"],
+  "lg.wh":["美國倉 City of Industry, CA","U.S. warehouse, City of Industry, CA"],"lg.from":["常見出貨來源","Common origins"],"lg.to":["UPS / FedEx 國際可配送（主要市場）","UPS / FedEx international (main markets)"],"lg.city":["區域視角：美國境內配送點","Region view: U.S. delivery points"],
   "rt.air":["空運","Air freight"],"rt.sea":["海運","Sea freight"],"lg.rt":["台灣 → 美國倉：空運、海運","Taiwan → warehouse: air and sea freight"],
-  "c.us":["合作倉","Partner warehouse"],"c.tw":["台灣","Taiwan"],"c.cn":["中國","China"],"c.hk":["香港","Hong Kong"],"c.vn":["越南","Vietnam"],"c.th":["泰國","Thailand"],"c.my":["馬來西亞","Malaysia"],
+  "c.us":["美國倉","U.S. warehouse"],"c.tw":["台灣","Taiwan"],"c.cn":["中國","China"],"c.hk":["香港","Hong Kong"],"c.vn":["越南","Vietnam"],"c.th":["泰國","Thailand"],"c.my":["馬來西亞","Malaysia"],
   "c.jp":["日本","Japan"],"c.kr":["韓國","Korea"],"c.sg":["新加坡","Singapore"],"c.ph":["菲律賓","Philippines"],"c.id":["印尼","Indonesia"],"c.in":["印度","India"],"c.ae":["阿聯","UAE"],"c.sa":["沙烏地","Saudi Arabia"],
   "c.ca":["加拿大","Canada"],"c.gb":["英國","UK"],"c.de":["德國","Germany"],"c.fr":["法國","France"],"c.es":["西班牙","Spain"],"c.it":["義大利","Italy"],"c.nl":["荷蘭","Netherlands"],"c.au":["澳洲","Australia"],"c.nz":["紐西蘭","New Zealand"],
-  "svc.h":["服務內容","Services"],"svc.s":["從貨到美國倉，到買家簽收，都由合作倉庫完成，我負責對接。","From arrival at the warehouse to the buyer's door, done by the partner warehouse with me as your contact."],
-  "svc.1":["美國倉儲服務","U.S. Warehouse Service"],"svc.1a":["收貨驗收、上架入庫","Receiving & put-away"],"svc.1b":["倉儲管理與庫存控管","Storage management & inventory control"],"svc.1c":["貼標、換標","Labeling / relabeling"],"svc.1d":["退貨收回與處置","Returns / disposal"],
-  "svc.2":["訂單處理與出貨","Order Processing & Fulfillment"],"svc.2a":["揀貨、包裝","Pick & pack"],"svc.2b":["DTC / B2C / B2B 皆可","DTC / B2C / B2B support"],"svc.2c":["多平台訂單整合","Multi-channel order integration"],"svc.2d":["FBA 預處理（貼標、裝箱）","FBA prep (labeling, cartons)"],"svc.2e":["客製包材","Customized packaging"],
-  "svc.3":["美國境內與國際運輸","Domestic & International Shipping"],"svc.3a":["UPS / FedEx 優惠費率","Competitive UPS / FedEx rates"],"svc.3b":["美國境內配送、國際出口","U.S. domestic & international delivery"],"svc.3c":["小包 $3 起","Small parcels from $3"],"svc.3d":["Ground / Express 多種時效","Ground / Express, multiple delivery options"],
-  "svc.4":["電商營運支援","E-commerce Operations Support"],"svc.4a":["商品上架協助","Product listing assistance"],"svc.4b":["庫存同步","Inventory sync"],"svc.4c":["訂單流程優化","Order process optimization"],"svc.4d":["退貨處理","Returns handling"],"svc.4e":["客服支援","Customer support"],
-  "svc.5":["彈性合作","Flexible Collaboration"],"svc.5a":["電商與新品牌都歡迎","For e-commerce & new brands"],"svc.5b":["小型賣家也適用","Small business friendly"],"svc.5c":["一站式服務","One-stop service"],"svc.5d":["依需求客製方案","Customized solutions"],"svc.5e":["協助拓展美國市場","Support for U.S. market expansion"],
-  "plat.h":["串接的銷售平台","Connected sales platforms"],"plat.c1":["平台","Platform"],"plat.c2":["怎麼接","How it connects"],"plat.c3":["出貨後","After shipping"],
+  "svc.h":["服務內容","Services"],"svc.1e":["退貨與處置","Returns / Disposal"],"svc.3e":["Ground / Express","Ground / Express"],
+  "r.c4":["說明","Details"],"r.a":["美國境內配送","U.S. domestic delivery"],"r.a2":["UPS / FedEx 優惠費率，小包 $3 起；Ground 與 Express 可選。","Discounted UPS / FedEx rates, small parcels from $3+; Ground and Express."],"r.b":["國際配送","International delivery"],"r.b2":["從美國出貨到其他國家，依目的地報價。","From the U.S. to other countries, quoted by destination."],"r.d":["多種配送選項","Multiple delivery options"],"r.d2":["依時效與預算選擇，報價時一併說明。","Chosen by transit time and budget; explained with the quote."],
+  "ct.area2":["服務","Service"],"ct.area2v":["台灣 / 美國 · 中文、英文","Taiwan / USA · Chinese, English"],"svc.s":["幫線上賣家更聰明出貨、放眼全球。","Helping online sellers ship smarter and grow globally."],
+  "svc.1":["美國倉儲服務","U.S. Warehouse Service"],"svc.1a":["收貨與上架","Receiving & Put-away"],"svc.1b":["倉儲管理","Storage Management"],"svc.1c":["貼標、換標","Labeling / Relabeling"],"svc.1d":["庫存控管","Inventory Control"],
+  "svc.2":["訂單處理與履約","Order Processing & Fulfillment"],"svc.2a":["揀貨與包裝","Pick & Pack"],"svc.2b":["DTC / B2C / B2B","DTC / B2C / B2B Support"],"svc.2c":["多平台訂單整合","Multi-channel Order Integration"],"svc.2d":["FBA 預處理","FBA Prep"],"svc.2e":["客製包裝","Customized Packaging"],
+  "svc.3":["美國境內與國際運輸","Domestic & International Shipping"],"svc.3a":["UPS / FedEx 優惠費率","Competitive UPS / FedEx Rates"],"svc.3b":["美國境內與國際配送","U.S. Domestic & International Delivery"],"svc.3c":["小包 $3 起","Small Parcel from $3+"],"svc.3d":["多種配送選項","Multiple Delivery Options"],
+  "svc.4":["電商營運支援","E-commerce Operations Support"],"svc.4a":["商品上架協助","Product Listing Assistance"],"svc.4b":["庫存同步","Inventory Sync"],"svc.4c":["訂單流程優化","Order Process Optimization"],"svc.4d":["退貨處理","Returns Handling"],"svc.4e":["客服支援","Customer Support"],
+  "svc.5":["彈性合作","Flexible Collaboration"],"svc.5a":["電商與新品牌","For E-commerce & New Brands"],"svc.5b":["小型賣家友善","Small Business Friendly"],"svc.5c":["一站式服務","One-stop Service"],"svc.5d":["客製方案","Customized Solutions"],"svc.5e":["協助拓展美國市場","Support for U.S. Market Expansion"],
+  "plat.h":["支援平台","Platforms"],"plat.s":["多平台訂單整合。","Multi-channel order integration."],
   "plat.r1":["店鋪訂單自動進倉","Store orders flow into the warehouse"],"plat.r2":["FBM 訂單進倉；FBA 貨件在倉內預處理後送 FBA","FBM orders flow in; FBA shipments are prepped here and forwarded to FBA"],
   "plat.rx":["追蹤號回寫訂單，庫存同步到店鋪","Tracking numbers go back to the order; stock syncs to the store"],
   "fl.c1":["步驟","Step"],"fl.c2":["我們做什麼","What we do"],"fl.c3":["您需要提供","What you provide"],
@@ -378,16 +353,15 @@ const I18N={
   "r1":["美國境內小包","U.S. small parcel"],"r1s":["UPS / FedEx 協議費率","UPS / FedEx contract rates"],
   "r2v":["1 – 5 個工作天","1 – 5 business days"],"r2s":["美國境內最經濟，時效為承運商預估","Most economical within the U.S.; transit is the carrier's estimate"],
   "r3v":["隔日 / 兩日","Next day / 2-day"],"r3s":["急件與高單價商品","Urgent or high-value orders"],
-  "r4":["國際出口","International export"],"r4v":["從美國倉出","From the U.S. warehouse"],"r4s":["依目的地與服務方式報價","Quoted by destination and service"],
-  "r.notice":["實際費率依包裹的尺寸、重量、目的地 Zone 與附加費而定。UPS / FedEx 優惠費率依實際包裹計價；把商品的尺寸重量寄給我們，回您一份估價。",
-              "The actual rate depends on the parcel's size, weight, destination zone and surcharges. Discounted UPS / FedEx rates are priced per parcel; send us your product dimensions and weights for an estimate."],
-  "r.c1":["服務","Service"],"r.c2":["時效","Transit"],"r.c3":["適合","Best for"],"r.c4":["說明","Notes"],
+  "r4":["配送範圍","Coverage"],"r4v":["美國境內 · 國際","U.S. & international"],
+  "r.notice":["實際費率依包裹的尺寸、重量與目的地而定。把商品的尺寸重量寄給我們，回您一份估價。","The actual rate depends on the parcel's size, weight and destination. Send us your product dimensions and weights for an estimate."],
+  "r.c1":["項目","Item"],
   "r.g1":["日常訂單","Everyday orders"],"r.g2":["美國境內最經濟的選擇，小包 $3 起。","The economical choice within the U.S.; small parcels from $3."],
   "r.e1":["急件、高單價","Urgent, high-value"],"r.e2":["承運商的隔日、兩日服務。","The carriers' next-day and two-day services."],
   "r.i0":["依目的地","By destination"],"r.i1":["海外買家、海外退倉","Overseas buyers, returns abroad"],"r.i2":["從美國倉出到其他國家，依目的地與服務方式報價。","From the U.S. warehouse to other countries, quoted by destination and service."],
   "r.b0":["帳單","Billing"],"r.b1":["每月對帳","Monthly statement"],"r.b2":["每一筆運費都對得回承運商帳單，附加費逐項列出。","Every charge traces back to the carrier invoice, surcharges itemised."],
-  "ct.email":["電子郵件","Email"],"ct.copy":["複製","Copy"],"ct.addr":["合作倉庫所在地","Partner warehouse"],"ct.area":["服務地區","Service area"],"ar.us":["美國全境（Ground 1–5 個工作天）","All of the U.S. (Ground, 1–5 business days)"],"ar.from":["收貨來源","Inbound from"],"ar.to":["國際配送（UPS / FedEx）","International delivery (UPS / FedEx)"],"ar.wh":["合作美國倉 City of Industry, CA","Partner warehouse, City of Industry, CA"],
-  "ct.s":["來信說明商品與每月出貨量，我們會盡快回覆。想省事就回「首頁」用「產生詢價信」，貼上寄出。","Tell us about your products and monthly volume and we will get back to you promptly. Or use \"Write my inquiry\" on the Home tab and paste it into an email."],
+  "ct.email":["電子郵件","Email"],"ct.copy":["複製","Copy"],"ct.addr":["合作倉庫所在地","Partner warehouse"],"ct.area":["服務地區","Service area"],"ar.us":["美國全境（Ground / Express）","All of the U.S. (Ground / Express)"],"ar.from":["收貨來源","Inbound from"],"ar.to":["國際配送（UPS / FedEx）","International delivery (UPS / FedEx)"],"ar.wh":["美國倉 City of Industry, CA","U.S. warehouse, City of Industry, CA"],
+  "ct.s":["來信說明商品與每月出貨量，我們會盡快回覆。","Tell us about your products and monthly volume and we will get back to you promptly."],
   "ct.c1":["項目","Item"],"ct.c2":["內容","Detail"],"ct.t1":["回覆時間","Reply time"],"ct.t1v":["盡快，通常一個工作天內","Promptly, usually within one business day"],"ct.t2":["語言","Languages"],"ct.t2v":["中文、英文","Chinese, English"],
   "ct.t3":["報價需要","For a quote"],"ct.t3v":["商品、每月出貨量、尺寸重量、貨從哪裡來","Product, monthly volume, size and weight, origin"],"ct.t4":["合作方式","Terms"],"ct.t4v":["小型賣家也適用，依需求客製方案","Small business friendly; plans tailored to your needs"]
 };
@@ -400,9 +374,9 @@ function applyLang(code){
   document.querySelectorAll("[data-i18n-ph]").forEach(el=>{ const t=I18N[el.dataset.i18nPh]; if(t) el.placeholder=t[i]; });
   document.querySelectorAll("[data-i18n-aria]").forEach(el=>{ const t=I18N[el.dataset.i18nAria]; if(t){ el.setAttribute("aria-label",t[i]); if(el.tagName==="SELECT") el.title=t[i]; } });
   document.documentElement.lang=i?"en":"zh-Hant-TW";
-  document.title=i?"U.S. Warehouse & Fulfillment":"美國海外倉 一件代發";
+  document.title=i?"E-Commerce & U.S. Warehouse Fulfillment Solutions":"美國倉儲履約方案";
   $("lang-sel").value=LANG; pref("lang",LANG); tick(); drawMap(); renderArea();
-  if(typeof mailHref==="function"){ $("quote-btn").href=mailHref(I18N["q.subj"][i]); if($("q-out").textContent) $("q-mail").href=mailHref(I18N["q.subj"][i],$("q-out").textContent); }
+  if(typeof mailHref==="function"){ const h=mailHref(I18N["q.subj"][i]); for(const id of ["quote-btn","home-mail","ct-mail"]){ const el=$(id); if(el) el.href=h; } }
 }
 /* 聯絡頁的服務地區：和地圖同一份地點，一面旗一個名字 */
 function renderArea(){
@@ -463,19 +437,8 @@ function copyText(text,src){
   const pick=()=>{ if(src){ const r=document.createRange(); r.selectNodeContents(src); const s=getSelection(); s.removeAllRanges(); s.addRange(r); } say(LANG==="en"?"Selected. Press "+COPYKEY+" to copy":"已選取，按 "+COPYKEY+" 複製",4000); };
   if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done,pick); else pick();
 }
-$("qform").addEventListener("submit",e=>{
-  e.preventDefault();
-  const i=LANG==="en"?1:0, opt=sel=>{ const o=sel.options[sel.selectedIndex]; const t=I18N[o.dataset.i18n]; return t?t[i]:o.textContent; };
-  const item=$("q-item").value.trim()||(i?"(to be confirmed)":"（待補）"), dims=$("q-dims").value.trim()||(i?"(to be confirmed)":"（待補）");
-  const vol=opt($("q-vol")), from=opt($("q-from"));
-  const zh="您好，\n\n我想了解美國海外倉的服務。\n\n商品："+item+"\n每月出貨量："+vol+"\n尺寸／重量："+dims+"\n貨從哪裡來："+from+"\n\n請提供倉儲與出貨的報價，謝謝。\n";
-  const en="Hello,\n\nI'd like to learn about your U.S. warehouse service.\n\nProduct: "+item+"\nOrders per month: "+vol+"\nSize / weight: "+dims+"\nShips from: "+from+"\n\nCould you send me a quote for storage and fulfillment? Thank you.\n";
-  $("q-out").textContent=i?en:zh; $("q-out").hidden=false; $("q-act").hidden=false;
-  $("q-mail").href=mailHref(I18N["q.subj"][i], i?en:zh);
-  $("q-out").scrollIntoView({block:"nearest"});
-});
-$("q-copy").addEventListener("click",()=>copyText($("q-out").textContent,$("q-out")));
 $("copy-email").addEventListener("click",()=>copyText($("email").textContent,$("email")));
+$("copy-email2").addEventListener("click",()=>copyText($("email2").textContent,$("email2")));
 
 /* 世界地圖：RMA 的 earth.png（等距圓柱投影，1000×500）。釘子三種：美國倉、常見的出貨來源、
    UPS / FedEx 國際可配送的主要市場；每一面旗下面一個深色定位點，擠在一起的互相推開（RMA 同一套）；
