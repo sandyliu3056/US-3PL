@@ -123,6 +123,33 @@
   @keyframes bump  { 0%, 100% { transform:scaleX(-1) translateY(0); } 50% { transform:scaleX(-1) translateY(-1px); } }
   @keyframes drift { from { transform:translateX(0); } to { transform:translateX(110vw); } }
   @media (max-width:600px) { .scene { height:130px; } .scene .stop b { font-size:.62rem; } .scene .stop em { font-size:1.6rem; } .scene .wh em { font-size:2.1rem; } }
+  /* 首頁服務圖片卡：插畫當背景＋深色遮罩，白字置中；滑過背景放大、出現「了解更多」 */
+  .tiles { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; margin:10px 0 8px; }
+  @media (max-width:900px) { .tiles { grid-template-columns:repeat(2, 1fr); } }
+  @media (max-width:560px) { .tiles { grid-template-columns:1fr; } .tile { min-height:190px; } }
+  .tile { position:relative; isolation:isolate; overflow:hidden; display:flex; align-items:center; justify-content:center; text-align:center; min-height:220px; border-radius:16px; color:#fff; text-decoration:none; box-shadow:0 8px 18px rgba(0,0,0,.18); }
+  .tile::before { content:""; position:absolute; inset:0; z-index:-2; background:var(--img) center / cover no-repeat; transition:transform .9s cubic-bezier(.2,.8,.2,1); }
+  .tile::after { content:""; position:absolute; inset:0; z-index:-1; background:radial-gradient(ellipse at center, rgba(8,16,30,.72) 0%, rgba(8,16,30,.5) 70%), linear-gradient(180deg, rgba(8,16,30,.15), rgba(8,16,30,.55)); }
+  .tile:hover::before, .tile:focus-visible::before { transform:scale(1.12) rotate(.6deg); }
+  .tile-in { padding:18px 22px; transition:transform .4s ease; }
+  .tile:hover .tile-in, .tile:focus-visible .tile-in { transform:translateY(-6px); }
+  .tile h3 { margin:0 0 8px; font-size:1.3rem; text-shadow:0 2px 8px rgba(0,0,0,.45); }
+  .tile p { margin:0; font-size:.92rem; line-height:1.65; text-shadow:0 1px 4px rgba(0,0,0,.45); }
+  .tile .more { display:inline-block; margin-top:10px; font-size:.82rem; font-weight:700; color:var(--gold); opacity:0; transform:translateY(8px); transition:opacity .35s, transform .35s; }
+  .tile:hover .more, .tile:focus-visible .more { opacity:1; transform:none; }
+  /* 為什麼選擇我們：白底圓角卡，圓形圖示定時泛起一圈光 */
+  .values { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:14px; margin:10px 0 12px; }
+  .value { display:flex; align-items:center; gap:16px; background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:0 10px 26px rgba(20,40,70,.12); transition:transform .3s ease, box-shadow .3s ease; }
+  .value:hover { transform:translateY(-5px); box-shadow:0 16px 32px rgba(20,40,70,.2); }
+  .value .ic { flex:none; width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg, var(--tabbar), var(--navy)); display:inline-flex; align-items:center; justify-content:center; font-size:1.8rem; animation:ring 3s ease-out infinite; transition:transform .35s ease; }
+  .value:nth-child(2) .ic { animation-delay:1s; } .value:nth-child(3) .ic { animation-delay:2s; }
+  .value:hover .ic { transform:rotate(-12deg) scale(1.1); }
+  .value h3 { margin:0 0 4px; font-size:1.08rem; color:var(--tabbar); }
+  .value p { margin:0; color:var(--mute); font-size:.9rem; }
+  @keyframes ring { 0% { box-shadow:0 0 0 0 rgba(242,177,52,.6); } 70% { box-shadow:0 0 0 14px rgba(242,177,52,0); } 100% { box-shadow:0 0 0 0 rgba(242,177,52,0); } }
+  /* 捲到才浮上來：有 IntersectionObserver 時才先藏起來（沒有就直接顯示）；減少動態效果時動畫被關掉，加上 .in 就直接出現 */
+  .js-reveal .reveal { opacity:0; }
+  .js-reveal .reveal.in { opacity:1; animation:rise .7s cubic-bezier(.2,.8,.2,1) backwards; animation-delay:var(--d, 0s); }
   /* ERP／API 宣傳：左文右圖，右邊是兩個節點之間來回流動的資料點 */
   .promo { display:grid; grid-template-columns:1.4fr 1fr; gap:16px; align-items:center; margin:18px 0 8px; padding:16px 20px; border:2px solid var(--navy); border-radius:12px;
            background:linear-gradient(135deg, var(--panel) 0%, var(--stripe) 60%, var(--hover) 160%); position:relative; overflow:hidden; }
@@ -271,6 +298,25 @@
       <div class="kpi"><div class="k" data-i18n="k4">服務</div><div class="v" data-i18n="k4v">台灣 / 美國</div><div class="s" data-i18n="k4s">Global Shipping · 中英文服務</div></div>
     </div>
 
+    <!-- 服務介紹：圖片卡（插畫在 img/，深色遮罩上白字；滑過放大背景），點了開「服務內容」 -->
+    <h2 class="section" data-i18n="tl.h">我們的服務</h2>
+    <div class="caption" data-i18n="tl.s">從進貨、存放到出貨，美國倉一站搞定。</div>
+    <div class="tiles">
+      <a class="tile reveal" href="#services" style="--img:url(img/svc-warehouse.svg);--d:0.00s"><div class="tile-in"><h3 data-i18n="tl.1">海外倉儲</h3><p data-i18n="tl.1s">加州倉就近美國市場，貨物安全存放、隨時可出貨。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
+      <a class="tile reveal" href="#services" style="--img:url(img/svc-fulfillment.svg);--d:0.12s"><div class="tile-in"><h3 data-i18n="tl.2">在地倉儲與履約</h3><p data-i18n="tl.2s">收到訂單就揀貨、包裝、出貨，一條龍完成。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
+      <a class="tile reveal" href="#services" style="--img:url(img/svc-shipping.svg);--d:0.24s"><div class="tile-in"><h3 data-i18n="tl.3">收貨與出貨</h3><p data-i18n="tl.3s">進貨驗收、出貨交寄，每一步都有紀錄可追蹤。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
+      <a class="tile reveal" href="#services" style="--img:url(img/svc-label.svg);--d:0.00s"><div class="tile-in"><h3 data-i18n="tl.4">貼標服務</h3><p data-i18n="tl.4s">條碼、FBA 標籤、換標與合規標示，出貨前一次貼好。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
+      <a class="tile reveal" href="#services" style="--img:url(img/svc-inventory.svg);--d:0.12s"><div class="tile-in"><h3 data-i18n="tl.5">庫存管理</h3><p data-i18n="tl.5s">庫存數量隨時查得到，補貨時機一目了然。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
+      <a class="tile reveal" href="#services" style="--img:url(img/svc-ecommerce.svg);--d:0.24s"><div class="tile-in"><h3 data-i18n="tl.6">電商解決方案</h3><p data-i18n="tl.6s">串接 Shopify、Amazon 等平台，為線上賣家量身規劃物流。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
+    </div>
+    <!-- 為什麼選擇我們：三張價值卡 -->
+    <h2 class="section" data-i18n="vl.h">為什麼選擇我們</h2>
+    <div class="values">
+      <div class="value reveal" style="--d:0.00s"><span class="ic" aria-hidden="true">⛑️</span><div><h3 data-i18n="vl.1">安全第一</h3><p data-i18n="vl.1s">每一件貨都小心搬運、妥善存放。</p></div></div>
+      <div class="value reveal" style="--d:0.15s"><span class="ic" aria-hidden="true">🚀</span><div><h3 data-i18n="vl.2">快速高效</h3><p data-i18n="vl.2s">流程持續優化，訂單出得又快又準。</p></div></div>
+      <div class="value reveal" style="--d:0.30s"><span class="ic" aria-hidden="true">💰</span><div><h3 data-i18n="vl.3">成本實惠</h3><p data-i18n="vl.3s">UPS / FedEx 優惠費率，小包 $3 起，幫您守住利潤。</p></div></div>
+    </div>
+
     <div class="steps-panel">
       <div class="steps-head"><span data-i18n="st.title">合作流程</span><span class="steps-pct" data-i18n="st.pct">五步，從第一批貨到日常出貨</span></div>
       <div class="pbar"><div class="pbar-fill"></div></div>
@@ -387,6 +433,7 @@ const I18N={
   "aria.lang":["語言","Language"],"aria.font":["字型","Font"],"aria.theme":["主題","Theme"],"aria.tz":["時區","Time zone"],"aria.nav":["分頁","Sections"],
   "home.mail":["寄信詢價","Email for a quote"],"home.hint":["說明商品、每月出貨量、尺寸重量、貨從哪裡來，我們會盡快回覆。","Tell us the product, monthly volume, size and weight and origin; we reply as soon as we can."],
   "bd.1":["全球出貨","Global Shipping"],"bd.2":["快速週轉","Fast Turnaround"],"bd.3":["安全可靠","Safe & Reliable"],"bd.4":["歡迎合作","Open to Collaboration"],
+  "tl.h":["我們的服務","Our services"],"tl.s":["從進貨、存放到出貨，美國倉一站搞定。","From receiving and storage to shipping, all in one U.S. warehouse."],"tl.more":["了解更多 →","Learn more →"],"tl.1":["海外倉儲","Overseas Warehousing"],"tl.1s":["加州倉就近美國市場，貨物安全存放、隨時可出貨。","A California warehouse close to U.S. customers, with stock stored safely and ready to ship."],"tl.2":["在地倉儲與履約","Local Storage & Fulfillment"],"tl.2s":["收到訂單就揀貨、包裝、出貨，一條龍完成。","Orders are picked, packed and shipped in one smooth flow."],"tl.3":["收貨與出貨","Shipping & Receiving"],"tl.3s":["進貨驗收、出貨交寄，每一步都有紀錄可追蹤。","Inbound receiving and outbound handoff, with every step tracked."],"tl.4":["貼標服務","Labeling Services"],"tl.4s":["條碼、FBA 標籤、換標與合規標示，出貨前一次貼好。","Barcodes, FBA labels, relabeling and compliance labels, applied before shipping."],"tl.5":["庫存管理","Inventory Management"],"tl.5s":["庫存數量隨時查得到，補貨時機一目了然。","Check stock levels anytime and see at a glance when to restock."],"tl.6":["電商解決方案","E-Commerce Solutions"],"tl.6s":["串接 Shopify、Amazon 等平台，為線上賣家量身規劃物流。","Connected to Shopify, Amazon and more, with logistics planned around online sellers."],"vl.h":["為什麼選擇我們","Why choose us"],"vl.1":["安全第一","Safety First"],"vl.1s":["每一件貨都小心搬運、妥善存放。","Every shipment is handled and stored with care."],"vl.2":["快速高效","Speed & Efficiency"],"vl.2s":["流程持續優化，訂單出得又快又準。","Continuously improved processes get orders out fast and accurately."],"vl.3":["成本實惠","Cost-Effective"],"vl.3s":["UPS / FedEx 優惠費率，小包 $3 起，幫您守住利潤。","Discounted UPS / FedEx rates and small parcels from $3 protect your margins."],
   "api.badge":["最新","NEW"],"api.h":["ERP 對接 · 開放 API","ERP Integration · Open API"],
   "api.s":["把您的 ERP、WMS 或電商後台直接接上我們的倉庫：訂單自動進倉、庫存與出貨狀態即時回寫，不用再手動匯入匯出。","Connect your ERP, WMS or store back end straight to our warehouse: orders flow in automatically and stock and shipping status are written back in real time. No more manual imports and exports."],
   "api.1":["開放 REST API 與 Webhook：建單、查庫存、追蹤出貨","Open REST API and webhooks: create orders, check stock, track shipments"],
@@ -595,6 +642,12 @@ applyFont(pref("font")||"hand");
 applyTheme(pref("theme")||"navy");
 TZ=(pref("tz")==="Asia/Taipei")?"Asia/Taipei":"America/Los_Angeles"; $("tz-sel").value=TZ;
 applyLang(pref("lang")||"zh");
+/* 首頁的服務卡、價值卡：捲進畫面才浮上來（分頁藏著時不算進畫面，切回來才播） */
+if("IntersectionObserver" in window){
+  document.documentElement.classList.add("js-reveal");
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }),{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+}
 showTab(location.hash.replace("#",""));
 </script>
 
