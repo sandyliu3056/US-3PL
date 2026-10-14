@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>美國倉儲履約方案</title>
 <meta name="description" content="電商與美國倉儲履約方案：幫線上賣家更聰明出貨、放眼全球。City of Industry, California · U.S. Warehouse Fulfillment Hub，UPS / FedEx 優惠費率、小包 $3 起。台灣／美國。">
+<link rel="icon" href="favicon.ico?v=warehouse-bricks-2" sizes="16x16 32x32 48x48" type="image/x-icon">
+<link rel="icon" href="favicon.svg?v=warehouse-bricks-2" type="image/svg+xml" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=warehouse-bricks-3" sizes="180x180">
+<meta name="theme-color" content="#1F3F6E">
 <meta property="og:title" content="美國倉儲履約方案">
 <meta property="og:description" content="E-Commerce & U.S. Warehouse Fulfillment Solutions · Helping online sellers ship smarter and grow globally">
 <style>img{max-width:100%}[hidden]{display:none!important}</style>
@@ -31,7 +35,9 @@
   .hdr h1 { margin:0; font-size:1.55rem; letter-spacing:.12em; font-weight:700; text-transform:uppercase; }
   .hdr .sub { color:var(--subfg); font-size:.82rem; overflow-wrap:anywhere; }
   .hdr .ctl { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-left:auto; justify-content:flex-end; }
-  .hdr select { background:var(--sel); color:var(--gold); border:1px solid var(--selline); border-radius:6px; padding:3px 6px; font-family:inherit; font-size:.82rem; cursor:pointer; }
+  /* 下拉選單不用瀏覽器原生外觀：手寫字型的字形比字框高，原生選單會把字的上緣切掉；自己畫箭頭、給足行高 */
+  .hdr select { appearance:none; -webkit-appearance:none; background:var(--sel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23F5C95C' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 8px center / 10px 6px; color:var(--gold); border:1px solid var(--selline); border-radius:6px; padding:3px 24px 3px 9px; line-height:1.6; font-family:inherit; font-size:.82rem; cursor:pointer; }
+  .hdr select option { color:var(--ink); background:#fff; }
   .hdr .clock { text-align:right; white-space:nowrap; margin:0 8px; }
   .hdr .clock .t { font-size:1.55rem; font-weight:700; line-height:1; letter-spacing:.05em; }
   .hdr .clock .d { color:var(--subfg); font-size:.76rem; }
