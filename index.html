@@ -19,8 +19,6 @@
   /* 版式與 After-Sales Parts Planner（RMA）同一套：標題列與表頭用 --navy、重點字 --gold、分頁列 --tabbar、主要按鈕 --primary。
      預設深藍主題；棕金、墨綠照 RMA 的值。字型預設手寫風（芫荽）。 */
   :root, html[data-theme="navy"] { --navy:#1F3F6E; --gold:#F5C95C; --tabbar:#2E6FBA; --tab:#6A9BD8; --bg:#EDF1F7; --card:#F8FAFD; --panel:#FFFFFF; --line:#C9D4E4; --ink:#1E2430; --mute:#5B6472; --primary:#F2B134; --hover:#FFD27A; --stripe:#F0F4F9; --sel:#2A4F82; --selline:#8FB0DB; --warn:#B5544C; --accent:#1F3F6E; --orange:#D9822B; --sea:#D6E4F3; --subfg:#D9C7A8; --ok:#6CC070; --okdark:#2E7D32; }
-  html[data-theme="brown"] { --navy:#3B2A1A; --gold:#F2B134; --tabbar:#F5A623; --tab:#F8BE4A; --bg:#F3ECE0; --card:#FBF6EC; --panel:#FFFDF7; --line:#D9CBB6; --ink:#3B2A1A; --mute:#7A6652; --primary:#F2A93B; --hover:#FFD27A; --stripe:#F6EFE3; --sel:#4A3524; --selline:#A98B5A; --warn:#B5544C; --accent:#3B2A1A; --orange:#E8862B; --sea:#DCE9F2; }
-  html[data-theme="green"] { --navy:#1F3D2B; --gold:#E9C46A; --tabbar:#2E9E6B; --tab:#63B98E; --bg:#EEF4EF; --card:#F7FBF8; --panel:#FFFFFF; --line:#C6D8CC; --ink:#1E2A22; --mute:#5B6B60; --primary:#E9C46A; --hover:#F6DE9A; --stripe:#EFF6F1; --sel:#2B5239; --selline:#8FC2A4; --warn:#B5544C; --accent:#1F3D2B; --orange:#D9822B; --sea:#D8E8EE; }
   :root, html[data-font="hand"] { --font:"芫荽","Iansui","LXGW WenKai TC","霞鶩文楷 TC","Segoe Print","Ink Free","Comic Neue","Comic Sans MS","Microsoft JhengHei",sans-serif; }
   html[data-font="sans"] { --font:"Microsoft JhengHei","Segoe UI","Noto Sans TC",sans-serif; }
   * { box-sizing:border-box; }
@@ -380,12 +378,8 @@
   <div class="ctl">
     <select id="lang-sel" title="Language" aria-label="Language" data-i18n-aria="aria.lang"><option value="zh">中文</option><option value="en">English</option></select>
     <select id="font-sel" title="Font" aria-label="Font" data-i18n-aria="aria.font"><option value="hand" data-i18n="opt.hand">手寫風</option><option value="sans" data-i18n="opt.sans">正黑體</option></select>
-    <select id="theme-sel" title="Theme" aria-label="Theme" data-i18n-aria="aria.theme"><option value="navy" data-i18n="opt.navy">深藍</option><option value="brown" data-i18n="opt.brown">棕金</option><option value="green" data-i18n="opt.green">墨綠</option></select>
     <select id="tz-sel" title="Time zone" aria-label="Time zone" data-i18n-aria="aria.tz"><option value="America/Los_Angeles" data-i18n="opt.la">美國倉（加州）</option><option value="Asia/Taipei" data-i18n="opt.tpe">台北</option></select>
     <div class="clock"><div class="t" id="clock">--:--</div><div class="d"><span id="date"></span> <span id="tzname">加州</span></div></div>
-    <div class="pill"><span class="dot"></span><span data-i18n="hdr.open">接單中</span></div>
-    <a class="hbtn" id="quote-btn" href="mailto:usw3pl@gmail.com" data-i18n="hdr.quote">聯絡報價</a>
-    <a href="#contact" id="mail-link">usw3pl@gmail.com</a>
   </div>
 </header>
 
@@ -588,9 +582,9 @@
 const I18N={
   "brand.h1":["美西第三方倉庫","U.S. West Coast 3PL Warehouse"],
   "brand.sub":["幫線上賣家更聰明出貨、放眼全球 · City of Industry, California · U.S. Warehouse Fulfillment Hub","Helping online sellers ship smarter and grow globally · City of Industry, California · U.S. Warehouse Fulfillment Hub"],
-  "opt.hand":["手寫風","Handwriting"],"opt.sans":["正黑體","Sans"],"opt.navy":["深藍","Navy Blue"],"opt.brown":["棕金","Brown & Gold"],"opt.green":["墨綠","Green"],
+  "opt.hand":["手寫風","Handwriting"],"opt.sans":["正黑體","Sans"],
   "opt.la":["美國倉（加州）","Warehouse (California)"],"opt.tpe":["台北","Taipei"],
-  "aria.lang":["語言","Language"],"aria.font":["字型","Font"],"aria.theme":["主題","Theme"],"aria.tz":["時區","Time zone"],"aria.nav":["分頁","Sections"],
+  "aria.lang":["語言","Language"],"aria.font":["字型","Font"],"aria.tz":["時區","Time zone"],"aria.nav":["分頁","Sections"],
   "home.mail":["寄信詢價","Email for a quote"],"home.hint":["說明商品、每月出貨量、尺寸重量、貨從哪裡來，我們會盡快回覆。","Tell us the product, monthly volume, size and weight and origin; we reply as soon as we can."],
   "bd.1":["全球出貨","Global Shipping"],"bd.2":["快速週轉","Fast Turnaround"],"bd.3":["安全可靠","Safe & Reliable"],"bd.4":["歡迎合作","Open to Collaboration"],
   "tl.h":["我們的服務","Our services"],"tl.s":["從進貨、存放到出貨，美國倉一站搞定。","From receiving and storage to shipping, all in one U.S. warehouse."],"tl.more":["了解更多 →","Learn more →"],"tl.1":["海外倉儲","Overseas Warehousing"],"tl.1s":["加州倉就近美國市場，貨物安全存放、隨時可出貨。","A California warehouse close to U.S. customers, with stock stored safely and ready to ship."],"tl.2":["在地倉儲與履約","Local Storage & Fulfillment"],"tl.2s":["收到訂單就揀貨、包裝、出貨，一條龍完成。","Orders are picked, packed and shipped in one smooth flow."],"tl.3":["收貨與出貨","Shipping & Receiving"],"tl.3s":["進貨驗收、出貨交寄，每一步都有紀錄可追蹤。","Inbound receiving and outbound handoff, with every step tracked."],"tl.4":["貼標服務","Labeling Services"],"tl.4s":["條碼、FBA 標籤、換標與合規標示，出貨前一次貼好。","Barcodes, FBA labels, relabeling and compliance labels, applied before shipping."],"tl.5":["庫存管理","Inventory Management"],"tl.5s":["庫存數量隨時查得到，補貨時機一目了然。","Check stock levels anytime and see at a glance when to restock."],"tl.6":["電商解決方案","E-Commerce Solutions"],"tl.6s":["串接 Shopify、Amazon 等平台，為線上賣家量身規劃物流。","Connected to Shopify, Amazon and more, with logistics planned around online sellers."],"vl.h":["為什麼選擇我們","Why choose us"],"vl.1":["安全第一","Safety First"],"vl.1s":["每一件貨都小心搬運、妥善存放。","Every shipment is handled and stored with care."],"vl.2":["快速高效","Speed & Efficiency"],"vl.2s":["流程持續優化，訂單出得又快又準。","Continuously improved processes get orders out fast and accurately."],"vl.3":["成本實惠","Cost-Effective"],"vl.3s":["UPS / FedEx / OnTrac 優惠費率，小包 $3 起，幫您守住利潤。","Discounted UPS / FedEx / OnTrac rates and small parcels from $3 protect your margins."],
@@ -603,7 +597,7 @@ const I18N={
   "api.3":["提供 API 文件與測試環境，工程師協助串接","API docs and a sandbox, with engineers to help you integrate"],
   "api.cta":["洽談 API 串接","Talk to us about API integration"],"api.wh":["我們的倉庫","Our warehouse"],
   "sc.origin":["世界各地","Anywhere"],"sc.wh":["美國倉（加州）","U.S. warehouse (California)"],"sc.dest":["全美與全球","U.S. & worldwide"],
-  "hdr.open":["接單中","Taking orders"],"hdr.quote":["聯絡報價","Get a quote"],
+  
   "nav.home":["首頁","Home"],"nav.services":["服務內容","Services"],"nav.flow":["合作流程","How it works"],
   
   
@@ -657,10 +651,8 @@ function applyLang(code){
 }
 /* 聯絡頁的服務地區：和地圖同一份地點，一面旗一個名字 */
 function applyFont(v){ document.documentElement.dataset.font=v==="sans"?"sans":"hand"; $("font-sel").value=v; pref("font",v); }
-function applyTheme(v){ const t=["navy","brown","green"].includes(v)?v:"navy"; document.documentElement.dataset.theme=t; $("theme-sel").value=t; pref("theme",t); }
 $("lang-sel").addEventListener("change",e=>applyLang(e.target.value));
 $("font-sel").addEventListener("change",e=>applyFont(e.target.value));
-$("theme-sel").addEventListener("change",e=>applyTheme(e.target.value));
 
 /* 時鐘：預設看美國倉（加州）的時間；海外賣家最常問的就是「你們那邊現在幾點」。 */
 let TZ="America/Los_Angeles";
@@ -806,7 +798,6 @@ window.addEventListener("resize",()=>{ cancelAnimationFrame(mapRaf); mapRaf=requ
 
 /* 開頁：套回上次的偏好，網址有 # 就開那一頁。 */
 applyFont(pref("font")||"hand");
-applyTheme(pref("theme")||"navy");
 TZ=(pref("tz")==="Asia/Taipei")?"Asia/Taipei":"America/Los_Angeles"; $("tz-sel").value=TZ;
 applyLang(pref("lang")||"zh");
 /* 首頁的服務卡、價值卡：捲進畫面才浮上來（分頁藏著時不算進畫面，切回來才播） */
