@@ -187,7 +187,7 @@
   .chips.plats span { border:1.5px solid var(--navy); border-radius:999px; padding:3px 13px; background:var(--panel); font-weight:700; transition:transform .2s ease, background .2s ease; }
   .chips.plats span:hover { transform:translateY(-3px) scale(1.06); background:var(--hover); }
   .tab.active .chips.plats span { animation:pop .45s cubic-bezier(.2,.8,.2,1) backwards; animation-delay:calc(var(--k, 0) * .08s + .7s); }
-  .chips.plats span:nth-child(1) { --k:0; } .chips.plats span:nth-child(2) { --k:1; } .chips.plats span:nth-child(3) { --k:2; } .chips.plats span:nth-child(4) { --k:3; } .chips.plats span:nth-child(5) { --k:4; } .chips.plats span:nth-child(6) { --k:5; }
+  .chips.plats span:nth-child(1) { --k:0; } .chips.plats span:nth-child(2) { --k:1; } .chips.plats span:nth-child(3) { --k:2; } .chips.plats span:nth-child(4) { --k:3; } .chips.plats span:nth-child(5) { --k:4; } .chips.plats span:nth-child(6) { --k:5; } .chips.plats span:nth-child(7) { --k:6; }
   @keyframes rise { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
   @keyframes pop { from { opacity:0; transform:scale(.5); } 65% { opacity:1; transform:scale(1.1); } to { opacity:1; transform:scale(1); } }
   @keyframes wiggle { 0%, 100% { transform:rotate(0); } 25% { transform:rotate(-14deg) scale(1.2); } 75% { transform:rotate(12deg) scale(1.2); } }
@@ -329,6 +329,28 @@
   @media (min-width:1750px){.street .st-van{animation-name:st-dx}.street .st-wheel{animation-name:st-rx}}
   @media (min-width:2160px){.street svg{aspect-ratio:2000/190;max-height:220px}}
   @media (prefers-reduced-motion:reduce){.street *{animation:none!important}}
+  /* ── 首頁：關於我們 ── */
+  .about { display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); margin:14px 0 6px; background:var(--panel); border:2px solid var(--navy); border-radius:16px; overflow:hidden; box-shadow:0 10px 24px rgba(20,40,70,.1); }
+  .about-ph { position:relative; min-height:260px; background:var(--stripe); }
+  .about-ph img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+  .about-tx { padding:22px 26px; }
+  .about-tx .fl-kicker { color:var(--tabbar); }
+  .about-tx h2 { margin:0 0 8px; font-size:1.5rem; line-height:1.3; color:var(--ink); }
+  .about-tx > p { margin:0 0 14px; color:var(--mute); line-height:1.75; }
+  .about-pts { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px 18px; }
+  .about-pts li { display:flex; gap:10px; align-items:flex-start; }
+  .about-pts .ic { flex:none; display:grid; place-items:center; width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg, var(--tabbar), var(--navy)); font-size:1.05rem; }
+  .about-pts b { display:block; font-size:.98rem; color:var(--ink); }
+  .about-pts span:not(.ic) { display:block; font-size:.86rem; line-height:1.55; color:var(--mute); }
+  @media (max-width:860px) { .about { grid-template-columns:minmax(0, 1fr); } .about-ph { min-height:0; aspect-ratio:16 / 8; } }
+  @media (max-width:520px) { .about-tx { padding:18px; } .about-pts { grid-template-columns:1fr; } }
+  /* ── 服務頁：履約模式 ── */
+  .fms { display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:14px; margin:10px 0 16px; }
+  .fm { position:relative; background:var(--panel); border:2px solid var(--navy); border-radius:12px; padding:16px 18px 14px; border-top-width:6px; border-top-color:var(--gold); transition:transform .25s ease, box-shadow .25s ease; }
+  .fm:hover { transform:translateY(-3px); box-shadow:0 10px 22px rgba(20,40,70,.14); }
+  .fm .ic { display:grid; place-items:center; width:44px; height:44px; border-radius:12px; background:var(--stripe); border:1px solid var(--line); font-size:1.4rem; margin-bottom:8px; }
+  .fm h3 { margin:0 0 4px; font-size:1.08rem; color:var(--ink); }
+  .fm p { margin:0; font-size:.9rem; line-height:1.65; color:var(--mute); }
   /* ── 聯絡我們：WhatsApp ── */
   .row.panel.wa { gap:14px 18px; }
   .wa-qr { width:96px; height:96px; border-radius:8px; border:1px solid var(--line); background:#fff; image-rendering:pixelated; }
@@ -427,6 +449,23 @@
 <g transform="translate(545 184)"><g class="st-van"><circle class="st-puff" cx="-7" cy="-21" r="4"/><circle class="st-puff st-pb" cx="-7" cy="-21" r="4"/><ellipse cx="94" cy="0" rx="98" ry="3.6" fill="#000" opacity=".28"/><g class="st-body"><rect x="6" y="-26" width="172" height="10" fill="#2B2F36"/><path class="st-fp st-ol" d="M128-64H153Q159-64 162-59L174-42H182Q187-42 187-37V-22Q187-18 183-18H128Z"/><rect class="st-fp st-ol" x="0" y="-82" width="134" height="64" rx="6"/><path class="st-ol" fill="#BFE6F7" stroke-width="2" d="M139-58H159.5L170-44H139Z"/><path class="st-ft" d="M143.5-45v-1.5q0-3 3-3h6.5q3 0 3 3v1.5z"/><circle cx="149.5" cy="-51.3" r="4.2" fill="#F2C9A0"/><path class="st-fn" d="M144.7-53a4.8 4.8 0 0 1 9.6 0h2.4v1.6h-12z"/><path d="M161.4-54.5l-2 4.2M164.6-50.6l-2.6 5.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".85"/><rect class="st-ft" x="1.3" y="-40" width="180" height="6"/><rect class="st-fn" x="1.3" y="-34" width="180" height="2"/><path class="st-speed" d="M41-69h17M46-62h12M51-55h7"/><g transform="translate(77 -61) scale(1.15)" class="st-sn" stroke-width="1.6" stroke-linejoin="round"><path class="st-fo" d="M-12-6L0 0V14L-12 8Z"/><path class="st-fg" d="M0 0L12-6V8L0 14Z"/><path class="st-fg" d="M-12-6L0-12L12-6L0 0Z"/><path d="M-6-9L6-3" stroke="#fff" stroke-width="2" opacity=".75"/></g><path class="st-ol" stroke-width="1.5" opacity=".35" d="M13-79V-21"/><rect class="st-fn" x="16" y="-55" width="2.6" height="9" rx="1"/><rect class="st-fn" x="141" y="-30" width="8" height="2.6" rx="1"/><rect class="st-fn" x="171" y="-50" width="4.5" height="8" rx="1.2"/><rect x="-1.5" y="-52" width="5" height="11" rx="1.5" fill="#E2483D"/><rect class="st-ol" stroke-width="1.2" x="180.5" y="-40.5" width="6.5" height="7" rx="2" fill="#FFE38A"/><rect x="-4" y="-24" width="15" height="6" rx="2" fill="#4A5059"/><rect x="175" y="-24" width="15" height="6" rx="2" fill="#4A5059"/><path fill="#2B2F36" d="M20.98-18A16 16 0 0 1 51.02-18ZM136.98-18A16 16 0 0 1 167.02-18Z"/></g><g transform="translate(36 -12.5)"><g class="st-wheel"><circle r="12.5" fill="#23262B"/><circle r="7" fill="#D5DAE0"/><path d="M0-6.5V6.5M-5.6-3.25L5.6 3.25M-5.6 3.25L5.6-3.25" stroke="#6F7782" stroke-width="2"/><circle r="2.2" fill="#6F7782"/></g></g><g transform="translate(152 -12.5)"><g class="st-wheel"><circle r="12.5" fill="#23262B"/><circle r="7" fill="#D5DAE0"/><path d="M0-6.5V6.5M-5.6-3.25L5.6 3.25M-5.6 3.25L5.6-3.25" stroke="#6F7782" stroke-width="2"/><circle r="2.2" fill="#6F7782"/></g></g></g></g>
 <g class="st-check"><path class="st-ft" d="M545.5 93l4.5 6 4.5-6z"/><circle class="st-ft" cx="550" cy="84" r="11" stroke="#fff" stroke-width="2.5"/><path d="M544.5 84.5l4 4 7.5-8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
 </g></svg></div>
+    <!-- 關於我們：依官網的公司介紹與六項優勢改寫 -->
+    <div class="about">
+      <div class="about-ph"><img src="img/flow-3-forklift.webp" alt="" loading="lazy" width="1000" height="563"></div>
+      <div class="about-tx">
+        <span class="fl-kicker" data-i18n="ab.k">關於我們</span>
+        <h2 data-i18n="ab.h">聰明、快速、可靠的物流夥伴</h2>
+        <p data-i18n="ab.s">我們在加州 City of Industry 經營倉庫，提供海外倉儲、在地存放、收發貨、貼標與訂單履約，幫線上賣家把生意做到全球。</p>
+        <ul class="about-pts">
+          <li><span class="ic" aria-hidden="true">🛡️</span><div><b data-i18n="ab.1">安全倉儲</b><span data-i18n="ab.1s">海外與在地存放，貨物安全有保障。</span></div></li>
+          <li><span class="ic" aria-hidden="true">⚙️</span><div><b data-i18n="ab.2">流程順暢</b><span data-i18n="ab.2s">收貨、出貨、訂單處理一氣呵成。</span></div></li>
+          <li><span class="ic" aria-hidden="true">🏷️</span><div><b data-i18n="ab.3">精準貼標</b><span data-i18n="ab.3s">標籤正確又合規，出貨不卡關。</span></div></li>
+          <li><span class="ic" aria-hidden="true">📊</span><div><b data-i18n="ab.4">即時庫存</b><span data-i18n="ab.4s">庫存隨時查得到，補貨不手忙腳亂。</span></div></li>
+          <li><span class="ic" aria-hidden="true">💵</span><div><b data-i18n="ab.5">降本增效</b><span data-i18n="ab.5s">持續優化流程，幫您省下成本。</span></div></li>
+          <li><span class="ic" aria-hidden="true">🌏</span><div><b data-i18n="ab.6">為賣家打造</b><span data-i18n="ab.6s">專為電商賣家與全球拓展設計。</span></div></li>
+        </ul>
+      </div>
+    </div>
     <!-- 為什麼選擇我們：三張價值卡 -->
     <h2 class="section" data-i18n="vl.h">為什麼選擇我們</h2>
     <div class="values">
@@ -492,6 +531,14 @@
       <div class="svc"><div class="t"><span>🤝</span><span data-i18n="svc.5">彈性合作</span></div><ul>
         <li data-i18n="svc.5a">電商與新品牌</li><li data-i18n="svc.5b">小型賣家友善</li><li data-i18n="svc.5c">一站式服務</li><li data-i18n="svc.5d">客製方案</li><li data-i18n="svc.5e">協助拓展美國市場</li></ul></div>
     </div>
+    <!-- 履約模式：Amazon FBA／FBM 與 DTC；庫存、履約、運輸、退貨一條龍 -->
+    <h2 class="section" data-i18n="fm.h">履約模式</h2>
+    <div class="caption" data-i18n="fm.s">庫存管理、訂單履約、運輸配送、退貨處理，一條龍包辦。</div>
+    <div class="fms">
+      <div class="fm"><span class="ic" aria-hidden="true">📦</span><h3 data-i18n="fm.1">Amazon FBA</h3><p data-i18n="fm.1s">貼好 FBA 標籤、整箱打板，幫您把貨送進 Amazon 倉。</p></div>
+      <div class="fm"><span class="ic" aria-hidden="true">🚚</span><h3 data-i18n="fm.2">Amazon FBM</h3><p data-i18n="fm.2s">Amazon 訂單由我們倉庫直接出貨，庫存和時效自己掌握。</p></div>
+      <div class="fm"><span class="ic" aria-hidden="true">🏠</span><h3 data-i18n="fm.3">DTC 直送消費者</h3><p data-i18n="fm.3s">獨立站、Shopify、eBay、Walmart 訂單，直接寄到顧客手上。</p></div>
+    </div>
     <!-- 宣傳：ERP 對接與開放 API（右側是會動的「資料流」示意） -->
     <div class="promo">
       <div class="promo-text">
@@ -513,7 +560,7 @@
     </div>
     <h2 class="section" data-i18n="plat.h">支援平台</h2>
     <div class="caption" data-i18n="plat.s">多平台訂單整合。</div>
-    <div class="chips plats"><span>Shopify</span><span>Amazon</span><span>eBay</span><span>Walmart</span><span>TikTok Shop</span><span>Temu</span></div>
+    <div class="chips plats"><span>Shopify</span><span>Amazon</span><span>eBay</span><span>Walmart</span><span>Wish</span><span>TikTok Shop</span><span>Temu</span></div>
   </section>
 
   <!-- 合作流程 -->
@@ -650,7 +697,7 @@ const I18N={
   
   
   
-  "ct.email":["電子郵件","Email"],"wa.s":["手機掃描 QR code，或點按鈕直接開始聊天。", "Scan the QR code with your phone, or tap the button to start a chat."],"wa.cta":["WhatsApp 聯絡我們", "WhatsApp us"],"ct.pk":["歡迎合作", "LET'S WORK TOGETHER"],"ct.ph":["一起把美國市場做起來", "Let's grow your U.S. business together"],"ct.ps":["從第一批貨到每天出貨，每一步我們都陪您把關。", "From your first shipment to everyday orders, we've got your back every step of the way."],"ct.palt":["兩人握手", "Two people shaking hands"],"ct.copy":["複製","Copy"],
+  "ct.email":["電子郵件","Email"],"ab.1":["安全倉儲", "Secure storage"],"ab.1s":["海外與在地存放，貨物安全有保障。", "Overseas and local storage you can count on."],"ab.2":["流程順暢", "Smooth operations"],"ab.2s":["收貨、出貨、訂單處理一氣呵成。", "Receiving, shipping and order processing that just flow."],"ab.3":["精準貼標", "Accurate labeling"],"ab.3s":["標籤正確又合規，出貨不卡關。", "Correct, compliant labels, so shipments don't get held up."],"ab.4":["即時庫存", "Real-time inventory"],"ab.4s":["庫存隨時查得到，補貨不手忙腳亂。", "Check your stock anytime and restock without the scramble."],"ab.5":["降本增效", "Lower costs"],"ab.5s":["持續優化流程，幫您省下成本。", "We keep tightening our process to save you money."],"ab.6":["為賣家打造", "Built for sellers"],"ab.6s":["專為電商賣家與全球拓展設計。", "Designed around online sellers and growing worldwide."],"ab.k":["關於我們", "ABOUT US"],"ab.h":["聰明、快速、可靠的物流夥伴", "Your smart, fast and reliable logistics partner"],"ab.s":["我們在加州 City of Industry 經營倉庫，提供海外倉儲、在地存放、收發貨、貼標與訂單履約，幫線上賣家把生意做到全球。", "We run a warehouse in City of Industry, California, offering overseas warehousing, local storage, shipping and receiving, labeling and order fulfillment, so online sellers can take their business global."],"fm.1s":["貼好 FBA 標籤、整箱打板，幫您把貨送進 Amazon 倉。", "We prep, label and palletize your stock and send it into Amazon fulfillment centers."],"fm.2s":["Amazon 訂單由我們倉庫直接出貨，庫存和時效自己掌握。", "Your Amazon orders ship straight from our warehouse, so you stay in control of stock and delivery speed."],"fm.3s":["獨立站、Shopify、eBay、Walmart 訂單，直接寄到顧客手上。", "Orders from your own site, Shopify, eBay or Walmart go straight to your customers."],"fm.1":["Amazon FBA", "Amazon FBA"],"fm.2":["Amazon FBM", "Amazon FBM"],"fm.3":["DTC 直送消費者", "Direct to consumer (DTC)"],"fm.h":["履約模式", "Fulfillment models"],"fm.s":["庫存管理、訂單履約、運輸配送、退貨處理，一條龍包辦。", "Inventory, order fulfillment, transportation and returns, all handled in one place."],"wa.s":["手機掃描 QR code，或點按鈕直接開始聊天。", "Scan the QR code with your phone, or tap the button to start a chat."],"wa.cta":["WhatsApp 聯絡我們", "WhatsApp us"],"ct.pk":["歡迎合作", "LET'S WORK TOGETHER"],"ct.ph":["一起把美國市場做起來", "Let's grow your U.S. business together"],"ct.ps":["從第一批貨到每天出貨，每一步我們都陪您把關。", "From your first shipment to everyday orders, we've got your back every step of the way."],"ct.palt":["兩人握手", "Two people shaking hands"],"ct.copy":["複製","Copy"],
   
   
 };
