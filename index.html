@@ -330,19 +330,17 @@
   @media (min-width:2160px){.street svg{aspect-ratio:2000/190;max-height:220px}}
   @media (prefers-reduced-motion:reduce){.street *{animation:none!important}}
   /* ── 首頁：關於我們 ── */
-  .about { display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); margin:14px 0 6px; background:var(--panel); border:2px solid var(--navy); border-radius:16px; overflow:hidden; box-shadow:0 10px 24px rgba(20,40,70,.1); }
-  .about-ph { position:relative; min-height:260px; background:var(--stripe); }
-  .about-ph img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+  .about { margin:14px 0 6px; background:var(--panel); border:2px solid var(--navy); border-radius:16px; overflow:hidden; box-shadow:0 10px 24px rgba(20,40,70,.1); }
   .about-tx { padding:22px 26px; }
   .about-tx .fl-kicker { color:var(--tabbar); }
   .about-tx h2 { margin:0 0 8px; font-size:1.5rem; line-height:1.3; color:var(--ink); }
   .about-tx > p { margin:0 0 14px; color:var(--mute); line-height:1.75; }
-  .about-pts { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px 18px; }
+  .about-pts { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:12px 18px; }
   .about-pts li { display:flex; gap:10px; align-items:flex-start; }
   .about-pts .ic { flex:none; display:grid; place-items:center; width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg, var(--tabbar), var(--navy)); font-size:1.05rem; }
   .about-pts b { display:block; font-size:.98rem; color:var(--ink); }
   .about-pts span:not(.ic) { display:block; font-size:.86rem; line-height:1.55; color:var(--mute); }
-  @media (max-width:860px) { .about { grid-template-columns:minmax(0, 1fr); } .about-ph { min-height:0; aspect-ratio:16 / 8; } }
+  @media (max-width:860px) { .about-pts { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
   @media (max-width:520px) { .about-tx { padding:18px; } .about-pts { grid-template-columns:1fr; } }
   /* ── 服務頁：履約模式 ── */
   .fms { display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:14px; margin:10px 0 16px; }
@@ -451,7 +449,6 @@
 </g></svg></div>
     <!-- 關於我們：依官網的公司介紹與六項優勢改寫 -->
     <div class="about">
-      <div class="about-ph"><img src="img/flow-3-forklift.webp" alt="" loading="lazy" width="1000" height="563"></div>
       <div class="about-tx">
         <span class="fl-kicker" data-i18n="ab.k">關於我們</span>
         <h2 data-i18n="ab.h">聰明、快速、可靠的物流夥伴</h2>
