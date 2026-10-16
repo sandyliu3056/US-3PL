@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>美國倉儲履約方案</title>
-<meta name="description" content="電商與美國倉儲履約方案：幫線上賣家更聰明出貨、放眼全球。City of Industry, California · U.S. Warehouse Fulfillment Hub，UPS / FedEx 優惠費率、小包 $3 起。台灣／美國。">
+<title>美西第三方倉庫</title>
+<meta name="description" content="美西第三方倉庫：幫線上賣家更聰明出貨、放眼全球。City of Industry, California · U.S. Warehouse Fulfillment Hub，UPS / FedEx / OnTrac 優惠費率、小包 $3 起，配合頭城報關一條龍，服務遍及全球。">
 <link rel="icon" href="favicon.ico?v=warehouse-bricks-2" sizes="16x16 32x32 48x48" type="image/x-icon">
 <link rel="icon" href="favicon.svg?v=warehouse-bricks-2" type="image/svg+xml" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=warehouse-bricks-3" sizes="180x180">
 <meta name="theme-color" content="#1F3F6E">
-<meta property="og:title" content="美國倉儲履約方案">
-<meta property="og:description" content="E-Commerce & U.S. Warehouse Fulfillment Solutions · Helping online sellers ship smarter and grow globally">
+<meta property="og:title" content="美西第三方倉庫">
+<meta property="og:description" content="U.S. West Coast 3PL Warehouse · Helping online sellers ship smarter and grow globally">
 <style>img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -71,6 +71,12 @@
   .kpi .k { color:var(--mute); font-size:.8rem; font-weight:700; }
   .kpi .v { color:var(--ink); font-size:1.45rem; font-weight:700; line-height:1.3; }
   .kpi .s { color:var(--mute); font-size:.82rem; }
+  /* 首頁四張數字卡：縮小 */
+  #tab-home .kpis { gap:8px; margin:8px 0; }
+  #tab-home .kpi { padding:5px 12px; border-radius:8px; }
+  #tab-home .kpi .k { font-size:.72rem; }
+  #tab-home .kpi .v { font-size:1.1rem; line-height:1.25; }
+  #tab-home .kpi .s { font-size:.74rem; }
   .kpi .s.ct-v { color:var(--ink); font-size:.95rem; font-weight:700; margin-top:4px; }
   .section { font-weight:700; font-size:1.02rem; margin:16px 0 6px; }
   .caption { color:var(--mute); font-size:.85rem; }
@@ -851,7 +857,7 @@
 
 <header class="hdr">
   <div class="brand">
-    <h1 data-i18n="brand.h1">電商 · 美國倉儲履約方案</h1>
+    <h1 data-i18n="brand.h1">美西第三方倉庫</h1>
     <div class="sub" data-i18n="brand.sub">幫線上賣家更聰明出貨、放眼全球 · City of Industry, California · U.S. Warehouse Fulfillment Hub</div>
   </div>
   <div class="ctl">
@@ -899,28 +905,31 @@
 </g></svg></div>
     <div class="kpis">
       <div class="kpi"><div class="k" data-i18n="k1">小包</div><div class="v" data-i18n="k1v">$3 起</div><div class="s" data-i18n="k1s">Small Parcel from $3+</div></div>
-      <div class="kpi"><div class="k" data-i18n="k2">UPS / FedEx</div><div class="v" data-i18n="k2v">優惠費率</div><div class="s" data-i18n="k2s">Discounted UPS / FedEx Rates</div></div>
+      <div class="kpi"><div class="k" data-i18n="k2">UPS / FedEx / OnTrac</div><div class="v" data-i18n="k2v">優惠費率</div><div class="s" data-i18n="k2s">Discounted UPS / FedEx / OnTrac Rates</div></div>
       <div class="kpi"><div class="k" data-i18n="k3">配送選項</div><div class="v" data-i18n="k3v">Ground / Express</div><div class="s" data-i18n="k3s">多種配送時效可選</div></div>
-      <div class="kpi"><div class="k" data-i18n="k4">服務</div><div class="v" data-i18n="k4v">台灣 / 美國</div><div class="s" data-i18n="k4s">Global Shipping · 中英文服務</div></div>
+      <div class="kpi"><div class="k" data-i18n="k4">服務</div><div class="v" data-i18n="k4v">全球各地</div><div class="s" data-i18n="k4s">Global Shipping · 中英文服務</div></div>
     </div>
 
-    <!-- 服務介紹：圖片卡（插畫在 img/，深色遮罩上白字；滑過放大背景），點了開「服務內容」 -->
-    <h2 class="section" data-i18n="tl.h">我們的服務</h2>
-    <div class="caption" data-i18n="tl.s">從進貨、存放到出貨，美國倉一站搞定。</div>
-    <div class="tiles">
-      <a class="tile reveal" href="#services" style="--img:url(img/svc-warehouse.svg);--d:0.00s"><div class="tile-in"><h3 data-i18n="tl.1">海外倉儲</h3><p data-i18n="tl.1s">加州倉就近美國市場，貨物安全存放、隨時可出貨。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
-      <a class="tile reveal" href="#services" style="--img:url(img/svc-fulfillment.svg);--d:0.12s"><div class="tile-in"><h3 data-i18n="tl.2">在地倉儲與履約</h3><p data-i18n="tl.2s">收到訂單就揀貨、包裝、出貨，一條龍完成。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
-      <a class="tile reveal" href="#services" style="--img:url(img/svc-shipping.svg);--d:0.24s"><div class="tile-in"><h3 data-i18n="tl.3">收貨與出貨</h3><p data-i18n="tl.3s">進貨驗收、出貨交寄，每一步都有紀錄可追蹤。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
-      <a class="tile reveal" href="#services" style="--img:url(img/svc-label.svg);--d:0.00s"><div class="tile-in"><h3 data-i18n="tl.4">貼標服務</h3><p data-i18n="tl.4s">條碼、FBA 標籤、換標與合規標示，出貨前一次貼好。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
-      <a class="tile reveal" href="#services" style="--img:url(img/svc-inventory.svg);--d:0.12s"><div class="tile-in"><h3 data-i18n="tl.5">庫存管理</h3><p data-i18n="tl.5s">庫存數量隨時查得到，補貨時機一目了然。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
-      <a class="tile reveal" href="#services" style="--img:url(img/svc-ecommerce.svg);--d:0.24s"><div class="tile-in"><h3 data-i18n="tl.6">電商解決方案</h3><p data-i18n="tl.6s">串接 Shopify、Amazon 等平台，為線上賣家量身規劃物流。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
+    <h2 class="section" data-i18n="map.title">服務範圍</h2>
+    <div class="map">
+      <div class="map-bar"><span class="caption" data-i18n="map.cap">世界各地的貨都能進美國倉，從 City of Industry 出貨到全美與海外（Global Shipping）。</span>
+        <span class="seg" id="map-view"><button class="btn" type="button" data-view="fit" data-i18n="map.region">區域</button><button class="btn active" type="button" data-view="world" data-i18n="map.world">全球</button></span></div>
+      <div id="map-svg"></div>
+      <div class="chips">
+        <span><i class="lg wh"></i><b data-i18n="lg.wh">美國倉 City of Industry, CA</b></span>
+        <span><i class="lg from"></i><span data-i18n="lg.from">常見出貨來源</span></span>
+        <span><i class="lg to"></i><span data-i18n="lg.to">UPS / FedEx 國際可配送（主要市場）</span></span>
+        <span><i class="lg city"></i><span data-i18n="lg.city">區域視角：美國境內配送點</span></span>
+        <span><i class="lg rt"></i><span data-i18n="lg.rt">台灣 → 美國倉：空運、海運，頭城報關一條龍</span></span>
+      </div>
     </div>
+
     <!-- 為什麼選擇我們：三張價值卡 -->
     <h2 class="section" data-i18n="vl.h">為什麼選擇我們</h2>
     <div class="values">
       <div class="value reveal" style="--d:0.00s"><span class="ic" aria-hidden="true">⛑️</span><div><h3 data-i18n="vl.1">安全第一</h3><p data-i18n="vl.1s">每一件貨都小心搬運、妥善存放。</p></div></div>
       <div class="value reveal" style="--d:0.15s"><span class="ic" aria-hidden="true">🚀</span><div><h3 data-i18n="vl.2">快速高效</h3><p data-i18n="vl.2s">流程持續優化，訂單出得又快又準。</p></div></div>
-      <div class="value reveal" style="--d:0.30s"><span class="ic" aria-hidden="true">💰</span><div><h3 data-i18n="vl.3">成本實惠</h3><p data-i18n="vl.3s">UPS / FedEx 優惠費率，小包 $3 起，幫您守住利潤。</p></div></div>
+      <div class="value reveal" style="--d:0.30s"><span class="ic" aria-hidden="true">💰</span><div><h3 data-i18n="vl.3">成本實惠</h3><p data-i18n="vl.3s">UPS / FedEx / OnTrac 優惠費率，小包 $3 起，幫您守住利潤。</p></div></div>
     </div>
 
     <div class="steps-panel">
@@ -933,22 +942,9 @@
         <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.4">揀貨包裝出貨</span></li>
         <li><span class="ico" aria-hidden="true">✓</span><span data-i18n="st.5">追蹤與退貨</span></li>
       </ol>
-      <div class="steps-msg" data-i18n="st.msg">收貨上架、揀貨包裝、UPS / FedEx 配送、退貨處理，一站完成；快速週轉、安全可靠。</div>
+      <div class="steps-msg" data-i18n="st.msg">收貨上架、揀貨包裝、UPS / FedEx / OnTrac 配送、退貨處理，一站完成；快速週轉、安全可靠。</div>
     </div>
 
-    <h2 class="section" data-i18n="map.title">服務範圍</h2>
-    <div class="map">
-      <div class="map-bar"><span class="caption" data-i18n="map.cap">貨從台灣、中國、東南亞進美國倉，從 City of Industry 出貨到全美與海外（Global Shipping）。</span>
-        <span class="seg" id="map-view"><button class="btn" type="button" data-view="fit" data-i18n="map.region">區域</button><button class="btn active" type="button" data-view="world" data-i18n="map.world">全球</button></span></div>
-      <div id="map-svg"></div>
-      <div class="chips">
-        <span><i class="lg wh"></i><b data-i18n="lg.wh">美國倉 City of Industry, CA</b></span>
-        <span><i class="lg from"></i><span data-i18n="lg.from">常見出貨來源</span></span>
-        <span><i class="lg to"></i><span data-i18n="lg.to">UPS / FedEx 國際可配送（主要市場）</span></span>
-        <span><i class="lg city"></i><span data-i18n="lg.city">區域視角：美國境內配送點</span></span>
-        <span><i class="lg rt"></i><span data-i18n="lg.rt">台灣 → 美國倉：空運、海運</span></span>
-      </div>
-    </div>
   </section>
 
   <!-- 服務內容（傳單上的五組） -->
@@ -959,7 +955,7 @@
     <div class="scene" aria-hidden="true">
       <i class="cloud c1">☁️</i><i class="cloud c2">☁️</i><i class="cloud c3">☁️</i>
       <span class="lane sea"></span><span class="lane road"></span>
-      <span class="stop origin"><em>🏭</em><b data-i18n="sc.origin">台灣 / 中國 / 東南亞</b></span>
+      <span class="stop origin"><em>🏭</em><b data-i18n="sc.origin">世界各地</b></span>
       <span class="stop wh"><em>🏬</em><b data-i18n="sc.wh">美國倉（加州）</b></span>
       <span class="stop dest"><em>🏠</em><b data-i18n="sc.dest">全美與全球</b></span>
       <i class="ship"><span>🚢</span></i>
@@ -973,7 +969,7 @@
       <div class="svc"><div class="t"><span>📦</span><span data-i18n="svc.2">訂單處理與履約</span></div><ul>
         <li data-i18n="svc.2a">揀貨與包裝</li><li data-i18n="svc.2b">DTC / B2C / B2B</li><li data-i18n="svc.2c">多平台訂單整合</li><li data-i18n="svc.2d">FBA 預處理</li><li data-i18n="svc.2e">客製包裝</li></ul></div>
       <div class="svc"><div class="t"><span>✈️</span><span data-i18n="svc.3">美國境內與國際運輸</span></div><ul>
-        <li data-i18n="svc.3a">UPS / FedEx 優惠費率</li><li data-i18n="svc.3b">美國境內與國際配送</li><li data-i18n="svc.3c">小包 $3 起</li><li data-i18n="svc.3d">多種配送選項</li><li data-i18n="svc.3e">Ground / Express</li></ul></div>
+        <li data-i18n="svc.3a">UPS / FedEx / OnTrac 優惠費率</li><li data-i18n="svc.3b">美國境內與國際配送</li><li data-i18n="svc.3c">小包 $3 起</li><li data-i18n="svc.3d">多種配送選項</li><li data-i18n="svc.3e">Ground / Express</li><li data-i18n="svc.3f">頭城報關一條龍（合作貨代）</li></ul></div>
       <div class="svc"><div class="t"><span>💻</span><span data-i18n="svc.4">電商營運支援</span></div><ul>
         <li data-i18n="svc.4a">商品上架協助</li><li data-i18n="svc.4b">庫存同步</li><li data-i18n="svc.4c">訂單流程優化</li><li data-i18n="svc.4d">退貨處理</li><li data-i18n="svc.4e">客服支援</li></ul></div>
       <div class="svc"><div class="t"><span>🤝</span><span data-i18n="svc.5">彈性合作</span></div><ul>
@@ -1320,14 +1316,14 @@
 "use strict";
 /* 兩種語言，一份字典。預設中文；語言、字型、主題、時區記在這一台瀏覽器。 */
 const I18N={
-  "brand.h1":["電商 · 美國倉儲履約方案","E-Commerce & U.S. Warehouse Fulfillment Solutions"],
+  "brand.h1":["美西第三方倉庫","U.S. West Coast 3PL Warehouse"],
   "brand.sub":["幫線上賣家更聰明出貨、放眼全球 · City of Industry, California · U.S. Warehouse Fulfillment Hub","Helping online sellers ship smarter and grow globally · City of Industry, California · U.S. Warehouse Fulfillment Hub"],
   "opt.hand":["手寫風","Handwriting"],"opt.sans":["正黑體","Sans"],"opt.navy":["深藍","Navy Blue"],"opt.brown":["棕金","Brown & Gold"],"opt.green":["墨綠","Green"],
   "opt.la":["美國倉（加州）","Warehouse (California)"],"opt.tpe":["台北","Taipei"],
   "aria.lang":["語言","Language"],"aria.font":["字型","Font"],"aria.theme":["主題","Theme"],"aria.tz":["時區","Time zone"],"aria.nav":["分頁","Sections"],
   "home.mail":["寄信詢價","Email for a quote"],"home.hint":["說明商品、每月出貨量、尺寸重量、貨從哪裡來，我們會盡快回覆。","Tell us the product, monthly volume, size and weight and origin; we reply as soon as we can."],
   "bd.1":["全球出貨","Global Shipping"],"bd.2":["快速週轉","Fast Turnaround"],"bd.3":["安全可靠","Safe & Reliable"],"bd.4":["歡迎合作","Open to Collaboration"],
-  "tl.h":["我們的服務","Our services"],"tl.s":["從進貨、存放到出貨，美國倉一站搞定。","From receiving and storage to shipping, all in one U.S. warehouse."],"tl.more":["了解更多 →","Learn more →"],"tl.1":["海外倉儲","Overseas Warehousing"],"tl.1s":["加州倉就近美國市場，貨物安全存放、隨時可出貨。","A California warehouse close to U.S. customers, with stock stored safely and ready to ship."],"tl.2":["在地倉儲與履約","Local Storage & Fulfillment"],"tl.2s":["收到訂單就揀貨、包裝、出貨，一條龍完成。","Orders are picked, packed and shipped in one smooth flow."],"tl.3":["收貨與出貨","Shipping & Receiving"],"tl.3s":["進貨驗收、出貨交寄，每一步都有紀錄可追蹤。","Inbound receiving and outbound handoff, with every step tracked."],"tl.4":["貼標服務","Labeling Services"],"tl.4s":["條碼、FBA 標籤、換標與合規標示，出貨前一次貼好。","Barcodes, FBA labels, relabeling and compliance labels, applied before shipping."],"tl.5":["庫存管理","Inventory Management"],"tl.5s":["庫存數量隨時查得到，補貨時機一目了然。","Check stock levels anytime and see at a glance when to restock."],"tl.6":["電商解決方案","E-Commerce Solutions"],"tl.6s":["串接 Shopify、Amazon 等平台，為線上賣家量身規劃物流。","Connected to Shopify, Amazon and more, with logistics planned around online sellers."],"vl.h":["為什麼選擇我們","Why choose us"],"vl.1":["安全第一","Safety First"],"vl.1s":["每一件貨都小心搬運、妥善存放。","Every shipment is handled and stored with care."],"vl.2":["快速高效","Speed & Efficiency"],"vl.2s":["流程持續優化，訂單出得又快又準。","Continuously improved processes get orders out fast and accurately."],"vl.3":["成本實惠","Cost-Effective"],"vl.3s":["UPS / FedEx 優惠費率，小包 $3 起，幫您守住利潤。","Discounted UPS / FedEx rates and small parcels from $3 protect your margins."],
+  "tl.h":["我們的服務","Our services"],"tl.s":["從進貨、存放到出貨，美國倉一站搞定。","From receiving and storage to shipping, all in one U.S. warehouse."],"tl.more":["了解更多 →","Learn more →"],"tl.1":["海外倉儲","Overseas Warehousing"],"tl.1s":["加州倉就近美國市場，貨物安全存放、隨時可出貨。","A California warehouse close to U.S. customers, with stock stored safely and ready to ship."],"tl.2":["在地倉儲與履約","Local Storage & Fulfillment"],"tl.2s":["收到訂單就揀貨、包裝、出貨，一條龍完成。","Orders are picked, packed and shipped in one smooth flow."],"tl.3":["收貨與出貨","Shipping & Receiving"],"tl.3s":["進貨驗收、出貨交寄，每一步都有紀錄可追蹤。","Inbound receiving and outbound handoff, with every step tracked."],"tl.4":["貼標服務","Labeling Services"],"tl.4s":["條碼、FBA 標籤、換標與合規標示，出貨前一次貼好。","Barcodes, FBA labels, relabeling and compliance labels, applied before shipping."],"tl.5":["庫存管理","Inventory Management"],"tl.5s":["庫存數量隨時查得到，補貨時機一目了然。","Check stock levels anytime and see at a glance when to restock."],"tl.6":["電商解決方案","E-Commerce Solutions"],"tl.6s":["串接 Shopify、Amazon 等平台，為線上賣家量身規劃物流。","Connected to Shopify, Amazon and more, with logistics planned around online sellers."],"vl.h":["為什麼選擇我們","Why choose us"],"vl.1":["安全第一","Safety First"],"vl.1s":["每一件貨都小心搬運、妥善存放。","Every shipment is handled and stored with care."],"vl.2":["快速高效","Speed & Efficiency"],"vl.2s":["流程持續優化，訂單出得又快又準。","Continuously improved processes get orders out fast and accurately."],"vl.3":["成本實惠","Cost-Effective"],"vl.3s":["UPS / FedEx / OnTrac 優惠費率，小包 $3 起，幫您守住利潤。","Discounted UPS / FedEx / OnTrac rates and small parcels from $3 protect your margins."],
   "nav.contact":["聯絡我們","Contact"],"ct.h":["聯絡我們","Contact us"],"ct.s":["來信說明商品與每月出貨量，我們會盡快回覆。","Tell us about your products and monthly volume and we will get back to you promptly."],"ct.t1":["回覆時間","Reply time"],"ct.t1v":["盡快，通常一個工作天內","Promptly, usually within one business day"],"ct.t2":["語言","Languages"],"ct.t2v":["中文、英文","Chinese, English"],"ct.t3":["報價需要","For a quote"],"ct.t3v":["商品、每月出貨量、尺寸重量、貨從哪裡來","Product, monthly volume, size and weight, origin"],"ct.t4":["倉庫地點","Warehouse"],"ct.t4v":["City of Industry, California","City of Industry, California"],
   "awf.h":["貨到倉庫後怎麼走","How your parcel moves through our warehouse"],"awf.hs":["一個包裹從收貨到出貨的路線（14 秒一輪）。角色來自 Animated Warehouse。","One parcel's path from receiving to shipping (14-second loop). Characters from Animated Warehouse."],"awf.s1":["收貨","Receiving"],"awf.s2":["上架","Putaway"],"awf.s3":["揀貨包裝","Pick & Pack"],"awf.s4":["出貨","Shipping"],"awf.c1":["貨到倉庫，掃描入庫","Arrives and is scanned in"],"awf.c2":["依儲位上架","Put away to its shelf location"],"awf.c3":["依訂單揀貨、包裝","Picked and packed to the order"],"awf.c4":["貼標交寄，出倉配送","Labelled and handed to the carrier"],
   "api.badge":["最新","NEW"],"api.h":["ERP 對接 · 開放 API","ERP Integration · Open API"],
@@ -1336,7 +1332,7 @@ const I18N={
   "api.2":["支援 SAP、Oracle、鼎新、用友等 ERP，以及 Shopify、Amazon 等平台 API","Works with SAP, Oracle, Digiwin, Yonyou and other ERPs, plus Shopify, Amazon and other platform APIs"],
   "api.3":["提供 API 文件與測試環境，工程師協助串接","API docs and a sandbox, with engineers to help you integrate"],
   "api.cta":["洽談 API 串接","Talk to us about API integration"],"api.wh":["我們的倉庫","Our warehouse"],
-  "sc.origin":["台灣 / 中國 / 東南亞","Taiwan / China / SE Asia"],"sc.wh":["美國倉（加州）","U.S. warehouse (California)"],"sc.dest":["全美與全球","U.S. & worldwide"],
+  "sc.origin":["世界各地","Anywhere"],"sc.wh":["美國倉（加州）","U.S. warehouse (California)"],"sc.dest":["全美與全球","U.S. & worldwide"],
   "hdr.open":["接單中","Taking orders"],"hdr.quote":["聯絡報價","Get a quote"],
   "nav.home":["首頁","Home"],"nav.services":["服務內容","Services"],"nav.flow":["合作流程","How it works"],
   
@@ -1345,25 +1341,25 @@ const I18N={
              "Fill in the row and press \"Write my inquiry\": a ready-to-send email appears below. Copy it and send it to sandyliu3056@gmail.com; nothing on this page is uploaded."],
   "q.subj":["美國海外倉詢價","U.S. warehouse inquiry"],
   "k1":["小包","Small parcel"],"k1v":["$3 起","from $3"],"k1s":["Small Parcel from $3+","from $3+ within the U.S."],
-  "k2":["UPS / FedEx","UPS / FedEx"],"k2v":["優惠費率","Discounted rates"],"k2s":["Discounted UPS / FedEx Rates","Competitive UPS / FedEx rates"],
+  "k2":["UPS / FedEx / OnTrac","UPS / FedEx / OnTrac"],"k2v":["優惠費率","Discounted rates"],"k2s":["Discounted UPS / FedEx / OnTrac Rates","Competitive UPS / FedEx / OnTrac rates"],
   "k3":["配送選項","Delivery options"],"k3v":["Ground / Express","Ground / Express"],"k3s":["多種配送時效可選","Multiple delivery options"],
-  "k4":["服務","Service"],"k4v":["台灣 / 美國","Taiwan / USA"],"k4s":["Global Shipping · 中英文服務","Global shipping · Chinese and English"],
+  "k4":["服務","Service"],"k4v":["全球各地","Worldwide"],"k4s":["Global Shipping · 中英文服務","Global shipping · Chinese and English"],
   "st.title":["合作流程","How it works"],"st.pct":["五步，從第一批貨到日常出貨","Five steps, from the first shipment to daily orders"],
   "st.1":["貨送到美國倉","Ship stock to the warehouse"],"st.2":["驗收上架","Receive and put away"],"st.3":["平台訂單同步","Connect your store"],"st.4":["揀貨包裝出貨","Pick, pack and ship"],"st.5":["追蹤與退貨","Track and handle returns"],
-  "st.msg":["收貨上架、揀貨包裝、UPS / FedEx 配送、退貨處理，一站完成；快速週轉、安全可靠。","Receiving, pick and pack, UPS / FedEx delivery and returns in one place: fast turnaround, safe and reliable."],
+  "st.msg":["收貨上架、揀貨包裝、UPS / FedEx / OnTrac 配送、退貨處理，一站完成；快速週轉、安全可靠。","Receiving, pick and pack, UPS / FedEx / OnTrac delivery and returns in one place: fast turnaround, safe and reliable."],
   "st.msg2":["一站式服務，依需求客製方案。","One-stop service, customized to your needs."],
-  "map.title":["服務範圍","Where we ship"],"map.cap":["貨從台灣、中國、東南亞進美國倉，從 City of Industry 出貨到全美與海外（Global Shipping）。","Stock comes in from Taiwan, China and Southeast Asia; orders ship from City of Industry across the U.S. and abroad (global shipping)."],
+  "map.title":["服務範圍","Where we ship"],"map.cap":["世界各地的貨都能進美國倉，從 City of Industry 出貨到全美與海外（Global Shipping）。","Stock comes in from anywhere in the world; orders ship from City of Industry across the U.S. and abroad (global shipping)."],
   "map.region":["區域","Region"],"map.world":["全球","World"],
   "lg.wh":["美國倉 City of Industry, CA","U.S. warehouse, City of Industry, CA"],"lg.from":["常見出貨來源","Common origins"],"lg.to":["UPS / FedEx 國際可配送（主要市場）","UPS / FedEx international (main markets)"],"lg.city":["區域視角：美國境內配送點","Region view: U.S. delivery points"],
-  "rt.air":["空運","Air freight"],"rt.sea":["海運","Sea freight"],"lg.rt":["台灣 → 美國倉：空運、海運","Taiwan → warehouse: air and sea freight"],
+  "rt.air":["空運","Air freight"],"rt.sea":["海運","Sea freight"],"lg.rt":["台灣 → 美國倉：空運、海運，頭城報關一條龍","Taiwan → warehouse: air and sea freight, with one-stop customs clearance via Toucheng Customs"],
   "c.us":["美國倉","U.S. warehouse"],"c.tw":["台灣","Taiwan"],"c.cn":["中國","China"],"c.hk":["香港","Hong Kong"],"c.vn":["越南","Vietnam"],"c.th":["泰國","Thailand"],"c.my":["馬來西亞","Malaysia"],
   "c.jp":["日本","Japan"],"c.kr":["韓國","Korea"],"c.sg":["新加坡","Singapore"],"c.ph":["菲律賓","Philippines"],"c.id":["印尼","Indonesia"],"c.in":["印度","India"],"c.ae":["阿聯","UAE"],"c.sa":["沙烏地","Saudi Arabia"],
   "c.ca":["加拿大","Canada"],"c.gb":["英國","UK"],"c.de":["德國","Germany"],"c.fr":["法國","France"],"c.es":["西班牙","Spain"],"c.it":["義大利","Italy"],"c.nl":["荷蘭","Netherlands"],"c.au":["澳洲","Australia"],"c.nz":["紐西蘭","New Zealand"],
-  "svc.h":["服務內容","Services"],"svc.1e":["退貨與處置","Returns / Disposal"],"svc.3e":["Ground / Express","Ground / Express"],
+  "svc.h":["服務內容","Services"],"svc.1e":["退貨與處置","Returns / Disposal"],"svc.3e":["Ground / Express","Ground / Express"],"svc.3f":["頭城報關一條龍（合作貨代）","One-stop customs clearance via Toucheng Customs (partner forwarder)"],
   "svc.s":["幫線上賣家更聰明出貨、放眼全球。","Helping online sellers ship smarter and grow globally."],
   "svc.1":["美國倉儲服務","U.S. Warehouse Service"],"svc.1a":["收貨與上架","Receiving & Put-away"],"svc.1b":["倉儲管理","Storage Management"],"svc.1c":["貼標、換標","Labeling / Relabeling"],"svc.1d":["庫存控管","Inventory Control"],
   "svc.2":["訂單處理與履約","Order Processing & Fulfillment"],"svc.2a":["揀貨與包裝","Pick & Pack"],"svc.2b":["DTC / B2C / B2B","DTC / B2C / B2B Support"],"svc.2c":["多平台訂單整合","Multi-channel Order Integration"],"svc.2d":["FBA 預處理","FBA Prep"],"svc.2e":["客製包裝","Customized Packaging"],
-  "svc.3":["美國境內與國際運輸","Domestic & International Shipping"],"svc.3a":["UPS / FedEx 優惠費率","Competitive UPS / FedEx Rates"],"svc.3b":["美國境內與國際配送","U.S. Domestic & International Delivery"],"svc.3c":["小包 $3 起","Small Parcel from $3+"],"svc.3d":["多種配送選項","Multiple Delivery Options"],
+  "svc.3":["美國境內與國際運輸","Domestic & International Shipping"],"svc.3a":["UPS / FedEx / OnTrac 優惠費率","Competitive UPS / FedEx / OnTrac Rates"],"svc.3b":["美國境內與國際配送","U.S. Domestic & International Delivery"],"svc.3c":["小包 $3 起","Small Parcel from $3+"],"svc.3d":["多種配送選項","Multiple Delivery Options"],
   "svc.4":["電商營運支援","E-commerce Operations Support"],"svc.4a":["商品上架協助","Product Listing Assistance"],"svc.4b":["庫存同步","Inventory Sync"],"svc.4c":["訂單流程優化","Order Process Optimization"],"svc.4d":["退貨處理","Returns Handling"],"svc.4e":["客服支援","Customer Support"],
   "svc.5":["彈性合作","Flexible Collaboration"],"svc.5a":["電商與新品牌","For E-commerce & New Brands"],"svc.5b":["小型賣家友善","Small Business Friendly"],"svc.5c":["一站式服務","One-stop Service"],"svc.5d":["客製方案","Customized Solutions"],"svc.5e":["協助拓展美國市場","Support for U.S. Market Expansion"],
   "plat.h":["支援平台","Platforms"],"plat.s":["多平台訂單整合。","Multi-channel order integration."],
@@ -1385,7 +1381,7 @@ function applyLang(code){
   document.querySelectorAll("[data-i18n-ph]").forEach(el=>{ const t=I18N[el.dataset.i18nPh]; if(t) el.placeholder=t[i]; });
   document.querySelectorAll("[data-i18n-aria]").forEach(el=>{ const t=I18N[el.dataset.i18nAria]; if(t){ el.setAttribute("aria-label",t[i]); if(el.tagName==="SELECT") el.title=t[i]; } });
   document.documentElement.lang=i?"en":"zh-Hant-TW";
-  document.title=i?"E-Commerce & U.S. Warehouse Fulfillment Solutions":"美國倉儲履約方案";
+  document.title=i?"U.S. West Coast 3PL Warehouse":"美西第三方倉庫";
   $("lang-sel").value=LANG; pref("lang",LANG); tick(); drawMap();
   if(typeof mailHref==="function"){ const h=mailHref(I18N["q.subj"][i]); for(const id of ["quote-btn","home-mail","api-mail"]){ const el=$(id); if(el) el.href=h; } }
 }
