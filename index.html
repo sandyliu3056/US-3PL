@@ -384,8 +384,8 @@
     <select id="tz-sel" title="Time zone" aria-label="Time zone" data-i18n-aria="aria.tz"><option value="America/Los_Angeles" data-i18n="opt.la">美國倉（加州）</option><option value="Asia/Taipei" data-i18n="opt.tpe">台北</option></select>
     <div class="clock"><div class="t" id="clock">--:--</div><div class="d"><span id="date"></span> <span id="tzname">加州</span></div></div>
     <div class="pill"><span class="dot"></span><span data-i18n="hdr.open">接單中</span></div>
-    <a class="hbtn" id="quote-btn" href="mailto:sandyliu3056@gmail.com" data-i18n="hdr.quote">聯絡報價</a>
-    <a href="#contact" id="mail-link">sandyliu3056@gmail.com</a>
+    <a class="hbtn" id="quote-btn" href="mailto:usw3pl@gmail.com" data-i18n="hdr.quote">聯絡報價</a>
+    <a href="#contact" id="mail-link">usw3pl@gmail.com</a>
   </div>
 </header>
 
@@ -503,7 +503,7 @@
           <li data-i18n="api.2">支援 SAP、Oracle、鼎新、用友等 ERP，以及 Shopify、Amazon 等平台 API</li>
           <li data-i18n="api.3">提供 API 文件與測試環境，工程師協助串接</li>
         </ul>
-        <a class="btn primary" id="api-mail" href="mailto:sandyliu3056@gmail.com" data-i18n="api.cta">洽談 API 串接</a>
+        <a class="btn primary" id="api-mail" href="mailto:usw3pl@gmail.com" data-i18n="api.cta">洽談 API 串接</a>
       </div>
       <div class="promo-art" aria-hidden="true">
         <div class="node erp"><em>🖥️</em><b>ERP / WMS</b></div>
@@ -567,8 +567,8 @@
     <h2 class="section" data-i18n="ct.h">聯絡我們</h2>
     <div class="caption" data-i18n="ct.s">來信說明商品與每月出貨量，我們會盡快回覆。</div>
     <div class="row panel">
-      <div class="field"><span data-i18n="ct.email">電子郵件</span><span class="copyrow"><code id="email">sandyliu3056@gmail.com</code><button class="btn sm" id="copy-email" type="button" data-i18n="ct.copy">複製</button></span></div>
-      <a class="btn primary" id="home-mail" href="mailto:sandyliu3056@gmail.com" data-i18n="home.mail">寄信詢價</a>
+      <div class="field"><span data-i18n="ct.email">電子郵件</span><span class="copyrow"><code id="email">usw3pl@gmail.com</code><button class="btn sm" id="copy-email" type="button" data-i18n="ct.copy">複製</button></span></div>
+      <a class="btn primary" id="home-mail" href="mailto:usw3pl@gmail.com" data-i18n="home.mail">寄信詢價</a>
       <span class="caption" data-i18n="home.hint">說明商品、每月出貨量、尺寸重量、貨從哪裡來，我們會盡快回覆。</span>
     </div>
     <div class="kpis">
@@ -607,8 +607,8 @@ const I18N={
   "nav.home":["首頁","Home"],"nav.services":["服務內容","Services"],"nav.flow":["合作流程","How it works"],
   
   
-  "q.hint1":["填好按「產生詢價信」，下面會出現一封寫好的信，複製後寄到 sandyliu3056@gmail.com 即可；這一頁不會上傳任何東西。",
-             "Fill in the row and press \"Write my inquiry\": a ready-to-send email appears below. Copy it and send it to sandyliu3056@gmail.com; nothing on this page is uploaded."],
+  "q.hint1":["填好按「產生詢價信」，下面會出現一封寫好的信，複製後寄到 usw3pl@gmail.com 即可；這一頁不會上傳任何東西。",
+             "Fill in the row and press \"Write my inquiry\": a ready-to-send email appears below. Copy it and send it to usw3pl@gmail.com; nothing on this page is uploaded."],
   "q.subj":["美國海外倉詢價","U.S. warehouse inquiry"],
   "k1":["小包","Small parcel"],"k1v":["$3 起","from $3"],"k1s":["Small Parcel from $3+","from $3+ within the U.S."],
   "k2":["UPS / FedEx / OnTrac","UPS / FedEx / OnTrac"],"k2v":["優惠費率","Discounted rates"],"k2s":["Discounted UPS / FedEx / OnTrac Rates","Competitive UPS / FedEx / OnTrac rates"],
@@ -693,7 +693,7 @@ function showTab(name){
 }
 document.querySelectorAll("#tabs button").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
 /* 標題列的「聯絡報價」直接開信箱，主旨照目前語言 */
-function mailHref(subject,body){ return "mailto:sandyliu3056@gmail.com?subject="+encodeURIComponent(subject)+(body?"&body="+encodeURIComponent(body):""); }
+function mailHref(subject,body){ return "mailto:usw3pl@gmail.com?subject="+encodeURIComponent(subject)+(body?"&body="+encodeURIComponent(body):""); }
 window.addEventListener("hashchange",()=>showTab(location.hash.replace("#","")));
 
 /* 詢價信：把表單的四格寫成一封信，複製就能寄。 */
