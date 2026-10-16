@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant-TW" data-theme="navy" data-font="hand">
+<html lang="zh-Hant-TW" data-theme="navy">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -14,13 +14,15 @@
 <style>img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Iansui&family=Comic+Neue:wght@400;700&family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<!-- 線條圖示（stroke 跟著文字顏色） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 21.5s7.5-3.6 7.5-9.5V5.2L12 2.5 4.5 5.2V12c0 5.9 7.5 9.5 7.5 9.5z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.6"/></symbol><symbol id="i-gauge" viewBox="0 0 24 24"><path d="M3.5 18a9 9 0 1 1 17 0"/><path d="M12 14l4.5-4.5"/><circle cx="12" cy="14" r="1.3"/></symbol><symbol id="i-coins" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M14.6 9.3c-.5-.9-1.5-1.4-2.6-1.4-1.5 0-2.6.8-2.6 2 0 2.8 5.3 1.4 5.3 4.2 0 1.2-1.2 2-2.7 2-1.2 0-2.3-.6-2.8-1.5M12 6.3v1.6M12 16.1v1.6"/></symbol><symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3.5" width="7" height="6" rx="1.5"/><rect x="14" y="14.5" width="7" height="6" rx="1.5"/><path d="M6.5 9.5v3a2.5 2.5 0 0 0 2.5 2.5h5"/><path d="M12 13l2 2-2 2"/></symbol><symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 11.6V4a1 1 0 0 1 1-1h7.6l9.4 9.4-8.6 8.6z"/><circle cx="7.6" cy="7.6" r="1.6"/></symbol><symbol id="i-bars" viewBox="0 0 24 24"><path d="M3 20.5h18M6 20.5v-7M11 20.5V6M16 20.5v-10M21 20.5"/></symbol><symbol id="i-down" viewBox="0 0 24 24"><path d="M3 6.5l6.5 6.5 4-4 7.5 7.5"/><path d="M15 16.5h6v-6"/></symbol><symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></symbol><symbol id="i-warehouse" viewBox="0 0 24 24"><path d="M2.5 9.5L12 4l9.5 5.5V21h-19z"/><path d="M6.5 21v-8h11v8M6.5 16.5h11"/></symbol><symbol id="i-box" viewBox="0 0 24 24"><path d="M21 7.8L12 3 3 7.8v8.4L12 21l9-4.8z"/><path d="M3 7.8l9 4.8 9-4.8M12 12.6V21M7.5 5.4l9 4.8"/></symbol><symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 5.5h11v10h-11zM13.5 9h4.2l3.8 4.2v2.3h-8"/><circle cx="6.5" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></symbol><symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol><symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="12.5" rx="2"/><path d="M8.5 20.5h7M12 16.5v4"/></symbol><symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.3"/><path d="M2.8 20a6.2 6.2 0 0 1 12.4 0"/><path d="M15.5 4.9a3.3 3.3 0 0 1 0 6.3M18 13.9a6.2 6.2 0 0 1 3.2 6.1"/></symbol><symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7.5 9 7.5"/><path d="M5.5 9.5V20.5h13V9.5"/><path d="M10 20.5v-6h4v6"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.2 2"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.4L3.5 20.5l1.6-4.5a8.4 8.4 0 1 1 15.4-4.4z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></symbol><symbol id="i-clip" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v2.5H9zM8.5 10.5h7M8.5 14h7M8.5 17.5h4"/></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.5s-7-6.1-7-11.6a7 7 0 0 1 14 0c0 5.5-7 11.6-7 11.6z"/><circle cx="12" cy="9.8" r="2.5"/></symbol><symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="3.5" width="18" height="7" rx="1.6"/><rect x="3" y="13.5" width="18" height="7" rx="1.6"/><path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"/></symbol></defs></svg>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <style>
   /* 版式與 After-Sales Parts Planner（RMA）同一套：標題列與表頭用 --navy、重點字 --gold、分頁列 --tabbar、主要按鈕 --primary。
      預設深藍主題；棕金、墨綠照 RMA 的值。字型預設手寫風（芫荽）。 */
   :root, html[data-theme="navy"] { --navy:#1F3F6E; --gold:#F5C95C; --tabbar:#2E6FBA; --tab:#6A9BD8; --bg:#EDF1F7; --card:#F8FAFD; --panel:#FFFFFF; --line:#C9D4E4; --ink:#1E2430; --mute:#5B6472; --primary:#F2B134; --hover:#FFD27A; --stripe:#F0F4F9; --sel:#2A4F82; --selline:#8FB0DB; --warn:#B5544C; --accent:#1F3F6E; --orange:#D9822B; --sea:#D6E4F3; --subfg:#D9C7A8; --ok:#6CC070; --okdark:#2E7D32; }
-  :root, html[data-font="hand"] { --font:"芫荽","Iansui","LXGW WenKai TC","霞鶩文楷 TC","Segoe Print","Ink Free","Comic Neue","Comic Sans MS","Microsoft JhengHei",sans-serif; }
-  html[data-font="sans"] { --font:"Microsoft JhengHei","Segoe UI","Noto Sans TC",sans-serif; }
+  :root { --font:"Barlow","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif; }
   * { box-sizing:border-box; }
   [hidden] { display:none !important; }
   body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--font); font-size:14px; line-height:1.55; }
@@ -401,32 +403,141 @@
     .fl-grid, .fl-grid.two { grid-template-columns:1fr; }
     .fl-grid.two .fl-ph { aspect-ratio:16 / 9; }
   }
+  /* ════ 專業版：統一字級、卡片、間距（放最後，覆蓋前面的舊樣式） ════ */
+  :root, html[data-theme="navy"] { --navy:#17335C; --ink:#17202B; --mute:#556274; --line:#D9E0EA; --bg:#F3F5F8; --card:#F3F5F8; --panel:#FFFFFF; --primary:#F2B134; --hover:#FFD27A; --tabbar:#2563A8; --gold:#F2B134; --stripe:#EEF2F7; }
+  body { font-size:15.5px; line-height:1.65; -webkit-font-smoothing:antialiased; background:var(--bg); }
+  .i { width:1em; height:1em; flex:none; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; vertical-align:-.14em; }
+  /* 標題列 */
+  .hdr { padding:12px max(20px, calc((100% - 1160px) / 2)); }
+  .hdr .brand { display:flex; align-items:center; gap:12px; }
+  .hdr .mark { width:36px; height:36px; border-radius:8px; flex:none; }
+  .hdr .sub { color:#fff; font-size:1rem; font-weight:600; letter-spacing:.01em; }
+  .hdr .loc { color:var(--subfg); font-size:.8rem; }
+  .hdr .clock .t { font-size:1.35rem; font-variant-numeric:tabular-nums; }
+  .hdr select { border-color:rgba(255,255,255,.25); }
+  /* 導覽列：白底，選中的頁面底下一條黃線 */
+  .tabs { position:sticky; top:0; z-index:20; background:#fff; border-bottom:1px solid var(--line); padding:0 max(20px, calc((100% - 1160px) / 2)); gap:4px; align-items:center; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; box-shadow:0 1px 0 rgba(16,32,56,.03); }
+  .tabs::-webkit-scrollbar { display:none; }
+  .tabs button { background:none; border:0; border-radius:0; margin:0; padding:16px 14px 13px; color:var(--mute); font-weight:600; font-size:.98rem; border-bottom:3px solid transparent; white-space:nowrap; }
+  .tabs button:hover { background:none; color:var(--ink); }
+  .tabs button.active { background:none; color:var(--navy); border-bottom-color:var(--primary); margin-bottom:0; }
+  .tabs :focus-visible { outline-color:var(--navy); }
+  .nav-cta { margin-left:auto; flex:none; background:var(--primary); color:#17202B; font-weight:700; font-size:.92rem; text-decoration:none; padding:8px 16px; border-radius:8px; white-space:nowrap; }
+  .nav-cta:hover { background:var(--hover); }
+  @media (max-width:640px) { .nav-cta { display:none; } .tabs button { padding:14px 10px 11px; font-size:.92rem; } }
+  /* 內容區：置中、不再框成一張大卡 */
+  .card { max-width:1200px; margin:0 auto; padding:24px 20px 56px; background:none; border:0; border-radius:0; box-shadow:none; min-height:0; }
+  .section { font-size:1.5rem; font-weight:700; line-height:1.3; margin:44px 0 6px; color:var(--ink); }
+  .section + .caption { font-size:1rem; margin:0 0 16px; max-width:60ch; }
+  .tab > .section:first-child { margin-top:8px; }
+  /* 卡片：一套細邊框 */
+  .kpi, .svc, .map, .steps-panel, .row.panel, .fm, .fl-card, .promo, .about, .value, .notice, .promo-art .node { border:1px solid var(--line); border-radius:12px; box-shadow:0 1px 2px rgba(16,32,56,.05); background:var(--panel); }
+  .svc::before, .promo::after { display:none; }
+  .svc:hover, .value:hover, .fm:hover, .fl-card:hover { transform:none; box-shadow:0 1px 2px rgba(16,32,56,.05); }
+  .fl-card:hover .fl-ph img { transform:none; }
+  .value .ic, .promo .badge, .svc:hover .t > span:first-child { animation:none; }
+  .value:hover .ic { transform:none; }
+  .tab.active .svc, .tab.active .chips.plats span { animation:none; }
+  .chips.plats span:hover { transform:none; }
+  .btn { border:1px solid var(--navy); border-radius:8px; }
+  .btn.primary { border-color:#D99A1E; color:#17202B; }
+  .btn.lg { font-size:1rem; padding:11px 22px; }
+  .btn.wa-btn { border-color:#1DA851; }
+  /* 首頁主標 */
+  .hero { padding:28px 0 22px; max-width:760px; }
+  .hero-h { margin:0 0 12px; font-size:clamp(1.8rem, 3.6vw, 2.6rem); line-height:1.2; font-weight:700; color:var(--navy); letter-spacing:-.01em; }
+  .hero-s { margin:0 0 22px; font-size:1.08rem; color:var(--mute); max-width:56ch; }
+  .hero-cta { display:flex; flex-wrap:wrap; gap:12px; }
+  .street { border:1px solid var(--line); border-radius:14px; margin-bottom:8px; }
+  /* 關於我們、為什麼選擇我們 */
+  .about { margin:28px 0 0; }
+  .about-tx { padding:28px 30px; }
+  .about-tx h2 { font-size:1.5rem; color:var(--ink); }
+  .about-tx > p { max-width:64ch; }
+  .about-pts .ic, .value .ic { background:#E9EFF7; color:var(--navy); }
+  .about-pts .ic { font-size:1.15rem; }
+  .fl-kicker { letter-spacing:0; font-size:.88rem; }
+  .values { gap:16px; }
+  .value { border-radius:12px; padding:20px 22px; gap:16px; align-items:flex-start; }
+  .value .ic { width:48px; height:48px; font-size:1.4rem; box-shadow:none; }
+  .value h3 { color:var(--ink); font-size:1.1rem; }
+  /* 服務內容 */
+  .svcs { gap:16px; }
+  .svc { padding:20px 20px 16px; }
+  .svc .t { font-size:1.06rem; gap:10px; margin-bottom:10px; }
+  .svc .t > span:first-child { display:grid; place-items:center; width:38px; height:38px; border-radius:10px; background:#E9EFF7; color:var(--navy); font-size:1.2rem; }
+  .svc li::before { background:none; color:var(--okdark); font-weight:700; }
+  .fm { border-top-width:1px; border-top-color:var(--line); padding:20px; }
+  .fm .ic { background:#E9EFF7; border:0; color:var(--navy); border-radius:10px; }
+  .promo { background:var(--panel); padding:24px 26px; }
+  .promo .badge { background:var(--navy); letter-spacing:.02em; }
+  .promo-art .node em { font-size:1.8rem; color:var(--navy); display:grid; place-items:center; }
+  .chips.plats span { border:1px solid var(--line); background:var(--panel); font-weight:600; padding:6px 16px; }
+  /* 合作流程、聯絡 */
+  .fl-hero, .ct-photo { border:0; border-radius:14px; }
+  .fl-num { font-family:var(--font); }
+  .steps-panel { padding:18px 22px; }
+  .kpi { padding:14px 16px; }
+  .kpi .k { display:flex; align-items:center; gap:6px; }
+  .kpi .k .i { color:var(--navy); font-size:1.05rem; }
+  .map { padding:14px 16px 12px; }
+  .svcs { grid-template-columns:repeat(5, minmax(0, 1fr)); }
+  @media (max-width:1100px) { .svcs { grid-template-columns:repeat(3, minmax(0, 1fr)); } }
+  @media (max-width:720px) { .svcs { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+  @media (max-width:460px) { .svcs { grid-template-columns:1fr; } }
+  .pbar { height:4px; border:0; margin:10px 0 14px; }
+  .kpi > .k > .i:only-child { font-size:1.35rem; }
+  /* 頁尾 */
+  .ftr { background:var(--navy); color:#C9D4E4; padding:40px max(20px, calc((100% - 1160px) / 2)) 44px; }
+  .ftr-in { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:28px; }
+  .ftr-brand img { border-radius:8px; }
+  .ftr-brand p { margin:10px 0 0; max-width:38ch; font-size:.92rem; }
+  .ftr-col { display:flex; flex-direction:column; gap:6px; font-size:.92rem; }
+  .ftr-col h3 { margin:0 0 4px; color:#fff; font-size:.95rem; }
+  .ftr a { color:#C9D4E4; text-decoration:none; }
+  .ftr a:hover { color:var(--gold); text-decoration:underline; }
+  .ftr :focus-visible { outline-color:var(--gold); }
+  @media (max-width:760px) { .ftr-in { grid-template-columns:1fr 1fr; } .ftr-brand { grid-column:1 / -1; } }
+  @media (max-width:600px) {
+    .card { padding:16px 14px 40px; }
+    .hdr { padding:10px 14px; } .hdr .loc { display:none; }
+    .hero { padding:18px 0 16px; }
+    .section { font-size:1.3rem; margin-top:34px; }
+    .about-tx { padding:20px; }
+  }
 </style>
 
 <header class="hdr">
   <div class="brand">
     <h1 class="sr-only" data-i18n="brand.h1">美西第三方倉庫</h1>
-    <div class="sub" data-i18n="brand.sub">幫線上賣家更聰明出貨、放眼全球 · City of Industry, California · U.S. Warehouse Fulfillment Hub</div>
+    <img class="mark" src="favicon.svg" alt="" width="36" height="36">
+    <div><div class="sub" data-i18n="brand.sub">幫線上賣家更聰明出貨、放眼全球</div><div class="loc" data-i18n="brand.loc">美國倉位於加州 City of Industry</div></div>
   </div>
   <div class="ctl">
     <select id="lang-sel" title="Language" aria-label="Language" data-i18n-aria="aria.lang"><option value="zh">中文</option><option value="en">English</option></select>
-    <select id="font-sel" title="Font" aria-label="Font" data-i18n-aria="aria.font"><option value="hand" data-i18n="opt.hand">手寫風</option><option value="sans" data-i18n="opt.sans">正黑體</option></select>
     <select id="tz-sel" title="Time zone" aria-label="Time zone" data-i18n-aria="aria.tz"><option value="America/Los_Angeles" data-i18n="opt.la">美國倉（加州）</option><option value="Asia/Taipei" data-i18n="opt.tpe">台北</option></select>
     <div class="clock"><div class="t" id="clock">--:--</div><div class="d"><span id="date"></span> <span id="tzname">加州</span></div></div>
   </div>
 </header>
 
 <nav class="tabs" id="tabs" aria-label="Sections" data-i18n-aria="aria.nav">
-  <button data-tab="home" class="active" type="button"><span class="ico" aria-hidden="true">📂</span><span data-i18n="nav.home">首頁</span></button>
-  <button data-tab="services" type="button"><span class="ico" aria-hidden="true">🏬</span><span data-i18n="nav.services">服務內容</span></button>
-  <button data-tab="flow" type="button"><span class="ico" aria-hidden="true">🔁</span><span data-i18n="nav.flow">合作流程</span></button>
-  <button data-tab="contact" type="button"><span class="ico" aria-hidden="true">✉️</span><span data-i18n="nav.contact">聯絡我們</span></button>
+  <button data-tab="home" class="active" type="button"><span data-i18n="nav.home">首頁</span></button>
+  <button data-tab="services" type="button"><span data-i18n="nav.services">服務內容</span></button>
+  <button data-tab="flow" type="button"><span data-i18n="nav.flow">合作流程</span></button>
+  <button data-tab="contact" type="button"><span data-i18n="nav.contact">聯絡我們</span></button>
+  <a class="nav-cta" id="nav-mail" href="mailto:usw3pl@gmail.com" data-i18n="home.mail">寄信詢價</a>
 </nav>
 
 <main class="card">
   <!-- 首頁 -->
   <section class="tab active" id="tab-home">
     <!-- 首頁最上方的小車街景：積木風街道，送貨小車開到我們的 CA WAREHOUSE 裝貨再開走（12 秒一輪，純 CSS，減少動態效果時停在倉庫前） -->
+    <!-- 首頁主標：一句話說清楚是什麼、兩個聯絡入口 -->
+    <div class="hero">
+      <h2 class="hero-h" data-i18n="hero.h">您在美國的倉庫，就在南加州</h2>
+      <p class="hero-s" data-i18n="hero.s">收貨、存放、揀貨包裝，到 UPS／FedEx／OnTrac 出貨，跨境賣家需要的美國倉作業一次搞定。</p>
+      <div class="hero-cta"><a class="btn primary lg" id="hero-mail" href="mailto:usw3pl@gmail.com" data-i18n="home.mail">寄信詢價</a><a class="btn wa-btn lg" href="https://wa.me/qr/B4EII77BGMK6O1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg><span data-i18n="wa.cta">WhatsApp 聯絡我們</span></a></div>
+    </div>
     <div class="street" aria-hidden="true"><svg viewBox="0 0 2000 190" preserveAspectRatio="xMidYMax slice" focusable="false"><g transform="translate(400 0)">
 <rect class="st-fs" x="-400" width="2000" height="190"/>
 <path class="st-rays" d="M1152 1.5v5M1152 43.5v5M1128.5 25h5M1170.5 25h5M1135.38 8.38l3.54 3.54M1165.08 38.08l3.54 3.54M1135.38 41.62l3.54-3.54M1165.08 11.92l3.54-3.54"/><circle class="st-fg" cx="1152" cy="25" r="14"/>
@@ -454,21 +565,21 @@
         <h2 data-i18n="ab.h">聰明、快速、可靠的物流夥伴</h2>
         <p data-i18n="ab.s">我們在加州 City of Industry 經營倉庫，提供海外倉儲、在地存放、收發貨、貼標與訂單履約，幫線上賣家把生意做到全球。</p>
         <ul class="about-pts">
-          <li><span class="ic" aria-hidden="true">🛡️</span><div><b data-i18n="ab.1">安全倉儲</b><span data-i18n="ab.1s">海外與在地存放，貨物安全有保障。</span></div></li>
-          <li><span class="ic" aria-hidden="true">⚙️</span><div><b data-i18n="ab.2">流程順暢</b><span data-i18n="ab.2s">收貨、出貨、訂單處理一氣呵成。</span></div></li>
-          <li><span class="ic" aria-hidden="true">🏷️</span><div><b data-i18n="ab.3">精準貼標</b><span data-i18n="ab.3s">標籤正確又合規，出貨不卡關。</span></div></li>
-          <li><span class="ic" aria-hidden="true">📊</span><div><b data-i18n="ab.4">即時庫存</b><span data-i18n="ab.4s">庫存隨時查得到，補貨不手忙腳亂。</span></div></li>
-          <li><span class="ic" aria-hidden="true">💵</span><div><b data-i18n="ab.5">降本增效</b><span data-i18n="ab.5s">持續優化流程，幫您省下成本。</span></div></li>
-          <li><span class="ic" aria-hidden="true">🌏</span><div><b data-i18n="ab.6">為賣家打造</b><span data-i18n="ab.6s">專為電商賣家與全球拓展設計。</span></div></li>
+          <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-shield"/></svg></span><div><b data-i18n="ab.1">安全倉儲</b><span data-i18n="ab.1s">海外與在地存放，貨物安全有保障。</span></div></li>
+          <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-flow"/></svg></span><div><b data-i18n="ab.2">流程順暢</b><span data-i18n="ab.2s">收貨、出貨、訂單處理一氣呵成。</span></div></li>
+          <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-tag"/></svg></span><div><b data-i18n="ab.3">精準貼標</b><span data-i18n="ab.3s">標籤正確又合規，出貨不卡關。</span></div></li>
+          <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-bars"/></svg></span><div><b data-i18n="ab.4">即時庫存</b><span data-i18n="ab.4s">庫存隨時查得到，補貨不手忙腳亂。</span></div></li>
+          <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-down"/></svg></span><div><b data-i18n="ab.5">降本增效</b><span data-i18n="ab.5s">持續優化流程，幫您省下成本。</span></div></li>
+          <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-globe"/></svg></span><div><b data-i18n="ab.6">為賣家打造</b><span data-i18n="ab.6s">專為電商賣家與全球拓展設計。</span></div></li>
         </ul>
       </div>
     </div>
     <!-- 為什麼選擇我們：三張價值卡 -->
     <h2 class="section" data-i18n="vl.h">為什麼選擇我們</h2>
     <div class="values">
-      <div class="value reveal" style="--d:0.00s"><span class="ic" aria-hidden="true">⛑️</span><div><h3 data-i18n="vl.1">安全第一</h3><p data-i18n="vl.1s">每一件貨都小心搬運、妥善存放。</p></div></div>
-      <div class="value reveal" style="--d:0.15s"><span class="ic" aria-hidden="true">🚀</span><div><h3 data-i18n="vl.2">快速高效</h3><p data-i18n="vl.2s">流程持續優化，訂單出得又快又準。</p></div></div>
-      <div class="value reveal" style="--d:0.30s"><span class="ic" aria-hidden="true">💰</span><div><h3 data-i18n="vl.3">成本實惠</h3><p data-i18n="vl.3s">UPS / FedEx / OnTrac 優惠費率，小包 $3 起，幫您守住利潤。</p></div></div>
+      <div class="value reveal" style="--d:0.00s"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-shield"/></svg></span><div><h3 data-i18n="vl.1">安全第一</h3><p data-i18n="vl.1s">每一件貨都小心搬運、妥善存放。</p></div></div>
+      <div class="value reveal" style="--d:0.15s"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-gauge"/></svg></span><div><h3 data-i18n="vl.2">快速高效</h3><p data-i18n="vl.2s">流程持續優化，訂單出得又快又準。</p></div></div>
+      <div class="value reveal" style="--d:0.30s"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-coins"/></svg></span><div><h3 data-i18n="vl.3">成本實惠</h3><p data-i18n="vl.3s">UPS / FedEx / OnTrac 優惠費率，小包 $3 起，幫您守住利潤。</p></div></div>
     </div>
 
     <h2 class="section" data-i18n="map.title">服務範圍</h2>
@@ -504,37 +615,25 @@
   <section class="tab" id="tab-services">
     <h2 class="section" data-i18n="svc.h">服務內容</h2>
     <div class="caption" data-i18n="svc.s">幫線上賣家更聰明出貨、放眼全球。</div>
-    <!-- 出貨場景（純 CSS 動畫，10 秒一輪）：貨從亞洲坐船到加州倉 → 倉庫亮一下 → 卡車與飛機從倉庫出發送到全美與全球 -->
-    <div class="scene" aria-hidden="true">
-      <i class="cloud c1">☁️</i><i class="cloud c2">☁️</i><i class="cloud c3">☁️</i>
-      <span class="lane sea"></span><span class="lane road"></span>
-      <span class="stop origin"><em>🏭</em><b data-i18n="sc.origin">世界各地</b></span>
-      <span class="stop wh"><em>🏬</em><b data-i18n="sc.wh">美國倉（加州）</b></span>
-      <span class="stop dest"><em>🏠</em><b data-i18n="sc.dest">全美與全球</b></span>
-      <i class="ship"><span>🚢</span></i>
-      <i class="truck"><span>🚚</span></i>
-      <i class="plane"><span>✈️</span></i>
-      <i class="pkg">📦</i>
-    </div>
     <div class="svcs">
-      <div class="svc"><div class="t"><span>🏬</span><span data-i18n="svc.1">美國倉儲服務</span></div><ul>
+      <div class="svc"><div class="t"><span aria-hidden="true"><svg class="i"><use href="#i-warehouse"/></svg></span><span data-i18n="svc.1">美國倉儲服務</span></div><ul>
         <li data-i18n="svc.1a">收貨與上架</li><li data-i18n="svc.1b">倉儲管理</li><li data-i18n="svc.1c">貼標、換標</li><li data-i18n="svc.1d">庫存控管</li><li data-i18n="svc.1e">退貨與處置</li></ul></div>
-      <div class="svc"><div class="t"><span>📦</span><span data-i18n="svc.2">訂單處理與履約</span></div><ul>
+      <div class="svc"><div class="t"><span aria-hidden="true"><svg class="i"><use href="#i-box"/></svg></span><span data-i18n="svc.2">訂單處理與履約</span></div><ul>
         <li data-i18n="svc.2a">揀貨與包裝</li><li data-i18n="svc.2b">DTC / B2C / B2B</li><li data-i18n="svc.2c">多平台訂單整合</li><li data-i18n="svc.2d">FBA 預處理</li><li data-i18n="svc.2e">客製包裝</li></ul></div>
-      <div class="svc"><div class="t"><span>✈️</span><span data-i18n="svc.3">美國境內與國際運輸</span></div><ul>
+      <div class="svc"><div class="t"><span aria-hidden="true"><svg class="i"><use href="#i-plane"/></svg></span><span data-i18n="svc.3">美國境內與國際運輸</span></div><ul>
         <li data-i18n="svc.3a">UPS / FedEx / OnTrac 優惠費率</li><li data-i18n="svc.3b">美國境內與國際配送</li><li data-i18n="svc.3c">小包 $3 起</li><li data-i18n="svc.3d">多種配送選項</li><li data-i18n="svc.3e">Ground / Express</li><li data-i18n="svc.3f">頭城報關一條龍（合作貨代）</li></ul></div>
-      <div class="svc"><div class="t"><span>💻</span><span data-i18n="svc.4">電商營運支援</span></div><ul>
+      <div class="svc"><div class="t"><span aria-hidden="true"><svg class="i"><use href="#i-monitor"/></svg></span><span data-i18n="svc.4">電商營運支援</span></div><ul>
         <li data-i18n="svc.4a">商品上架協助</li><li data-i18n="svc.4b">庫存同步</li><li data-i18n="svc.4c">訂單流程優化</li><li data-i18n="svc.4d">退貨處理</li><li data-i18n="svc.4e">客服支援</li></ul></div>
-      <div class="svc"><div class="t"><span>🤝</span><span data-i18n="svc.5">彈性合作</span></div><ul>
+      <div class="svc"><div class="t"><span aria-hidden="true"><svg class="i"><use href="#i-people"/></svg></span><span data-i18n="svc.5">彈性合作</span></div><ul>
         <li data-i18n="svc.5a">電商與新品牌</li><li data-i18n="svc.5b">小型賣家友善</li><li data-i18n="svc.5c">一站式服務</li><li data-i18n="svc.5d">客製方案</li><li data-i18n="svc.5e">協助拓展美國市場</li></ul></div>
     </div>
     <!-- 履約模式：Amazon FBA／FBM 與 DTC；庫存、履約、運輸、退貨一條龍 -->
     <h2 class="section" data-i18n="fm.h">履約模式</h2>
     <div class="caption" data-i18n="fm.s">庫存管理、訂單履約、運輸配送、退貨處理，一條龍包辦。</div>
     <div class="fms">
-      <div class="fm"><span class="ic" aria-hidden="true">📦</span><h3 data-i18n="fm.1">Amazon FBA</h3><p data-i18n="fm.1s">貼好 FBA 標籤、整箱打板，幫您把貨送進 Amazon 倉。</p></div>
-      <div class="fm"><span class="ic" aria-hidden="true">🚚</span><h3 data-i18n="fm.2">Amazon FBM</h3><p data-i18n="fm.2s">Amazon 訂單由我們倉庫直接出貨，庫存和時效自己掌握。</p></div>
-      <div class="fm"><span class="ic" aria-hidden="true">🏠</span><h3 data-i18n="fm.3">DTC 直送消費者</h3><p data-i18n="fm.3s">獨立站、Shopify、eBay、Walmart 訂單，直接寄到顧客手上。</p></div>
+      <div class="fm"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-box"/></svg></span><h3 data-i18n="fm.1">Amazon FBA</h3><p data-i18n="fm.1s">貼好 FBA 標籤、整箱打板，幫您把貨送進 Amazon 倉。</p></div>
+      <div class="fm"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-truck"/></svg></span><h3 data-i18n="fm.2">Amazon FBM</h3><p data-i18n="fm.2s">Amazon 訂單由我們倉庫直接出貨，庫存和時效自己掌握。</p></div>
+      <div class="fm"><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-home"/></svg></span><h3 data-i18n="fm.3">DTC 直送消費者</h3><p data-i18n="fm.3s">獨立站、Shopify、eBay、Walmart 訂單，直接寄到顧客手上。</p></div>
     </div>
     <!-- 宣傳：ERP 對接與開放 API（右側是會動的「資料流」示意） -->
     <div class="promo">
@@ -550,9 +649,9 @@
         <a class="btn primary" id="api-mail" href="mailto:usw3pl@gmail.com" data-i18n="api.cta">洽談 API 串接</a>
       </div>
       <div class="promo-art" aria-hidden="true">
-        <div class="node erp"><em>🖥️</em><b>ERP / WMS</b></div>
+        <div class="node erp"><em><svg class="i"><use href="#i-server"/></svg></em><b>ERP / WMS</b></div>
         <div class="link"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><i class="dot up u1"></i><i class="dot up u2"></i><span class="api">API</span></div>
-        <div class="node wh"><em>🏬</em><b data-i18n="api.wh">我們的倉庫</b></div>
+        <div class="node wh"><em><svg class="i"><use href="#i-warehouse"/></svg></em><b data-i18n="api.wh">我們的倉庫</b></div>
       </div>
     </div>
     <h2 class="section" data-i18n="plat.h">支援平台</h2>
@@ -599,10 +698,10 @@
       <div class="steps-msg" data-i18n="st.msg2">一站式服務，依需求客製方案。</div>
     </div>
     <div class="kpis">
-      <div class="kpi"><div class="k">🌐</div><div class="v" data-i18n="bd.1">全球出貨</div><div class="s">Global Shipping</div></div>
-      <div class="kpi"><div class="k">⏱</div><div class="v" data-i18n="bd.2">快速週轉</div><div class="s">Fast Turnaround</div></div>
-      <div class="kpi"><div class="k">🛡</div><div class="v" data-i18n="bd.3">安全可靠</div><div class="s">Safe &amp; Reliable</div></div>
-      <div class="kpi"><div class="k">🤝</div><div class="v" data-i18n="bd.4">歡迎合作</div><div class="s">Open to Collaboration</div></div>
+      <div class="kpi"><div class="k" aria-hidden="true"><svg class="i"><use href="#i-globe"/></svg></div><div class="v" data-i18n="bd.1">全球出貨</div><div class="s">Global Shipping</div></div>
+      <div class="kpi"><div class="k" aria-hidden="true"><svg class="i"><use href="#i-clock"/></svg></div><div class="v" data-i18n="bd.2">快速週轉</div><div class="s">Fast Turnaround</div></div>
+      <div class="kpi"><div class="k" aria-hidden="true"><svg class="i"><use href="#i-shield"/></svg></div><div class="v" data-i18n="bd.3">安全可靠</div><div class="s">Safe &amp; Reliable</div></div>
+      <div class="kpi"><div class="k" aria-hidden="true"><svg class="i"><use href="#i-people"/></svg></div><div class="v" data-i18n="bd.4">歡迎合作</div><div class="s">Open to Collaboration</div></div>
     </div>
   </section>
 
@@ -622,10 +721,10 @@
       <a class="btn wa-btn" href="https://wa.me/qr/B4EII77BGMK6O1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg><span data-i18n="wa.cta">WhatsApp 聯絡我們</span></a>
     </div>
     <div class="kpis">
-      <div class="kpi"><div class="k"><span aria-hidden="true">⏱</span> <span data-i18n="ct.t1">回覆時間</span></div><div class="s ct-v" data-i18n="ct.t1v">盡快，通常一個工作天內</div></div>
-      <div class="kpi"><div class="k"><span aria-hidden="true">🗣</span> <span data-i18n="ct.t2">語言</span></div><div class="s ct-v" data-i18n="ct.t2v">中文、英文</div></div>
-      <div class="kpi"><div class="k"><span aria-hidden="true">📋</span> <span data-i18n="ct.t3">報價需要</span></div><div class="s ct-v" data-i18n="ct.t3v">商品、每月出貨量、尺寸重量、貨從哪裡來</div></div>
-      <div class="kpi"><div class="k"><span aria-hidden="true">📍</span> <span data-i18n="ct.t4">倉庫地點</span></div><div class="s ct-v" data-i18n="ct.t4v">City of Industry, California</div></div>
+      <div class="kpi"><div class="k"><svg class="i"><use href="#i-clock"/></svg> <span data-i18n="ct.t1">回覆時間</span></div><div class="s ct-v" data-i18n="ct.t1v">盡快，通常一個工作天內</div></div>
+      <div class="kpi"><div class="k"><svg class="i"><use href="#i-chat"/></svg> <span data-i18n="ct.t2">語言</span></div><div class="s ct-v" data-i18n="ct.t2v">中文、英文</div></div>
+      <div class="kpi"><div class="k"><svg class="i"><use href="#i-clip"/></svg> <span data-i18n="ct.t3">報價需要</span></div><div class="s ct-v" data-i18n="ct.t3v">商品、每月出貨量、尺寸重量、貨從哪裡來</div></div>
+      <div class="kpi"><div class="k"><svg class="i"><use href="#i-pin"/></svg> <span data-i18n="ct.t4">倉庫地點</span></div><div class="s ct-v" data-i18n="ct.t4v">City of Industry, California</div></div>
     </div>
     <!-- 合作握手照片：Cytonn Photography／Unsplash（unsplash.com/photos/n95VMLxqM2I，Unsplash License 可商用），直接引用 images.unsplash.com -->
     <div class="ct-photo" role="img" aria-label="兩人握手" data-i18n-aria="ct.palt"><div class="ct-photo-in">
@@ -636,6 +735,14 @@
   </section>
 
 </main>
+<footer class="ftr">
+  <div class="ftr-in">
+    <div class="ftr-brand"><img src="favicon.svg" alt="" width="32" height="32"><p data-i18n="ft.s">美國倉儲、訂單履約與 UPS／FedEx／OnTrac 出貨，幫線上賣家把生意做到全球。</p></div>
+    <nav class="ftr-col" aria-label="Pages" data-i18n-aria="aria.nav"><h3 data-i18n="ft.p">頁面</h3><a href="#services" data-i18n="nav.services">服務內容</a><a href="#flow" data-i18n="nav.flow">合作流程</a><a href="#contact" data-i18n="nav.contact">聯絡我們</a></nav>
+    <div class="ftr-col"><h3 data-i18n="ft.c">聯絡</h3><a id="ft-mail" href="mailto:usw3pl@gmail.com">usw3pl@gmail.com</a><a href="https://wa.me/qr/B4EII77BGMK6O1" target="_blank" rel="noopener">WhatsApp</a></div>
+    <div class="ftr-col"><h3 data-i18n="ft.w">倉庫地點</h3><span>City of Industry, California</span></div>
+  </div>
+</footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
@@ -643,15 +750,14 @@
 /* 兩種語言，一份字典。預設中文；語言、字型、主題、時區記在這一台瀏覽器。 */
 const I18N={
   "brand.h1":["美西第三方倉庫","U.S. West Coast 3PL Warehouse"],
-  "brand.sub":["幫線上賣家更聰明出貨、放眼全球 · City of Industry, California · U.S. Warehouse Fulfillment Hub","Helping online sellers ship smarter and grow globally · City of Industry, California · U.S. Warehouse Fulfillment Hub"],
-  "opt.hand":["手寫風","Handwriting"],"opt.sans":["正黑體","Sans"],
+  "brand.sub":["幫線上賣家更聰明出貨、放眼全球","Helping online sellers ship smarter and grow globally"],
   "opt.la":["美國倉（加州）","Warehouse (California)"],"opt.tpe":["台北","Taipei"],
-  "aria.lang":["語言","Language"],"aria.font":["字型","Font"],"aria.tz":["時區","Time zone"],"aria.nav":["分頁","Sections"],
+  "aria.lang":["語言","Language"],"aria.tz":["時區","Time zone"],"aria.nav":["分頁","Sections"],
   "home.mail":["寄信詢價","Email for a quote"],"home.hint":["說明商品、每月出貨量、尺寸重量、貨從哪裡來，我們會盡快回覆。","Tell us the product, monthly volume, size and weight and origin; we reply as soon as we can."],
   "bd.1":["全球出貨","Global Shipping"],"bd.2":["快速週轉","Fast Turnaround"],"bd.3":["安全可靠","Safe & Reliable"],"bd.4":["歡迎合作","Open to Collaboration"],
   "tl.h":["我們的服務","Our services"],"tl.s":["從進貨、存放到出貨，美國倉一站搞定。","From receiving and storage to shipping, all in one U.S. warehouse."],"tl.more":["了解更多 →","Learn more →"],"tl.1":["海外倉儲","Overseas Warehousing"],"tl.1s":["加州倉就近美國市場，貨物安全存放、隨時可出貨。","A California warehouse close to U.S. customers, with stock stored safely and ready to ship."],"tl.2":["在地倉儲與履約","Local Storage & Fulfillment"],"tl.2s":["收到訂單就揀貨、包裝、出貨，一條龍完成。","Orders are picked, packed and shipped in one smooth flow."],"tl.3":["收貨與出貨","Shipping & Receiving"],"tl.3s":["進貨驗收、出貨交寄，每一步都有紀錄可追蹤。","Inbound receiving and outbound handoff, with every step tracked."],"tl.4":["貼標服務","Labeling Services"],"tl.4s":["條碼、FBA 標籤、換標與合規標示，出貨前一次貼好。","Barcodes, FBA labels, relabeling and compliance labels, applied before shipping."],"tl.5":["庫存管理","Inventory Management"],"tl.5s":["庫存數量隨時查得到，補貨時機一目了然。","Check stock levels anytime and see at a glance when to restock."],"tl.6":["電商解決方案","E-Commerce Solutions"],"tl.6s":["串接 Shopify、Amazon 等平台，為線上賣家量身規劃物流。","Connected to Shopify, Amazon and more, with logistics planned around online sellers."],"vl.h":["為什麼選擇我們","Why choose us"],"vl.1":["安全第一","Safety First"],"vl.1s":["每一件貨都小心搬運、妥善存放。","Every shipment is handled and stored with care."],"vl.2":["快速高效","Speed & Efficiency"],"vl.2s":["流程持續優化，訂單出得又快又準。","Continuously improved processes get orders out fast and accurately."],"vl.3":["成本實惠","Cost-Effective"],"vl.3s":["UPS / FedEx / OnTrac 優惠費率，小包 $3 起，幫您守住利潤。","Discounted UPS / FedEx / OnTrac rates and small parcels from $3 protect your margins."],
   "nav.contact":["聯絡我們","Contact"],"ct.h":["聯絡我們","Contact us"],"ct.s":["來信說明商品與每月出貨量，我們會盡快回覆。","Tell us about your products and monthly volume and we will get back to you promptly."],"ct.t1":["回覆時間","Reply time"],"ct.t1v":["盡快，通常一個工作天內","Promptly, usually within one business day"],"ct.t2":["語言","Languages"],"ct.t2v":["中文、英文","Chinese, English"],"ct.t3":["報價需要","For a quote"],"ct.t3v":["商品、每月出貨量、尺寸重量、貨從哪裡來","Product, monthly volume, size and weight, origin"],"ct.t4":["倉庫地點","Warehouse"],"ct.t4v":["City of Industry, California","City of Industry, California"],
-  "fl.k":["合作流程", "HOW IT WORKS"],"fl.h":["貨到倉庫後怎麼走", "How your goods move through our warehouse"],"fl.s":["從亞洲出口到送進美國客戶家門，八個步驟，每一步都掃描留紀錄。", "From export in Asia to your customer's front door—eight steps, every one scanned and on record."],"fl.t1":["八個步驟", "8 steps"],"fl.t2":["全程掃描紀錄", "Scanned at every step"],"fl.p1":["抵達美國", "Getting to the U.S."],"fl.p2":["入庫上架", "Receiving & put-away"],"fl.p3":["出貨配送", "Out the door"],"fl.1":["跨境運輸", "Ocean & air freight"],"fl.1s":["海運整櫃、併櫃或空運都可以，頭城報關一條龍清關，貨順利進美國。", "FCL, LCL or air—your call. Our customs partner handles clearance end to end, so your goods land in the U.S. without a hitch."],"fl.2":["到倉卸櫃", "Dock & unload"],"fl.2s":["貨櫃車直接靠上卸貨月台，整櫃、棧板貨一路卸進倉庫。", "Trucks back right up to our loading docks, and full containers or pallets roll straight inside."],"fl.3":["搬運暫存", "Move & stage"],"fl.3s":["堆高機把棧板送到暫存區，箱數和外箱狀況當場清點。", "Forklifts bring pallets to staging, where we count cartons and check every box on the spot."],"fl.4":["掃描驗收", "Scan & check in"],"fl.4s":["逐箱掃條碼核對入庫單，數量不符或破損馬上通知您。", "Every carton gets scanned against your inbound order. Short or damaged? You'll hear from us right away."],"fl.5":["上架儲位", "Put away"],"fl.5s":["每個儲位都有條碼，上架時一掃綁定，貨放在哪裡一查就知道。", "Every bin has its own barcode. We scan it as we shelve, so you always know exactly where your stock is."],"fl.6":["訂單揀貨", "Pick orders"],"fl.6s":["平台訂單自動進系統，依單揀貨，輸送線直送包裝站。", "Orders from your sales channels flow in automatically, get picked, and ride the conveyor to packing."],"fl.7":["包裝打板", "Pack & palletize"],"fl.7s":["小包挑合適紙箱；大貨、FBA 補貨打板纏膜，路上更安全。", "Parcels go in the right-size box. Bulk and FBA restocks get palletized and stretch-wrapped for the trip."],"fl.8":["送達客戶", "Delivered"],"fl.8s":["UPS、FedEx、OnTrac 交寄，追蹤號碼回傳，送到客戶家門口。", "Handed off to UPS, FedEx or OnTrac with tracking sent back to you, right to your customer's door."],
+  "fl.k":["合作流程", "How it works"],"fl.h":["貨到倉庫後怎麼走", "How your goods move through our warehouse"],"fl.s":["從亞洲出口到送進美國客戶家門，八個步驟，每一步都掃描留紀錄。", "From export in Asia to your customer's front door—eight steps, every one scanned and on record."],"fl.t1":["八個步驟", "8 steps"],"fl.t2":["全程掃描紀錄", "Scanned at every step"],"fl.p1":["抵達美國", "Getting to the U.S."],"fl.p2":["入庫上架", "Receiving & put-away"],"fl.p3":["出貨配送", "Out the door"],"fl.1":["跨境運輸", "Ocean & air freight"],"fl.1s":["海運整櫃、併櫃或空運都可以，頭城報關一條龍清關，貨順利進美國。", "FCL, LCL or air—your call. Our customs partner handles clearance end to end, so your goods land in the U.S. without a hitch."],"fl.2":["到倉卸櫃", "Dock & unload"],"fl.2s":["貨櫃車直接靠上卸貨月台，整櫃、棧板貨一路卸進倉庫。", "Trucks back right up to our loading docks, and full containers or pallets roll straight inside."],"fl.3":["搬運暫存", "Move & stage"],"fl.3s":["堆高機把棧板送到暫存區，箱數和外箱狀況當場清點。", "Forklifts bring pallets to staging, where we count cartons and check every box on the spot."],"fl.4":["掃描驗收", "Scan & check in"],"fl.4s":["逐箱掃條碼核對入庫單，數量不符或破損馬上通知您。", "Every carton gets scanned against your inbound order. Short or damaged? You'll hear from us right away."],"fl.5":["上架儲位", "Put away"],"fl.5s":["每個儲位都有條碼，上架時一掃綁定，貨放在哪裡一查就知道。", "Every bin has its own barcode. We scan it as we shelve, so you always know exactly where your stock is."],"fl.6":["訂單揀貨", "Pick orders"],"fl.6s":["平台訂單自動進系統，依單揀貨，輸送線直送包裝站。", "Orders from your sales channels flow in automatically, get picked, and ride the conveyor to packing."],"fl.7":["包裝打板", "Pack & palletize"],"fl.7s":["小包挑合適紙箱；大貨、FBA 補貨打板纏膜，路上更安全。", "Parcels go in the right-size box. Bulk and FBA restocks get palletized and stretch-wrapped for the trip."],"fl.8":["送達客戶", "Delivered"],"fl.8s":["UPS、FedEx、OnTrac 交寄，追蹤號碼回傳，送到客戶家門口。", "Handed off to UPS, FedEx or OnTrac with tracking sent back to you, right to your customer's door."],
   "api.badge":["最新","NEW"],"api.h":["ERP 對接 · 開放 API","ERP Integration · Open API"],
   "api.s":["把您的 ERP、WMS 或電商後台直接接上我們的倉庫：訂單自動進倉、庫存與出貨狀態即時回寫，不用再手動匯入匯出。","Connect your ERP, WMS or store back end straight to our warehouse: orders flow in automatically and stock and shipping status are written back in real time. No more manual imports and exports."],
   "api.1":["開放 REST API 與 Webhook：建單、查庫存、追蹤出貨","Open REST API and webhooks: create orders, check stock, track shipments"],
@@ -694,7 +800,7 @@ const I18N={
   
   
   
-  "ct.email":["電子郵件","Email"],"ab.1":["安全倉儲", "Secure storage"],"ab.1s":["海外與在地存放，貨物安全有保障。", "Overseas and local storage you can count on."],"ab.2":["流程順暢", "Smooth operations"],"ab.2s":["收貨、出貨、訂單處理一氣呵成。", "Receiving, shipping and order processing that just flow."],"ab.3":["精準貼標", "Accurate labeling"],"ab.3s":["標籤正確又合規，出貨不卡關。", "Correct, compliant labels, so shipments don't get held up."],"ab.4":["即時庫存", "Real-time inventory"],"ab.4s":["庫存隨時查得到，補貨不手忙腳亂。", "Check your stock anytime and restock without the scramble."],"ab.5":["降本增效", "Lower costs"],"ab.5s":["持續優化流程，幫您省下成本。", "We keep tightening our process to save you money."],"ab.6":["為賣家打造", "Built for sellers"],"ab.6s":["專為電商賣家與全球拓展設計。", "Designed around online sellers and growing worldwide."],"ab.k":["關於我們", "ABOUT US"],"ab.h":["聰明、快速、可靠的物流夥伴", "Your smart, fast and reliable logistics partner"],"ab.s":["我們在加州 City of Industry 經營倉庫，提供海外倉儲、在地存放、收發貨、貼標與訂單履約，幫線上賣家把生意做到全球。", "We run a warehouse in City of Industry, California, offering overseas warehousing, local storage, shipping and receiving, labeling and order fulfillment, so online sellers can take their business global."],"fm.1s":["貼好 FBA 標籤、整箱打板，幫您把貨送進 Amazon 倉。", "We prep, label and palletize your stock and send it into Amazon fulfillment centers."],"fm.2s":["Amazon 訂單由我們倉庫直接出貨，庫存和時效自己掌握。", "Your Amazon orders ship straight from our warehouse, so you stay in control of stock and delivery speed."],"fm.3s":["獨立站、Shopify、eBay、Walmart 訂單，直接寄到顧客手上。", "Orders from your own site, Shopify, eBay or Walmart go straight to your customers."],"fm.1":["Amazon FBA", "Amazon FBA"],"fm.2":["Amazon FBM", "Amazon FBM"],"fm.3":["DTC 直送消費者", "Direct to consumer (DTC)"],"fm.h":["履約模式", "Fulfillment models"],"fm.s":["庫存管理、訂單履約、運輸配送、退貨處理，一條龍包辦。", "Inventory, order fulfillment, transportation and returns, all handled in one place."],"wa.s":["手機掃描 QR code，或點按鈕直接開始聊天。", "Scan the QR code with your phone, or tap the button to start a chat."],"wa.cta":["WhatsApp 聯絡我們", "WhatsApp us"],"ct.pk":["歡迎合作", "LET'S WORK TOGETHER"],"ct.ph":["一起把美國市場做起來", "Let's grow your U.S. business together"],"ct.ps":["從第一批貨到每天出貨，每一步我們都陪您把關。", "From your first shipment to everyday orders, we've got your back every step of the way."],"ct.palt":["兩人握手", "Two people shaking hands"],"ct.copy":["複製","Copy"],
+  "ct.email":["電子郵件","Email"],"brand.loc":["美國倉位於加州 City of Industry", "Our warehouse: City of Industry, California"],"hero.h":["您在美國的倉庫，就在南加州", "Your U.S. warehouse, right in Southern California"],"hero.s":["收貨、存放、揀貨包裝，到 UPS／FedEx／OnTrac 出貨，跨境賣家需要的美國倉作業一次搞定。", "Receiving, storage, pick and pack, and UPS, FedEx or OnTrac shipping. Everything a cross-border seller needs from a U.S. warehouse, handled in one place."],"ft.s":["美國倉儲、訂單履約與 UPS／FedEx／OnTrac 出貨，幫線上賣家把生意做到全球。", "U.S. warehousing, order fulfillment and UPS, FedEx and OnTrac shipping for online sellers growing worldwide."],"ft.p":["頁面", "Pages"],"ft.c":["聯絡", "Contact"],"ft.w":["倉庫地點", "Warehouse"],"ab.1":["安全倉儲", "Secure storage"],"ab.1s":["海外與在地存放，貨物安全有保障。", "Overseas and local storage you can count on."],"ab.2":["流程順暢", "Smooth operations"],"ab.2s":["收貨、出貨、訂單處理一氣呵成。", "Receiving, shipping and order processing that just flow."],"ab.3":["精準貼標", "Accurate labeling"],"ab.3s":["標籤正確又合規，出貨不卡關。", "Correct, compliant labels, so shipments don't get held up."],"ab.4":["即時庫存", "Real-time inventory"],"ab.4s":["庫存隨時查得到，補貨不手忙腳亂。", "Check your stock anytime and restock without the scramble."],"ab.5":["降本增效", "Lower costs"],"ab.5s":["持續優化流程，幫您省下成本。", "We keep tightening our process to save you money."],"ab.6":["為賣家打造", "Built for sellers"],"ab.6s":["專為電商賣家與全球拓展設計。", "Designed around online sellers and growing worldwide."],"ab.k":["關於我們", "About us"],"ab.h":["聰明、快速、可靠的物流夥伴", "Your smart, fast and reliable logistics partner"],"ab.s":["我們在加州 City of Industry 經營倉庫，提供海外倉儲、在地存放、收發貨、貼標與訂單履約，幫線上賣家把生意做到全球。", "We run a warehouse in City of Industry, California, offering overseas warehousing, local storage, shipping and receiving, labeling and order fulfillment, so online sellers can take their business global."],"fm.1s":["貼好 FBA 標籤、整箱打板，幫您把貨送進 Amazon 倉。", "We prep, label and palletize your stock and send it into Amazon fulfillment centers."],"fm.2s":["Amazon 訂單由我們倉庫直接出貨，庫存和時效自己掌握。", "Your Amazon orders ship straight from our warehouse, so you stay in control of stock and delivery speed."],"fm.3s":["獨立站、Shopify、eBay、Walmart 訂單，直接寄到顧客手上。", "Orders from your own site, Shopify, eBay or Walmart go straight to your customers."],"fm.1":["Amazon FBA", "Amazon FBA"],"fm.2":["Amazon FBM", "Amazon FBM"],"fm.3":["DTC 直送消費者", "Direct to consumer (DTC)"],"fm.h":["履約模式", "Fulfillment models"],"fm.s":["庫存管理、訂單履約、運輸配送、退貨處理，一條龍包辦。", "Inventory, order fulfillment, transportation and returns, all handled in one place."],"wa.s":["手機掃描 QR code，或點按鈕直接開始聊天。", "Scan the QR code with your phone, or tap the button to start a chat."],"wa.cta":["WhatsApp 聯絡我們", "WhatsApp us"],"ct.pk":["歡迎合作", "Let's work together"],"ct.ph":["一起把美國市場做起來", "Let's grow your U.S. business together"],"ct.ps":["從第一批貨到每天出貨，每一步我們都陪您把關。", "From your first shipment to everyday orders, we've got your back every step of the way."],"ct.palt":["兩人握手", "Two people shaking hands"],"ct.copy":["複製","Copy"],
   
   
 };
@@ -709,12 +815,10 @@ function applyLang(code){
   document.documentElement.lang=i?"en":"zh-Hant-TW";
   document.title=i?"U.S. West Coast 3PL Warehouse":"美西第三方倉庫";
   $("lang-sel").value=LANG; pref("lang",LANG); tick(); drawMap();
-  if(typeof mailHref==="function"){ const h=mailHref(I18N["q.subj"][i]); for(const id of ["quote-btn","home-mail","api-mail"]){ const el=$(id); if(el) el.href=h; } }
+  if(typeof mailHref==="function"){ const h=mailHref(I18N["q.subj"][i]); for(const id of ["home-mail","api-mail","nav-mail","hero-mail","ft-mail"]){ const el=$(id); if(el) el.href=h; } }
 }
 /* 聯絡頁的服務地區：和地圖同一份地點，一面旗一個名字 */
-function applyFont(v){ document.documentElement.dataset.font=v==="sans"?"sans":"hand"; $("font-sel").value=v; pref("font",v); }
 $("lang-sel").addEventListener("change",e=>applyLang(e.target.value));
-$("font-sel").addEventListener("change",e=>applyFont(e.target.value));
 
 /* 時鐘：預設看美國倉（加州）的時間；海外賣家最常問的就是「你們那邊現在幾點」。 */
 let TZ="America/Los_Angeles";
@@ -859,7 +963,6 @@ let mapW=0, mapRaf=0;
 window.addEventListener("resize",()=>{ cancelAnimationFrame(mapRaf); mapRaf=requestAnimationFrame(()=>{ const el=$("map-svg"); if(el&&el.clientWidth&&el.clientWidth!==mapW) drawMap(); }); });
 
 /* 開頁：套回上次的偏好，網址有 # 就開那一頁。 */
-applyFont(pref("font")||"hand");
 TZ=(pref("tz")==="Asia/Taipei")?"Asia/Taipei":"America/Los_Angeles"; $("tz-sel").value=TZ;
 applyLang(pref("lang")||"zh");
 /* 首頁的服務卡、價值卡：捲進畫面才浮上來（分頁藏著時不算進畫面，切回來才播） */
