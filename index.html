@@ -30,6 +30,7 @@
   /* 標題列（全寬、深色） */
   .hdr { background:var(--navy); color:var(--gold); padding:10px 22px; display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; }
   .hdr .brand { min-width:0; max-width:100%; }
+  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
   .hdr h1 { margin:0; font-size:1.55rem; letter-spacing:.12em; font-weight:700; text-transform:uppercase; }
   .hdr .sub { color:var(--subfg); font-size:.82rem; overflow-wrap:anywhere; }
   .hdr .ctl { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-left:auto; justify-content:flex-end; }
@@ -384,7 +385,7 @@
 
 <header class="hdr">
   <div class="brand">
-    <h1 data-i18n="brand.h1">美西第三方倉庫</h1>
+    <h1 class="sr-only" data-i18n="brand.h1">美西第三方倉庫</h1>
     <div class="sub" data-i18n="brand.sub">幫線上賣家更聰明出貨、放眼全球 · City of Industry, California · U.S. Warehouse Fulfillment Hub</div>
   </div>
   <div class="ctl">
