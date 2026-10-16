@@ -904,17 +904,20 @@
       <div class="kpi"><div class="k" data-i18n="k4">服務</div><div class="v" data-i18n="k4v">全球各地</div><div class="s" data-i18n="k4s">Global Shipping · 中英文服務</div></div>
     </div>
 
-    <!-- 服務介紹：圖片卡（插畫在 img/，深色遮罩上白字；滑過放大背景），點了開「服務內容」 -->
-    <h2 class="section" data-i18n="tl.h">我們的服務</h2>
-    <div class="caption" data-i18n="tl.s">從進貨、存放到出貨，美國倉一站搞定。</div>
-    <div class="tiles">
-      <a class="tile reveal" href="#services" style="--img:url(img/svc-warehouse.svg);--d:0.00s"><div class="tile-in"><h3 data-i18n="tl.1">海外倉儲</h3><p data-i18n="tl.1s">加州倉就近美國市場，貨物安全存放、隨時可出貨。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
-      <a class="tile reveal" href="#services" style="--img:url(img/svc-fulfillment.svg);--d:0.12s"><div class="tile-in"><h3 data-i18n="tl.2">在地倉儲與履約</h3><p data-i18n="tl.2s">收到訂單就揀貨、包裝、出貨，一條龍完成。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
-      <a class="tile reveal" href="#services" style="--img:url(img/svc-shipping.svg);--d:0.24s"><div class="tile-in"><h3 data-i18n="tl.3">收貨與出貨</h3><p data-i18n="tl.3s">進貨驗收、出貨交寄，每一步都有紀錄可追蹤。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
-      <a class="tile reveal" href="#services" style="--img:url(img/svc-label.svg);--d:0.00s"><div class="tile-in"><h3 data-i18n="tl.4">貼標服務</h3><p data-i18n="tl.4s">條碼、FBA 標籤、換標與合規標示，出貨前一次貼好。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
-      <a class="tile reveal" href="#services" style="--img:url(img/svc-inventory.svg);--d:0.12s"><div class="tile-in"><h3 data-i18n="tl.5">庫存管理</h3><p data-i18n="tl.5s">庫存數量隨時查得到，補貨時機一目了然。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
-      <a class="tile reveal" href="#services" style="--img:url(img/svc-ecommerce.svg);--d:0.24s"><div class="tile-in"><h3 data-i18n="tl.6">電商解決方案</h3><p data-i18n="tl.6s">串接 Shopify、Amazon 等平台，為線上賣家量身規劃物流。</p><span class="more" data-i18n="tl.more">了解更多 →</span></div></a>
+    <h2 class="section" data-i18n="map.title">服務範圍</h2>
+    <div class="map">
+      <div class="map-bar"><span class="caption" data-i18n="map.cap">世界各地的貨都能進美國倉，從 City of Industry 出貨到全美與海外（Global Shipping）。</span>
+        <span class="seg" id="map-view"><button class="btn" type="button" data-view="fit" data-i18n="map.region">區域</button><button class="btn active" type="button" data-view="world" data-i18n="map.world">全球</button></span></div>
+      <div id="map-svg"></div>
+      <div class="chips">
+        <span><i class="lg wh"></i><b data-i18n="lg.wh">美國倉 City of Industry, CA</b></span>
+        <span><i class="lg from"></i><span data-i18n="lg.from">常見出貨來源</span></span>
+        <span><i class="lg to"></i><span data-i18n="lg.to">UPS / FedEx 國際可配送（主要市場）</span></span>
+        <span><i class="lg city"></i><span data-i18n="lg.city">區域視角：美國境內配送點</span></span>
+        <span><i class="lg rt"></i><span data-i18n="lg.rt">台灣 → 美國倉：空運、海運，頭城報關一條龍</span></span>
+      </div>
     </div>
+
     <!-- 為什麼選擇我們：三張價值卡 -->
     <h2 class="section" data-i18n="vl.h">為什麼選擇我們</h2>
     <div class="values">
@@ -936,19 +939,6 @@
       <div class="steps-msg" data-i18n="st.msg">收貨上架、揀貨包裝、UPS / FedEx / OnTrac 配送、退貨處理，一站完成；快速週轉、安全可靠。</div>
     </div>
 
-    <h2 class="section" data-i18n="map.title">服務範圍</h2>
-    <div class="map">
-      <div class="map-bar"><span class="caption" data-i18n="map.cap">世界各地的貨都能進美國倉，從 City of Industry 出貨到全美與海外（Global Shipping）。</span>
-        <span class="seg" id="map-view"><button class="btn" type="button" data-view="fit" data-i18n="map.region">區域</button><button class="btn active" type="button" data-view="world" data-i18n="map.world">全球</button></span></div>
-      <div id="map-svg"></div>
-      <div class="chips">
-        <span><i class="lg wh"></i><b data-i18n="lg.wh">美國倉 City of Industry, CA</b></span>
-        <span><i class="lg from"></i><span data-i18n="lg.from">常見出貨來源</span></span>
-        <span><i class="lg to"></i><span data-i18n="lg.to">UPS / FedEx 國際可配送（主要市場）</span></span>
-        <span><i class="lg city"></i><span data-i18n="lg.city">區域視角：美國境內配送點</span></span>
-        <span><i class="lg rt"></i><span data-i18n="lg.rt">台灣 → 美國倉：空運、海運，頭城報關一條龍</span></span>
-      </div>
-    </div>
   </section>
 
   <!-- 服務內容（傳單上的五組） -->
